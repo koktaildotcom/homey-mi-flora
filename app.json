@@ -1,0 +1,112 @@
+{
+    "id": "com.koktail.homey-mi-flora",
+    "sdk": 2,
+    "name": {
+        "en": "Xiaomi Mi Flora Plant Sensor"
+    },
+    "description": {
+        "en": "Integrate Xiaomi Mi Flora Plant Sensor into Homey"
+    },
+    "category": "appliances",
+    "version": "1.0.0",
+    "compatibility": ">=1.5.0",
+    "author": {
+        "name": "Leendert De Kok",
+        "email": "koktaildotcom@hotmail.com"
+    },
+    "contributing": {
+        "donate": {
+            "paypal": {
+                "username": "koktaildotcom@hotmail.com"
+            }
+        }
+    },
+    "drivers": [
+        {
+            "id": "mi_flora",
+            "name": {
+                "en": "Xiaomi Mi Flora Plant Sensor",
+                "nl": "Xiaomi Mi Flora Plant Sensor"
+            },
+            "class": "socket",
+            "capabilities": [ "onoff"],
+            "pair": [
+                {
+                    "id": "list_devices",
+                    "template": "list_devices",
+                    "navigation": {
+                        "next": "add_devices"
+                    }
+                },
+                {
+                    "id": "add_devices",
+                    "template": "add_devices"
+                }
+            ]
+        }
+    ],
+    "flow": {
+        "triggers": [
+            {
+                "id": "rain_start",
+                "title": {
+                    "en": "It starts raining"
+                }
+            },
+            {
+                "id": "rain_stop",
+                "title": {
+                    "en": "It stops raining"
+                }
+            }
+        ],
+        "conditions": [
+            {
+                "id": "is_raining",
+                "title": {
+                    "en": "It !{{is|isn't}} raining"
+                }
+            },
+            {
+                "id": "raining_in",
+                "title": {
+                    "en": "It is going to rain in..."
+                },
+                "args": [
+                    {
+                        "name": "when",
+                        "type": "dropdown",
+                        "values": [
+                            {
+                                "id": "5",
+                                "label": {
+                                    "en": "5 minutes"
+                                }
+                            },
+                            {
+                                "id": "10",
+                                "label": {
+                                    "en": "10 minutes"
+                                }
+                            },
+                            {
+                                "id": "15",
+                                "label": {
+                                    "en": "15 minutes"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "actions": [
+            {
+                "id": "stop_raining",
+                "title": {
+                    "en": "Make it stop raining. Haha."
+                }
+            }
+        ]
+    }
+}
