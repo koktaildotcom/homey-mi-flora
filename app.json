@@ -21,6 +21,24 @@
             }
         }
     },
+    "capabilities": {
+        "measure_conductivity": {
+            "type": "number",
+            "title": {
+                "en": "Conductivity",
+                "nl": "Geleidingsvermogen"
+            },
+            "getable": true,
+            "setable": false,
+            "units": {
+                "en": "uS/cm",
+                "nl": "uS/cm"
+            },
+            "min": 0,
+            "max": 5000,
+            "step": 1
+        }
+    },
     "drivers": [
         {
             "id": "mi_flora",
@@ -29,7 +47,13 @@
                 "nl": "Xiaomi Mi Flora Plant Sensor"
             },
             "class": "socket",
-            "capabilities": [ "onoff"],
+            "capabilities": [
+                "measure_temperature",
+                "measure_luminance",
+                "measure_humidity",
+                "measure_conductivity",
+                "battery"
+            ],
             "pair": [
                 {
                     "id": "list_devices",
@@ -45,66 +69,27 @@
             ]
         }
     ],
-    "flow": {
-        "triggers": [
+    "mobile": {
+        "components": [
             {
-                "id": "rain_start",
-                "title": {
-                    "en": "It starts raining"
+                "id": "icon",
+                "options": {
+                    "showTitle": true
                 }
             },
             {
-                "id": "rain_stop",
-                "title": {
-                    "en": "It stops raining"
-                }
-            }
-        ],
-        "conditions": [
-            {
-                "id": "is_raining",
-                "title": {
-                    "en": "It !{{is|isn't}} raining"
-                }
+                "id": "battery"
             },
             {
-                "id": "raining_in",
-                "title": {
-                    "en": "It is going to rain in..."
-                },
-                "args": [
-                    {
-                        "name": "when",
-                        "type": "dropdown",
-                        "values": [
-                            {
-                                "id": "5",
-                                "label": {
-                                    "en": "5 minutes"
-                                }
-                            },
-                            {
-                                "id": "10",
-                                "label": {
-                                    "en": "10 minutes"
-                                }
-                            },
-                            {
-                                "id": "15",
-                                "label": {
-                                    "en": "15 minutes"
-                                }
-                            }
-                        ]
-                    }
-                ]
-            }
-        ],
-        "actions": [
-            {
-                "id": "stop_raining",
-                "title": {
-                    "en": "Make it stop raining. Haha."
+                "id": "sensor",
+                "capabilities": [
+                    "measure_temperature",
+                    "measure_luminance",
+                    "measure_humidity",
+                    "measure_conductivity"
+                ],
+                "options": {
+                    "showTitle": true
                 }
             }
         ]
