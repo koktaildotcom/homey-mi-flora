@@ -48,11 +48,7 @@
             },
             "class": "socket",
             "capabilities": [
-                "measure_temperature",
-                "measure_luminance",
-                "measure_humidity",
-                "measure_conductivity",
-                "battery"
+                "measure_temperature"
             ],
             "pair": [
                 {
@@ -79,18 +75,6 @@
             },
             {
                 "id": "battery"
-            },
-            {
-                "id": "sensor",
-                "capabilities": [
-                    "measure_temperature",
-                    "measure_luminance",
-                    "measure_humidity",
-                    "measure_conductivity"
-                ],
-                "options": {
-                    "showTitle": true
-                }
             }
         ]
     }
