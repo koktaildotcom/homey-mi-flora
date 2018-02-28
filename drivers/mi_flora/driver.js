@@ -4,11 +4,6 @@ const Homey = require('homey');
 
 const FLOWER_CARE_NAME = 'Flower care';
 
-// "measure_temperature",
-// "measure_luminance",
-// "measure_humidity",
-// "measure_conductivity",
-
 class MiFloraDriver extends Homey.Driver {
     onPairListDevices(data, callback) {
 
@@ -33,8 +28,13 @@ class MiFloraDriver extends Homey.Driver {
                             "type": advertisement.type
                         },
                         "capabilities": [
-                            "measure_temperature"
+                            "measure_temperature",
+                            "measure_luminance",
+                            "measure_humidity",
+                            "measure_conductivity"
                         ],
+                        //
+                        //
                         // Optional properties, these overwrite those specified in app.json:
                         // "icon": "/path/to/another/icon.svg",
                         // "capabilities": [ "onoff", "dim" ],

@@ -29,10 +29,10 @@
                 "nl": "Geleidingsvermogen"
             },
             "getable": true,
-            "setable": false,
+            "setable": true,
             "units": {
-                "en": "uS/cm",
-                "nl": "uS/cm"
+                "en": "µS/cm",
+                "nl": "µS/cm"
             },
             "min": 0,
             "max": 5000,
@@ -48,7 +48,10 @@
             },
             "class": "socket",
             "capabilities": [
-                "measure_temperature"
+                "measure_temperature",
+                "measure_luminance",
+                "measure_humidity",
+                "measure_conductivity"
             ],
             "pair": [
                 {
@@ -62,20 +65,23 @@
                     "id": "add_devices",
                     "template": "add_devices"
                 }
-            ]
-        }
-    ],
-    "mobile": {
-        "components": [
-            {
-                "id": "icon",
-                "options": {
-                    "showTitle": true
-                }
-            },
-            {
-                "id": "battery"
+            ],
+            "mobile": {
+                "components": [
+                    {
+                        "id": "icon"
+                    },
+                    {
+                        "id": "sensor",
+                        "capabilities": [
+                            "measure_temperature",
+                            "measure_luminance",
+                            "measure_humidity",
+                            "measure_conductivity"
+                        ]
+                    }
+                ]
             }
-        ]
-    }
+        }
+    ]
 }
