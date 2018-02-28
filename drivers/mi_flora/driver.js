@@ -29,7 +29,8 @@ class MiFloraDriver extends Homey.Driver {
                             "measure_temperature",
                             "measure_luminance",
                             "measure_humidity",
-                            "measure_conductivity"
+                            "measure_conductivity",
+                            "measure_battery"
                         ],
                     });
                 }
