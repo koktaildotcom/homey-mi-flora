@@ -9,8 +9,6 @@ class MiFloraDriver extends Homey.Driver {
 
         console.log('Successfully init onPairListDevices');
 
-        //measure_temperature
-
         let devices = [];
         let index = 0;
 
@@ -33,17 +31,6 @@ class MiFloraDriver extends Homey.Driver {
                             "measure_humidity",
                             "measure_conductivity"
                         ],
-                        //
-                        //
-                        // Optional properties, these overwrite those specified in app.json:
-                        // "icon": "/path/to/another/icon.svg",
-                        // "capabilities": [ "onoff", "dim" ],
-                        // "capabilitiesOptions: { "onoff": {} },
-                        // "mobile": {},
-
-                        // Optional properties, device-specific:
-                        // "store": { "foo": "bar" },
-                        // "settings": {},
                     });
                 }
                 else{

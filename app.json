@@ -78,7 +78,12 @@
                             "measure_luminance",
                             "measure_humidity",
                             "measure_conductivity"
-                        ]
+                        ],
+                        "options": {
+                            "icons": {
+                                "measure_conductivity": "/assets/flower.svg"
+                            }
+                        }
                     }
                 ]
             }
