@@ -67,6 +67,123 @@
                     "template": "add_devices"
                 }
             ],
+            "settings": [
+                {
+                    "type": "group",
+                    "label": {
+                        "en": "Update settings"
+                    },
+                    "children": [
+                        {
+                            "id": "updateInterval",
+                            "type": "number",
+                            "value": 5,
+                            "label": {
+                                "en": "The interval"
+                            },
+                            "hint": {
+                                "en": "The interval in seconds of updating the sensors"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "label": {
+                        "en": "Plant temperature"
+                    },
+                    "children": [
+                        {
+                            "id": "minTemperature",
+                            "type": "number",
+                            "value": 0,
+                            "label": {
+                                "en": "min"
+                            }
+                        },
+                        {
+                            "id": "maxTemperature",
+                            "type": "number",
+                            "value": 0,
+                            "label": {
+                                "en": "max"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "label": {
+                        "en": "Plant luminance"
+                    },
+                    "children": [
+                        {
+                            "id": "minLuminance",
+                            "type": "number",
+                            "value": 0,
+                            "label": {
+                                "en": "min"
+                            }
+                        },
+                        {
+                            "id": "maxLuminance",
+                            "type": "number",
+                            "value": 0,
+                            "label": {
+                                "en": "max"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "label": {
+                        "en": "Plant humidity"
+                    },
+                    "children": [
+                        {
+                            "id": "minHumidity",
+                            "type": "number",
+                            "value": 0,
+                            "label": {
+                                "en": "min"
+                            }
+                        },
+                        {
+                            "id": "maxHumidity",
+                            "type": "number",
+                            "value": 0,
+                            "label": {
+                                "en": "max"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "label": {
+                        "en": "Plant conductivity"
+                    },
+                    "children": [
+                        {
+                            "id": "minConductivity",
+                            "type": "number",
+                            "value": 0,
+                            "label": {
+                                "en": "min"
+                            }
+                        },
+                        {
+                            "id": "maxConductivity",
+                            "type": "number",
+                            "value": 0,
+                            "label": {
+                                "en": "max"
+                            }
+                        }
+                    ]
+                }
+            ],
             "mobile": {
                 "components": [
                     {

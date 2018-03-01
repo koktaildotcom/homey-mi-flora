@@ -3,11 +3,12 @@
 const Homey = require('homey');
 
 const FLOWER_CARE_NAME = 'Flower care';
+const FLOWER_CARE_VERSION = 'v1.0.0';
 
 class MiFloraDriver extends Homey.Driver {
     onPairListDevices(data, callback) {
 
-        console.log('Successfully init onPairListDevices');
+        this.log(' onPairListDevices');
 
         let devices = [];
         let index = 0;
@@ -18,12 +19,14 @@ class MiFloraDriver extends Homey.Driver {
             advertisements.forEach(function (advertisement) {
                 if (advertisement.localName === FLOWER_CARE_NAME) {
                     ++index;
+                    this.log('Find device ' + advertisement.uuid);
                     devices.push({
-                        "name": FLOWER_CARE_NAME +" "+  index,
+                        "name": FLOWER_CARE_NAME + " " + index,
                         "data": {
                             "id": advertisement.uuid,
                             "name": advertisement.name,
-                            "type": advertisement.type
+                            "type": advertisement.type,
+                            "version": FLOWER_CARE_VERSION,
                         },
                         "capabilities": [
                             "measure_temperature",
@@ -34,8 +37,8 @@ class MiFloraDriver extends Homey.Driver {
                         ],
                     });
                 }
-                else{
-                    console.log('Skipped device ' + advertisement.uuid);
+                else {
+                    this.log('Skipped device ' + advertisement.uuid);
                 }
             });
 
