@@ -6,24 +6,24 @@ const FLOWER_CARE_NAME = 'Flower care';
 const FLOWER_CARE_VERSION = 'v1.0.0';
 
 class MiFloraDriver extends Homey.Driver {
-    onPairListDevices(data, callback) {
 
-        this.log(' onPairListDevices');
+
+    onPairListDevices(data, callback) {
 
         let devices = [];
         let index = 0;
 
-        let ManagerBLE = Homey.ManagerBLE;
-        ManagerBLE.discover().then(function (advertisements) {
+        Homey.ManagerBLE.discover().then(function (advertisements) {
             console.log('discovering!');
             advertisements.forEach(function (advertisement) {
                 if (advertisement.localName === FLOWER_CARE_NAME) {
                     ++index;
-                    this.log('Find device ' + advertisement.uuid);
+                    console.log('Find device ' + advertisement.uuid);
                     devices.push({
                         "name": FLOWER_CARE_NAME + " " + index,
                         "data": {
-                            "id": advertisement.uuid,
+                            "id": advertisement.id,
+                            "uuid": advertisement.uuid,
                             "name": advertisement.name,
                             "type": advertisement.type,
                             "version": FLOWER_CARE_VERSION,
@@ -38,7 +38,7 @@ class MiFloraDriver extends Homey.Driver {
                     });
                 }
                 else {
-                    this.log('Skipped device ' + advertisement.uuid);
+                    console.log('Skipped device ' + advertisement.uuid);
                 }
             });
 
@@ -48,6 +48,9 @@ class MiFloraDriver extends Homey.Driver {
                 console.error('Cannot discover BLE devices from the homey manager.', error);
             });
     }
+
+
 }
+
 
 module.exports = MiFloraDriver;
