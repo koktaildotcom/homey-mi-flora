@@ -5,8 +5,111 @@ const Homey = require('homey');
 const FLOWER_CARE_NAME = 'Flower care';
 const FLOWER_CARE_VERSION = 'v1.0.0';
 
+const DATA_CHARACTERISTIC_UUID = '00001a0100001000800000805f9b34fb';
+const FIRMWARE_CHARACTERISTIC_UUID = '00001a0200001000800000805f9b34fb';
+const REALTIME_CHARACTERISTIC_UUID = '00001a0000001000800000805f9b34fb';
+
 class MiFloraDriver extends Homey.Driver {
 
+    updateSensorData(uuid, device) {
+
+        // Return new promise
+        return new Promise(function (resolve, reject) {
+
+            Homey.ManagerBLE.discover().then(function (advertisements) {
+
+                advertisements.forEach(function (advertisement) {
+                    console.log(advertisement.uuid);
+                    if (advertisement.uuid === uuid) {
+
+                        console.log('connected ' + advertisement.uuid);
+
+                        advertisement.connect((error, peripheral) => {
+                            if (error) {
+                                reject(error);
+                            }
+
+                            peripheral.discoverServices((error, services) => {
+                                if (error) {
+                                    reject(error);
+                                }
+
+                                console.log('got services!');
+                                services.forEach(function (service) {
+                                    service.discoverCharacteristics((error, characteristics) => {
+                                        if (error) {
+                                            reject(error);
+                                        }
+                                        characteristics.forEach(function (characteristic) {
+                                            console.log('got characteristic ' + characteristic.uuid);
+
+                                            switch (characteristic.uuid) {
+
+                                                case DATA_CHARACTERISTIC_UUID:
+                                                    characteristic.read(function (error, data) {
+                                                        if (error) {
+                                                            reject(error);
+                                                        }
+
+                                                        console.log('read characteristic ' + characteristic.uuid);
+
+                                                        let temperature = data.readUInt16LE(0) / 10;
+                                                        let lux = data.readUInt32LE(3);
+                                                        let moisture = data.readUInt16BE(6);
+                                                        let fertility = data.readUInt16LE(8);
+
+                                                        console.log('temperature: %s °C', temperature);
+                                                        console.log('Light: %s lux', lux);
+                                                        console.log('moisture: %s %', moisture);
+                                                        console.log('fertility: %s µS/cm', fertility);
+
+                                                        device.setCapabilityValue("measure_temperature", temperature);
+                                                        device.setCapabilityValue("measure_luminance", lux);
+                                                        device.setCapabilityValue("measure_humidity", moisture);
+                                                        device.setCapabilityValue("measure_conductivity", fertility);
+                                                    });
+                                                    break;
+                                                case FIRMWARE_CHARACTERISTIC_UUID:
+
+                                                    console.log('read characteristic ' + characteristic.uuid);
+                                                    characteristic.read(function (error, data) {
+
+                                                        if (error) {
+                                                            reject(error);
+                                                        }
+
+                                                        let batteryLevel = parseInt(data.toString('hex', 0, 1), 16);
+                                                        let firmwareVersion = data.toString('ascii', 2, data.length);
+
+                                                        device.setCapabilityValue("measure_battery", batteryLevel);
+
+                                                        console.log('batteryLevel: %s %', batteryLevel);
+                                                        console.log('firmwareVersion: %s ', firmwareVersion);
+                                                    });
+
+                                                    break;
+                                                case REALTIME_CHARACTERISTIC_UUID:
+                                                    console.log('enabling realtime');
+                                                    characteristic.write(Buffer.from([0xA0, 0x1F]), false);
+                                                    break;
+                                                default:
+                                                //console.log('found characteristic uuid %s but not matched the criteria', characteristic.uuid);
+                                            }
+                                        })
+                                    });
+                                });
+                            });
+                        });
+                    }
+                });
+
+                resolve(true);
+            })
+                .catch(function (error) {
+                    reject(error);
+                });
+        })
+    }
 
     onPairListDevices(data, callback) {
 

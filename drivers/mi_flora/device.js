@@ -2,17 +2,29 @@
 
 const Homey = require('homey');
 
-const DATA_CHARACTERISTIC_UUID = '00001a0100001000800000805f9b34fb';
-const FIRMWARE_CHARACTERISTIC_UUID = '00001a0200001000800000805f9b34fb';
-const REALTIME_CHARACTERISTIC_UUID = '00001a0000001000800000805f9b34fb';
-
 class MiFloraDevice extends Homey.Device {
+
     onInit() {
 
         var settings = this.getSettings();
         var data = this.getData();
 
-        //let updateInterval = this.settings.updateInterval * 1000;
+        this._driver = this.getDriver();
+        this._driver.ready(() => {
+            this._driver.updateSensorData(data.uuid, this).then(function (data) {
+                console.log("Initialized user details");
+                // Use user details from here
+                console.log(data)
+            }, function (error) {
+                console.log('connect failed: %s', error);
+            })
+        });
+    }
+
+    onInitWorks() {
+
+        var settings = this.getSettings();
+        var data = this.getData();
 
         this._driver = this.getDriver();
         this._driver.ready(() => {
@@ -99,7 +111,6 @@ class MiFloraDevice extends Homey.Device {
                                 });
                             });
                         });
-
                     }
                 });
             })
