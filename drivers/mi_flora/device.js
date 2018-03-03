@@ -6,19 +6,22 @@ class MiFloraDevice extends Homey.Device {
 
     onInit() {
 
-        var settings = this.getSettings();
-        var data = this.getData();
+        // var settings = this.getSettings();
+        // var data = this.getData();
+        //
+        // this._driver = this.getDriver();
 
-        this._driver = this.getDriver();
-        this._driver.ready(() => {
-            this._driver.updateSensorData(data.uuid, this).then(function (data) {
-                console.log("Initialized user details");
-                // Use user details from here
-                console.log(data)
-            }, function (error) {
-                console.log('connect failed: %s', error);
-            })
-        });
+
+        // this._driver = this.getDriver();
+        // this._driver.ready(() => {
+        //     this._driver.updateSensorData(data.uuid, this).then(function (data) {
+        //         console.log("Initialized user details");
+        //         // Use user details from here
+        //         console.log(data)
+        //     }, function (error) {
+        //         console.log('connect failed: %s', error);
+        //     })
+        // });
     }
 
     onInitWorks() {
