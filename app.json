@@ -213,5 +213,40 @@
                 ]
             }
         }
-    ]
+    ],
+    "flow":{
+        "triggers":[
+            {
+                "id":"sensor_changed",
+                "title":{
+                    "en":"A sensor value is changed",
+                    "nl":"Een sensor waarde is veranderd"
+                },
+                "tokens":[
+                    {
+                        "name":"variable",
+                        "title":{
+                            "en":"variable",
+                            "nl":"variabele"
+                        },
+                        "example":{
+                            "en":"onoff",
+                            "nl":"aanuit"
+                        }
+                    },
+                    {
+                        "name":"value",
+                        "title":{
+                            "en":"value",
+                            "nl":"waarde"
+                        },
+                        "example":{
+                            "en":"true",
+                            "nl":"true"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
 }

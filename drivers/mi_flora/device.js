@@ -6,6 +6,43 @@ class MiFloraDevice extends Homey.Device {
 
     onInit() {
 
+        this.log('Device (' + this.getName() + ') initialized');
+
+        let sensorChanged = new Homey.FlowCardTrigger('sensor_changed');
+
+        sensorChanged.register();
+
+        // When capability is changed
+        this.registerMultipleCapabilityListener(this.getCapabilities(), (valueObj, optsObj) => {
+
+            console.log(valueObj, optsObj);
+
+            // this.log(this.getName() + ' -> Capability changed: ' + JSON.stringify(valueObj));
+            //
+            // process.nextTick(async () => {
+            //     await sleep(100);
+            //     triggerDevice.trigger(this, {}, valueObj)
+            //         .catch(this.error);
+            // });
+            //
+            // // b.v.: valueObj = {"light_saturation":1}
+            // let variable = Object.keys(valueObj)[0];
+            // // this.log('variable: ' + variable);
+            // // this.log('value:    ' + valueObj[variable]);
+            //
+            // let tokens = {
+            //     'device': this.getName(),
+            //     'variable': variable,
+            //     'value': '' + valueObj[variable]
+            // }
+            //
+            // sensorChanged.trigger(tokens)
+            //     .catch(this.error)
+
+            return Promise.resolve();
+        }, 500);
+
+
         // var settings = this.getSettings();
         // var data = this.getData();
         //
