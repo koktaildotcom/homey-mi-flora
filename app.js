@@ -8,21 +8,21 @@ Homey.BlePeripheral.prototype.disconnect = function disconnect(callback) {
 
     const disconnectPromise = new Promise((resolve, reject) => {
         this._disconnectQueue.push((err, result) => err ? reject(err) : resolve(result));
-});
+    });
 
     if (this._disconnectLockCounter === 0) {
         clearTimeout(this._disconnectTimeout);
         this._disconnectTimeout = setTimeout(() => {
             if (this._disconnectLockCounter === 0) {
-            this._disconnected();
-            // console.log('called disconnect', new Error().stack);
-            this.__client.emit('disconnect', [this._connectionId, this.uuid], err => {
-                this._connectionId = null;
-            this._disconnectQueue.forEach(cb => cb(err));
-            this._disconnectQueue.length = 0;
-        });
-        }
-    }, 100);
+                this._disconnected();
+                // console.log('called disconnect', new Error().stack);
+                this.__client.emit('disconnect', [this._connectionId, this.uuid], err => {
+                    this._connectionId = null;
+                    this._disconnectQueue.forEach(cb => cb(err));
+                    this._disconnectQueue.length = 0;
+                });
+            }
+        }, 100);
     }
 
     return disconnectPromise;
@@ -47,7 +47,6 @@ Homey.BlePeripheral.prototype.getService = async function getService(uuid, callb
 
     return service || Promise.reject(new Error(`No service found with UUID ${uuid}`));
 };
-
 
 class HomeyMiFlora extends Homey.App {
     onInit() {
