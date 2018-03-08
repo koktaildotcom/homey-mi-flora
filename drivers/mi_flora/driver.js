@@ -36,21 +36,28 @@ class MiFloraDriver extends Homey.Driver {
             return promise
                 .then(() => {
                     return new Promise((resolve, reject) => {
-
                         try {
                             driver._discover(device).then((device) => {
                                 return driver._connect(device);
+                            }).catch(error => {
+                                console.log(error);
                             })
                                 .then((device) => {
                                     return driver._updateSensorData(device);
-                                })
+                                }).catch(error => {
+                                console.log(error);
+                            })
                                 .then((device) => {
                                     return driver._disconnect(device);
-                                })
+                                }).catch(error => {
+                                console.log(error);
+                            })
                                 .then((device) => {
                                     resolve('Device sync complete ' + device.getData().uuid);
                                     return device;
-                                })
+                                }).catch(error => {
+                                console.log(error);
+                            });
                         } catch (error) {
                             reject("cannot sync data from the device: " + error);
                         }
