@@ -9,10 +9,21 @@ const DATA_CHARACTERISTIC_UUID = '00001a0100001000800000805f9b34fb';
 const REALTIME_CHARACTERISTIC_UUID = '00001a0000001000800000805f9b34fb';
 const FIRMWARE_CHARACTERISTIC_UUID = '00001a0200001000800000805f9b34fb';
 
-const POLL_INTERVAL = 1000 * 60 * 1; // 10 min
+const POLL_INTERVAL = 1000 * 60 * 10; // 10 min
 
 class MiFloraDriver extends Homey.Driver {
 
+    /**
+     *  map each device
+     *  rotate devices in map
+     *  remove interval -> replace with on success + timeout
+     *
+     *  foreach device
+     *    get peripial
+     *    connect
+     *    update data
+     *    disconnect
+     */
     onInit() {
         this._devices = this.getDevices();
         this._synchroniseSensorData();
@@ -72,6 +83,9 @@ class MiFloraDriver extends Homey.Driver {
     _discover(device) {
         return new Promise((resolve, reject) => {
             Homey.ManagerBLE.discover().then(function (advertisements) {
+                if (advertisements === undefined) {
+                    reject('No advertisements found.');
+                }
                 advertisements.forEach(function (advertisement) {
                     if (advertisement.uuid === device.getData().uuid) {
                         device.advertisement = advertisement;
@@ -191,7 +205,7 @@ class MiFloraDriver extends Homey.Driver {
 
     onPairListDevices(data, callback) {
         let devices = [];
-        let index = 0;
+        let index = this.getDevices().length;
         Homey.ManagerBLE.discover().then(function (advertisements) {
             advertisements.forEach(function (advertisement) {
                 if (advertisement.localName === FLOWER_CARE_NAME) {
