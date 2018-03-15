@@ -16,6 +16,32 @@
     ],
     "version": "1.0.0",
     "compatibility": ">=1.5.0",
+    "tags": {
+        "en": [
+            "xiaomi",
+            "xiaomi mi",
+            "plant",
+            "sensor",
+            "temperature",
+            "luminance",
+            "humidity",
+            "nutrition"
+        ],
+        "nl": [
+            "xiaomi",
+            "xiaomi mi",
+            "plant",
+            "sensor",
+            "temperatuur",
+            "licht",
+            "vochtigheid",
+            "voeding"
+        ]
+    },
+    "images": {
+        "small": "/assets/images/small.png",
+        "large": "/assets/images/large.png"
+    },
     "author": {
         "name": "Leendert De Kok",
         "email": "koktaildotcom@hotmail.com"
@@ -53,8 +79,8 @@
                 "nl": "Xiaomi Mi Flora Plant Sensor"
             },
             "images": {
-                "large": "drivers/mi_flora/assets/images/xiaomi-mi-plant.svg",
-                "small": "drivers/mi_flora/assets/images/xiaomi-mi-plant.svg"
+                "small": "/drivers/mi_flora/assets/images/small.png",
+                "large": "/drivers/mi_flora/assets/images/large.png"
             },
             "class": "socket",
             "capabilities": [
@@ -225,35 +251,35 @@
             }
         }
     ],
-    "flow":{
-        "triggers":[
+    "flow": {
+        "triggers": [
             {
-                "id":"sensor_changed",
-                "title":{
-                    "en":"A sensor value is changed",
-                    "nl":"Een sensor waarde is veranderd"
+                "id": "sensor_changed",
+                "title": {
+                    "en": "A sensor value is changed",
+                    "nl": "Een sensor waarde is veranderd"
                 },
-                "tokens":[
+                "tokens": [
                     {
-                        "name":"variable",
-                        "title":{
-                            "en":"variable",
-                            "nl":"variabele"
+                        "name": "variable",
+                        "title": {
+                            "en": "variable",
+                            "nl": "variabele"
                         },
-                        "example":{
-                            "en":"onoff",
-                            "nl":"aanuit"
+                        "example": {
+                            "en": "onoff",
+                            "nl": "aanuit"
                         }
                     },
                     {
-                        "name":"value",
-                        "title":{
-                            "en":"value",
-                            "nl":"waarde"
+                        "name": "value",
+                        "title": {
+                            "en": "value",
+                            "nl": "waarde"
                         },
-                        "example":{
-                            "en":"true",
-                            "nl":"true"
+                        "example": {
+                            "en": "true",
+                            "nl": "true"
                         }
                     }
                 ]
