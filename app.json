@@ -126,7 +126,8 @@
                 {
                     "type": "group",
                     "label": {
-                        "en": "Plant luminance"
+                        "en": "Plant luminance",
+                        "nl": "Plant lichtintensiteit"
                     },
                     "children": [
                         {
@@ -175,8 +176,8 @@
                 {
                     "type": "group",
                     "label": {
-                        "en": "Plant fertility",
-                        "nl": "Plant vruchtbaarheid"
+                        "en": "Plant nutrition",
+                        "nl": "Plant voeding"
                     },
                     "children": [
                         {
