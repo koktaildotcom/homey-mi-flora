@@ -3,35 +3,28 @@
 const Homey = require('homey');
 
 const FLOWER_CARE_NAME = 'Flower care';
-const FLOWER_CARE_VERSION = 'v1.0.0';
+const APP_VERSION = 'v1.0.0';
 
 const DATA_CHARACTERISTIC_UUID = '00001a0100001000800000805f9b34fb';
 const REALTIME_CHARACTERISTIC_UUID = '00001a0000001000800000805f9b34fb';
 const FIRMWARE_CHARACTERISTIC_UUID = '00001a0200001000800000805f9b34fb';
 
-const POLL_INTERVAL = 1000 * 60 * 10; // 10 min
-
 class MiFloraDriver extends Homey.Driver {
 
-    /**
-     *  map each device
-     *  rotate devices in map
-     *  remove interval -> replace with on success + timeout
-     *
-     *  foreach device
-     *    get peripial
-     *    connect
-     *    update data
-     *    disconnect
-     */
     onInit() {
-        this._devices = this.getDevices();
-        this._synchroniseSensorData();
-        this._syncInterval = setInterval(this._synchroniseSensorData.bind(this), POLL_INTERVAL);
+
+        let updateInterval = Homey.ManagerSettings.get('updateInterval');
+
+        if(updateInterval === undefined || updateInterval === null){
+            updateInterval = 15;
+        }
+
+        this._syncInterval = setInterval(this._synchroniseSensorData.bind(this), 1000 * 60 * updateInterval);
     }
 
     _synchroniseSensorData() {
-        this._updateDevices(this._devices)
+        let devices = this.getDevices();
+        this._updateDevices(devices)
             .then(devices => {
                 console.log("All devices are synced.");
             })
@@ -43,7 +36,6 @@ class MiFloraDriver extends Homey.Driver {
     _updateDevices(devices) {
         let driver = this;
         return devices.reduce((promise, device) => {
-            console.log('syncing data for device: %s', device.getName());
             return promise
                 .then(() => {
                     return new Promise((resolve, reject) => {
@@ -158,13 +150,13 @@ class MiFloraDriver extends Homey.Driver {
                                         let temperature = data.readUInt16LE(0) / 10;
                                         let lux = data.readUInt32LE(3);
                                         let moisture = data.readUInt16BE(6);
-                                        let fertility = data.readUInt16LE(8);
+                                        let nutrition = data.readUInt16LE(8);
 
                                         console.log({
                                             "temperature:": temperature + " °C",
                                             "light:": lux + " lux",
                                             "moisture:": moisture + " %",
-                                            "fertility:": fertility + " µS/cm",
+                                            "nutrition:": nutrition + " µS/cm",
                                         });
 
                                         // first reset to null so it trigger a change
@@ -176,7 +168,7 @@ class MiFloraDriver extends Homey.Driver {
                                         device.setCapabilityValue('measure_temperature', temperature);
                                         device.setCapabilityValue('measure_luminance', lux);
                                         device.setCapabilityValue('measure_humidity', moisture);
-                                        device.setCapabilityValue('measure_conductivity', fertility);
+                                        device.setCapabilityValue('measure_conductivity', nutrition);
                                     })
                                     break
                                 case FIRMWARE_CHARACTERISTIC_UUID:
@@ -193,7 +185,6 @@ class MiFloraDriver extends Homey.Driver {
                                         let firmwareVersion = data.toString('ascii', 2, data.length);
 
                                         device.setCapabilityValue('measure_battery', batteryLevel);
-                                        device.set
 
                                         resolve(device);
                                     });
@@ -224,7 +215,7 @@ class MiFloraDriver extends Homey.Driver {
                             "uuid": advertisement.uuid,
                             "name": advertisement.name,
                             "type": advertisement.type,
-                            "version": FLOWER_CARE_VERSION,
+                            "version": APP_VERSION,
                         },
                         "capabilities": [
                             "measure_temperature",

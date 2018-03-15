@@ -2,12 +2,12 @@
     "id": "com.koktail.homey-mi-flora",
     "sdk": 2,
     "name": {
-        "en": "Xiaomi Mi Flora Plant Sensor",
-        "nl": "Xiaomi Mi Flora Plant Sensor"
+        "en": "Xiaomi Mi Flora Sensor",
+        "nl": "Xiaomi Mi Flora Sensor"
     },
     "description": {
-        "en": "Integrate Xiaomi Mi Flora Plant Sensor into Homey",
-        "nl": "Integreer Xiaomi Mi Flora Plant Sensor in Homey"
+        "en": "Integrate Xiaomi Mi Flora Sensor into Homey",
+        "nl": "Integreer Xiaomi Mi Flora Sensor in Homey"
     },
     "category": [
         "tools",
@@ -75,8 +75,8 @@
         {
             "id": "mi_flora",
             "name": {
-                "en": "Xiaomi Mi Flora Plant Sensor",
-                "nl": "Xiaomi Mi Flora Plant Sensor"
+                "en": "Xiaomi Mi Flora Sensor",
+                "nl": "Xiaomi Mi Flora Sensor"
             },
             "images": {
                 "small": "/drivers/mi_flora/assets/images/small.png",
@@ -104,26 +104,6 @@
                 }
             ],
             "settings": [
-                {
-                    "type": "group",
-                    "label": {
-                        "en": "Update settings",
-                        "nl": "Bijwerk eigenschappen"
-                    },
-                    "children": [
-                        {
-                            "id": "updateInterval",
-                            "type": "number",
-                            "value": 5,
-                            "label": {
-                                "en": "The interval"
-                            },
-                            "hint": {
-                                "en": "The interval in seconds of updating the sensors"
-                            }
-                        }
-                    ]
-                },
                 {
                     "type": "group",
                     "label": {

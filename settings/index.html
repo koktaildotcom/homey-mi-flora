@@ -18,8 +18,15 @@
     </legend>
 
     <div class="field row">
-        <label for="updateInterval"><p data-i18n="settings.interval.label"></p></label>
+        <label for="updateInterval">
+            <p data-i18n="settings.interval.label"></p>
+            <i data-i18n="settings.interval.note"></i>
+        </label>
         <input id="updateInterval" type="text" value="5"/>
+        <i class="hint-icon fa fa-info-circle ng-scope"></i>
+        <div class="hint-popup-wrap ng-scope">
+            <div class="hint-popup ng-binding" data-i18n="settings.interval.info"></div>
+        </div>
     </div>
 
 </fieldset>

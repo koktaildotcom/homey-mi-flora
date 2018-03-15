@@ -1,7 +1,15 @@
 {
-    "settings.title" : "Instellingen",
-    "settings.update" : "Update instellingen",
-    "settings.interval.label" : "Interval",
-    "settings.save.label" : "Opslaan",
-    "settings.success" : "De instelligen zijn opgeslagen"
+    "settings" : {
+        "title" : "Instellingen Xiaomi Mi Flora",
+        "update" : "Update instellingen",
+        "interval" : {
+            "label" : "Interval",
+            "info" : "The update interval in minuten",
+            "note" : "Minimale interval is 5 minuten. Default interval is 15 minuten"
+        },
+        "save" : {
+            "label" : "Opslaan"
+        },
+        "success" : "De instelligen zijn opgeslagen"
+    }
 }
