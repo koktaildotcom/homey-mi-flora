@@ -18,6 +18,10 @@ class MiFloraDriver extends Homey.Driver {
             updateInterval = 15;
         }
 
+        if(false){
+            this._synchroniseSensorData();
+        }
+
         this._syncInterval = setInterval(this._synchroniseSensorData.bind(this), 1000 * 60 * updateInterval);
     }
 
