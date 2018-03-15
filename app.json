@@ -2,10 +2,12 @@
     "id": "com.koktail.homey-mi-flora",
     "sdk": 2,
     "name": {
-        "en": "Xiaomi Mi Flora Plant Sensor"
+        "en": "Xiaomi Mi Flora Plant Sensor",
+        "nl": "Xiaomi Mi Flora Plant Sensor"
     },
     "description": {
-        "en": "Integrate Xiaomi Mi Flora Plant Sensor into Homey"
+        "en": "Integrate Xiaomi Mi Flora Plant Sensor into Homey",
+        "nl": "Integreer Xiaomi Mi Flora Plant Sensor in Homey"
     },
     "category": [
         "tools",
@@ -50,6 +52,10 @@
                 "en": "Xiaomi Mi Flora Plant Sensor",
                 "nl": "Xiaomi Mi Flora Plant Sensor"
             },
+            "images": {
+                "large": "drivers/mi_flora/assets/images/xiaomi-mi-plant.svg",
+                "small": "drivers/mi_flora/assets/images/xiaomi-mi-plant.svg"
+            },
             "class": "socket",
             "capabilities": [
                 "measure_temperature",
@@ -75,7 +81,8 @@
                 {
                     "type": "group",
                     "label": {
-                        "en": "Update settings"
+                        "en": "Update settings",
+                        "nl": "Bijwerk eigenschappen"
                     },
                     "children": [
                         {
@@ -94,7 +101,8 @@
                 {
                     "type": "group",
                     "label": {
-                        "en": "Plant temperature"
+                        "en": "Plant temperature",
+                        "nl": "Plant temperatuur"
                     },
                     "children": [
                         {
@@ -142,7 +150,8 @@
                 {
                     "type": "group",
                     "label": {
-                        "en": "Plant humidity"
+                        "en": "Plant humidity",
+                        "nl": "Plant vochtigheid"
                     },
                     "children": [
                         {
@@ -166,7 +175,8 @@
                 {
                     "type": "group",
                     "label": {
-                        "en": "Plant conductivity"
+                        "en": "Plant fertility",
+                        "nl": "Plant vruchtbaarheid"
                     },
                     "children": [
                         {

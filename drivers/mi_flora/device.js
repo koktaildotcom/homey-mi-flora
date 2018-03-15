@@ -6,8 +6,6 @@ class MiFloraDevice extends Homey.Device {
 
     onInit() {
 
-        console.log('Device (' + this.getName() + ') initialized');
-
         let sensorChanged = new Homey.FlowCardTrigger('sensor_changed');
         sensorChanged.register();
 

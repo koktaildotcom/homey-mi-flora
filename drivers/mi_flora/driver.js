@@ -167,6 +167,7 @@ class MiFloraDriver extends Homey.Driver {
                                             "fertility:": fertility + " µS/cm",
                                         });
 
+                                        // first reset to null so it trigger a change
                                         device.setCapabilityValue('measure_temperature', null);
                                         device.setCapabilityValue('measure_luminance', null);
                                         device.setCapabilityValue('measure_humidity', null);
@@ -192,6 +193,7 @@ class MiFloraDriver extends Homey.Driver {
                                         let firmwareVersion = data.toString('ascii', 2, data.length);
 
                                         device.setCapabilityValue('measure_battery', batteryLevel);
+                                        device.set
 
                                         resolve(device);
                                     });
