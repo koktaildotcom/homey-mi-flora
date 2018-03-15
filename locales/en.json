@@ -3,9 +3,8 @@
         "title" : "Settings Xiaomi Mi Flora",
         "update" : "Update settings",
         "interval" : {
-            "label" : "Interval",
-            "info" : "De update interval in minutes",
-            "note" : "Minimal interval is 5 minutes. Default interval is 15 minutes"
+            "label" : "De update interval in minutes",
+            "info" : "Minimal interval is 5 minutes. Default interval is 15 minutes"
         },
         "save" : {
             "label" : "Save"

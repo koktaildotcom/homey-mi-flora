@@ -6,6 +6,13 @@
         #notice {
             color: green;
         }
+        .note {
+            margin: 0 0 1em 0;
+            display: inline-block;
+        }
+        .setting-row{
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -17,17 +24,25 @@
         <p data-i18n="settings.update"></p>
     </legend>
 
-    <div class="field row">
-        <label for="updateInterval">
-            <p data-i18n="settings.interval.label"></p>
-            <i data-i18n="settings.interval.note"></i>
-        </label>
-        <input id="updateInterval" type="text" value="5"/>
-        <i class="hint-icon fa fa-info-circle ng-scope"></i>
-        <div class="hint-popup-wrap ng-scope">
-            <div class="hint-popup ng-binding" data-i18n="settings.interval.info"></div>
-        </div>
-    </div>
+    <table class="setting-row">
+        <tbody>
+        <tr>
+            <td colspan="2">
+                <i data-i18n="settings.interval.info" class="note"></i>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="updateInterval">
+                    <p data-i18n="settings.interval.label"></p>
+                </label>
+            </td>
+            <td>
+                <input id="updateInterval" type="text" value="5"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
 </fieldset>
 
