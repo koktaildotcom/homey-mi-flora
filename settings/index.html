@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+    <script type="text/javascript" src="/homey.js" data-origin="settings"></script>
+    <style>
+        #notice {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<h1 data-i18n="settings.title"></h1>
+
+<fieldset>
+    <legend>
+        <p data-i18n="settings.update"></p>
+    </legend>
+
+    <div class="field row">
+        <label for="updateInterval"><p data-i18n="settings.interval.label"></p></label>
+        <input id="updateInterval" type="text" value="5"/>
+    </div>
+
+</fieldset>
+
+<div class="field row">
+    <button id="save" class="right"><p data-i18n="settings.save.label"></p></button>
+</div>
+
+<p data-i18n="settings.success" id="notice" style="display:none;"></p>
+
+<script type="text/javascript">
+
+    function onHomeyReady(Homey) {
+
+        Homey.ready();
+
+        let updateIntervalElement = document.getElementById('updateInterval');
+        let saveElement = document.getElementById('save');
+
+        Homey.get('updateInterval', function (err, updateInterval) {
+            if (err) return Homey.alert(err);
+            updateIntervalElement.value = updateInterval;
+        });
+
+        saveElement.addEventListener('click', function (e) {
+            Homey.set('updateInterval', updateIntervalElement.value, function (err) {
+                if (err) return Homey.alert(err);
+            });
+
+            document.getElementById('notice').style.display = "block";
+        });
+    }
+</script>
+
+</body>
+</html>

@@ -1,1 +1,7 @@
-{}
+{
+    "settings.title" : "Settings",
+    "settings.update" : "Update settings",
+    "settings.interval.label" : "Interval",
+    "settings.save.label" : "Save",
+    "settings.success" : "The settings has been saved"
+}

@@ -1,1 +1,7 @@
-{}
+{
+    "settings.title" : "Instellingen",
+    "settings.update" : "Update instellingen",
+    "settings.interval.label" : "Interval",
+    "settings.save.label" : "Opslaan",
+    "settings.success" : "De instelligen zijn opgeslagen"
+}
