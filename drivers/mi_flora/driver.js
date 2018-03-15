@@ -83,7 +83,7 @@ class MiFloraDriver extends Homey.Driver {
     _discover(device) {
         return new Promise((resolve, reject) => {
             Homey.ManagerBLE.discover().then(function (advertisements) {
-                if (advertisements === undefined) {
+                if (advertisements === undefined || advertisements === null) {
                     reject('No advertisements found.');
                 }
                 advertisements.forEach(function (advertisement) {
@@ -129,7 +129,7 @@ class MiFloraDriver extends Homey.Driver {
                     reject('failed discoverServices: ' + error);
                 }
 
-                if (services === undefined) {
+                if (services === undefined || services === null) {
                     reject('No services found.');
                 }
 
@@ -139,7 +139,7 @@ class MiFloraDriver extends Homey.Driver {
                             reject('failed discoverCharacteristics: ' + error);
                         }
 
-                        if (characteristics === undefined) {
+                        if (characteristics === undefined || characteristics === null) {
                             reject('No characteristics found.');
                         }
 
@@ -151,7 +151,7 @@ class MiFloraDriver extends Homey.Driver {
                                             reject('failed to read DATA_CHARACTERISTIC_UUID: ' + error);
                                         }
 
-                                        if (data === undefined) {
+                                        if (data === undefined || data === null) {
                                             reject('No data found.');
                                         }
 
@@ -167,6 +167,11 @@ class MiFloraDriver extends Homey.Driver {
                                             "fertility:": fertility + " µS/cm",
                                         });
 
+                                        device.setCapabilityValue('measure_temperature', null);
+                                        device.setCapabilityValue('measure_luminance', null);
+                                        device.setCapabilityValue('measure_humidity', null);
+                                        device.setCapabilityValue('measure_conductivity', null);
+
                                         device.setCapabilityValue('measure_temperature', temperature);
                                         device.setCapabilityValue('measure_luminance', lux);
                                         device.setCapabilityValue('measure_humidity', moisture);
@@ -179,7 +184,7 @@ class MiFloraDriver extends Homey.Driver {
                                             reject('failed to read FIRMWARE_CHARACTERISTIC_UUID: ' + error);
                                         }
 
-                                        if (data === undefined) {
+                                        if (data === undefined || data === null) {
                                             reject('No data found.');
                                         }
 
