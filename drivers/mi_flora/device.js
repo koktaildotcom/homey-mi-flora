@@ -24,7 +24,7 @@ class MiFloraDevice extends Homey.Device {
                     console.log(capability + " changed: %s", valueObj[capability]);
                     let tokens = {
                         'device': deviceName,
-                        'variable': capability,
+                        'sensor': capability,
                         'value': '' + valueObj[capability]
                     }
                     sensorChanged.trigger( tokens )

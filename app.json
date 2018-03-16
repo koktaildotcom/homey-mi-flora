@@ -261,14 +261,25 @@
                 },
                 "tokens": [
                     {
-                        "name": "variable",
+                        "name": "device",
                         "title": {
-                            "en": "variable",
-                            "nl": "variabele"
+                            "en": "device",
+                            "nl": "apparaat"
                         },
                         "example": {
-                            "en": "onoff",
-                            "nl": "aanuit"
+                            "en": "Flowercare 1",
+                            "nl": "Flowercare 1"
+                        }
+                    },
+                    {
+                        "name": "sensor",
+                        "title": {
+                            "en": "sensor",
+                            "nl": "sensor"
+                        },
+                        "example": {
+                            "en": "measure_temperature",
+                            "nl": "measure_temperature"
                         }
                     },
                     {
@@ -278,8 +289,8 @@
                             "nl": "waarde"
                         },
                         "example": {
-                            "en": "true",
-                            "nl": "true"
+                            "en": 22.5,
+                            "nl": 22.5
                         }
                     }
                 ]
