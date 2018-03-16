@@ -123,12 +123,12 @@
                 {
                     "type": "group",
                     "label": {
-                        "en": "Plant temperature",
-                        "nl": "Plant temperatuur"
+                        "en": "Temperature (°C)",
+                        "nl": "Temperatuur (°C)"
                     },
                     "children": [
                         {
-                            "id": "minTemperature",
+                            "id": "measure_temperature_min",
                             "type": "number",
                             "value": 0,
                             "label": {
@@ -136,7 +136,7 @@
                             }
                         },
                         {
-                            "id": "maxTemperature",
+                            "id": "measure_temperature_max",
                             "type": "number",
                             "value": 0,
                             "label": {
@@ -148,12 +148,12 @@
                 {
                     "type": "group",
                     "label": {
-                        "en": "Plant luminance",
-                        "nl": "Plant lichtintensiteit"
+                        "en": "Luminance (lux)",
+                        "nl": "Lichtintensiteit (lux)"
                     },
                     "children": [
                         {
-                            "id": "minLuminance",
+                            "id": "measure_luminance_min",
                             "type": "number",
                             "value": 0,
                             "label": {
@@ -161,7 +161,7 @@
                             }
                         },
                         {
-                            "id": "maxLuminance",
+                            "id": "measure_luminance_max",
                             "type": "number",
                             "value": 0,
                             "label": {
@@ -173,12 +173,12 @@
                 {
                     "type": "group",
                     "label": {
-                        "en": "Plant humidity",
-                        "nl": "Plant vochtigheid"
+                        "en": "Nutrition (µS/cm)",
+                        "nl": "Voeding (µS/cm)"
                     },
                     "children": [
                         {
-                            "id": "minHumidity",
+                            "id": "measure_conductivity_min",
                             "type": "number",
                             "value": 0,
                             "label": {
@@ -186,7 +186,7 @@
                             }
                         },
                         {
-                            "id": "maxHumidity",
+                            "id": "measure_conductivity_max",
                             "type": "number",
                             "value": 0,
                             "label": {
@@ -198,12 +198,12 @@
                 {
                     "type": "group",
                     "label": {
-                        "en": "Plant nutrition",
-                        "nl": "Plant voeding"
+                        "en": "Moisture (%)",
+                        "nl": "Vochtigheid (%)"
                     },
                     "children": [
                         {
-                            "id": "minConductivity",
+                            "id": "measure_moisture_min",
                             "type": "number",
                             "value": 0,
                             "label": {
@@ -211,7 +211,7 @@
                             }
                         },
                         {
-                            "id": "maxConductivity",
+                            "id": "measure_moisture_max",
                             "type": "number",
                             "value": 0,
                             "label": {

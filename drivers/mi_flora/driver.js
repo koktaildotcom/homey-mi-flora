@@ -13,6 +13,8 @@ class MiFloraDriver extends Homey.Driver {
 
     onInit() {
 
+        this._connected = false;
+
         let updateInterval = Homey.ManagerSettings.get('updateInterval');
         if (!updateInterval) {
             updateInterval = 15;
@@ -25,17 +27,27 @@ class MiFloraDriver extends Homey.Driver {
         this._syncInterval = setInterval(this._synchroniseSensorData.bind(this), 1000 * 60 * updateInterval);
     }
 
+    clearInterval() {
+        clearInterval(this._syncInterval);
+    }
+
     _synchroniseSensorData() {
         let devices = this.getDevices();
 
-        if(devices.length === 0) {
+        if (devices.length === 0) {
             console.log("No devices paired.");
+            return;
+        }
+
+        if (this._connected) {
+            console.log("The app is already connected to the device.");
             return;
         }
 
         this._updateDevices(devices)
             .then(devices => {
                 console.log("All devices are synced.");
+                this._connected = false;
             })
             .catch(error => {
                 console.log(error);
@@ -43,6 +55,7 @@ class MiFloraDriver extends Homey.Driver {
     }
 
     _updateDevices(devices) {
+        this._connected = true;
         let driver = this;
         return devices.reduce((promise, device) => {
             return promise
@@ -84,49 +97,52 @@ class MiFloraDriver extends Homey.Driver {
     _discover(device) {
         return new Promise((resolve, reject) => {
             Homey.ManagerBLE.discover().then(function (advertisements) {
-                if (advertisements === undefined || advertisements === null) {
-                    reject('No advertisements found.');
-                }
-                advertisements.forEach(function (advertisement) {
-                    if (advertisement.uuid === device.getData().uuid) {
-                        device.advertisement = advertisement;
+                if (advertisements) {
+                    advertisements.forEach(function (advertisement) {
+                        if (advertisement.uuid === device.getData().uuid) {
+                            device.advertisement = advertisement;
 
-                        resolve(device);
-                    }
-                });
+                            resolve(device);
+                        }
+                    });
+                }
             });
         });
     }
 
     _connect(device) {
-        console.log('Connect to ' + device.getData().uuid);
+        console.log('Connect');
         return new Promise((resolve, reject) => {
-            device.advertisement.connect((error, peripheral) => {
-                if (error) {
-                    reject('failed connection to peripheral: ' + error);
-                }
+            if (device) {
+                device.advertisement.connect((error, peripheral) => {
+                    if (error) {
+                        reject('failed connection to peripheral: ' + error);
+                    }
 
-                device.peripheral = peripheral;
+                    device.peripheral = peripheral;
 
-                resolve(device);
-            });
+                    resolve(device);
+                });
+            }
         })
     }
 
     _disconnect(device) {
-        console.log('Disconnect ' + device.getData().uuid);
+        console.log('Disconnect');
         return new Promise((resolve, reject) => {
-            device.peripheral.disconnect((error, peripheral) => {
-                if (error) {
-                    reject('failed connection to peripheral: ' + error);
-                }
-                resolve(device);
-            });
+            if (device) {
+                device.peripheral.disconnect((error, peripheral) => {
+                    if (error) {
+                        reject('failed connection to peripheral: ' + error);
+                    }
+                    resolve(device);
+                });
+            }
         })
     }
 
     _updateSensorData(device) {
-        console.log('Update ' + device.getData().uuid);
+        console.log('Update');
         return new Promise((resolve, reject) => {
             device.peripheral.discoverServices((error, services) => {
                 if (error) {
@@ -143,70 +159,118 @@ class MiFloraDriver extends Homey.Driver {
                             reject('failed discoverCharacteristics: ' + error);
                         }
 
-                        if (!characteristics) {
-                            reject('No characteristics found.');
-                        }
+                        if (characteristics) {
+                            characteristics.forEach(function (characteristic) {
+                                switch (characteristic.uuid) {
+                                    case DATA_CHARACTERISTIC_UUID:
+                                        characteristic.read(function (error, data) {
+                                            if (error) {
+                                                reject('failed to read DATA_CHARACTERISTIC_UUID: ' + error);
+                                            }
 
-                        characteristics.forEach(function (characteristic) {
-                            switch (characteristic.uuid) {
-                                case DATA_CHARACTERISTIC_UUID:
-                                    characteristic.read(function (error, data) {
-                                        if (error) {
-                                            reject('failed to read DATA_CHARACTERISTIC_UUID: ' + error);
-                                        }
+                                            if (!data) {
+                                                reject('No data found.');
+                                            }
 
-                                        if (!data) {
-                                            reject('No data found.');
-                                        }
+                                            let temperature = data.readUInt16LE(0) / 10;
+                                            let lux = data.readUInt32LE(3);
+                                            let moisture = data.readUInt16BE(6);
+                                            let nutrition = data.readUInt16LE(8);
 
-                                        let temperature = data.readUInt16LE(0) / 10;
-                                        let lux = data.readUInt32LE(3);
-                                        let moisture = data.readUInt16BE(6);
-                                        let nutrition = data.readUInt16LE(8);
+                                            console.log({
+                                                "temperature:": temperature + " °C",
+                                                "light:": lux + " lux",
+                                                "moisture:": moisture + " %",
+                                                "nutrition:": nutrition + " µS/cm",
+                                            });
 
-                                        console.log({
-                                            "temperature:": temperature + " °C",
-                                            "light:": lux + " lux",
-                                            "moisture:": moisture + " %",
-                                            "nutrition:": nutrition + " µS/cm",
+                                            let deviceTemperature = device.getCapabilityValue('measure_temperature');
+                                            let deviceLux = device.getCapabilityValue('measure_luminance');
+                                            let deviceMoisture = device.getCapabilityValue('measure_moisture');
+                                            let deviceNutrition = device.getCapabilityValue('measure_conductivity');
+
+                                            if (deviceTemperature === temperature) {
+                                                device.setCapabilityValue('measure_temperature', null);
+                                                device.setCapabilityValue('measure_temperature', temperature);
+                                            }
+                                            else{
+                                                device.setCapabilityValue('measure_temperature', temperature);
+                                                device.triggerCapabilityListener('measure_temperature', temperature)
+                                                    .then(() => null)
+                                                    .catch(err => new Error('failed to trigger measure_temperature'));
+                                            }
+
+                                            if (deviceLux === lux) {
+                                                device.setCapabilityValue('measure_luminance', null);
+                                                device.setCapabilityValue('measure_luminance', lux);
+                                            }
+                                            else{
+                                                device.setCapabilityValue('measure_luminance', lux);
+                                                device.triggerCapabilityListener('measure_luminance', lux)
+                                                    .then(() => null)
+                                                    .catch(err => new Error('failed to trigger measure_luminance'));
+                                            }
+
+                                            if (deviceMoisture === moisture) {
+                                                device.setCapabilityValue('measure_moisture', null);
+                                                device.setCapabilityValue('measure_moisture', moisture);
+                                            }
+                                            else{
+                                                device.setCapabilityValue('measure_moisture', moisture);
+                                                device.triggerCapabilityListener('measure_moisture', moisture)
+                                                    .then(() => null)
+                                                    .catch(err => new Error('failed to trigger measure_moisture'));
+                                            }
+
+                                            if (deviceNutrition === nutrition) {
+                                                device.setCapabilityValue('measure_conductivity', null);
+                                                device.setCapabilityValue('measure_conductivity', nutrition);
+                                            }
+                                            else{
+                                                device.setCapabilityValue('measure_conductivity', nutrition);
+                                                device.triggerCapabilityListener('measure_conductivity', nutrition)
+                                                    .then(() => null)
+                                                    .catch(err => new Error('failed to trigger measure_conductivity'));
+                                            }
+
+                                        })
+                                        break
+                                    case FIRMWARE_CHARACTERISTIC_UUID:
+                                        characteristic.read(function (error, data) {
+                                            if (error) {
+                                                reject('failed to read FIRMWARE_CHARACTERISTIC_UUID: ' + error);
+                                            }
+
+                                            if (!data) {
+                                                reject('No data found.');
+                                            }
+
+                                            let batteryLevel = parseInt(data.toString('hex', 0, 1), 16);
+                                            let firmwareVersion = data.toString('ascii', 2, data.length);
+
+                                            let deviceBatteryLevel = device.getCapabilityValue('measure_battery');
+
+                                            if (deviceBatteryLevel === batteryLevel) {
+                                                device.setCapabilityValue('measure_battery', null);
+                                                device.setCapabilityValue('measure_battery', batteryLevel);
+                                            }
+                                            else{
+                                                device.setCapabilityValue('measure_battery', batteryLevel);
+                                                device.triggerCapabilityListener('measure_battery', batteryLevel)
+                                                    .then(() => null)
+                                                    .catch(err => new Error('failed to trigger measure_battery'));
+                                            }
+
+                                            resolve(device);
                                         });
 
-                                        // first reset to null so it trigger a change
-                                        device.setCapabilityValue('measure_temperature', null);
-                                        device.setCapabilityValue('measure_luminance', null);
-                                        device.setCapabilityValue('measure_moisture', null);
-                                        device.setCapabilityValue('measure_conductivity', null);
-
-                                        device.setCapabilityValue('measure_temperature', temperature);
-                                        device.setCapabilityValue('measure_luminance', lux);
-                                        device.setCapabilityValue('measure_moisture', moisture);
-                                        device.setCapabilityValue('measure_conductivity', nutrition);
-                                    })
-                                    break
-                                case FIRMWARE_CHARACTERISTIC_UUID:
-                                    characteristic.read(function (error, data) {
-                                        if (error) {
-                                            reject('failed to read FIRMWARE_CHARACTERISTIC_UUID: ' + error);
-                                        }
-
-                                        if (!data) {
-                                            reject('No data found.');
-                                        }
-
-                                        let batteryLevel = parseInt(data.toString('hex', 0, 1), 16);
-                                        let firmwareVersion = data.toString('ascii', 2, data.length);
-
-                                        device.setCapabilityValue('measure_battery', batteryLevel);
-
-                                        resolve(device);
-                                    });
-
-                                    break;
-                                case REALTIME_CHARACTERISTIC_UUID:
-                                    characteristic.write(Buffer.from([0xA0, 0x1F]), false);
-                                    break;
-                            }
-                        })
+                                        break;
+                                    case REALTIME_CHARACTERISTIC_UUID:
+                                        characteristic.write(Buffer.from([0xA0, 0x1F]), false);
+                                        break;
+                                }
+                            })
+                        }
                     });
                 });
             });
@@ -214,8 +278,14 @@ class MiFloraDriver extends Homey.Driver {
     }
 
     onPairListDevices(data, callback) {
+
+        if (this._connected) {
+            callback("The app is already connected to the device.", null);
+        }
+
         let devices = [];
-        let index = this.getDevices().length;
+        let index = 0;
+        this._connected = true;
         Homey.ManagerBLE.discover().then(function (advertisements) {
             advertisements.forEach(function (advertisement) {
                 if (advertisement.localName === FLOWER_CARE_NAME) {
@@ -240,9 +310,11 @@ class MiFloraDriver extends Homey.Driver {
                 }
             });
 
+            this._connected = false;
             callback(null, devices);
         })
             .catch(function (error) {
+                this._connected = false;
                 console.error('Cannot discover BLE devices from the homey manager.', error);
             });
     }

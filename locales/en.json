@@ -4,7 +4,7 @@
         "update" : "Update settings",
         "interval" : {
             "label" : "De update interval in minutes",
-            "info" : "Minimal interval is 5 minutes. Default interval is 15 minutes"
+            "info" : "The delay between reading sensor values in minutes. The minimal interval is 5 minutes. The default interval is 15 minutes."
         },
         "save" : {
             "label" : "Save"
