@@ -39,12 +39,19 @@ class MiFloraDevice extends Homey.Device {
                 console.log("measure_battery changed: %s", valueObj.measure_battery);
             }
 
+            let variable = Object.keys(valueObj)[0];
+
+            let tokens = {
+                'device': this.getName(),
+                'variable': variable,
+                'value': '' + valueObj[variable]
+            }
+
+            sensorChanged.trigger( tokens ) // Fire and forget
+                .catch( this.error )
+
             return Promise.resolve();
         }, 500);
-    }
-
-    onDelete() {
-        clearInterval(this.getDriver().clearInterval());
     }
 }
 

@@ -13,8 +13,6 @@ class MiFloraDriver extends Homey.Driver {
 
     onInit() {
 
-        this._connected = false;
-
         let updateInterval = Homey.ManagerSettings.get('updateInterval');
         if (!updateInterval) {
             updateInterval = 15;
@@ -25,10 +23,7 @@ class MiFloraDriver extends Homey.Driver {
         }
 
         this._syncInterval = setInterval(this._synchroniseSensorData.bind(this), 1000 * 60 * updateInterval);
-    }
-
-    clearInterval() {
-        clearInterval(this._syncInterval);
+        //clearInterval(this._syncInterval);
     }
 
     _synchroniseSensorData() {
@@ -39,15 +34,9 @@ class MiFloraDriver extends Homey.Driver {
             return;
         }
 
-        if (this._connected) {
-            console.log("The app is already connected to the device.");
-            return;
-        }
-
         this._updateDevices(devices)
             .then(devices => {
                 console.log("All devices are synced.");
-                this._connected = false;
             })
             .catch(error => {
                 console.log(error);
@@ -55,7 +44,6 @@ class MiFloraDriver extends Homey.Driver {
     }
 
     _updateDevices(devices) {
-        this._connected = true;
         let driver = this;
         return devices.reduce((promise, device) => {
             return promise
@@ -278,14 +266,8 @@ class MiFloraDriver extends Homey.Driver {
     }
 
     onPairListDevices(data, callback) {
-
-        if (this._connected) {
-            callback("The app is already connected to the device.", null);
-        }
-
         let devices = [];
         let index = 0;
-        this._connected = true;
         Homey.ManagerBLE.discover().then(function (advertisements) {
             advertisements.forEach(function (advertisement) {
                 if (advertisement.localName === FLOWER_CARE_NAME) {
@@ -310,11 +292,9 @@ class MiFloraDriver extends Homey.Driver {
                 }
             });
 
-            this._connected = false;
             callback(null, devices);
         })
             .catch(function (error) {
-                this._connected = false;
                 console.error('Cannot discover BLE devices from the homey manager.', error);
             });
     }
