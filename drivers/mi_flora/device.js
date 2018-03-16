@@ -18,37 +18,21 @@ class MiFloraDevice extends Homey.Device {
         ];
 
         this.registerMultipleCapabilityListener(deviceCapabilities, (valueObj, optsObj) => {
-
-            if(valueObj.hasOwnProperty("measure_temperature")){
-                console.log("measure_temperature changed: %s", valueObj.measure_temperature);
-            }
-
-            if(valueObj.hasOwnProperty("measure_luminance")){
-                console.log("measure_luminance changed: %s", valueObj.measure_luminance);
-            }
-
-            if(valueObj.hasOwnProperty("measure_conductivity")){
-                console.log("measure_conductivity changed: %s", valueObj.measure_conductivity);
-            }
-
-            if(valueObj.hasOwnProperty("measure_moisture")){
-                console.log("measure_moisture changed: %s", valueObj.measure_moisture);
-            }
-
-            if(valueObj.hasOwnProperty("measure_battery")){
-                console.log("measure_battery changed: %s", valueObj.measure_battery);
-            }
-
-            let variable = Object.keys(valueObj)[0];
-
-            let tokens = {
-                'device': this.getName(),
-                'variable': variable,
-                'value': '' + valueObj[variable]
-            }
-
-            sensorChanged.trigger( tokens ) // Fire and forget
-                .catch( this.error )
+            let deviceName = this.getName();
+            deviceCapabilities.forEach(function(capability) {
+                if(valueObj.hasOwnProperty(capability)){
+                    console.log(capability + " changed: %s", valueObj[capability]);
+                    let tokens = {
+                        'device': deviceName,
+                        'variable': capability,
+                        'value': '' + valueObj[capability]
+                    }
+                    sensorChanged.trigger( tokens )
+                        .catch(function (error) {
+                            console.error('Cannot trigger flow card sensor_changed: %s.', error);
+                        });
+                }
+            });
 
             return Promise.resolve();
         }, 500);
