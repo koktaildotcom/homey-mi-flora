@@ -98,7 +98,7 @@
                 "small": "/drivers/mi_flora/assets/images/small.png",
                 "large": "/drivers/mi_flora/assets/images/large.png"
             },
-            "class": "socket",
+            "class": "other",
             "capabilities": [
                 "measure_temperature",
                 "measure_luminance",
