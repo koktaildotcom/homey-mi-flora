@@ -69,6 +69,22 @@
             "min": 0,
             "max": 5000,
             "step": 1
+        },
+        "measure_moisture": {
+            "type": "number",
+            "title": {
+                "en": "Moisture",
+                "nl": "Vochtigheid"
+            },
+            "getable": true,
+            "setable": true,
+            "units": {
+                "en": "%",
+                "nl": "%"
+            },
+            "min": 0,
+            "max": 100,
+            "step": 0.1
         }
     },
     "drivers": [
@@ -87,7 +103,7 @@
                 "measure_temperature",
                 "measure_luminance",
                 "measure_humidity",
-                "measure_conductivity",
+                "measure_moisture",
                 "measure_battery"
             ],
             "pair": [
@@ -219,7 +235,8 @@
                             "measure_temperature",
                             "measure_luminance",
                             "measure_humidity",
-                            "measure_conductivity"
+                            "measure_moisture",
+                            "measure_battery"
                         ],
                         "options": {
                             "icons": {

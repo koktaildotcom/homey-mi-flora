@@ -14,11 +14,11 @@ class MiFloraDriver extends Homey.Driver {
     onInit() {
 
         let updateInterval = Homey.ManagerSettings.get('updateInterval');
-        if(updateInterval === undefined || updateInterval === null){
+        if (updateInterval === undefined || updateInterval === null) {
             updateInterval = 15;
         }
 
-        if(false){
+        if (true) {
             this._synchroniseSensorData();
         }
 
@@ -27,6 +27,12 @@ class MiFloraDriver extends Homey.Driver {
 
     _synchroniseSensorData() {
         let devices = this.getDevices();
+
+        if(devices.length === 0) {
+            console.log("No devices found.");
+            return;
+        }
+
         this._updateDevices(devices)
             .then(devices => {
                 console.log("All devices are synced.");
@@ -124,7 +130,7 @@ class MiFloraDriver extends Homey.Driver {
                     reject('failed discoverServices: ' + error);
                 }
 
-                if (services === undefined || services === null) {
+                if (!services) {
                     reject('No services found.');
                 }
 
@@ -134,7 +140,7 @@ class MiFloraDriver extends Homey.Driver {
                             reject('failed discoverCharacteristics: ' + error);
                         }
 
-                        if (characteristics === undefined || characteristics === null) {
+                        if (!characteristics) {
                             reject('No characteristics found.');
                         }
 
@@ -146,7 +152,7 @@ class MiFloraDriver extends Homey.Driver {
                                             reject('failed to read DATA_CHARACTERISTIC_UUID: ' + error);
                                         }
 
-                                        if (data === undefined || data === null) {
+                                        if (!data) {
                                             reject('No data found.');
                                         }
 
@@ -165,12 +171,12 @@ class MiFloraDriver extends Homey.Driver {
                                         // first reset to null so it trigger a change
                                         device.setCapabilityValue('measure_temperature', null);
                                         device.setCapabilityValue('measure_luminance', null);
-                                        device.setCapabilityValue('measure_humidity', null);
+                                        device.setCapabilityValue('measure_moisture', null);
                                         device.setCapabilityValue('measure_conductivity', null);
 
                                         device.setCapabilityValue('measure_temperature', temperature);
                                         device.setCapabilityValue('measure_luminance', lux);
-                                        device.setCapabilityValue('measure_humidity', moisture);
+                                        device.setCapabilityValue('measure_moisture', moisture);
                                         device.setCapabilityValue('measure_conductivity', nutrition);
                                     })
                                     break
@@ -180,7 +186,7 @@ class MiFloraDriver extends Homey.Driver {
                                             reject('failed to read FIRMWARE_CHARACTERISTIC_UUID: ' + error);
                                         }
 
-                                        if (data === undefined || data === null) {
+                                        if (!data) {
                                             reject('No data found.');
                                         }
 
