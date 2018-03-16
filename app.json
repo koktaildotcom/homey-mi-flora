@@ -102,8 +102,8 @@
             "capabilities": [
                 "measure_temperature",
                 "measure_luminance",
-                "measure_humidity",
                 "measure_moisture",
+                "measure_conductivity",
                 "measure_battery"
             ],
             "pair": [
@@ -234,8 +234,8 @@
                         "capabilities": [
                             "measure_temperature",
                             "measure_luminance",
-                            "measure_humidity",
                             "measure_moisture",
+                            "measure_conductivity",
                             "measure_battery"
                         ],
                         "options": {

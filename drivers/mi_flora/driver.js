@@ -14,7 +14,7 @@ class MiFloraDriver extends Homey.Driver {
     onInit() {
 
         let updateInterval = Homey.ManagerSettings.get('updateInterval');
-        if (updateInterval === undefined || updateInterval === null) {
+        if (!updateInterval) {
             updateInterval = 15;
         }
 
