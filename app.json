@@ -123,6 +123,33 @@
                 {
                     "type": "group",
                     "label": {
+                        "en": "Device info",
+                        "nl": "Apparaat informatie"
+                    },
+                    "children": [
+                        {
+                            "id": "firmware_version",
+                            "type": "label",
+                            "label": {
+                                "en": "Firmware version",
+                                "nl": "Firmware versie"
+                            },
+                            "value": ""
+                        },
+                        {
+                            "id": "last_updated",
+                            "type": "label",
+                            "label": {
+                                "en": "Last updated",
+                                "nl": "Laatste update"
+                            },
+                            "value": ""
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "label": {
                         "en": "Temperature (°C)",
                         "nl": "Temperatuur (°C)"
                     },
@@ -132,7 +159,8 @@
                             "type": "number",
                             "value": 0,
                             "label": {
-                                "en": "min"
+                                "en": "min",
+                                "nl": "min"
                             }
                         },
                         {
@@ -140,7 +168,8 @@
                             "type": "number",
                             "value": 0,
                             "label": {
-                                "en": "max"
+                                "en": "max",
+                                "nl": "max"
                             }
                         }
                     ]
@@ -157,7 +186,8 @@
                             "type": "number",
                             "value": 0,
                             "label": {
-                                "en": "min"
+                                "en": "min",
+                                "nl": "min"
                             }
                         },
                         {
@@ -165,7 +195,8 @@
                             "type": "number",
                             "value": 0,
                             "label": {
-                                "en": "max"
+                                "en": "max",
+                                "nl": "max"
                             }
                         }
                     ]
@@ -182,7 +213,8 @@
                             "type": "number",
                             "value": 0,
                             "label": {
-                                "en": "min"
+                                "en": "min",
+                                "nl": "min"
                             }
                         },
                         {
@@ -190,7 +222,8 @@
                             "type": "number",
                             "value": 0,
                             "label": {
-                                "en": "max"
+                                "en": "max",
+                                "nl": "max"
                             }
                         }
                     ]
@@ -207,7 +240,8 @@
                             "type": "number",
                             "value": 0,
                             "label": {
-                                "en": "min"
+                                "en": "min",
+                                "nl": "min"
                             }
                         },
                         {
@@ -215,7 +249,8 @@
                             "type": "number",
                             "value": 0,
                             "label": {
-                                "en": "max"
+                                "en": "max",
+                                "nl": "max"
                             }
                         }
                     ]

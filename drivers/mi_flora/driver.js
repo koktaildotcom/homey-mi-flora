@@ -234,7 +234,6 @@ class MiFloraDriver extends Homey.Driver {
                                             }
 
                                             let batteryLevel = parseInt(data.toString('hex', 0, 1), 16);
-                                            let firmwareVersion = data.toString('ascii', 2, data.length);
 
                                             let deviceBatteryLevel = device.getCapabilityValue('measure_battery');
 
@@ -248,6 +247,14 @@ class MiFloraDriver extends Homey.Driver {
                                                     .then(() => null)
                                                     .catch(err => new Error('failed to trigger measure_battery'));
                                             }
+
+                                            let firmwareVersion = data.toString('ascii', 2, data.length);
+
+                                            device.setSettings({
+                                                firmware_version: firmwareVersion,
+                                                last_updated: new Date().toISOString()
+                                            })
+                                                .catch(err => new Error('failed add firmware settings'));
 
                                             resolve(device);
                                         });
