@@ -29,7 +29,7 @@ class MiFloraDriver extends Homey.Driver {
         let devices = this.getDevices();
 
         if(devices.length === 0) {
-            console.log("No devices found.");
+            console.log("No devices paired.");
             return;
         }
 
@@ -99,6 +99,7 @@ class MiFloraDriver extends Homey.Driver {
     }
 
     _connect(device) {
+        console.log('Connect to ' + device.getData().uuid);
         return new Promise((resolve, reject) => {
             device.advertisement.connect((error, peripheral) => {
                 if (error) {
@@ -113,6 +114,7 @@ class MiFloraDriver extends Homey.Driver {
     }
 
     _disconnect(device) {
+        console.log('Disconnect ' + device.getData().uuid);
         return new Promise((resolve, reject) => {
             device.peripheral.disconnect((error, peripheral) => {
                 if (error) {
@@ -124,6 +126,7 @@ class MiFloraDriver extends Homey.Driver {
     }
 
     _updateSensorData(device) {
+        console.log('Update ' + device.getData().uuid);
         return new Promise((resolve, reject) => {
             device.peripheral.discoverServices((error, services) => {
                 if (error) {
@@ -229,8 +232,8 @@ class MiFloraDriver extends Homey.Driver {
                         "capabilities": [
                             "measure_temperature",
                             "measure_luminance",
-                            "measure_humidity",
                             "measure_conductivity",
+                            "measure_moisture",
                             "measure_battery"
                         ],
                     });
