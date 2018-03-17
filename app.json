@@ -270,8 +270,7 @@
                             "measure_temperature",
                             "measure_luminance",
                             "measure_conductivity",
-                            "measure_moisture",
-                            "measure_battery"
+                            "measure_moisture"
                         ],
                         "options": {
                             "icons": {
