@@ -130,7 +130,7 @@ class MiFloraDriver extends Homey.Driver {
     }
 
     _updateSensorData(device) {
-        console.log('Update');
+        console.log('Update :%s', device.getName());
         return new Promise((resolve, reject) => {
             device.peripheral.discoverServices((error, services) => {
                 if (error) {

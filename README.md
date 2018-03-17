@@ -1,3 +1,3 @@
-# Xiaomi Mi Flora Sensor
+# Xiaomi mi flora sensor
 
-Integrate Xiaomi Mi Flora Sensor into Homey
+Integrate Xiaomi mi flora sensor into Homey

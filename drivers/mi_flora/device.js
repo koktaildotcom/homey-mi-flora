@@ -9,6 +9,9 @@ class MiFloraDevice extends Homey.Device {
         let sensorChanged = new Homey.FlowCardTrigger('sensor_changed');
         sensorChanged.register();
 
+        let deviceSensorChanged = new Homey.FlowCardTrigger('device_sensor_changed');
+        deviceSensorChanged.register();
+
         let deviceCapabilities = [
             "measure_temperature",
             "measure_luminance",
@@ -19,15 +22,22 @@ class MiFloraDevice extends Homey.Device {
 
         this.registerMultipleCapabilityListener(deviceCapabilities, (valueObj, optsObj) => {
             let deviceName = this.getName();
-            deviceCapabilities.forEach(function(capability) {
-                if(valueObj.hasOwnProperty(capability)){
+            deviceCapabilities.forEach(function (capability) {
+                if (valueObj.hasOwnProperty(capability)) {
                     console.log(capability + " changed: %s", valueObj[capability]);
-                    let tokens = {
+
+                    deviceSensorChanged.trigger({
                         'device': deviceName,
                         'sensor': capability,
                         'value': '' + valueObj[capability]
-                    }
-                    sensorChanged.trigger( tokens )
+                    })
+                        .catch(function (error) {
+                            console.error('Cannot trigger flow card sensor_changed: %s.', error);
+                        });
+                    sensorChanged.trigger({
+                        'sensor': capability,
+                        'value': '' + valueObj[capability]
+                    })
                         .catch(function (error) {
                             console.error('Cannot trigger flow card sensor_changed: %s.', error);
                         });

@@ -2,12 +2,12 @@
     "id": "com.koktail.homey-mi-flora",
     "sdk": 2,
     "name": {
-        "en": "Xiaomi Mi Flora Sensor",
-        "nl": "Xiaomi Mi Flora Sensor"
+        "en": "Xiaomi mi flora sensor",
+        "nl": "Xiaomi mi flora sensor"
     },
     "description": {
-        "en": "Integrate Xiaomi Mi Flora Sensor into Homey",
-        "nl": "Integreer Xiaomi Mi Flora Sensor in Homey"
+        "en": "Integrate Xiaomi mi flora sensor into Homey",
+        "nl": "Integreer Xiaomi mi flora sensor in Homey"
     },
     "category": [
         "tools",
@@ -91,8 +91,8 @@
         {
             "id": "mi_flora",
             "name": {
-                "en": "Xiaomi Mi Flora Sensor",
-                "nl": "Xiaomi Mi Flora Sensor"
+                "en": "Xiaomi mi flora sensor",
+                "nl": "Xiaomi mi flora sensor"
             },
             "images": {
                 "small": "/drivers/mi_flora/assets/images/small.png",
@@ -296,14 +296,14 @@
                 },
                 "tokens": [
                     {
-                        "name": "device",
+                        "name": "value",
                         "title": {
-                            "en": "device",
-                            "nl": "apparaat"
+                            "en": "value",
+                            "nl": "waarde"
                         },
                         "example": {
-                            "en": "Flowercare 1",
-                            "nl": "Flowercare 1"
+                            "en": "22.5",
+                            "nl": "22.5"
                         }
                     },
                     {
@@ -318,6 +318,26 @@
                         }
                     },
                     {
+                        "name": "device",
+                        "title": {
+                            "en": "device",
+                            "nl": "apparaat"
+                        },
+                        "example": {
+                            "en": "Flowercare 1",
+                            "nl": "Flowercare 1"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "device_sensor_changed",
+                "title": {
+                    "en": "A sensor value is changed",
+                    "nl": "Een sensor waarde is veranderd"
+                },
+                "tokens": [
+                    {
                         "name": "value",
                         "title": {
                             "en": "value",
@@ -327,6 +347,24 @@
                             "en": "22.5",
                             "nl": "22.5"
                         }
+                    },
+                    {
+                        "name": "sensor",
+                        "title": {
+                            "en": "sensor",
+                            "nl": "sensor"
+                        },
+                        "example": {
+                            "en": "measure_temperature",
+                            "nl": "measure_temperature"
+                        }
+                    }
+                ],
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=mi_flora"
                     }
                 ]
             }
