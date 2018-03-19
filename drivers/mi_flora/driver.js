@@ -72,10 +72,16 @@ class MiFloraDriver extends Homey.Driver {
                                 console.log(error);
                             });
                         } catch (error) {
+                            // disconnect BLE
+                            driver._disconnect(device);
+
                             reject("cannot sync data from the device: " + error);
                         }
                     })
                 }).catch(error => {
+                    // disconnect BLE
+                    driver._disconnect(device);
+
                     console.log(error);
                 });
 
@@ -83,19 +89,24 @@ class MiFloraDriver extends Homey.Driver {
     }
 
     _discover(device) {
-        return new Promise((resolve, reject) => {
-            Homey.ManagerBLE.discover().then(function (advertisements) {
-                if (advertisements) {
-                    advertisements.forEach(function (advertisement) {
-                        if (advertisement.uuid === device.getData().uuid) {
-                            device.advertisement = advertisement;
+        if (device) {
+            return new Promise((resolve, reject) => {
+                Homey.ManagerBLE.discover().then(function (advertisements) {
+                    if (advertisements) {
+                        advertisements.forEach(function (advertisement) {
+                            if (advertisement.uuid === device.getData().uuid) {
+                                device.advertisement = advertisement;
 
-                            resolve(device);
-                        }
-                    });
-                }
+                                resolve(device);
+                            }
+                        });
+                    }
+                });
             });
-        });
+        }
+        else {
+            reject('cannot disconnect to unknown device');
+        }
     }
 
     _connect(device) {
@@ -112,6 +123,9 @@ class MiFloraDriver extends Homey.Driver {
                     resolve(device);
                 });
             }
+            else {
+                reject('cannot connect to unknown device');
+            }
         })
     }
 
@@ -126,12 +140,32 @@ class MiFloraDriver extends Homey.Driver {
                     resolve(device);
                 });
             }
+            else {
+                reject('cannot disconnect to unknown device');
+            }
         })
     }
 
     _updateSensorData(device) {
         console.log('Update :%s', device.getName());
         return new Promise((resolve, reject) => {
+
+            const updateCapabilityValue = function (device, index, value) {
+                let currentValue = device.getCapabilityValue(index);
+
+                // force change if its the save value
+                if (currentValue === value) {
+                    device.setCapabilityValue(index, null);
+                    device.setCapabilityValue(index, value);
+                }
+                else {
+                    device.setCapabilityValue(index, value);
+                    device.triggerCapabilityListener(index, value)
+                        .then(() => null)
+                        .catch(err => new Error('failed to trigger ' + index));
+                }
+            }
+
             device.peripheral.discoverServices((error, services) => {
                 if (error) {
                     reject('failed discoverServices: ' + error);
@@ -160,66 +194,27 @@ class MiFloraDriver extends Homey.Driver {
                                                 reject('No data found.');
                                             }
 
-                                            let temperature = data.readUInt16LE(0) / 10;
-                                            let lux = data.readUInt32LE(3);
-                                            let moisture = data.readUInt16BE(6);
-                                            let nutrition = data.readUInt16LE(8);
+                                            let checkCharacteristics = [
+                                                "measure_temperature",
+                                                "measure_luminance",
+                                                "measure_conductivity",
+                                                "measure_moisture",
+                                            ];
 
-                                            console.log({
-                                                "temperature:": temperature + " °C",
-                                                "light:": lux + " lux",
-                                                "moisture:": moisture + " %",
-                                                "nutrition:": nutrition + " µS/cm",
+                                            let characteristicValues = {
+                                                'measure_temperature': data.readUInt16LE(0) / 10,
+                                                'measure_luminance': data.readUInt32LE(3),
+                                                'measure_conductivity': data.readUInt16BE(6),
+                                                'measure_moisture': data.readUInt16LE(8)
+                                            }
+
+                                            console.log(characteristicValues);
+
+                                            checkCharacteristics.forEach(function (characteristic) {
+                                                if (checkCharacteristics.hasOwnProperty(characteristic)) {
+                                                    updateCapabilityValue(device, characteristic, characteristicValues[characteristic]);
+                                                }
                                             });
-
-                                            let deviceTemperature = device.getCapabilityValue('measure_temperature');
-                                            let deviceLux = device.getCapabilityValue('measure_luminance');
-                                            let deviceMoisture = device.getCapabilityValue('measure_moisture');
-                                            let deviceNutrition = device.getCapabilityValue('measure_conductivity');
-
-                                            if (deviceTemperature === temperature) {
-                                                device.setCapabilityValue('measure_temperature', null);
-                                                device.setCapabilityValue('measure_temperature', temperature);
-                                            }
-                                            else{
-                                                device.setCapabilityValue('measure_temperature', temperature);
-                                                device.triggerCapabilityListener('measure_temperature', temperature)
-                                                    .then(() => null)
-                                                    .catch(err => new Error('failed to trigger measure_temperature'));
-                                            }
-
-                                            if (deviceLux === lux) {
-                                                device.setCapabilityValue('measure_luminance', null);
-                                                device.setCapabilityValue('measure_luminance', lux);
-                                            }
-                                            else{
-                                                device.setCapabilityValue('measure_luminance', lux);
-                                                device.triggerCapabilityListener('measure_luminance', lux)
-                                                    .then(() => null)
-                                                    .catch(err => new Error('failed to trigger measure_luminance'));
-                                            }
-
-                                            if (deviceMoisture === moisture) {
-                                                device.setCapabilityValue('measure_moisture', null);
-                                                device.setCapabilityValue('measure_moisture', moisture);
-                                            }
-                                            else{
-                                                device.setCapabilityValue('measure_moisture', moisture);
-                                                device.triggerCapabilityListener('measure_moisture', moisture)
-                                                    .then(() => null)
-                                                    .catch(err => new Error('failed to trigger measure_moisture'));
-                                            }
-
-                                            if (deviceNutrition === nutrition) {
-                                                device.setCapabilityValue('measure_conductivity', null);
-                                                device.setCapabilityValue('measure_conductivity', nutrition);
-                                            }
-                                            else{
-                                                device.setCapabilityValue('measure_conductivity', nutrition);
-                                                device.triggerCapabilityListener('measure_conductivity', nutrition)
-                                                    .then(() => null)
-                                                    .catch(err => new Error('failed to trigger measure_conductivity'));
-                                            }
 
                                         })
                                         break
@@ -233,20 +228,19 @@ class MiFloraDriver extends Homey.Driver {
                                                 reject('No data found.');
                                             }
 
-                                            let batteryLevel = parseInt(data.toString('hex', 0, 1), 16);
+                                            let checkCharacteristics = [
+                                                "measure_battery"
+                                            ];
 
-                                            let deviceBatteryLevel = device.getCapabilityValue('measure_battery');
+                                            let characteristicValues = {
+                                                'measure_battery': parseInt(data.toString('hex', 0, 1), 16),
+                                            }
 
-                                            if (deviceBatteryLevel === batteryLevel) {
-                                                device.setCapabilityValue('measure_battery', null);
-                                                device.setCapabilityValue('measure_battery', batteryLevel);
-                                            }
-                                            else{
-                                                device.setCapabilityValue('measure_battery', batteryLevel);
-                                                device.triggerCapabilityListener('measure_battery', batteryLevel)
-                                                    .then(() => null)
-                                                    .catch(err => new Error('failed to trigger measure_battery'));
-                                            }
+                                            checkCharacteristics.forEach(function (characteristic) {
+                                                if (checkCharacteristics.hasOwnProperty(characteristic)) {
+                                                    updateCapabilityValue(device, characteristic, characteristicValues[characteristic]);
+                                                }
+                                            });
 
                                             let firmwareVersion = data.toString('ascii', 2, data.length);
 
