@@ -104,9 +104,6 @@ class MiFloraDriver extends Homey.Driver {
                 });
             });
         }
-        else {
-            reject('cannot disconnect to unknown device');
-        }
     }
 
     _connect(device) {
@@ -123,9 +120,6 @@ class MiFloraDriver extends Homey.Driver {
                     resolve(device);
                 });
             }
-            else {
-                reject('cannot connect to unknown device');
-            }
         })
     }
 
@@ -140,14 +134,16 @@ class MiFloraDriver extends Homey.Driver {
                     resolve(device);
                 });
             }
-            else {
-                reject('cannot disconnect to unknown device');
-            }
         })
     }
 
     _updateSensorData(device) {
-        console.log('Update :%s', device.getName());
+        if (device) {
+            console.log('Update :%s', device.getName());
+        }
+        else {
+            new Error('Cannot device anymore');
+        }
         return new Promise((resolve, reject) => {
 
             const updateCapabilityValue = function (device, index, value) {
