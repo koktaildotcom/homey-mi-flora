@@ -72,17 +72,12 @@ class MiFloraDriver extends Homey.Driver {
                                 console.log(error);
                             });
                         } catch (error) {
-                            // disconnect BLE
-                            driver._disconnect(device);
-
                             reject("cannot sync data from the device: " + error);
                         }
                     })
                 }).catch(error => {
-                    // disconnect BLE
-                    driver._disconnect(device);
-
                     console.log(error);
+                    return driver._disconnect(device);
                 });
 
         }, Promise.resolve());
@@ -138,30 +133,13 @@ class MiFloraDriver extends Homey.Driver {
     }
 
     _updateSensorData(device) {
-        if (device) {
-            console.log('Update :%s', device.getName());
-        }
-        else {
-            new Error('Cannot device anymore');
-        }
         return new Promise((resolve, reject) => {
-
-            const updateCapabilityValue = function (device, index, value) {
-                let currentValue = device.getCapabilityValue(index);
-
-                // force change if its the save value
-                if (currentValue === value) {
-                    device.setCapabilityValue(index, null);
-                    device.setCapabilityValue(index, value);
-                }
-                else {
-                    device.setCapabilityValue(index, value);
-                    device.triggerCapabilityListener(index, value)
-                        .then(() => null)
-                        .catch(err => new Error('failed to trigger ' + index));
-                }
+            if (device) {
+                console.log('Update :%s', device.getName());
             }
-
+            else {
+                new Error('Cannot device anymore');
+            }
             device.peripheral.discoverServices((error, services) => {
                 if (error) {
                     reject('failed discoverServices: ' + error);
@@ -207,8 +185,8 @@ class MiFloraDriver extends Homey.Driver {
                                             console.log(characteristicValues);
 
                                             checkCharacteristics.forEach(function (characteristic) {
-                                                if (checkCharacteristics.hasOwnProperty(characteristic)) {
-                                                    updateCapabilityValue(device, characteristic, characteristicValues[characteristic]);
+                                                if (characteristicValues.hasOwnProperty(characteristic)) {
+                                                    device.updateCapabilityValue(characteristic, characteristicValues[characteristic]);
                                                 }
                                             });
 
@@ -233,8 +211,8 @@ class MiFloraDriver extends Homey.Driver {
                                             }
 
                                             checkCharacteristics.forEach(function (characteristic) {
-                                                if (checkCharacteristics.hasOwnProperty(characteristic)) {
-                                                    updateCapabilityValue(device, characteristic, characteristicValues[characteristic]);
+                                                if (characteristicValues.hasOwnProperty(characteristic)) {
+                                                    device.updateCapabilityValue(characteristic, characteristicValues[characteristic]);
                                                 }
                                             });
 
