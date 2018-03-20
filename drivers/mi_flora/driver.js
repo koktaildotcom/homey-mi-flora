@@ -31,7 +31,6 @@ class MiFloraDriver extends Homey.Driver {
 
         if (devices.length === 0) {
             console.log("No devices paired.");
-            return;
         }
 
         this._updateDevices(devices)
