@@ -54,22 +54,26 @@ class MiFloraDriver extends Homey.Driver {
                                 return driver._connect(device);
                             }).catch(error => {
                                 console.log(error);
+                                throw error;
                             })
                                 .then((device) => {
                                     return driver._updateSensorData(device);
                                 }).catch(error => {
                                 console.log(error);
+                                throw error;
                             })
                                 .then((device) => {
                                     return driver._disconnect(device);
                                 }).catch(error => {
                                 console.log(error);
+                                throw error;
                             })
                                 .then((device) => {
                                     resolve('Device sync complete ' + device.getData().uuid);
                                     return device;
                                 }).catch(error => {
                                 console.log(error);
+                                throw error;
                             });
                         } catch (error) {
                             reject("cannot sync data from the device: " + error);
@@ -77,7 +81,8 @@ class MiFloraDriver extends Homey.Driver {
                     })
                 }).catch(error => {
                     console.log(error);
-                    return driver._disconnect(device);
+                    driver._disconnect(device);
+                    throw error;
                 });
 
         }, Promise.resolve());
@@ -135,7 +140,7 @@ class MiFloraDriver extends Homey.Driver {
     _updateSensorData(device) {
         return new Promise((resolve, reject) => {
 
-            const updateCapabilityValue = function(device, index, value) {
+            const updateCapabilityValue = function (device, index, value) {
                 let currentValue = device.getCapabilityValue(index);
 
                 // force change if its the save value
@@ -182,7 +187,7 @@ class MiFloraDriver extends Homey.Driver {
                                             }
 
                                             if (!data) {
-                                                reject('No data found.');
+                                                reject('No data found for sensor values.');
                                             }
 
                                             let checkCharacteristics = [
@@ -216,7 +221,7 @@ class MiFloraDriver extends Homey.Driver {
                                             }
 
                                             if (!data) {
-                                                reject('No data found.');
+                                                reject('No data found for firmware.');
                                             }
 
                                             let checkCharacteristics = [
