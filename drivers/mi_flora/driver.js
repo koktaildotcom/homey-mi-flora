@@ -49,40 +49,40 @@ class MiFloraDriver extends Homey.Driver {
             return promise
                 .then(() => {
                     return new Promise((resolve, reject) => {
-                        try {
-                            driver._discover(device).then((device) => {
-                                return driver._connect(device);
+
+                        driver._discover(device).then((device) => {
+                            return driver._connect(device);
+                        }).catch(error => {
+                            console.log('fail 1');
+                            reject(error);
+                        })
+                            .then((device) => {
+                                return driver._updateSensorData(device);
                             }).catch(error => {
-                                console.log(error);
-                                throw error;
-                            })
-                                .then((device) => {
-                                    return driver._updateSensorData(device);
-                                }).catch(error => {
-                                console.log(error);
-                                throw error;
-                            })
-                                .then((device) => {
-                                    return driver._disconnect(device);
-                                }).catch(error => {
-                                console.log(error);
-                                throw error;
-                            })
-                                .then((device) => {
-                                    resolve('Device sync complete ' + device.getData().uuid);
-                                    return device;
-                                }).catch(error => {
-                                console.log(error);
-                                throw error;
-                            });
-                        } catch (error) {
-                            reject("cannot sync data from the device: " + error);
-                        }
+                            console.log('fail 2');
+                            reject(error);
+                        })
+                            .then((device) => {
+                                return driver._disconnect(device);
+                            }).catch(error => {
+                            console.log('fail 3');
+                            reject(error);
+                        })
+                            .then((device) => {
+                                console.log('Device sync complete');
+                                resolve('Device sync complete ' + device.getData().uuid);
+
+                                return device;
+                            }).catch(error => {
+                            console.log('fail 4');
+                            reject(error);
+                        });
+
                     })
                 }).catch(error => {
+                    console.log('fail device');
                     console.log(error);
                     driver._disconnect(device);
-                    throw error;
                 });
 
         }, Promise.resolve());
