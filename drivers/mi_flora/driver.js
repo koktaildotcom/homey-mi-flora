@@ -67,7 +67,6 @@ class MiFloraDriver extends Homey.Driver {
                             })
                                 .then((device) => {
                                     resolve('Device sync complete ' + device.getData().uuid);
-                                    return device;
                                 }).catch(error => {
                                 console.log(error);
                             });
@@ -124,7 +123,7 @@ class MiFloraDriver extends Homey.Driver {
             if (device) {
                 device.peripheral.disconnect((error, peripheral) => {
                     if (error) {
-                        reject('failed connection to peripheral: ' + error);
+                        reject('failed disconnect to peripheral: ' + error);
                     }
                     resolve(device);
                 });
