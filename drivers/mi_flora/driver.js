@@ -50,6 +50,8 @@ class MiFloraDriver extends Homey.Driver {
                 .then(() => {
                     return new Promise((resolve, reject) => {
 
+                        let initialTime = new Date();
+
                         driver._discover(device).then((device) => {
                             return driver._connect(device);
                         }).catch(error => {
@@ -83,6 +85,9 @@ class MiFloraDriver extends Homey.Driver {
                     console.log('fail device');
                     console.log(error);
                     driver._disconnect(device);
+
+                    let currentTime = new Date();
+                    console.log("downtime: " + (currentTime - initialTime) / 1000  + " seconds");
                 });
 
         }, Promise.resolve());
@@ -92,22 +97,22 @@ class MiFloraDriver extends Homey.Driver {
         console.log('Discover');
         if (device) {
             return new Promise((resolve, reject) => {
-                try {
-                    Homey.ManagerBLE.discover().then(function (advertisements) {
-                        if (advertisements) {
-                            advertisements.forEach(function (advertisement) {
-                                if (advertisement.uuid === device.getData().uuid) {
-                                    device.advertisement = advertisement;
+                if (device.advertisement) {
+                    console.log('Discover, already found');
+                    resolve(device);
+                }
 
-                                    resolve(device);
-                                }
-                            });
-                        }
-                    });
-                }
-                catch (error) {
-                    reject(error);
-                }
+                Homey.ManagerBLE.discover().then(function (advertisements) {
+                    if (advertisements) {
+                        advertisements.forEach(function (advertisement) {
+                            if (advertisement.uuid === device.getData().uuid) {
+                                device.advertisement = advertisement;
+
+                                resolve(device);
+                            }
+                        });
+                    }
+                });
             });
         }
     }
@@ -115,21 +120,21 @@ class MiFloraDriver extends Homey.Driver {
     _connect(device) {
         console.log('Connect');
         return new Promise((resolve, reject) => {
-            try {
-                if (device) {
-                    device.advertisement.connect((error, peripheral) => {
-                        if (error) {
-                            reject('failed connection to peripheral: ' + error);
-                        }
-
-                        device.peripheral = peripheral;
-
-                        resolve(device);
-                    });
-                }
+            if (device.peripheral && device.peripheral.isConnected) {
+                console.log('Discover, already found');
+                resolve(device);
             }
-            catch (error) {
-                reject(error);
+
+            if (device) {
+                device.advertisement.connect((error, peripheral) => {
+                    if (error) {
+                        reject('failed connection to peripheral: ' + error);
+                    }
+
+                    device.peripheral = peripheral;
+
+                    resolve(device);
+                });
             }
         })
     }
@@ -137,18 +142,13 @@ class MiFloraDriver extends Homey.Driver {
     _disconnect(device) {
         console.log('Disconnect');
         return new Promise((resolve, reject) => {
-            try {
-                if (device) {
-                    device.peripheral.disconnect((error, peripheral) => {
-                        if (error) {
-                            reject('failed connection to peripheral: ' + error);
-                        }
-                        resolve(device);
-                    });
-                }
-            }
-            catch (error) {
-                reject(error);
+            if (device && device.peripheral) {
+                device.peripheral.disconnect((error, peripheral) => {
+                    if (error) {
+                        reject('failed connection to peripheral: ' + error);
+                    }
+                    resolve(device);
+                });
             }
         })
     }
