@@ -55,39 +55,30 @@ class MiFloraDriver extends Homey.Driver {
                         driver._discover(device).then((device) => {
                             return driver._connect(device);
                         }).catch(error => {
-                            console.log('fail 1');
                             reject(error);
                         })
                             .then((device) => {
                                 return driver._updateSensorData(device);
                             }).catch(error => {
-                            console.log('fail 2');
                             reject(error);
                         })
                             .then((device) => {
                                 return driver._disconnect(device);
                             }).catch(error => {
-                            console.log('fail 3');
                             reject(error);
                         })
                             .then((device) => {
-                                console.log('Device sync complete');
-                                resolve('Device sync complete ' + device.getData().uuid);
+                                console.log('Device sync complete in: ' + (new Date() - initialTime) / 1000 + ' seconds');
+                                resolve('Device sync complete in: ' + (new Date() - initialTime) / 1000 + ' seconds');
 
                                 return device;
                             }).catch(error => {
-                            console.log('fail 4');
                             reject(error);
                         });
-
                     })
                 }).catch(error => {
-                    console.log('fail device');
                     console.log(error);
                     driver._disconnect(device);
-
-                    let currentTime = new Date();
-                    console.log("downtime: " + (currentTime - initialTime) / 1000  + " seconds");
                 });
 
         }, Promise.resolve());
@@ -98,7 +89,7 @@ class MiFloraDriver extends Homey.Driver {
         if (device) {
             return new Promise((resolve, reject) => {
                 if (device.advertisement) {
-                    console.log('Discover, already found');
+                    console.log('Already found');
                     resolve(device);
                 }
 
@@ -112,6 +103,9 @@ class MiFloraDriver extends Homey.Driver {
                             }
                         });
                     }
+                    else {
+                        reject("Cannot find any advertisements");
+                    }
                 });
             });
         }
@@ -120,36 +114,27 @@ class MiFloraDriver extends Homey.Driver {
     _connect(device) {
         console.log('Connect');
         return new Promise((resolve, reject) => {
-            if (device.peripheral && device.peripheral.isConnected) {
-                console.log('Discover, already found');
+            device.advertisement.connect((error, peripheral) => {
+                if (error) {
+                    reject('failed connection to peripheral: ' + error);
+                }
+
+                device.peripheral = peripheral;
+
                 resolve(device);
-            }
-
-            if (device) {
-                device.advertisement.connect((error, peripheral) => {
-                    if (error) {
-                        reject('failed connection to peripheral: ' + error);
-                    }
-
-                    device.peripheral = peripheral;
-
-                    resolve(device);
-                });
-            }
+            });
         })
     }
 
     _disconnect(device) {
         console.log('Disconnect');
         return new Promise((resolve, reject) => {
-            if (device && device.peripheral) {
-                device.peripheral.disconnect((error, peripheral) => {
-                    if (error) {
-                        reject('failed connection to peripheral: ' + error);
-                    }
-                    resolve(device);
-                });
-            }
+            device.peripheral.disconnect((error, peripheral) => {
+                if (error) {
+                    reject('failed connection to peripheral: ' + error);
+                }
+                resolve(device);
+            });
         })
     }
 
@@ -257,11 +242,7 @@ class MiFloraDriver extends Homey.Driver {
                                                 device.setSettings({
                                                     firmware_version: firmwareVersion,
                                                     last_updated: new Date().toISOString()
-                                                })
-                                                //.then(() => null)
-                                                    .catch(function (error) {
-                                                        reject('failed add firmware settings ' + error);
-                                                    });
+                                                });
 
                                                 resolve(device);
                                             });
