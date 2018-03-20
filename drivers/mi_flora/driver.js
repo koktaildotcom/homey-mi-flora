@@ -215,8 +215,8 @@ class MiFloraDriver extends Homey.Driver {
                                                 let characteristicValues = {
                                                     'measure_temperature': data.readUInt16LE(0) / 10,
                                                     'measure_luminance': data.readUInt32LE(3),
-                                                    'measure_conductivity': data.readUInt16LE(6),
-                                                    'measure_moisture': data.readUInt16BE(8)
+                                                    'measure_conductivity': data.readUInt16LE(8),
+                                                    'measure_moisture': data.readUInt16BE(6)
                                                 }
 
                                                 console.log(characteristicValues);
