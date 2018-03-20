@@ -151,8 +151,10 @@ class MiFloraDriver extends Homey.Driver {
                 else {
                     device.setCapabilityValue(index, value);
                     device.triggerCapabilityListener(index, value)
-                        .then(() => null)
-                        .catch(err => new Error('failed to trigger ' + index));
+                    //.then(() => null)
+                        .catch(function (error) {
+                            reject('failed to trigger ' + index + ' because of: ' + error);
+                        });
                 }
             }
 
@@ -160,7 +162,7 @@ class MiFloraDriver extends Homey.Driver {
                 console.log('Update :%s', device.getName());
             }
             else {
-                new Error('Cannot device anymore');
+                reject('Cannot device anymore');
             }
             device.peripheral.discoverServices((error, services) => {
                 if (error) {
@@ -211,7 +213,6 @@ class MiFloraDriver extends Homey.Driver {
                                                     updateCapabilityValue(device, characteristic, characteristicValues[characteristic]);
                                                 }
                                             });
-
                                         })
                                         break
                                     case FIRMWARE_CHARACTERISTIC_UUID:
@@ -244,7 +245,10 @@ class MiFloraDriver extends Homey.Driver {
                                                 firmware_version: firmwareVersion,
                                                 last_updated: new Date().toISOString()
                                             })
-                                                .catch(err => new Error('failed add firmware settings'));
+                                            //.then(() => null)
+                                                .catch(function (error) {
+                                                    reject('failed add firmware settings ' + error);
+                                                });
 
                                             resolve(device);
                                         });
