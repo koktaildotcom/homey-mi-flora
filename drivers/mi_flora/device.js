@@ -4,22 +4,6 @@ const Homey = require('homey');
 
 class MiFloraDevice extends Homey.Device {
 
-    updateCapabilityValue(index, value) {
-        let currentValue = this.getCapabilityValue(index);
-
-        // force change if its the save value
-        if (currentValue === value) {
-            this.setCapabilityValue(index, null);
-            this.setCapabilityValue(index, value);
-        }
-        else {
-            this.setCapabilityValue(index, value);
-            this.triggerCapabilityListener(index, value)
-                .then(() => null)
-                .catch(err => new Error('failed to trigger ' + index));
-        }
-    }
-
     onInit() {
 
         let sensorChanged = new Homey.FlowCardTrigger('sensor_changed');
