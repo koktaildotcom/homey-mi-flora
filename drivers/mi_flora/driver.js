@@ -185,31 +185,32 @@ class MiFloraDriver extends Homey.Driver {
                                                     reject('failed to read DATA_CHARACTERISTIC_UUID: ' + error);
                                                 }
 
-                                                if (!data) {
+                                                if (data) {
+                                                    let checkCharacteristics = [
+                                                        "measure_temperature",
+                                                        "measure_luminance",
+                                                        "measure_conductivity",
+                                                        "measure_moisture",
+                                                    ];
+
+                                                    let characteristicValues = {
+                                                        'measure_temperature': data.readUInt16LE(0) / 10,
+                                                        'measure_luminance': data.readUInt32LE(3),
+                                                        'measure_conductivity': data.readUInt16LE(8),
+                                                        'measure_moisture': data.readUInt16BE(6)
+                                                    }
+
+                                                    console.log(characteristicValues);
+
+                                                    checkCharacteristics.forEach(function (characteristic) {
+                                                        if (characteristicValues.hasOwnProperty(characteristic)) {
+                                                            updateCapabilityValue(device, characteristic, characteristicValues[characteristic]);
+                                                        }
+                                                    });
+                                                }
+                                                else {
                                                     reject('No data found for sensor values.');
                                                 }
-
-                                                let checkCharacteristics = [
-                                                    "measure_temperature",
-                                                    "measure_luminance",
-                                                    "measure_conductivity",
-                                                    "measure_moisture",
-                                                ];
-
-                                                let characteristicValues = {
-                                                    'measure_temperature': data.readUInt16LE(0) / 10,
-                                                    'measure_luminance': data.readUInt32LE(3),
-                                                    'measure_conductivity': data.readUInt16LE(8),
-                                                    'measure_moisture': data.readUInt16BE(6)
-                                                }
-
-                                                console.log(characteristicValues);
-
-                                                checkCharacteristics.forEach(function (characteristic) {
-                                                    if (characteristicValues.hasOwnProperty(characteristic)) {
-                                                        updateCapabilityValue(device, characteristic, characteristicValues[characteristic]);
-                                                    }
-                                                });
                                             })
                                             break
                                         case FIRMWARE_CHARACTERISTIC_UUID:
@@ -217,33 +218,33 @@ class MiFloraDriver extends Homey.Driver {
                                                 if (error) {
                                                     reject('failed to read FIRMWARE_CHARACTERISTIC_UUID: ' + error);
                                                 }
+                                                if (data) {
+                                                    let checkCharacteristics = [
+                                                        "measure_battery"
+                                                    ];
 
-                                                if (!data) {
+                                                    let characteristicValues = {
+                                                        'measure_battery': parseInt(data.toString('hex', 0, 1), 16),
+                                                    }
+
+                                                    checkCharacteristics.forEach(function (characteristic) {
+                                                        if (characteristicValues.hasOwnProperty(characteristic)) {
+                                                            updateCapabilityValue(device, characteristic, characteristicValues[characteristic]);
+                                                        }
+                                                    });
+
+                                                    let firmwareVersion = data.toString('ascii', 2, data.length);
+
+                                                    device.setSettings({
+                                                        firmware_version: firmwareVersion,
+                                                        last_updated: new Date().toISOString()
+                                                    });
+
+                                                    resolve(device);
+                                                }
+                                                else {
                                                     reject('No data found for firmware.');
                                                 }
-
-                                                let checkCharacteristics = [
-                                                    "measure_battery"
-                                                ];
-
-                                                let characteristicValues = {
-                                                    'measure_battery': parseInt(data.toString('hex', 0, 1), 16),
-                                                }
-
-                                                checkCharacteristics.forEach(function (characteristic) {
-                                                    if (characteristicValues.hasOwnProperty(characteristic)) {
-                                                        updateCapabilityValue(device, characteristic, characteristicValues[characteristic]);
-                                                    }
-                                                });
-
-                                                let firmwareVersion = data.toString('ascii', 2, data.length);
-
-                                                device.setSettings({
-                                                    firmware_version: firmwareVersion,
-                                                    last_updated: new Date().toISOString()
-                                                });
-
-                                                resolve(device);
                                             });
 
                                             break;
