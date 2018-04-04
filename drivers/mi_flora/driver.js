@@ -22,40 +22,47 @@ class MiFloraDriver extends Homey.Driver {
 
         this._synchroniseSensorData();
         this._syncInterval = setInterval(this._synchroniseSensorData.bind(this), 1000 * 60 * updateInterval);
-
-        // device.setSettings({
-        //     firmware_version: firmwareVersion,
-        //     last_updated: new Date().toISOString()
-        // });
     }
 
     _synchroniseSensorData() {
         let devices = this.getDevices();
 
-        devices.filter(function (device) {
-            return (device.getSetting('retries') && device.getSetting('retries') >= MAX_RETRIES);
+        devices = devices.filter(function (device) {
+            return (device.getSetting('retries') === null || device.getSetting('retries') <= MAX_RETRIES);
         });
         devices.sort(function (a, b) {
             return new Date(a.getSetting('last_updated')) - new Date(b.getSetting('last_updated'));
         });
 
-        let firstDevice = devices[0];
+        if (devices.length === 0) {
+            console.log('nothing to update');
+        }
+        else {
+            let device = devices[0];
 
-        devices.forEach(function (device) {
-            console.log(device.getData().name);
-            console.log(device.getSetting('last_updated'));
-        });
+            console.log('update');
+            console.log(device.getName());
+            console.log('last_updated ' + device.getSetting('last_updated'));
+            console.log('retries ' + device.getSetting('retries'));
 
-        this._updateDeviceDataPromise(firstDevice).then((device) => {
-            device.setSettings({
-                retries: 0
-            });
-        }).catch(error => {
-            console.log(error);
-            device.setSettings({
-                retries: device.getSetting('retries') + 1
-            });
-        });
+            try {
+                this._updateDeviceDataPromise(device).then((device) => {
+                    console.log('reset retries');
+                    device.setSettings({
+                        retries: 0
+                    });
+                    this._synchroniseSensorData();
+                }).catch(error => {
+                    console.log(error);
+                    this._synchroniseSensorData();
+                    device.setSettings({
+                        retries: device.getSetting('retries') + 1
+                    });
+                });
+            } catch (error) {
+                console.log(error);
+            }
+        }
     }
 
     _updateDeviceDataPromise(device) {
@@ -63,28 +70,24 @@ class MiFloraDriver extends Homey.Driver {
         let driver = this;
         return new Promise((resolve, reject) => {
             let initialTime = new Date();
-            driver._discover(device).then((device) => {
-                return driver._connect(device);
-            }).catch(error => {
-                reject(error);
-            })
-                .then((device) => {
-                    return driver._updateSensorData(device);
-                }).catch(error => {
-                reject(error);
-            })
-                .then((device) => {
-                    return driver._disconnect(device);
-                }).catch(error => {
-                reject(error);
-            })
-                .then((device) => {
-                    console.log('Device sync complete in: ' + (new Date() - initialTime) / 1000 + ' seconds');
-                    resolve(device);
+            try {
+                driver._discover(device).then((device) => {
+                    return driver._connect(device);
+                })
+                    .then((device) => {
+                        return driver._updateSensorData(device);
+                    })
+                    .then((device) => {
+                        return driver._disconnect(device);
+                    })
+                    .then((device) => {
+                        console.log('Device sync complete in: ' + (new Date() - initialTime) / 1000 + ' seconds');
+                        resolve(device);
 
-                }).catch(error => {
+                    })
+            } catch (error) {
                 reject(error);
-            });
+            }
         });
     }
 
@@ -162,55 +165,75 @@ class MiFloraDriver extends Homey.Driver {
 
     _discover(device) {
         console.log('Discover');
-        if (device) {
-            return new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
+            if (device) {
                 if (device.advertisement) {
                     console.log('Already found');
                     resolve(device);
                 }
-
                 Homey.ManagerBLE.discover().then(function (advertisements) {
                     if (advertisements) {
-                        advertisements.forEach(function (advertisement) {
-                            if (advertisement.uuid === device.getData().uuid) {
-                                device.advertisement = advertisement;
 
-                                resolve(device);
-                            }
+                        let matched = advertisements.filter(function (advertisement) {
+                            return (advertisement.uuid === device.getData().uuid);
                         });
+
+                        console.log(matched);
+
+                        if (matched.length === 1) {
+                            device.advertisement = matched[0];
+
+                            resolve(device);
+                        }
+                        else {
+                            reject("Cannot find advertisement with uuid " + device.getData().uuid);
+                        }
                     }
                     else {
                         reject("Cannot find any advertisements");
                     }
                 });
-            });
-        }
+            }
+            else {
+                reject("No device found");
+            }
+        });
     }
 
     _connect(device) {
         console.log('Connect');
         return new Promise((resolve, reject) => {
-            device.advertisement.connect((error, peripheral) => {
-                if (error) {
-                    reject('failed connection to peripheral: ' + error);
-                }
+            try {
+                device.advertisement.connect((error, peripheral) => {
+                    if (error) {
+                        reject('failed connection to peripheral: ' + error);
+                    }
 
-                device.peripheral = peripheral;
+                    device.peripheral = peripheral;
 
-                resolve(device);
-            });
+                    resolve(device);
+                });
+            }
+            catch (error) {
+                reject(error);
+            }
         })
     }
 
     _disconnect(device) {
         console.log('Disconnect');
         return new Promise((resolve, reject) => {
-            device.peripheral.disconnect((error, peripheral) => {
-                if (error) {
-                    reject('failed connection to peripheral: ' + error);
-                }
-                resolve(device);
-            });
+            try {
+                device.peripheral.disconnect((error, peripheral) => {
+                    if (error) {
+                        reject('failed connection to peripheral: ' + error);
+                    }
+                    resolve(device);
+                });
+            }
+            catch (error) {
+                reject(error);
+            }
         })
     }
 
@@ -329,6 +352,9 @@ class MiFloraDriver extends Homey.Driver {
                                             break;
                                     }
                                 })
+                            }
+                            else {
+                                reject('No characteristics found.');
                             }
                         });
                     });
