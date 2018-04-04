@@ -2,6 +2,8 @@
 
 const Homey = require('homey');
 
+const MAX_RETRIES = 3;
+
 const FLOWER_CARE_NAME = 'Flower care';
 const APP_VERSION = 'v1.0.0';
 
@@ -18,15 +20,90 @@ class MiFloraDriver extends Homey.Driver {
             updateInterval = 15;
         }
 
-        if (true) {
-            this._synchroniseSensorData();
-        }
-
+        this._synchroniseSensorData();
         this._syncInterval = setInterval(this._synchroniseSensorData.bind(this), 1000 * 60 * updateInterval);
-        //clearInterval(this._syncInterval);
+
+        // device.setSettings({
+        //     firmware_version: firmwareVersion,
+        //     last_updated: new Date().toISOString()
+        // });
     }
 
     _synchroniseSensorData() {
+        let devices = this.getDevices();
+
+        devices.filter(function (device) {
+            return (device.getSetting('retries') && device.getSetting('retries') >= MAX_RETRIES);
+        });
+        devices.sort(function (a, b) {
+            return new Date(a.getSetting('last_updated')) - new Date(b.getSetting('last_updated'));
+        });
+
+        let firstDevice = devices[0];
+
+        devices.forEach(function (device) {
+            console.log(device.getData().name);
+            console.log(device.getSetting('last_updated'));
+        });
+
+        this._updateDeviceDataPromise(firstDevice).then((device) => {
+            device.setSettings({
+                retries: 0
+            });
+        }).catch(error => {
+            console.log(error);
+            device.setSettings({
+                retries: device.getSetting('retries') + 1
+            });
+        });
+    }
+
+    _updateDeviceDataPromise(device) {
+        console.log('_updateDeviceDataPromise');
+        let driver = this;
+        return new Promise((resolve, reject) => {
+            let initialTime = new Date();
+            driver._discover(device).then((device) => {
+                return driver._connect(device);
+            }).catch(error => {
+                reject(error);
+            })
+                .then((device) => {
+                    return driver._updateSensorData(device);
+                }).catch(error => {
+                reject(error);
+            })
+                .then((device) => {
+                    return driver._disconnect(device);
+                }).catch(error => {
+                reject(error);
+            })
+                .then((device) => {
+                    console.log('Device sync complete in: ' + (new Date() - initialTime) / 1000 + ' seconds');
+                    resolve(device);
+
+                }).catch(error => {
+                reject(error);
+            });
+        });
+    }
+
+    onInit2() {
+
+        let updateInterval = Homey.ManagerSettings.get('updateInterval');
+        if (!updateInterval) {
+            updateInterval = 15;
+        }
+
+        if (true) {
+            this._synchroniseSensorData2();
+        }
+
+        this._syncInterval = setInterval(this._synchroniseSensorData2.bind(this), 1000 * 60 * updateInterval);
+        //clearInterval(this._syncInterval);
+    }
+
+    _synchroniseSensorData2() {
         let devices = this.getDevices();
 
         if (devices.length === 0) {
@@ -143,7 +220,6 @@ class MiFloraDriver extends Homey.Driver {
                 const updateCapabilityValue = function (device, index, value) {
                     let currentValue = device.getCapabilityValue(index);
 
-                    console.log(index, currentValue);
                     // force change if its the save value
                     if (currentValue === value) {
                         device.setCapabilityValue(index, null);
