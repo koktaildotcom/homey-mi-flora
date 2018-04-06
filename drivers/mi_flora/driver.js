@@ -52,9 +52,6 @@ class MiFloraDriver extends Homey.Driver {
     _updateDevice(device) {
         return new Promise((resolve, reject) => {
             console.log('update device ' + device.getName());
-            if (!device.hasOwnProperty('retry')) {
-                device.retry = 0;
-            }
             this._handleUpdateSequence(device)
                 .then(device => {
                     device.retry = 0;
@@ -78,6 +75,7 @@ class MiFloraDriver extends Homey.Driver {
         return devices.reduce((promise, device) => {
             return promise
                 .then(() => {
+                    device.retry = 0;
                     return this._updateDevice(device);
                 }).catch(error => {
                     console.log(error);
