@@ -211,6 +211,7 @@ class MiFloraDriver extends Homey.Driver {
                     if (currentValue === value) {
                         device.setCapabilityValue(index, null);
                         device.setCapabilityValue(index, value);
+                        device.triggerCapabilityListener(index, value);
                     }
                     else {
                         device.setCapabilityValue(index, value);
@@ -229,97 +230,98 @@ class MiFloraDriver extends Homey.Driver {
                         reject('failed discoverServices: ' + error);
                     }
 
-                    if (!services) {
+                    if (services) {
+                        services.forEach(function (service) {
+                            service.discoverCharacteristics((error, characteristics) => {
+                                if (error) {
+                                    reject('failed discoverCharacteristics: ' + error);
+                                }
+
+                                if (characteristics) {
+                                    characteristics.forEach(function (characteristic) {
+                                        switch (characteristic.uuid) {
+                                            case DATA_CHARACTERISTIC_UUID:
+                                                characteristic.read(function (error, data) {
+                                                    if (error) {
+                                                        reject('failed to read DATA_CHARACTERISTIC_UUID: ' + error);
+                                                    }
+
+                                                    if (data) {
+                                                        let checkCharacteristics = [
+                                                            "measure_temperature",
+                                                            "measure_luminance",
+                                                            "measure_conductivity",
+                                                            "measure_moisture",
+                                                        ];
+
+                                                        let characteristicValues = {
+                                                            'measure_temperature': data.readUInt16LE(0) / 10,
+                                                            'measure_luminance': data.readUInt32LE(3),
+                                                            'measure_conductivity': data.readUInt16LE(8),
+                                                            'measure_moisture': data.readUInt16BE(6)
+                                                        }
+
+                                                        checkCharacteristics.forEach(function (characteristic) {
+                                                            if (characteristicValues.hasOwnProperty(characteristic)) {
+                                                                updateCapabilityValue(device, characteristic, characteristicValues[characteristic]);
+                                                            }
+                                                        });
+                                                    }
+                                                    else {
+                                                        reject('No data found for sensor values.');
+                                                    }
+                                                })
+                                                break
+                                            case FIRMWARE_CHARACTERISTIC_UUID:
+                                                characteristic.read(function (error, data) {
+                                                    if (error) {
+                                                        reject('failed to read FIRMWARE_CHARACTERISTIC_UUID: ' + error);
+                                                    }
+                                                    if (data) {
+                                                        let checkCharacteristics = [
+                                                            "measure_battery"
+                                                        ];
+
+                                                        let characteristicValues = {
+                                                            'measure_battery': parseInt(data.toString('hex', 0, 1), 16),
+                                                        }
+
+                                                        checkCharacteristics.forEach(function (characteristic) {
+                                                            if (characteristicValues.hasOwnProperty(characteristic)) {
+                                                                updateCapabilityValue(device, characteristic, characteristicValues[characteristic]);
+                                                            }
+                                                        });
+
+                                                        let firmwareVersion = data.toString('ascii', 2, data.length);
+
+                                                        device.setSettings({
+                                                            firmware_version: firmwareVersion,
+                                                            last_updated: new Date().toISOString()
+                                                        });
+
+                                                        resolve(device);
+                                                    }
+                                                    else {
+                                                        reject('No data found for firmware.');
+                                                    }
+                                                });
+
+                                                break;
+                                            case REALTIME_CHARACTERISTIC_UUID:
+                                                characteristic.write(Buffer.from([0xA0, 0x1F]), false);
+                                                break;
+                                        }
+                                    })
+                                }
+                                else {
+                                    reject('No characteristics found.');
+                                }
+                            });
+                        });
+                    }
+                    else {
                         reject('No services found.');
                     }
-
-                    services.forEach(function (service) {
-                        service.discoverCharacteristics((error, characteristics) => {
-                            if (error) {
-                                reject('failed discoverCharacteristics: ' + error);
-                            }
-
-                            if (characteristics) {
-                                characteristics.forEach(function (characteristic) {
-                                    switch (characteristic.uuid) {
-                                        case DATA_CHARACTERISTIC_UUID:
-                                            characteristic.read(function (error, data) {
-                                                if (error) {
-                                                    reject('failed to read DATA_CHARACTERISTIC_UUID: ' + error);
-                                                }
-
-                                                if (data) {
-                                                    let checkCharacteristics = [
-                                                        "measure_temperature",
-                                                        "measure_luminance",
-                                                        "measure_conductivity",
-                                                        "measure_moisture",
-                                                    ];
-
-                                                    let characteristicValues = {
-                                                        'measure_temperature': data.readUInt16LE(0) / 10,
-                                                        'measure_luminance': data.readUInt32LE(3),
-                                                        'measure_conductivity': data.readUInt16LE(8),
-                                                        'measure_moisture': data.readUInt16BE(6)
-                                                    }
-
-                                                    checkCharacteristics.forEach(function (characteristic) {
-                                                        if (characteristicValues.hasOwnProperty(characteristic)) {
-                                                            updateCapabilityValue(device, characteristic, characteristicValues[characteristic]);
-                                                        }
-                                                    });
-                                                }
-                                                else {
-                                                    reject('No data found for sensor values.');
-                                                }
-                                            })
-                                            break
-                                        case FIRMWARE_CHARACTERISTIC_UUID:
-                                            characteristic.read(function (error, data) {
-                                                if (error) {
-                                                    reject('failed to read FIRMWARE_CHARACTERISTIC_UUID: ' + error);
-                                                }
-                                                if (data) {
-                                                    let checkCharacteristics = [
-                                                        "measure_battery"
-                                                    ];
-
-                                                    let characteristicValues = {
-                                                        'measure_battery': parseInt(data.toString('hex', 0, 1), 16),
-                                                    }
-
-                                                    checkCharacteristics.forEach(function (characteristic) {
-                                                        if (characteristicValues.hasOwnProperty(characteristic)) {
-                                                            updateCapabilityValue(device, characteristic, characteristicValues[characteristic]);
-                                                        }
-                                                    });
-
-                                                    let firmwareVersion = data.toString('ascii', 2, data.length);
-
-                                                    device.setSettings({
-                                                        firmware_version: firmwareVersion,
-                                                        last_updated: new Date().toISOString()
-                                                    });
-
-                                                    resolve(device);
-                                                }
-                                                else {
-                                                    reject('No data found for firmware.');
-                                                }
-                                            });
-
-                                            break;
-                                        case REALTIME_CHARACTERISTIC_UUID:
-                                            characteristic.write(Buffer.from([0xA0, 0x1F]), false);
-                                            break;
-                                    }
-                                })
-                            }
-                            else {
-                                reject('No characteristics found.');
-                            }
-                        });
-                    });
                 });
             }
             catch (error) {
