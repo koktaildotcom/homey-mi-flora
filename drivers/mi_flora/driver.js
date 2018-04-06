@@ -14,112 +14,62 @@ const FIRMWARE_CHARACTERISTIC_UUID = '00001a0200001000800000805f9b34fb';
 class MiFloraDriver extends Homey.Driver {
 
     onInit() {
-
-        let updateInterval = Homey.ManagerSettings.get('updateInterval');
-        if (!updateInterval) {
-            updateInterval = 15;
-        }
-
         this._synchroniseSensorData();
-        this._syncInterval = setInterval(this._synchroniseSensorData.bind(this), 1000 * 60 * updateInterval);
     }
 
     _synchroniseSensorData() {
         let devices = this.getDevices();
 
-        devices = devices.filter(function (device) {
-            return (device.getSetting('retries') === null || device.getSetting('retries') <= MAX_RETRIES);
-        });
-        devices.sort(function (a, b) {
-            return new Date(a.getSetting('last_updated')) - new Date(b.getSetting('last_updated'));
-        });
-
         if (devices.length === 0) {
-            console.log('nothing to update');
+            console.log("No devices paired, set timeout for next check.");
+            this._setNewTimeout();
         }
         else {
-            let device = devices[0];
-
-            console.log('update');
-            console.log(device.getName());
-            console.log('last_updated ' + device.getSetting('last_updated'));
-            console.log('retries ' + device.getSetting('retries'));
-
-            try {
-                this._updateDeviceDataPromise(device).then((device) => {
-                    console.log('reset retries');
-                    device.setSettings({
-                        retries: 0
-                    });
-                    this._synchroniseSensorData();
-                }).catch(error => {
+            let updateDevicesTime = new Date();
+            this._updateDevices(devices)
+                .then(devices => {
+                    console.log('All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds');
+                    this._setNewTimeout();
+                })
+                .catch(error => {
                     console.log(error);
-                    this._synchroniseSensorData();
-                    device.setSettings({
-                        retries: device.getSetting('retries') + 1
-                    });
+                    console.log('_updateDevices error');
+                    this._setNewTimeout();
                 });
-            } catch (error) {
-                console.log(error);
-            }
         }
     }
 
-    _updateDeviceDataPromise(device) {
-        console.log('_updateDeviceDataPromise');
+    _setNewTimeout() {
+        this._updateInterval = Homey.ManagerSettings.get('updateInterval');
+        if (!this._updateInterval) {
+            this._updateInterval = 15;
+        }
+        console.log('    ');
+
+        this._syncTimeout = setTimeout(this._synchroniseSensorData.bind(this), 1000 * 60 * this._updateInterval);
+    }
+
+    _updateDevice(device) {
         let driver = this;
         return new Promise((resolve, reject) => {
-            let initialTime = new Date();
-            try {
-                driver._discover(device).then((device) => {
-                    return driver._connect(device);
+            console.log('update device ' + device.getName());
+            driver._handleUpdateSequence(device)
+                .then(device => {
+                    driver.retry = 0;
+                    resolve(device);
                 })
-                    .then((device) => {
-                        return driver._updateSensorData(device);
-                    })
-                    .then((device) => {
-                        return driver._disconnect(device);
-                    })
-                    .then((device) => {
-                        console.log('Device sync complete in: ' + (new Date() - initialTime) / 1000 + ' seconds');
-                        resolve(device);
+                .catch(error => {
+                    driver.retry++;
+                    console.log('retry ' + driver.retry);
+                    console.log(error);
 
-                    })
-            } catch (error) {
-                reject(error);
-            }
-        });
-    }
+                    if (driver.retry < MAX_RETRIES) {
+                        resolve(driver._updateDevice(device));
+                    }
 
-    onInit2() {
-
-        let updateInterval = Homey.ManagerSettings.get('updateInterval');
-        if (!updateInterval) {
-            updateInterval = 15;
-        }
-
-        if (true) {
-            this._synchroniseSensorData2();
-        }
-
-        this._syncInterval = setInterval(this._synchroniseSensorData2.bind(this), 1000 * 60 * updateInterval);
-        //clearInterval(this._syncInterval);
-    }
-
-    _synchroniseSensorData2() {
-        let devices = this.getDevices();
-
-        if (devices.length === 0) {
-            console.log("No devices paired.");
-        }
-
-        this._updateDevices(devices)
-            .then(devices => {
-                console.log("All devices are synced.");
-            })
-            .catch(error => {
-                console.log(error);
-            });
+                    reject('Max retries exceeded, no success');
+                });
+        })
     }
 
     _updateDevices(devices) {
@@ -127,40 +77,57 @@ class MiFloraDriver extends Homey.Driver {
         return devices.reduce((promise, device) => {
             return promise
                 .then(() => {
-                    return new Promise((resolve, reject) => {
-
-                        let initialTime = new Date();
-
-                        driver._discover(device).then((device) => {
-                            return driver._connect(device);
-                        }).catch(error => {
-                            reject(error);
-                        })
-                            .then((device) => {
-                                return driver._updateSensorData(device);
-                            }).catch(error => {
-                            reject(error);
-                        })
-                            .then((device) => {
-                                return driver._disconnect(device);
-                            }).catch(error => {
-                            reject(error);
-                        })
-                            .then((device) => {
-                                console.log('Device sync complete in: ' + (new Date() - initialTime) / 1000 + ' seconds');
-                                resolve('Device sync complete in: ' + (new Date() - initialTime) / 1000 + ' seconds');
-
-                                return device;
-                            }).catch(error => {
-                            reject(error);
-                        });
-                    })
+                    return driver._updateDevice(device);
                 }).catch(error => {
                     console.log(error);
-                    driver._disconnect(device);
                 });
-
         }, Promise.resolve());
+    }
+
+    _handleUpdateSequenceMock(device) {
+        return new Promise((resolve, reject) => {
+            // reject by name
+            if (device.getName() === 'Aloe') {
+                setTimeout(function () {
+                    console.log('_updateDeviceDataPromise reject');
+                    reject('some exception');
+                }, 500);
+            }
+            else {
+                setTimeout(function () {
+                    console.log('_updateDeviceDataPromise resolve');
+                }, 500);
+            }
+        });
+    }
+
+    _handleUpdateSequence(device) {
+        let driver = this;
+        return new Promise((resolve, reject) => {
+            let updateDeviceTime = new Date();
+
+            driver._discover(device).then((device) => {
+                return driver._connect(device);
+            }).catch(error => {
+                reject(error);
+            })
+                .then((device) => {
+                    return driver._updateDeviceCharacteristicData(device);
+                }).catch(error => {
+                reject(error);
+            })
+                .then((device) => {
+                    return driver._disconnect(device);
+                }).catch(error => {
+                reject(error);
+            })
+                .then((device) => {
+                    console.log('Device sync complete in: ' + (new Date() - updateDeviceTime) / 1000 + ' seconds');
+                    resolve(device);
+                }).catch(error => {
+                reject(error);
+            });
+        });
     }
 
     _discover(device) {
@@ -177,8 +144,6 @@ class MiFloraDriver extends Homey.Driver {
                         let matched = advertisements.filter(function (advertisement) {
                             return (advertisement.uuid === device.getData().uuid);
                         });
-
-                        console.log(matched);
 
                         if (matched.length === 1) {
                             device.advertisement = matched[0];
@@ -237,7 +202,7 @@ class MiFloraDriver extends Homey.Driver {
         })
     }
 
-    _updateSensorData(device) {
+    _updateDeviceCharacteristicData(device) {
         return new Promise((resolve, reject) => {
             try {
                 const updateCapabilityValue = function (device, index, value) {
@@ -298,8 +263,6 @@ class MiFloraDriver extends Homey.Driver {
                                                         'measure_conductivity': data.readUInt16LE(8),
                                                         'measure_moisture': data.readUInt16BE(6)
                                                     }
-
-                                                    console.log(characteristicValues);
 
                                                     checkCharacteristics.forEach(function (characteristic) {
                                                         if (characteristicValues.hasOwnProperty(characteristic)) {
