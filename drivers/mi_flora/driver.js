@@ -50,21 +50,23 @@ class MiFloraDriver extends Homey.Driver {
     }
 
     _updateDevice(device) {
-        let driver = this;
         return new Promise((resolve, reject) => {
             console.log('update device ' + device.getName());
-            driver._handleUpdateSequence(device)
+            if (!device.hasOwnProperty('retry')) {
+                device.retry = 0;
+            }
+            this._handleUpdateSequence(device)
                 .then(device => {
-                    driver.retry = 0;
+                    device.retry = 0;
                     resolve(device);
                 })
                 .catch(error => {
-                    driver.retry++;
-                    console.log('retry ' + driver.retry);
+                    device.retry++;
+                    console.log('retry ' + device.retry);
                     console.log(error);
 
-                    if (driver.retry < MAX_RETRIES) {
-                        resolve(driver._updateDevice(device));
+                    if (device.retry < MAX_RETRIES) {
+                        resolve(this._updateDevice(device));
                     }
 
                     reject('Max retries exceeded, no success');
@@ -73,11 +75,10 @@ class MiFloraDriver extends Homey.Driver {
     }
 
     _updateDevices(devices) {
-        let driver = this;
         return devices.reduce((promise, device) => {
             return promise
                 .then(() => {
-                    return driver._updateDevice(device);
+                    return this._updateDevice(device);
                 }).catch(error => {
                     console.log(error);
                 });
@@ -96,28 +97,28 @@ class MiFloraDriver extends Homey.Driver {
             else {
                 setTimeout(function () {
                     console.log('_updateDeviceDataPromise resolve');
+                    resolve(device);
                 }, 500);
             }
         });
     }
 
     _handleUpdateSequence(device) {
-        let driver = this;
         return new Promise((resolve, reject) => {
             let updateDeviceTime = new Date();
 
-            driver._discover(device).then((device) => {
-                return driver._connect(device);
+            this._discover(device).then((device) => {
+                return this._connect(device);
             }).catch(error => {
                 reject(error);
             })
                 .then((device) => {
-                    return driver._updateDeviceCharacteristicData(device);
+                    return this._updateDeviceCharacteristicData(device);
                 }).catch(error => {
                 reject(error);
             })
                 .then((device) => {
-                    return driver._disconnect(device);
+                    return this._disconnect(device);
                 }).catch(error => {
                 reject(error);
             })
