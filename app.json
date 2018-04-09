@@ -89,6 +89,202 @@
     },
     "drivers": [
         {
+            "id": "mi_flora_pot",
+            "name": {
+                "en": "Xiaomi mi flora pot",
+                "nl": "Xiaomi mi flora pot"
+            },
+            "images": {
+                "small": "/drivers/mi_flora_pot/assets/images/small.png",
+                "large": "/drivers/mi_flora_pot/assets/images/large.png"
+            },
+            "class": "other",
+            "capabilities": [
+                "measure_temperature",
+                "measure_luminance",
+                "measure_conductivity",
+                "measure_moisture",
+                "measure_battery"
+            ],
+            "pair": [
+                {
+                    "id": "list_devices",
+                    "template": "list_devices",
+                    "navigation": {
+                        "next": "add_devices"
+                    }
+                },
+                {
+                    "id": "add_devices",
+                    "template": "add_devices"
+                }
+            ],
+            "settings": [
+                {
+                    "type": "group",
+                    "label": {
+                        "en": "Device info",
+                        "nl": "Apparaat informatie"
+                    },
+                    "children": [
+                        {
+                            "id": "firmware_version",
+                            "type": "label",
+                            "label": {
+                                "en": "Firmware version",
+                                "nl": "Firmware versie"
+                            },
+                            "value": ""
+                        },
+                        {
+                            "id": "last_updated",
+                            "type": "label",
+                            "label": {
+                                "en": "Last updated",
+                                "nl": "Laatste update"
+                            },
+                            "value": ""
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "label": {
+                        "en": "Temperature (°C)",
+                        "nl": "Temperatuur (°C)"
+                    },
+                    "children": [
+                        {
+                            "id": "measure_temperature_min",
+                            "type": "number",
+                            "value": 0,
+                            "label": {
+                                "en": "min",
+                                "nl": "min"
+                            }
+                        },
+                        {
+                            "id": "measure_temperature_max",
+                            "type": "number",
+                            "value": 0,
+                            "label": {
+                                "en": "max",
+                                "nl": "max"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "label": {
+                        "en": "Luminance (lux)",
+                        "nl": "Lichtintensiteit (lux)"
+                    },
+                    "children": [
+                        {
+                            "id": "measure_luminance_min",
+                            "type": "number",
+                            "value": 0,
+                            "label": {
+                                "en": "min",
+                                "nl": "min"
+                            }
+                        },
+                        {
+                            "id": "measure_luminance_max",
+                            "type": "number",
+                            "value": 0,
+                            "label": {
+                                "en": "max",
+                                "nl": "max"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "label": {
+                        "en": "Nutrition (µS/cm)",
+                        "nl": "Voeding (µS/cm)"
+                    },
+                    "children": [
+                        {
+                            "id": "measure_conductivity_min",
+                            "type": "number",
+                            "value": 0,
+                            "label": {
+                                "en": "min",
+                                "nl": "min"
+                            }
+                        },
+                        {
+                            "id": "measure_conductivity_max",
+                            "type": "number",
+                            "value": 0,
+                            "label": {
+                                "en": "max",
+                                "nl": "max"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "label": {
+                        "en": "Moisture (%)",
+                        "nl": "Vochtigheid (%)"
+                    },
+                    "children": [
+                        {
+                            "id": "measure_moisture_min",
+                            "type": "number",
+                            "value": 0,
+                            "label": {
+                                "en": "min",
+                                "nl": "min"
+                            }
+                        },
+                        {
+                            "id": "measure_moisture_max",
+                            "type": "number",
+                            "value": 0,
+                            "label": {
+                                "en": "max",
+                                "nl": "max"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "mobile": {
+                "components": [
+                    {
+                        "id": "icon"
+                    },
+                    {
+                        "id": "battery"
+                    },
+                    {
+                        "id": "sensor",
+                        "capabilities": [
+                            "measure_temperature",
+                            "measure_luminance",
+                            "measure_conductivity",
+                            "measure_moisture"
+                        ],
+                        "options": {
+                            "icons": {
+                                "measure_temperature": "/assets/temperature.svg",
+                                "measure_luminance": "/assets/luminance1.svg",
+                                "measure_conductivity": "/assets/fertilizer.svg",
+                                "measure_moisture": "/assets/moisture.svg"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
             "id": "mi_flora",
             "name": {
                 "en": "Xiaomi mi flora sensor",
