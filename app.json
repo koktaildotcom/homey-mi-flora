@@ -256,7 +256,8 @@
 						"id": "icon"
                     },
 					{
-						"id": "battery"
+						"id": "battery",
+						"capabilities": ["measure_battery"]
                     },
 					{
 						"id": "sensor",
@@ -452,7 +453,8 @@
 						"id": "icon"
                     },
 					{
-						"id": "battery"
+						"id": "battery",
+						"capabilities": ["measure_battery"]
                     },
 					{
 						"id": "sensor",
