@@ -61,14 +61,11 @@
                 "nl": "Geleidingsvermogen"
             },
             "getable": true,
-            "setable": true,
+            "setable": false,
             "units": {
                 "en": "µS/cm",
                 "nl": "µS/cm"
-            },
-            "min": 0,
-            "max": 5000,
-            "step": 1
+            }
         },
         "measure_moisture": {
             "type": "number",
@@ -77,14 +74,11 @@
                 "nl": "Vochtigheid"
             },
             "getable": true,
-            "setable": true,
+            "setable": false,
             "units": {
                 "en": "%",
                 "nl": "%"
-            },
-            "min": 0,
-            "max": 100,
-            "step": 1
+            }
         }
     },
     "drivers": [
@@ -98,7 +92,7 @@
                 "small": "/drivers/mi_flora_pot/assets/images/small.png",
                 "large": "/drivers/mi_flora_pot/assets/images/large.png"
             },
-            "class": "other",
+            "class": "sensor",
             "capabilities": [
                 "measure_temperature",
                 "measure_luminance",
@@ -262,7 +256,10 @@
                         "id": "icon"
                     },
                     {
-                        "id": "battery"
+                        "id": "battery",
+			"capabilities": [
+			    "measure_battery"
+			]
                     },
                     {
                         "id": "sensor",
@@ -294,7 +291,7 @@
                 "small": "/drivers/mi_flora/assets/images/small.png",
                 "large": "/drivers/mi_flora/assets/images/large.png"
             },
-            "class": "other",
+            "class": "sensor",
             "capabilities": [
                 "measure_temperature",
                 "measure_luminance",
@@ -458,7 +455,10 @@
                         "id": "icon"
                     },
                     {
-                        "id": "battery"
+                        "id": "battery",
+			"capabilities": [
+			    "measure_battery"
+			]
                     },
                     {
                         "id": "sensor",
