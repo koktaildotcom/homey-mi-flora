@@ -2,7 +2,7 @@
 
 const Homey = require('homey');
 
-const APP_VERSION = 'v1.0.0';
+const APP_VERSION = 'v1.0.1';
 
 const MAX_RETRIES = 3;
 

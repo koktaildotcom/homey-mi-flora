@@ -36,8 +36,11 @@ You can configure the timeout between polls in the app's settings.
 
 ## History
 ### v1.0.0 - 09.04.18
-  * First alpha to app store.
-
+  * first alpha to app store.
+### v1.0.1 - 10.04.18
+  * add documentation
+  * revert changes because it breaks the flow card.
+  
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
 
