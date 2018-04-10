@@ -4,7 +4,7 @@ const MiFloraDriver = require('../../lib/MiFloraDriver.js');
 
 class MiFloraSensorDriver extends MiFloraDriver {
     getMiFloraBleIdentification() {
-        return 'Flower care pot';
+        return 'ropot';
     }
 
     getMiFloraBleName() {
