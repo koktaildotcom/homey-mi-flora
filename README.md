@@ -1,8 +1,9 @@
-# Xiaomi mi flora sensor #
+# Xiaomi mi flora sensor
 
-Integrate Xiaomi mi flora sensor into Homey.
+## Introduction
+This app integrate the `Xiaomi mi flora sensor` and `Xiaomi mi flora ropot` into Homey.
 
-## How to quick start ##
+## Usage
 1. Install app
 2. Add device(s) to Homey.
 3. Configure threshold in the device configuration.
@@ -10,15 +11,16 @@ Integrate Xiaomi mi flora sensor into Homey.
 
 You can configure the timeout between polls in the app's settings.
 
-## There are some cards globally ##
-Trigger cards
+## Cards
+### Global cards
+#### Trigger cards
 1. Some device sensor is changed.
    * device
    * sensor
    * value
 
-## There are some cards device specific ##
-Trigger cards
+### Device cards
+#### Trigger cards
 1. Some device sensor is changed.
    * device
    * sensor
@@ -26,8 +28,17 @@ Trigger cards
 1. Sensor value is below the configured threshold.
 2. Sensor value is above the configured threshold.
 
-Condition cards
+#### Condition cards
 1. De plant !{{has not|has}} a correct temperature.
 2. De plant !{{has not|has}} a enough sunlight.
 3. De plant !{{has not|has}} a enough fertilizer.
 4. De plant !{{has not|has}} a enough moisture.
+
+## History
+### 1.0.0
+  * First alpha to app store.
+
+## Final note ##
+The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
+
+Do you like the app? You can buy me a beer! [![](https://img.shields.io/badge/paypal-donate-green.svg)](https://www.paypal.me/koktaildotcom)
