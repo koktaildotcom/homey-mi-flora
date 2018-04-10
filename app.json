@@ -1,23 +1,23 @@
 {
-    "id": "com.koktail.homey-mi-flora",
-    "sdk": 2,
-    "name": {
-        "en": "Xiaomi mi flora sensor",
-        "nl": "Xiaomi mi flora sensor"
-    },
-    "description": {
-        "en": "Integrate Xiaomi mi flora sensor into Homey",
-        "nl": "Integreer Xiaomi mi flora sensor in Homey"
-    },
-    "category": [
+	"id": "com.koktail.homey-mi-flora",
+	"sdk": 2,
+	"name": {
+		"en": "Xiaomi mi flora sensor",
+		"nl": "Xiaomi mi flora sensor"
+	},
+	"description": {
+		"en": "Integrate Xiaomi mi flora sensor into Homey",
+		"nl": "Integreer Xiaomi mi flora sensor in Homey"
+	},
+	"category": [
         "tools",
         "climate",
         "appliances"
     ],
-    "version": "1.0.0",
-    "compatibility": ">=1.5.0",
-    "tags": {
-        "en": [
+	"version": "1.0.0",
+	"compatibility": ">=1.5.0",
+	"tags": {
+		"en": [
             "xiaomi",
             "xiaomi mi",
             "plant",
@@ -27,7 +27,7 @@
             "humidity",
             "nutrition"
         ],
-        "nl": [
+		"nl": [
             "xiaomi",
             "xiaomi mi",
             "plant",
@@ -37,690 +37,690 @@
             "vochtigheid",
             "voeding"
         ]
-    },
-    "images": {
-        "small": "/assets/images/small.png",
-        "large": "/assets/images/large.png"
-    },
-    "author": {
-        "name": "Leendert De Kok",
-        "email": "koktaildotcom@hotmail.com"
-    },
-    "contributing": {
-        "donate": {
-            "paypal": {
-                "username": "koktaildotcom@hotmail.com"
-            }
-        }
-    },
-    "capabilities": {
-        "measure_conductivity": {
-            "type": "number",
-            "title": {
-                "en": "Conductivity",
-                "nl": "Geleidingsvermogen"
-            },
-            "getable": true,
-            "setable": true,
-            "units": {
-                "en": "µS/cm",
-                "nl": "µS/cm"
-            },
-            "min": 0,
-            "max": 5000,
-            "step": 1
-        },
-        "measure_moisture": {
-            "type": "number",
-            "title": {
-                "en": "Moisture",
-                "nl": "Vochtigheid"
-            },
-            "getable": true,
-            "setable": true,
-            "units": {
-                "en": "%",
-                "nl": "%"
-            },
-            "min": 0,
-            "max": 100,
-            "step": 1
-        }
-    },
-    "drivers": [
-        {
-            "id": "mi_flora_pot",
-            "name": {
-                "en": "Xiaomi mi flora pot",
-                "nl": "Xiaomi mi flora pot"
-            },
-            "images": {
-                "small": "/drivers/mi_flora_pot/assets/images/small.png",
-                "large": "/drivers/mi_flora_pot/assets/images/large.png"
-            },
-            "class": "other",
-            "capabilities": [
+	},
+	"images": {
+		"small": "/assets/images/small.png",
+		"large": "/assets/images/large.png"
+	},
+	"author": {
+		"name": "Leendert De Kok",
+		"email": "koktaildotcom@hotmail.com"
+	},
+	"contributing": {
+		"donate": {
+			"paypal": {
+				"username": "koktaildotcom@hotmail.com"
+			}
+		}
+	},
+	"capabilities": {
+		"measure_conductivity": {
+			"type": "number",
+			"title": {
+				"en": "Conductivity",
+				"nl": "Geleidingsvermogen"
+			},
+			"getable": true,
+			"setable": true,
+			"units": {
+				"en": "µS/cm",
+				"nl": "µS/cm"
+			},
+			"min": 0,
+			"max": 5000,
+			"step": 1
+		},
+		"measure_moisture": {
+			"type": "number",
+			"title": {
+				"en": "Moisture",
+				"nl": "Vochtigheid"
+			},
+			"getable": true,
+			"setable": true,
+			"units": {
+				"en": "%",
+				"nl": "%"
+			},
+			"min": 0,
+			"max": 100,
+			"step": 1
+		}
+	},
+	"drivers": [
+		{
+			"id": "mi_flora_pot",
+			"name": {
+				"en": "Xiaomi mi flora pot",
+				"nl": "Xiaomi mi flora pot"
+			},
+			"images": {
+				"small": "/drivers/mi_flora_pot/assets/images/small.png",
+				"large": "/drivers/mi_flora_pot/assets/images/large.png"
+			},
+			"class": "sensor",
+			"capabilities": [
                 "measure_temperature",
                 "measure_luminance",
                 "measure_conductivity",
                 "measure_moisture",
                 "measure_battery"
             ],
-            "pair": [
-                {
-                    "id": "list_devices",
-                    "template": "list_devices",
-                    "navigation": {
-                        "next": "add_devices"
-                    }
+			"pair": [
+				{
+					"id": "list_devices",
+					"template": "list_devices",
+					"navigation": {
+						"next": "add_devices"
+					}
                 },
-                {
-                    "id": "add_devices",
-                    "template": "add_devices"
+				{
+					"id": "add_devices",
+					"template": "add_devices"
                 }
             ],
-            "settings": [
-                {
-                    "type": "group",
-                    "label": {
-                        "en": "Device info",
-                        "nl": "Apparaat informatie"
-                    },
-                    "children": [
-                        {
-                            "id": "firmware_version",
-                            "type": "label",
-                            "label": {
-                                "en": "Firmware version",
-                                "nl": "Firmware versie"
-                            },
-                            "value": ""
+			"settings": [
+				{
+					"type": "group",
+					"label": {
+						"en": "Device info",
+						"nl": "Apparaat informatie"
+					},
+					"children": [
+						{
+							"id": "firmware_version",
+							"type": "label",
+							"label": {
+								"en": "Firmware version",
+								"nl": "Firmware versie"
+							},
+							"value": ""
                         },
-                        {
-                            "id": "last_updated",
-                            "type": "label",
-                            "label": {
-                                "en": "Last updated",
-                                "nl": "Laatste update"
-                            },
-                            "value": ""
+						{
+							"id": "last_updated",
+							"type": "label",
+							"label": {
+								"en": "Last updated",
+								"nl": "Laatste update"
+							},
+							"value": ""
                         }
                     ]
                 },
-                {
-                    "type": "group",
-                    "label": {
-                        "en": "Temperature (°C)",
-                        "nl": "Temperatuur (°C)"
-                    },
-                    "children": [
-                        {
-                            "id": "measure_temperature_min",
-                            "type": "number",
-                            "value": 0,
-                            "label": {
-                                "en": "min",
-                                "nl": "min"
-                            }
+				{
+					"type": "group",
+					"label": {
+						"en": "Temperature (°C)",
+						"nl": "Temperatuur (°C)"
+					},
+					"children": [
+						{
+							"id": "measure_temperature_min",
+							"type": "number",
+							"value": 0,
+							"label": {
+								"en": "min",
+								"nl": "min"
+							}
                         },
-                        {
-                            "id": "measure_temperature_max",
-                            "type": "number",
-                            "value": 0,
-                            "label": {
-                                "en": "max",
-                                "nl": "max"
-                            }
+						{
+							"id": "measure_temperature_max",
+							"type": "number",
+							"value": 0,
+							"label": {
+								"en": "max",
+								"nl": "max"
+							}
                         }
                     ]
                 },
-                {
-                    "type": "group",
-                    "label": {
-                        "en": "Luminance (lux)",
-                        "nl": "Lichtintensiteit (lux)"
-                    },
-                    "children": [
-                        {
-                            "id": "measure_luminance_min",
-                            "type": "number",
-                            "value": 0,
-                            "label": {
-                                "en": "min",
-                                "nl": "min"
-                            }
+				{
+					"type": "group",
+					"label": {
+						"en": "Luminance (lux)",
+						"nl": "Lichtintensiteit (lux)"
+					},
+					"children": [
+						{
+							"id": "measure_luminance_min",
+							"type": "number",
+							"value": 0,
+							"label": {
+								"en": "min",
+								"nl": "min"
+							}
                         },
-                        {
-                            "id": "measure_luminance_max",
-                            "type": "number",
-                            "value": 0,
-                            "label": {
-                                "en": "max",
-                                "nl": "max"
-                            }
+						{
+							"id": "measure_luminance_max",
+							"type": "number",
+							"value": 0,
+							"label": {
+								"en": "max",
+								"nl": "max"
+							}
                         }
                     ]
                 },
-                {
-                    "type": "group",
-                    "label": {
-                        "en": "Nutrition (µS/cm)",
-                        "nl": "Voeding (µS/cm)"
-                    },
-                    "children": [
-                        {
-                            "id": "measure_conductivity_min",
-                            "type": "number",
-                            "value": 0,
-                            "label": {
-                                "en": "min",
-                                "nl": "min"
-                            }
+				{
+					"type": "group",
+					"label": {
+						"en": "Nutrition (µS/cm)",
+						"nl": "Voeding (µS/cm)"
+					},
+					"children": [
+						{
+							"id": "measure_conductivity_min",
+							"type": "number",
+							"value": 0,
+							"label": {
+								"en": "min",
+								"nl": "min"
+							}
                         },
-                        {
-                            "id": "measure_conductivity_max",
-                            "type": "number",
-                            "value": 0,
-                            "label": {
-                                "en": "max",
-                                "nl": "max"
-                            }
+						{
+							"id": "measure_conductivity_max",
+							"type": "number",
+							"value": 0,
+							"label": {
+								"en": "max",
+								"nl": "max"
+							}
                         }
                     ]
                 },
-                {
-                    "type": "group",
-                    "label": {
-                        "en": "Moisture (%)",
-                        "nl": "Vochtigheid (%)"
-                    },
-                    "children": [
-                        {
-                            "id": "measure_moisture_min",
-                            "type": "number",
-                            "value": 0,
-                            "label": {
-                                "en": "min",
-                                "nl": "min"
-                            }
+				{
+					"type": "group",
+					"label": {
+						"en": "Moisture (%)",
+						"nl": "Vochtigheid (%)"
+					},
+					"children": [
+						{
+							"id": "measure_moisture_min",
+							"type": "number",
+							"value": 0,
+							"label": {
+								"en": "min",
+								"nl": "min"
+							}
                         },
-                        {
-                            "id": "measure_moisture_max",
-                            "type": "number",
-                            "value": 0,
-                            "label": {
-                                "en": "max",
-                                "nl": "max"
-                            }
+						{
+							"id": "measure_moisture_max",
+							"type": "number",
+							"value": 0,
+							"label": {
+								"en": "max",
+								"nl": "max"
+							}
                         }
                     ]
                 }
             ],
-            "mobile": {
-                "components": [
-                    {
-                        "id": "icon"
+			"mobile": {
+				"components": [
+					{
+						"id": "icon"
                     },
-                    {
-                        "id": "battery"
+					{
+						"id": "battery"
                     },
-                    {
-                        "id": "sensor",
-                        "capabilities": [
+					{
+						"id": "sensor",
+						"capabilities": [
                             "measure_temperature",
                             "measure_luminance",
                             "measure_conductivity",
                             "measure_moisture"
                         ],
-                        "options": {
-                            "icons": {
-                                "measure_temperature": "/assets/temperature.svg",
-                                "measure_luminance": "/assets/luminance1.svg",
-                                "measure_conductivity": "/assets/fertilizer.svg",
-                                "measure_moisture": "/assets/moisture.svg"
-                            }
-                        }
+						"options": {
+							"icons": {
+								"measure_temperature": "/assets/temperature.svg",
+								"measure_luminance": "/assets/luminance1.svg",
+								"measure_conductivity": "/assets/fertilizer.svg",
+								"measure_moisture": "/assets/moisture.svg"
+							}
+						}
                     }
                 ]
-            }
+			}
         },
-        {
-            "id": "mi_flora",
-            "name": {
-                "en": "Xiaomi mi flora sensor",
-                "nl": "Xiaomi mi flora sensor"
-            },
-            "images": {
-                "small": "/drivers/mi_flora/assets/images/small.png",
-                "large": "/drivers/mi_flora/assets/images/large.png"
-            },
-            "class": "other",
-            "capabilities": [
+		{
+			"id": "mi_flora",
+			"name": {
+				"en": "Xiaomi mi flora sensor",
+				"nl": "Xiaomi mi flora sensor"
+			},
+			"images": {
+				"small": "/drivers/mi_flora/assets/images/small.png",
+				"large": "/drivers/mi_flora/assets/images/large.png"
+			},
+			"class": "sensor",
+			"capabilities": [
                 "measure_temperature",
                 "measure_luminance",
                 "measure_conductivity",
                 "measure_moisture",
                 "measure_battery"
             ],
-            "pair": [
-                {
-                    "id": "list_devices",
-                    "template": "list_devices",
-                    "navigation": {
-                        "next": "add_devices"
-                    }
+			"pair": [
+				{
+					"id": "list_devices",
+					"template": "list_devices",
+					"navigation": {
+						"next": "add_devices"
+					}
                 },
-                {
-                    "id": "add_devices",
-                    "template": "add_devices"
+				{
+					"id": "add_devices",
+					"template": "add_devices"
                 }
             ],
-            "settings": [
-                {
-                    "type": "group",
-                    "label": {
-                        "en": "Device info",
-                        "nl": "Apparaat informatie"
-                    },
-                    "children": [
-                        {
-                            "id": "firmware_version",
-                            "type": "label",
-                            "label": {
-                                "en": "Firmware version",
-                                "nl": "Firmware versie"
-                            },
-                            "value": ""
+			"settings": [
+				{
+					"type": "group",
+					"label": {
+						"en": "Device info",
+						"nl": "Apparaat informatie"
+					},
+					"children": [
+						{
+							"id": "firmware_version",
+							"type": "label",
+							"label": {
+								"en": "Firmware version",
+								"nl": "Firmware versie"
+							},
+							"value": ""
                         },
-                        {
-                            "id": "last_updated",
-                            "type": "label",
-                            "label": {
-                                "en": "Last updated",
-                                "nl": "Laatste update"
-                            },
-                            "value": ""
+						{
+							"id": "last_updated",
+							"type": "label",
+							"label": {
+								"en": "Last updated",
+								"nl": "Laatste update"
+							},
+							"value": ""
                         }
                     ]
                 },
-                {
-                    "type": "group",
-                    "label": {
-                        "en": "Temperature (°C)",
-                        "nl": "Temperatuur (°C)"
-                    },
-                    "children": [
-                        {
-                            "id": "measure_temperature_min",
-                            "type": "number",
-                            "value": 0,
-                            "label": {
-                                "en": "min",
-                                "nl": "min"
-                            }
+				{
+					"type": "group",
+					"label": {
+						"en": "Temperature (°C)",
+						"nl": "Temperatuur (°C)"
+					},
+					"children": [
+						{
+							"id": "measure_temperature_min",
+							"type": "number",
+							"value": 0,
+							"label": {
+								"en": "min",
+								"nl": "min"
+							}
                         },
-                        {
-                            "id": "measure_temperature_max",
-                            "type": "number",
-                            "value": 0,
-                            "label": {
-                                "en": "max",
-                                "nl": "max"
-                            }
+						{
+							"id": "measure_temperature_max",
+							"type": "number",
+							"value": 0,
+							"label": {
+								"en": "max",
+								"nl": "max"
+							}
                         }
                     ]
                 },
-                {
-                    "type": "group",
-                    "label": {
-                        "en": "Luminance (lux)",
-                        "nl": "Lichtintensiteit (lux)"
-                    },
-                    "children": [
-                        {
-                            "id": "measure_luminance_min",
-                            "type": "number",
-                            "value": 0,
-                            "label": {
-                                "en": "min",
-                                "nl": "min"
-                            }
+				{
+					"type": "group",
+					"label": {
+						"en": "Luminance (lux)",
+						"nl": "Lichtintensiteit (lux)"
+					},
+					"children": [
+						{
+							"id": "measure_luminance_min",
+							"type": "number",
+							"value": 0,
+							"label": {
+								"en": "min",
+								"nl": "min"
+							}
                         },
-                        {
-                            "id": "measure_luminance_max",
-                            "type": "number",
-                            "value": 0,
-                            "label": {
-                                "en": "max",
-                                "nl": "max"
-                            }
+						{
+							"id": "measure_luminance_max",
+							"type": "number",
+							"value": 0,
+							"label": {
+								"en": "max",
+								"nl": "max"
+							}
                         }
                     ]
                 },
-                {
-                    "type": "group",
-                    "label": {
-                        "en": "Nutrition (µS/cm)",
-                        "nl": "Voeding (µS/cm)"
-                    },
-                    "children": [
-                        {
-                            "id": "measure_conductivity_min",
-                            "type": "number",
-                            "value": 0,
-                            "label": {
-                                "en": "min",
-                                "nl": "min"
-                            }
+				{
+					"type": "group",
+					"label": {
+						"en": "Nutrition (µS/cm)",
+						"nl": "Voeding (µS/cm)"
+					},
+					"children": [
+						{
+							"id": "measure_conductivity_min",
+							"type": "number",
+							"value": 0,
+							"label": {
+								"en": "min",
+								"nl": "min"
+							}
                         },
-                        {
-                            "id": "measure_conductivity_max",
-                            "type": "number",
-                            "value": 0,
-                            "label": {
-                                "en": "max",
-                                "nl": "max"
-                            }
+						{
+							"id": "measure_conductivity_max",
+							"type": "number",
+							"value": 0,
+							"label": {
+								"en": "max",
+								"nl": "max"
+							}
                         }
                     ]
                 },
-                {
-                    "type": "group",
-                    "label": {
-                        "en": "Moisture (%)",
-                        "nl": "Vochtigheid (%)"
-                    },
-                    "children": [
-                        {
-                            "id": "measure_moisture_min",
-                            "type": "number",
-                            "value": 0,
-                            "label": {
-                                "en": "min",
-                                "nl": "min"
-                            }
+				{
+					"type": "group",
+					"label": {
+						"en": "Moisture (%)",
+						"nl": "Vochtigheid (%)"
+					},
+					"children": [
+						{
+							"id": "measure_moisture_min",
+							"type": "number",
+							"value": 0,
+							"label": {
+								"en": "min",
+								"nl": "min"
+							}
                         },
-                        {
-                            "id": "measure_moisture_max",
-                            "type": "number",
-                            "value": 0,
-                            "label": {
-                                "en": "max",
-                                "nl": "max"
-                            }
+						{
+							"id": "measure_moisture_max",
+							"type": "number",
+							"value": 0,
+							"label": {
+								"en": "max",
+								"nl": "max"
+							}
                         }
                     ]
                 }
             ],
-            "mobile": {
-                "components": [
-                    {
-                        "id": "icon"
+			"mobile": {
+				"components": [
+					{
+						"id": "icon"
                     },
-                    {
-                        "id": "battery"
+					{
+						"id": "battery"
                     },
-                    {
-                        "id": "sensor",
-                        "capabilities": [
+					{
+						"id": "sensor",
+						"capabilities": [
                             "measure_temperature",
                             "measure_luminance",
                             "measure_conductivity",
                             "measure_moisture"
                         ],
-                        "options": {
-                            "icons": {
-                                "measure_temperature": "/assets/temperature.svg",
-                                "measure_luminance": "/assets/luminance1.svg",
-                                "measure_conductivity": "/assets/fertilizer.svg",
-                                "measure_moisture": "/assets/moisture.svg"
-                            }
-                        }
+						"options": {
+							"icons": {
+								"measure_temperature": "/assets/temperature.svg",
+								"measure_luminance": "/assets/luminance1.svg",
+								"measure_conductivity": "/assets/fertilizer.svg",
+								"measure_moisture": "/assets/moisture.svg"
+							}
+						}
                     }
                 ]
-            }
+			}
         }
     ],
-    "flow": {
-        "triggers": [
-            {
-                "id": "sensor_threshold_min_exceeds",
-                "title": {
-                    "en": "Sensor value is below the configured threshold",
-                    "nl": "Sensor waarde is beneden de gestelde drempel"
-                },
-                "tokens": [
-                    {
-                        "name": "value",
-                        "title": {
-                            "en": "value",
-                            "nl": "waarde"
-                        },
-                        "example": {
-                            "en": "22.5",
-                            "nl": "22.5"
-                        }
+	"flow": {
+		"triggers": [
+			{
+				"id": "sensor_threshold_min_exceeds",
+				"title": {
+					"en": "Sensor value is below the configured threshold",
+					"nl": "Sensor waarde is beneden de gestelde drempel"
+				},
+				"tokens": [
+					{
+						"name": "value",
+						"title": {
+							"en": "value",
+							"nl": "waarde"
+						},
+						"example": {
+							"en": "22.5",
+							"nl": "22.5"
+						}
                     },
-                    {
-                        "name": "sensor",
-                        "title": {
-                            "en": "sensor",
-                            "nl": "sensor"
-                        },
-                        "example": {
-                            "en": "measure_temperature",
-                            "nl": "measure_temperature"
-                        }
+					{
+						"name": "sensor",
+						"title": {
+							"en": "sensor",
+							"nl": "sensor"
+						},
+						"example": {
+							"en": "measure_temperature",
+							"nl": "measure_temperature"
+						}
                     },
-                    {
-                        "name": "device",
-                        "title": {
-                            "en": "device",
-                            "nl": "apparaat"
-                        },
-                        "example": {
-                            "en": "Flowercare 1",
-                            "nl": "Flowercare 1"
-                        }
+					{
+						"name": "device",
+						"title": {
+							"en": "device",
+							"nl": "apparaat"
+						},
+						"example": {
+							"en": "Flowercare 1",
+							"nl": "Flowercare 1"
+						}
                     }
                 ]
             },
-            {
-                "id": "sensor_threshold_max_exceeds",
-                "title": {
-                    "en": "Sensor value is above the configured threshold",
-                    "nl": "Sensor waarde is boven de gestelde drempel"
-                },
-                "tokens": [
-                    {
-                        "name": "value",
-                        "title": {
-                            "en": "value",
-                            "nl": "waarde"
-                        },
-                        "example": {
-                            "en": "22.5",
-                            "nl": "22.5"
-                        }
+			{
+				"id": "sensor_threshold_max_exceeds",
+				"title": {
+					"en": "Sensor value is above the configured threshold",
+					"nl": "Sensor waarde is boven de gestelde drempel"
+				},
+				"tokens": [
+					{
+						"name": "value",
+						"title": {
+							"en": "value",
+							"nl": "waarde"
+						},
+						"example": {
+							"en": "22.5",
+							"nl": "22.5"
+						}
                     },
-                    {
-                        "name": "sensor",
-                        "title": {
-                            "en": "sensor",
-                            "nl": "sensor"
-                        },
-                        "example": {
-                            "en": "measure_temperature",
-                            "nl": "measure_temperature"
-                        }
+					{
+						"name": "sensor",
+						"title": {
+							"en": "sensor",
+							"nl": "sensor"
+						},
+						"example": {
+							"en": "measure_temperature",
+							"nl": "measure_temperature"
+						}
                     },
-                    {
-                        "name": "device",
-                        "title": {
-                            "en": "device",
-                            "nl": "apparaat"
-                        },
-                        "example": {
-                            "en": "Flowercare 1",
-                            "nl": "Flowercare 1"
-                        }
+					{
+						"name": "device",
+						"title": {
+							"en": "device",
+							"nl": "apparaat"
+						},
+						"example": {
+							"en": "Flowercare 1",
+							"nl": "Flowercare 1"
+						}
                     }
                 ]
             },
-            {
-                "id": "sensor_changed",
-                "title": {
-                    "en": "A sensor value is changed",
-                    "nl": "Een sensor waarde is veranderd"
-                },
-                "tokens": [
-                    {
-                        "name": "value",
-                        "title": {
-                            "en": "value",
-                            "nl": "waarde"
-                        },
-                        "example": {
-                            "en": "22.5",
-                            "nl": "22.5"
-                        }
+			{
+				"id": "sensor_changed",
+				"title": {
+					"en": "A sensor value is changed",
+					"nl": "Een sensor waarde is veranderd"
+				},
+				"tokens": [
+					{
+						"name": "value",
+						"title": {
+							"en": "value",
+							"nl": "waarde"
+						},
+						"example": {
+							"en": "22.5",
+							"nl": "22.5"
+						}
                     },
-                    {
-                        "name": "sensor",
-                        "title": {
-                            "en": "sensor",
-                            "nl": "sensor"
-                        },
-                        "example": {
-                            "en": "measure_temperature",
-                            "nl": "measure_temperature"
-                        }
+					{
+						"name": "sensor",
+						"title": {
+							"en": "sensor",
+							"nl": "sensor"
+						},
+						"example": {
+							"en": "measure_temperature",
+							"nl": "measure_temperature"
+						}
                     },
-                    {
-                        "name": "device",
-                        "title": {
-                            "en": "device",
-                            "nl": "apparaat"
-                        },
-                        "example": {
-                            "en": "Flowercare 1",
-                            "nl": "Flowercare 1"
-                        }
+					{
+						"name": "device",
+						"title": {
+							"en": "device",
+							"nl": "apparaat"
+						},
+						"example": {
+							"en": "Flowercare 1",
+							"nl": "Flowercare 1"
+						}
                     }
                 ]
             },
-            {
-                "id": "device_sensor_changed",
-                "title": {
-                    "en": "A sensor value is changed",
-                    "nl": "Een sensor waarde is veranderd"
-                },
-                "tokens": [
-                    {
-                        "name": "value",
-                        "title": {
-                            "en": "value",
-                            "nl": "waarde"
-                        },
-                        "example": {
-                            "en": "22.5",
-                            "nl": "22.5"
-                        }
+			{
+				"id": "device_sensor_changed",
+				"title": {
+					"en": "A sensor value is changed",
+					"nl": "Een sensor waarde is veranderd"
+				},
+				"tokens": [
+					{
+						"name": "value",
+						"title": {
+							"en": "value",
+							"nl": "waarde"
+						},
+						"example": {
+							"en": "22.5",
+							"nl": "22.5"
+						}
                     },
-                    {
-                        "name": "sensor",
-                        "title": {
-                            "en": "sensor",
-                            "nl": "sensor"
-                        },
-                        "example": {
-                            "en": "measure_temperature",
-                            "nl": "measure_temperature"
-                        }
+					{
+						"name": "sensor",
+						"title": {
+							"en": "sensor",
+							"nl": "sensor"
+						},
+						"example": {
+							"en": "measure_temperature",
+							"nl": "measure_temperature"
+						}
                     }
                 ],
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=mi_flora"
+				"args": [
+					{
+						"name": "device",
+						"type": "device",
+						"filter": "driver_id=mi_flora"
                     }
                 ]
             }
         ],
-        "conditions": [
-            {
-                "id": "measure_temperature_threshold",
-                "title": {
-                    "en": "De plant !{{has not|has}} a correct temperature.",
-                    "nl": "De plant !{{heeft niet|heeft}} de juiste temperatuur."
-                },
-                "hint": {
-                    "en": "Use this card to determine if the plant has a correct temperature.",
-                    "nl": "Gebruik deze kaart om te bepalen of de plant de juiste temperatuur heeft."
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=mi_flora&capabilities=measure_temperature"
+		"conditions": [
+			{
+				"id": "measure_temperature_threshold",
+				"title": {
+					"en": "De plant !{{has not|has}} a correct temperature.",
+					"nl": "De plant !{{heeft niet|heeft}} de juiste temperatuur."
+				},
+				"hint": {
+					"en": "Use this card to determine if the plant has a correct temperature.",
+					"nl": "Gebruik deze kaart om te bepalen of de plant de juiste temperatuur heeft."
+				},
+				"args": [
+					{
+						"name": "device",
+						"type": "device",
+						"filter": "driver_id=mi_flora&capabilities=measure_temperature"
                     }
                 ]
             },
-            {
-                "id": "measure_luminance_threshold",
-                "title": {
-                    "en": "De plant !{{has not|has}} enough sunlight.",
-                    "nl": "De plant !{{heeft niet|heeft}} genoeg zonlicht."
-                },
-                "hint": {
-                    "en": "Use this card to determine if the plant has enough sunlight.",
-                    "nl": "Gebruik deze kaart om te bepalen of de plant genoeg zonlicht heeft."
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=mi_flora&capabilities=measure_luminance"
+			{
+				"id": "measure_luminance_threshold",
+				"title": {
+					"en": "De plant !{{has not|has}} enough sunlight.",
+					"nl": "De plant !{{heeft niet|heeft}} genoeg zonlicht."
+				},
+				"hint": {
+					"en": "Use this card to determine if the plant has enough sunlight.",
+					"nl": "Gebruik deze kaart om te bepalen of de plant genoeg zonlicht heeft."
+				},
+				"args": [
+					{
+						"name": "device",
+						"type": "device",
+						"filter": "driver_id=mi_flora&capabilities=measure_luminance"
                     }
                 ]
             },
-            {
-                "id": "measure_conductivity_threshold",
-                "title": {
-                    "en": "De plant !{{has not|has}} enough fertilizer.",
-                    "nl": "De plant !{{heeft niet|heeft}} genoeg voeding."
-                },
-                "hint": {
-                    "en": "Use this card to determine if the plant has enough fertilizer.",
-                    "nl": "Gebruik deze kaart om te bepalen of de plant genoeg voeding heeft."
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=mi_flora&capabilities=measure_luminance"
+			{
+				"id": "measure_conductivity_threshold",
+				"title": {
+					"en": "De plant !{{has not|has}} enough fertilizer.",
+					"nl": "De plant !{{heeft niet|heeft}} genoeg voeding."
+				},
+				"hint": {
+					"en": "Use this card to determine if the plant has enough fertilizer.",
+					"nl": "Gebruik deze kaart om te bepalen of de plant genoeg voeding heeft."
+				},
+				"args": [
+					{
+						"name": "device",
+						"type": "device",
+						"filter": "driver_id=mi_flora&capabilities=measure_luminance"
                     }
                 ]
             },
-            {
-                "id": "measure_moisture_threshold",
-                "title": {
-                    "en": "De plant !{{has not|has}} enough moisture.",
-                    "nl": "De plant !{{heeft niet|heeft}} genoeg vocht."
-                },
-                "hint": {
-                    "en": "Use this card to determine if the plant has enough moisture.",
-                    "nl": "Gebruik deze kaart om te bepalen of de plant genoeg vocht heeft."
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=mi_flora&capabilities=measure_moisture"
+			{
+				"id": "measure_moisture_threshold",
+				"title": {
+					"en": "De plant !{{has not|has}} enough moisture.",
+					"nl": "De plant !{{heeft niet|heeft}} genoeg vocht."
+				},
+				"hint": {
+					"en": "Use this card to determine if the plant has enough moisture.",
+					"nl": "Gebruik deze kaart om te bepalen of de plant genoeg vocht heeft."
+				},
+				"args": [
+					{
+						"name": "device",
+						"type": "device",
+						"filter": "driver_id=mi_flora&capabilities=measure_moisture"
                     }
                 ]
             }
         ]
-    }
+	}
 }
