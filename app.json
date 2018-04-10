@@ -61,7 +61,7 @@
                 "nl": "Geleidingsvermogen"
             },
             "getable": true,
-            "setable": true,
+            "setable": false,
             "units": {
                 "en": "µS/cm",
                 "nl": "µS/cm"
@@ -77,7 +77,7 @@
                 "nl": "Vochtigheid"
             },
             "getable": true,
-            "setable": true,
+            "setable": false,
             "units": {
                 "en": "%",
                 "nl": "%"
