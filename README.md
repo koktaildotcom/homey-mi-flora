@@ -35,7 +35,7 @@ You can configure the timeout between polls in the app's settings.
 4. De plant !{{has not|has}} a enough moisture.
 
 ## History
-### 1.0.0
+### v1.0.0 - 09.04.18
   * First alpha to app store.
 
 ## Final note ##

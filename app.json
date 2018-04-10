@@ -95,8 +95,8 @@
                 "nl": "Xiaomi mi flora pot"
             },
             "images": {
-                "small": "/drivers/mi_flora_pot/assets/images/small.png",
-                "large": "/drivers/mi_flora_pot/assets/images/large.png"
+                "small": "drivers/mi_flora_pot/assets/images/small.png",
+                "large": "drivers/mi_flora_pot/assets/images/large.png"
             },
             "class": "sensor",
             "capabilities": [
@@ -278,7 +278,7 @@
                         "options": {
                             "icons": {
                                 "measure_temperature": "/assets/temperature.svg",
-                                "measure_luminance": "/assets/luminance1.svg",
+                                "measure_luminance": "/assets/luminance.svg",
                                 "measure_conductivity": "/assets/fertilizer.svg",
                                 "measure_moisture": "/assets/moisture.svg"
                             }
@@ -294,8 +294,8 @@
                 "nl": "Xiaomi mi flora sensor"
             },
             "images": {
-                "small": "/drivers/mi_flora/assets/images/small.png",
-                "large": "/drivers/mi_flora/assets/images/large.png"
+                "small": "drivers/mi_flora/assets/images/small.png",
+                "large": "drivers/mi_flora/assets/images/large.png"
             },
             "class": "sensor",
             "capabilities": [
@@ -477,7 +477,7 @@
                         "options": {
                             "icons": {
                                 "measure_temperature": "/assets/temperature.svg",
-                                "measure_luminance": "/assets/luminance1.svg",
+                                "measure_luminance": "/assets/luminance.svg",
                                 "measure_conductivity": "/assets/fertilizer.svg",
                                 "measure_moisture": "/assets/moisture.svg"
                             }
