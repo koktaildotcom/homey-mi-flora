@@ -676,7 +676,7 @@
             {
                 "id": "measure_luminance_threshold",
                 "title": {
-                    "en": "De plant !{{has not|has}} enough sunlight.",
+                    "en": "The plant !{{has not|has}} enough sunlight.",
                     "nl": "De plant !{{heeft niet|heeft}} genoeg zonlicht."
                 },
                 "hint": {
@@ -694,7 +694,7 @@
             {
                 "id": "measure_conductivity_threshold",
                 "title": {
-                    "en": "De plant !{{has not|has}} enough fertilizer.",
+                    "en": "The plant !{{has not|has}} enough fertilizer.",
                     "nl": "De plant !{{heeft niet|heeft}} genoeg voeding."
                 },
                 "hint": {
@@ -712,7 +712,7 @@
             {
                 "id": "measure_moisture_threshold",
                 "title": {
-                    "en": "De plant !{{has not|has}} enough moisture.",
+                    "en": "The plant !{{has not|has}} enough moisture.",
                     "nl": "De plant !{{heeft niet|heeft}} genoeg vocht."
                 },
                 "hint": {
