@@ -2,8 +2,6 @@
 
 const Homey = require('homey');
 
-const APP_VERSION = 'v1.0.1';
-
 const MAX_RETRIES = 3;
 
 const DATA_CHARACTERISTIC_UUID = '00001a0100001000800000805f9b34fb';
@@ -65,7 +63,7 @@ class HomeyMiFlora extends Homey.App {
     _updateDevice(device) {
         return new Promise((resolve, reject) => {
             console.log('update device ' + device.getName());
-            this._handleUpdateSequence(device)
+            this._handleUpdateSequenceTest(device)
                 .then(device => {
                     device.retry = 0;
                     resolve(device);
@@ -363,7 +361,7 @@ class HomeyMiFlora extends Homey.App {
                                 "uuid": advertisement.uuid,
                                 "name": advertisement.name,
                                 "type": advertisement.type,
-                                "version": APP_VERSION,
+                                "version": "v" + Homey.manifest.version,
                             },
                             "capabilities": [
                                 "measure_temperature",
