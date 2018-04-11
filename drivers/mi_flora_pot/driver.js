@@ -10,6 +10,15 @@ class MiFloraSensorDriver extends MiFloraDriver {
     getMiFloraBleName() {
         return 'Mi Flora Ropot';
     }
+
+    getCapabilities() {
+        return [
+            "measure_temperature",
+            "measure_conductivity",
+            "measure_moisture",
+            "measure_battery"
+        ];
+    }
 }
 
 module.exports = MiFloraSensorDriver;

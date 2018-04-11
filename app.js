@@ -2,8 +2,6 @@
 
 const Homey = require('homey');
 
-const MAX_RETRIES = 3;
-
 const DATA_CHARACTERISTIC_UUID = '00001a0100001000800000805f9b34fb';
 const REALTIME_CHARACTERISTIC_UUID = '00001a0000001000800000805f9b34fb';
 const FIRMWARE_CHARACTERISTIC_UUID = '00001a0200001000800000805f9b34fb';
@@ -60,92 +58,7 @@ class HomeyMiFlora extends Homey.App {
         console.log('Successfully init HomeyMiFlora');
     }
 
-    _updateDevice(device) {
-        return new Promise((resolve, reject) => {
-            console.log('update device ' + device.getName());
-            this._handleUpdateSequenceTest(device)
-                .then(device => {
-                    device.retry = 0;
-                    resolve(device);
-                })
-                .catch(error => {
-                    device.retry++;
-                    console.log('retry ' + device.retry);
-                    console.log(error);
-
-                    if (device.retry < MAX_RETRIES) {
-                        resolve(this._updateDevice(device));
-                    }
-
-                    reject('Max retries exceeded, no success');
-                });
-        })
-    }
-
-    _updateDevices(devices) {
-        return devices.reduce((promise, device) => {
-            return promise
-                .then(() => {
-                    device.retry = 0;
-                    return this._updateDevice(device);
-                }).catch(error => {
-                    console.log(error);
-                });
-        }, Promise.resolve());
-    }
-
-    _handleUpdateSequenceTest(device) {
-        return new Promise((resolve, reject) => {
-            // reject by name
-            if (device.getName() === 'Aloe') {
-                setTimeout(function () {
-                    console.log('_updateDeviceDataPromise reject');
-                    reject('some exception');
-                }, 500);
-            }
-            else {
-                setTimeout(function () {
-                    console.log('_updateDeviceDataPromise resolve');
-                    resolve(device);
-                }, 500);
-            }
-        });
-    }
-
-    _handleUpdateSequence(device) {
-        return new Promise((resolve, reject) => {
-            let updateDeviceTime = new Date();
-
-            try {
-                this._discover(device).then((device) => {
-                    return this._connect(device);
-                }).catch(error => {
-                    reject(error);
-                })
-                    .then((device) => {
-                        return this._updateDeviceCharacteristicData(device);
-                    }).catch(error => {
-                    reject(error);
-                })
-                    .then((device) => {
-                        return this._disconnect(device);
-                    }).catch(error => {
-                    reject(error);
-                })
-                    .then((device) => {
-                        console.log('Device sync complete in: ' + (new Date() - updateDeviceTime) / 1000 + ' seconds');
-                        resolve(device);
-                    }).catch(error => {
-                    reject(error);
-                });
-            }
-            catch (exception) {
-                reject(exception);
-            }
-        });
-    }
-
-    _discover(device) {
+    discover(device) {
         console.log('Discover');
         return new Promise((resolve, reject) => {
             if (device) {
@@ -180,7 +93,7 @@ class HomeyMiFlora extends Homey.App {
         });
     }
 
-    _connect(device) {
+    connect(device) {
         console.log('Connect');
         return new Promise((resolve, reject) => {
             try {
@@ -200,7 +113,7 @@ class HomeyMiFlora extends Homey.App {
         })
     }
 
-    _disconnect(device) {
+    disconnect(device) {
         console.log('Disconnect');
         return new Promise((resolve, reject) => {
             try {
@@ -217,7 +130,7 @@ class HomeyMiFlora extends Homey.App {
         })
     }
 
-    _updateDeviceCharacteristicData(device) {
+    updateDeviceCharacteristicData(device) {
         return new Promise((resolve, reject) => {
             try {
                 const updateCapabilityValue = function (device, index, value) {
@@ -263,12 +176,8 @@ class HomeyMiFlora extends Homey.App {
                                                     }
 
                                                     if (data) {
-                                                        let checkCharacteristics = [
-                                                            "measure_temperature",
-                                                            "measure_luminance",
-                                                            "measure_conductivity",
-                                                            "measure_moisture",
-                                                        ];
+
+                                                        let checkCharacteristics = device.getCapabilities();
 
                                                         let characteristicValues = {
                                                             'measure_temperature': data.readUInt16LE(0) / 10,
@@ -276,6 +185,8 @@ class HomeyMiFlora extends Homey.App {
                                                             'measure_conductivity': data.readUInt16LE(8),
                                                             'measure_moisture': data.readUInt16BE(6)
                                                         }
+
+                                                        console.log(characteristicValues);
 
                                                         checkCharacteristics.forEach(function (characteristic) {
                                                             if (characteristicValues.hasOwnProperty(characteristic)) {
@@ -346,16 +257,16 @@ class HomeyMiFlora extends Homey.App {
         });
     }
 
-    getDevices(identification, name) {
+    discoverDevices(driver) {
         return new Promise((resolve, reject) => {
             let devices = [];
             let index = 0;
             Homey.ManagerBLE.discover().then(function (advertisements) {
                 advertisements.forEach(function (advertisement) {
-                    if (advertisement.localName === identification) {
+                    if (advertisement.localName === driver.getMiFloraBleIdentification()) {
                         ++index;
                         devices.push({
-                            "name": name + " " + index,
+                            "name": driver.getMiFloraBleName() + " " + index,
                             "data": {
                                 "id": advertisement.id,
                                 "uuid": advertisement.uuid,
@@ -363,13 +274,7 @@ class HomeyMiFlora extends Homey.App {
                                 "type": advertisement.type,
                                 "version": "v" + Homey.manifest.version,
                             },
-                            "capabilities": [
-                                "measure_temperature",
-                                "measure_luminance",
-                                "measure_conductivity",
-                                "measure_moisture",
-                                "measure_battery"
-                            ],
+                            "capabilities": driver.getCapabilities(),
                         });
                     }
                 });
