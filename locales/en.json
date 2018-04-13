@@ -17,8 +17,8 @@
             "changed" : "The temperature is changed to: __value__ °C.",
             "device_changed" : "The temperature of device `__device__` is changed to: __value__ °C.",
             "threshold": {
-                "min" : "The temperature (__value__ °C) is to low. This must be at least __min__ °C.",
-                "max" : "The temperature (__value__ °C) is to high. This must be a maximum of __max__ °C."
+                "min" : "The temperature (__value__ °C) of device `__device__` is to low. This must be at least __min__ °C.",
+                "max" : "The temperature (__value__ °C) of device `__device__` is to high. This must be a maximum of __max__ °C."
             }
         },
         "measure_luminance": {
@@ -26,8 +26,8 @@
             "changed" : "The sunlight is changed to: __value__ lux.",
             "device_changed" : "The sunlight of device `__device__` is changed to: __value__ lux.",
             "threshold": {
-                "min" : "The sunlight (__value__ lux) is to low. This must be at least __min__ lux.",
-                "max" : "The sunlight (__value__ lux) is to high. This must be a maximum of __max__ lux."
+                "min" : "The sunlight (__value__ lux) of device `__device__` is to low. This must be at least __min__ lux.",
+                "max" : "The sunlight (__value__ lux) of device `__device__` is to high. This must be a maximum of __max__ lux."
             }
         },
         "measure_conductivity": {
@@ -35,8 +35,8 @@
             "changed" : "The temperature is changed to: __value__ µS/cm.",
             "device_changed" : "The temperature of device `__device__` is changed to: __value__ µS/cm.",
             "threshold": {
-                "min" : "The nutrition (__value__ µS/cm) is to low. This must be at least __min__ µS/cm.",
-                "max" : "The nutrition (__value__ µS/cm) is to high. This must be a maximum of __max__ µS/cm."
+                "min" : "The nutrition (__value__ µS/cm) of device `__device__` is to low. This must be at least __min__ µS/cm.",
+                "max" : "The nutrition (__value__ µS/cm) of device `__device__` is to high. This must be a maximum of __max__ µS/cm."
             }
         },
         "measure_moisture": {
@@ -44,8 +44,8 @@
             "changed" : "The moisture is changed to: __value__ %.",
             "device_changed" : "The moisture of device `__device__` is changed to: __value__ %.",
             "threshold": {
-                "min": "The moisture (__value__ %) is to low. This must be at least __min__ %.",
-                "max": "The moisture (__value__ %) is to high. This must be a maximum of __max__ %."
+                "min": "The moisture (__value__ %) of device `__device__` is to low. This must be at least __min__ %.",
+                "max": "The moisture (__value__ %) of device `__device__` is to high. This must be a maximum of __max__ %."
             }
         }
     }
