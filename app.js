@@ -186,8 +186,6 @@ class HomeyMiFlora extends Homey.App {
                                                             'measure_moisture': data.readUInt16BE(6)
                                                         }
 
-                                                        console.log(characteristicValues);
-
                                                         checkCharacteristics.forEach(function (characteristic) {
                                                             if (characteristicValues.hasOwnProperty(characteristic)) {
                                                                 updateCapabilityValue(device, characteristic, characteristicValues[characteristic]);
