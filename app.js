@@ -152,7 +152,7 @@ class HomeyMiFlora extends Homey.App {
                     console.log('Update :%s', device.getName());
                 }
                 else {
-                    reject('Cannot device anymore');
+                    reject('Cannot update device anymore');
                 }
                 device.peripheral.discoverServices((error, services) => {
                     if (error) {
