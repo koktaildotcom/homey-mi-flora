@@ -16,6 +16,7 @@
     ],
     "version": "1.0.1",
     "compatibility": ">=1.5.0",
+    "athomForumDiscussionId" : 5030,
     "tags": {
         "en": [
             "xiaomi",
