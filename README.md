@@ -45,6 +45,8 @@ You can configure the timeout between polls in the app's settings.
   * update capability name from fertilizer to nutritions.
   * change tags for `capability` in card to user preferred language.
   * add tags: `report` with a human readable report of the status.
+### v1.0.3 - 17.04.18
+  * add missing battery report translation
 
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
