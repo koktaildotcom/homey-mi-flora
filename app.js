@@ -6,51 +6,54 @@ const DATA_CHARACTERISTIC_UUID = '00001a0100001000800000805f9b34fb';
 const REALTIME_CHARACTERISTIC_UUID = '00001a0000001000800000805f9b34fb';
 const FIRMWARE_CHARACTERISTIC_UUID = '00001a0200001000800000805f9b34fb';
 
+// make the BLE beta backwards compatible for 1.5.8 and maybe previous versions (not tested).
+if(process.env.HOMEY_VERSION.replace(/\W/g, '') < 159){
 Homey.BlePeripheral.prototype.disconnect = function disconnect(callback) {
-    if (typeof callback === 'function')
-        return Homey.util.callbackAfterPromise(this, this.disconnect, arguments);
+        if (typeof callback === 'function')
+            return Homey.util.callbackAfterPromise(this, this.disconnect, arguments);
 
-    const disconnectPromise = new Promise((resolve, reject) => {
-        this._disconnectQueue.push((err, result) => err ? reject(err) : resolve(result));
-    });
+        const disconnectPromise = new Promise((resolve, reject) => {
+            this._disconnectQueue.push((err, result) => err ? reject(err) : resolve(result));
+        });
 
-    if (this._disconnectLockCounter === 0) {
-        clearTimeout(this._disconnectTimeout);
-        this._disconnectTimeout = setTimeout(() => {
-            if (this._disconnectLockCounter === 0) {
-                this._disconnected();
-                // console.log('called disconnect', new Error().stack);
-                this.__client.emit('disconnect', [this._connectionId, this.uuid], err => {
-                    this._connectionId = null;
-                    this._disconnectQueue.forEach(cb => cb(err));
-                    this._disconnectQueue.length = 0;
-                });
-            }
-        }, 100);
-    }
-
-    return disconnectPromise;
-};
-
-Homey.BlePeripheral.prototype.getService = async function getService(uuid, callback) {
-    if (typeof callback === 'function')
-        return Homey.util.callbackAfterPromise(this, this.getService, arguments);
-
-    this.resetConnectionWarning();
-
-    let service = Array.isArray(this.services) ? this.services.find(service => service.uuid === uuid) : null;
-
-    if (!service) {
-        const [discoveredService] = await this.discoverServices([uuid]);
-
-        if (!discoveredService && !Array.isArray(this.services)) {
-            return Promise.reject(new Error('Error, could not get services'));
+        if (this._disconnectLockCounter === 0) {
+            clearTimeout(this._disconnectTimeout);
+            this._disconnectTimeout = setTimeout(() => {
+                if (this._disconnectLockCounter === 0) {
+                    this._disconnected();
+                    // console.log('called disconnect', new Error().stack);
+                    this.__client.emit('disconnect', [this._connectionId, this.uuid], err => {
+                        this._connectionId = null;
+                        this._disconnectQueue.forEach(cb => cb(err));
+                        this._disconnectQueue.length = 0;
+                    });
+                }
+            }, 100);
         }
-        service = discoveredService;
-    }
 
-    return service || Promise.reject(new Error(`No service found with UUID ${uuid}`));
-};
+        return disconnectPromise;
+    };
+
+    Homey.BlePeripheral.prototype.getService = async function getService(uuid, callback) {
+        if (typeof callback === 'function')
+            return Homey.util.callbackAfterPromise(this, this.getService, arguments);
+
+        this.resetConnectionWarning();
+
+        let service = Array.isArray(this.services) ? this.services.find(service => service.uuid === uuid) : null;
+
+        if (!service) {
+            const [discoveredService] = await this.discoverServices([uuid]);
+
+            if (!discoveredService && !Array.isArray(this.services)) {
+                return Promise.reject(new Error('Error, could not get services'));
+            }
+            service = discoveredService;
+        }
+
+        return service || Promise.reject(new Error(`No service found with UUID ${uuid}`));
+    };
+}
 
 class HomeyMiFlora extends Homey.App {
 
