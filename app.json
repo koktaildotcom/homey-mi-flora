@@ -20,8 +20,11 @@
     "tags": {
         "en": [
             "xiaomi",
-            "xiaomi mi",
+            "xiaomi",
+            "mi",
             "plant",
+            "flower",
+            "flora",
             "sensor",
             "temperature",
             "luminance",
@@ -30,8 +33,11 @@
         ],
         "nl": [
             "xiaomi",
-            "xiaomi mi",
+            "xiaomi",
+            "mi",
             "plant",
+            "flower",
+            "flora",
             "sensor",
             "temperatuur",
             "licht",
@@ -280,7 +286,7 @@
                             "icons": {
                                 "measure_temperature": "/assets/temperature.svg",
                                 "measure_luminance": "/assets/luminance.svg",
-                                "measure_conductivity": "/assets/fertilizer.svg",
+                                "measure_conductivity": "/assets/nutritions.svg",
                                 "measure_moisture": "/assets/moisture.svg"
                             }
                         }
@@ -498,6 +504,17 @@
                 },
                 "tokens": [
                     {
+                        "name": "report",
+                        "title": {
+                            "en": "report",
+                            "nl": "rapport"
+                        },
+                        "example": {
+                            "en": "The moisture (22%) is to low. This can be at least 30%.",
+                            "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
+                        }
+                    },
+                    {
                         "name": "value",
                         "title": {
                             "en": "value",
@@ -539,6 +556,17 @@
                     "nl": "Sensor waarde is boven de gestelde drempel"
                 },
                 "tokens": [
+                    {
+                        "name": "report",
+                        "title": {
+                            "en": "report",
+                            "nl": "rapport"
+                        },
+                        "example": {
+                            "en": "The moisture (22%) is to low. This can be at least 30%.",
+                            "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
+                        }
+                    },
                     {
                         "name": "value",
                         "title": {
@@ -582,6 +610,17 @@
                 },
                 "tokens": [
                     {
+                        "name": "report",
+                        "title": {
+                            "en": "report",
+                            "nl": "rapport"
+                        },
+                        "example": {
+                            "en": "The moisture (22%) is to low. This can be at least 30%.",
+                            "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
+                        }
+                    },
+                    {
                         "name": "value",
                         "title": {
                             "en": "value",
@@ -624,6 +663,17 @@
                 },
                 "tokens": [
                     {
+                        "name": "report",
+                        "title": {
+                            "en": "report",
+                            "nl": "rapport"
+                        },
+                        "example": {
+                            "en": "The moisture (22%) is to low. This can be at least 30%.",
+                            "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
+                        }
+                    },
+                    {
                         "name": "value",
                         "title": {
                             "en": "value",
@@ -643,6 +693,17 @@
                         "example": {
                             "en": "measure_temperature",
                             "nl": "measure_temperature"
+                        }
+                    },
+                    {
+                        "name": "device",
+                        "title": {
+                            "en": "device",
+                            "nl": "apparaat"
+                        },
+                        "example": {
+                            "en": "Flowercare 1",
+                            "nl": "Flowercare 1"
                         }
                     }
                 ],
@@ -695,11 +756,11 @@
             {
                 "id": "measure_conductivity_threshold",
                 "title": {
-                    "en": "The plant !{{has not|has}} enough fertilizer.",
+                    "en": "The plant !{{has not|has}} enough nutritions.",
                     "nl": "De plant !{{heeft niet|heeft}} genoeg voeding."
                 },
                 "hint": {
-                    "en": "Use this card to determine if the plant has enough fertilizer.",
+                    "en": "Use this card to determine if the plant has enough nutritions.",
                     "nl": "Gebruik deze kaart om te bepalen of de plant genoeg voeding heeft."
                 },
                 "args": [

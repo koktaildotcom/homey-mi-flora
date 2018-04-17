@@ -31,7 +31,7 @@ You can configure the timeout between polls in the app's settings.
 #### Condition cards
 1. De plant !{{has not|has}} a correct temperature.
 2. De plant !{{has not|has}} a enough sunlight.
-3. De plant !{{has not|has}} a enough fertilizer.
+3. De plant !{{has not|has}} a enough nutrition.
 4. De plant !{{has not|has}} a enough moisture.
 
 ## History
