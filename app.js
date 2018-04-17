@@ -7,8 +7,8 @@ const REALTIME_CHARACTERISTIC_UUID = '00001a0000001000800000805f9b34fb';
 const FIRMWARE_CHARACTERISTIC_UUID = '00001a0200001000800000805f9b34fb';
 
 // make the BLE beta backwards compatible for 1.5.8 and maybe previous versions (not tested).
-if(process.env.HOMEY_VERSION.replace(/\W/g, '') < 159){
-Homey.BlePeripheral.prototype.disconnect = function disconnect(callback) {
+if (process.env.HOMEY_VERSION.replace(/\W/g, '') < 159) {
+    Homey.BlePeripheral.prototype.disconnect = function disconnect(callback) {
         if (typeof callback === 'function')
             return Homey.util.callbackAfterPromise(this, this.disconnect, arguments);
 
