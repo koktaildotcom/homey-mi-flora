@@ -47,6 +47,11 @@
                 "min" : "De vochtigheid (__value__%) van `__plant__` is te laag. Deze moet minimaal __min__% zijn.",
                 "max" : "De vochtigheid (__value__%) van `__plant__` is te hoog. Deze moet maximaal __max__% zijn."
             }
+        },
+        "measure_battery": {
+            "name": "batterij",
+            "changed" : "De batterij is verandert naar: __value__%.",
+            "device_changed" : "De batterij van `__plant__` is verandert naar: __value__%."
         }
     }
 }

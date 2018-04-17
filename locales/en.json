@@ -47,6 +47,11 @@
                 "min": "The moisture (__value__%) of `__plant__` is to low. This must be at least __min__%.",
                 "max": "The moisture (__value__%) of `__plant__` is to high. This must be a maximum of __max__%."
             }
+        },
+        "measure_battery": {
+            "name": "battery",
+            "changed" : "The battery is changed to: __value__%.",
+            "device_changed" : "The battery of `__plant__` is changed to: __value__%."
         }
     }
 }
