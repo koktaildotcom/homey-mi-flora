@@ -40,7 +40,12 @@ You can configure the timeout between polls in the app's settings.
 ### v1.0.1 - 10.04.18
   * add documentation
   * revert changes because it breaks the flow card.
-  
+### v1.0.2 - 17.04.18
+  * moved capabilities to drivers because of RoPot missing one.
+  * update capability name from fertilizer to nutritions.
+  * change tags for `capability` in card to user preferred language.
+  * add tags: `report` with a human readable report of the status.
+
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
 
