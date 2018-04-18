@@ -485,7 +485,7 @@
                             "icons": {
                                 "measure_temperature": "/assets/temperature.svg",
                                 "measure_luminance": "/assets/luminance.svg",
-                                "measure_conductivity": "/assets/fertilizer.svg",
+                                "measure_conductivity": "/assets/nutritions.svg",
                                 "measure_moisture": "/assets/moisture.svg"
                             }
                         }
