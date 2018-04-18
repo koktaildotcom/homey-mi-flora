@@ -714,6 +714,119 @@
                         "filter": "driver_id=mi_flora"
                     }
                 ]
+            },
+            {
+                "id": "sensor_updated",
+                "title": {
+                    "en": "A sensor value is updated",
+                    "nl": "Een sensor waarde is geupdate"
+                },
+                "tokens": [
+                    {
+                        "name": "report",
+                        "title": {
+                            "en": "report",
+                            "nl": "rapport"
+                        },
+                        "example": {
+                            "en": "The moisture (22%) is to low. This can be at least 30%.",
+                            "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
+                        }
+                    },
+                    {
+                        "name": "value",
+                        "title": {
+                            "en": "value",
+                            "nl": "waarde"
+                        },
+                        "example": {
+                            "en": "22.5",
+                            "nl": "22.5"
+                        }
+                    },
+                    {
+                        "name": "sensor",
+                        "title": {
+                            "en": "sensor",
+                            "nl": "sensor"
+                        },
+                        "example": {
+                            "en": "measure_temperature",
+                            "nl": "measure_temperature"
+                        }
+                    },
+                    {
+                        "name": "device",
+                        "title": {
+                            "en": "device",
+                            "nl": "apparaat"
+                        },
+                        "example": {
+                            "en": "Flowercare 1",
+                            "nl": "Flowercare 1"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "device_sensor_updated",
+                "title": {
+                    "en": "A sensor value is updated",
+                    "nl": "Een sensor waarde is geupdate"
+                },
+                "tokens": [
+                    {
+                        "name": "report",
+                        "title": {
+                            "en": "report",
+                            "nl": "rapport"
+                        },
+                        "example": {
+                            "en": "The moisture (22%) is to low. This can be at least 30%.",
+                            "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
+                        }
+                    },
+                    {
+                        "name": "value",
+                        "title": {
+                            "en": "value",
+                            "nl": "waarde"
+                        },
+                        "example": {
+                            "en": "22.5",
+                            "nl": "22.5"
+                        }
+                    },
+                    {
+                        "name": "sensor",
+                        "title": {
+                            "en": "sensor",
+                            "nl": "sensor"
+                        },
+                        "example": {
+                            "en": "measure_temperature",
+                            "nl": "measure_temperature"
+                        }
+                    },
+                    {
+                        "name": "device",
+                        "title": {
+                            "en": "device",
+                            "nl": "apparaat"
+                        },
+                        "example": {
+                            "en": "Flowercare 1",
+                            "nl": "Flowercare 1"
+                        }
+                    }
+                ],
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=mi_flora"
+                    }
+                ]
             }
         ],
         "conditions": [

@@ -136,20 +136,6 @@ class HomeyMiFlora extends Homey.App {
     updateDeviceCharacteristicData(device) {
         return new Promise((resolve, reject) => {
             try {
-                const updateCapabilityValue = function (device, index, value) {
-                    let currentValue = device.getCapabilityValue(index);
-
-                    // force change if its the save value
-                    if (currentValue === value) {
-                        device.setCapabilityValue(index, null);
-                        device.setCapabilityValue(index, value);
-                        device.triggerCapabilityListener(index, value);
-                    }
-                    else {
-                        device.setCapabilityValue(index, value);
-                        device.triggerCapabilityListener(index, value);
-                    }
-                }
 
                 if (device) {
                     console.log('Update :%s', device.getName());
@@ -191,7 +177,7 @@ class HomeyMiFlora extends Homey.App {
 
                                                         checkCharacteristics.forEach(function (characteristic) {
                                                             if (characteristicValues.hasOwnProperty(characteristic)) {
-                                                                updateCapabilityValue(device, characteristic, characteristicValues[characteristic]);
+                                                                device.updateCapabilityValue(characteristic, characteristicValues[characteristic]);
                                                             }
                                                         });
                                                     }
@@ -216,7 +202,7 @@ class HomeyMiFlora extends Homey.App {
 
                                                         checkCharacteristics.forEach(function (characteristic) {
                                                             if (characteristicValues.hasOwnProperty(characteristic)) {
-                                                                updateCapabilityValue(device, characteristic, characteristicValues[characteristic]);
+                                                                device.updateCapabilityValue(characteristic, characteristicValues[characteristic]);
                                                             }
                                                         });
 
