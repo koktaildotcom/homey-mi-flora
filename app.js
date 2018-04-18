@@ -99,7 +99,7 @@ class HomeyMiFlora extends Homey.App {
     connect(device) {
         console.log('Connect');
         return new Promise((resolve, reject) => {
-            try {
+
                 device.advertisement.connect((error, peripheral) => {
                     if (error) {
                         reject('failed connection to peripheral: ' + error);
@@ -109,34 +109,24 @@ class HomeyMiFlora extends Homey.App {
 
                     resolve(device);
                 });
-            }
-            catch (error) {
-                reject(error);
-            }
         })
     }
 
     disconnect(device) {
         console.log('Disconnect');
         return new Promise((resolve, reject) => {
-            try {
+
                 device.peripheral.disconnect((error, peripheral) => {
                     if (error) {
                         reject('failed connection to peripheral: ' + error);
                     }
                     resolve(device);
                 });
-            }
-            catch (error) {
-                reject(error);
-            }
         })
     }
 
     updateDeviceCharacteristicData(device) {
         return new Promise((resolve, reject) => {
-            try {
-
                 if (device) {
                     console.log('Update :%s', device.getName());
                 }
@@ -237,10 +227,6 @@ class HomeyMiFlora extends Homey.App {
                         reject('No services found.');
                     }
                 });
-            }
-            catch (error) {
-                reject(error);
-            }
         });
     }
 
