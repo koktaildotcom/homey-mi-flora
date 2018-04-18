@@ -603,6 +603,59 @@
                 ]
             },
             {
+                "id": "sensor_outside_threshold",
+                "title": {
+                    "en": "Sensor value is outside the configured threshold",
+                    "nl": "Sensor waarde is buiten de gestelde drempel"
+                },
+                "tokens": [
+                    {
+                        "name": "report",
+                        "title": {
+                            "en": "report",
+                            "nl": "rapport"
+                        },
+                        "example": {
+                            "en": "The moisture (22%) is to low. This can be at least 30%.",
+                            "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
+                        }
+                    },
+                    {
+                        "name": "value",
+                        "title": {
+                            "en": "value",
+                            "nl": "waarde"
+                        },
+                        "example": {
+                            "en": "22.5",
+                            "nl": "22.5"
+                        }
+                    },
+                    {
+                        "name": "sensor",
+                        "title": {
+                            "en": "sensor",
+                            "nl": "sensor"
+                        },
+                        "example": {
+                            "en": "measure_temperature",
+                            "nl": "measure_temperature"
+                        }
+                    },
+                    {
+                        "name": "device",
+                        "title": {
+                            "en": "device",
+                            "nl": "apparaat"
+                        },
+                        "example": {
+                            "en": "Flowercare 1",
+                            "nl": "Flowercare 1"
+                        }
+                    }
+                ]
+            },
+            {
                 "id": "sensor_changed",
                 "title": {
                     "en": "A sensor value is changed",
