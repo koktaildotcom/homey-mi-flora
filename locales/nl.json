@@ -55,7 +55,7 @@
         "measure_battery": {
             "name": "batterij",
             "changed" : "De batterij is verandert naar: __value__%.",
-            "device_changed" : "De batterij van `__plant__` is verandert naar: __value__%."
+            "device_changed" : "De batterij van `__plant__` is verandert naar: __value__%.",
             "device_updated" : "De batterij van `__plant__` is geupdate naar: __value__%."
         }
     }
