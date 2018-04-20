@@ -161,7 +161,7 @@ class HomeyMiFlora extends Homey.App {
 
                                                 if (data) {
 
-                                                    let checkCharacteristics = device.getSupportedCapabilities();
+                                                    let checkCharacteristics = device.getCapabilities();
 
                                                     let characteristicValues = {
                                                         'measure_temperature': data.readUInt16LE(0) / 10,
