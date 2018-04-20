@@ -11,7 +11,7 @@ class MiFloraSensorDriver extends MiFloraDriver {
         return 'Mi Flora Sensor';
     }
 
-    getCapabilities() {
+    getSupportedCapabilities() {
         return [
             "measure_temperature",
             "measure_luminance",
