@@ -62,9 +62,6 @@ class HomeyMiFlora extends Homey.App {
      */
     onInit() {
         console.log('Successfully init HomeyMiFlora');
-        //
-        // console.log('emit');
-        // Homey.emit('start_timeout');
     }
 
     /**
