@@ -57,10 +57,21 @@ if (process.env.HOMEY_VERSION.replace(/\W/g, '') < 159) {
 
 class HomeyMiFlora extends Homey.App {
 
+    /**
+     * init the app
+     */
     onInit() {
         console.log('Successfully init HomeyMiFlora');
+        //
+        // console.log('emit');
+        // Homey.emit('start_timeout');
     }
 
+    /**
+     * discover advertisements
+     *
+     * @returns {Promise.<MiFloraDevice>}
+     */
     discover(device) {
         console.log('Discover');
         return new Promise((resolve, reject) => {
@@ -96,6 +107,11 @@ class HomeyMiFlora extends Homey.App {
         });
     }
 
+    /**
+     * connect to advertisement and return peripheral
+     *
+     * @returns {Promise.<MiFloraDevice>}
+     */
     connect(device) {
         console.log('Connect');
         return new Promise((resolve, reject) => {
@@ -112,6 +128,11 @@ class HomeyMiFlora extends Homey.App {
         })
     }
 
+    /**
+     * disconnect from peripheral
+     *
+     * @returns {Promise.<MiFloraDevice>}
+     */
     disconnect(device) {
         console.log('Disconnect');
         return new Promise((resolve, reject) => {
@@ -130,6 +151,11 @@ class HomeyMiFlora extends Homey.App {
         })
     }
 
+    /**
+     * disconnect from peripheral
+     *
+     * @returns {Promise.<MiFloraDevice>}
+     */
     updateDeviceCharacteristicData(device) {
         return new Promise((resolve, reject) => {
             if (device) {
@@ -237,6 +263,11 @@ class HomeyMiFlora extends Homey.App {
         });
     }
 
+    /**
+     * disconnect from peripheral
+     *
+     * @returns {Promise.<object[]>}
+     */
     discoverDevices(driver) {
         return new Promise((resolve, reject) => {
             let devices = [];
