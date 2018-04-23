@@ -62,6 +62,8 @@ You can configure the timeout between polls in the app's settings.
   * add documentation to readme
 ### v1.0.5 - 20.04.18
   * bump 1.0.4
+### v1.0.6 - 23.04.18
+  * bump 1.0.4
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
