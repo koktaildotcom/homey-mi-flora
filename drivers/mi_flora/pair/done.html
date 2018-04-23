@@ -1,0 +1,15 @@
+<html>
+<head>
+<script type="text/javascript">
+    Homey.emit('addDevice', function (err, device) {
+        Homey.addDevice(device, function () {
+            Homey.done();
+        });
+    });
+</script>
+</head>
+<body>
+done
+<i class="loading fa fa-cog fa-spin"></i>
+</body>
+</html>

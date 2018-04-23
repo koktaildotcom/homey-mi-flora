@@ -314,15 +314,19 @@
             ],
             "pair": [
                 {
-                    "id": "list_devices",
-                    "template": "list_devices",
+                    "id": "start",
+                    "navigation": {}
+                },
+                {
+                    "id": "configure",
                     "navigation": {
-                        "next": "add_devices"
+                        "prev": "start",
+                        "next": "done"
                     }
                 },
                 {
-                    "id": "add_devices",
-                    "template": "add_devices"
+                    "id": "done",
+                    "navigation": {}
                 }
             ],
             "settings": [
