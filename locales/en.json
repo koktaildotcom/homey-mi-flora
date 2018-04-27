@@ -16,6 +16,7 @@
             "name" : "temperature",
             "changed" : "The temperature is changed to: __value__°C.",
             "device_changed" : "The temperature of `__plant__` is changed to: __value__°C.",
+            "device_updated" : "The temperature of `__plant__` is updated to: __value__°C.",
             "threshold": {
                 "min" : "The temperature (__value__°C) of `__plant__` is to low. This must be at least __min__°C.",
                 "max" : "The temperature (__value__°C) of `__plant__` is to high. This must be a maximum of __max__°C."
@@ -25,6 +26,7 @@
             "name" : "sunlight",
             "changed" : "The sunlight is changed to: __value__ lux.",
             "device_changed" : "The sunlight of `__plant__` is changed to: __value__ lux.",
+            "device_updated" : "The sunlight of `__plant__` is updated to: __value__ lux.",
             "threshold": {
                 "min" : "The sunlight (__value__ lux) of `__plant__` is to low. This must be at least __min__ lux.",
                 "max" : "The sunlight (__value__ lux) of `__plant__` is to high. This must be a maximum of __max__ lux."
@@ -34,6 +36,7 @@
             "name" : "nutrition",
             "changed" : "The temperature is changed to: __value__ µS/cm.",
             "device_changed" : "The temperature of `__plant__` is changed to: __value__ µS/cm.",
+            "device_updated" : "The temperature of `__plant__` is updated to: __value__ µS/cm.",
             "threshold": {
                 "min" : "The nutrition (__value__ µS/cm) of `__plant__` is to low. This must be at least __min__ µS/cm.",
                 "max" : "The nutrition (__value__ µS/cm) of `__plant__` is to high. This must be a maximum of __max__ µS/cm."
@@ -43,6 +46,7 @@
             "name": "moisture",
             "changed" : "The moisture is changed to: __value__%.",
             "device_changed" : "The moisture of `__plant__` is changed to: __value__%.",
+            "device_updated" : "The moisture of `__plant__` is updated to: __value__%.",
             "threshold": {
                 "min": "The moisture (__value__%) of `__plant__` is to low. This must be at least __min__%.",
                 "max": "The moisture (__value__%) of `__plant__` is to high. This must be a maximum of __max__%."
@@ -51,7 +55,8 @@
         "measure_battery": {
             "name": "battery",
             "changed" : "The battery is changed to: __value__%.",
-            "device_changed" : "The battery of `__plant__` is changed to: __value__%."
+            "device_changed" : "The battery of `__plant__` is changed to: __value__%.",
+            "device_updated" : "The battery of `__plant__` is updated to: __value__%."
         }
     }
 }

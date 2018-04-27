@@ -16,6 +16,7 @@
             "name" : "temperatuur",
             "changed" : "De temperatuur is verandert naar: __value__°C.",
             "device_changed" : "De temperatuur van `__plant__` is verandert naar: __value__°C.",
+            "device_updated" : "De temperatuur van `__plant__` is geupdate naar: __value__°C.",
             "threshold": {
                 "min" : "De temperatuur (__value__°C) van `__plant__` is te laag. Deze moet minimaal __min__°C zijn.",
                 "max" : "De temperatuur (__value__°C) van `__plant__` is te hoog. Deze moet maximaal __max__°C zijn."
@@ -25,6 +26,7 @@
             "name" : "lichtintensiteit",
             "changed" : "De lichtintensiteit is verandert naar: __value__ lux.",
             "device_changed" : "De lichtintensiteit van `__plant__` is verandert naar: __value__ lux.",
+            "device_updated" : "De lichtintensiteit van `__plant__` is geupdate naar: __value__ lux.",
             "threshold": {
                 "min" : "De lichtintensiteit (__value__ lux) van `__plant__` is te laag. Deze moet minimaal __min__ lux zijn.",
                 "max" : "De lichtintensiteit (__value__ lux) van `__plant__` is te hoog. Deze moet maximaal __max__ lux zijn."
@@ -34,6 +36,7 @@
             "name" : "voedingwaarde",
             "changed" : "De voedingwaarde is verandert naar: __value__ µS/cm.",
             "device_changed" : "De voedingwaarde van `__plant__` is verandert naar: __value__ µS/cm.",
+            "device_updated" : "De voedingwaarde van `__plant__` is geupdate naar: __value__ µS/cm.",
             "threshold": {
                 "min" : "De voedingwaarde (__value__ µS/cm) van `__plant__` is te laag. Deze moet minimaal __min__ µS/cm zijn.",
                 "max" : "De voedingwaarde (__value__ µS/cm) van `__plant__` is te hoog. Deze moet maximaal __max__ µS/cm zijn."
@@ -43,6 +46,7 @@
             "name" : "vochtigheid",
             "changed" : "De vochtigheid is verandert naar: __value__%.",
             "device_changed" : "De vochtigheid van `__plant__` is verandert naar: __value__%.",
+            "device_updated" : "De vochtigheid van `__plant__` is geupdate naar: __value__%.",
             "threshold": {
                 "min" : "De vochtigheid (__value__%) van `__plant__` is te laag. Deze moet minimaal __min__% zijn.",
                 "max" : "De vochtigheid (__value__%) van `__plant__` is te hoog. Deze moet maximaal __max__% zijn."
@@ -51,7 +55,8 @@
         "measure_battery": {
             "name": "batterij",
             "changed" : "De batterij is verandert naar: __value__%.",
-            "device_changed" : "De batterij van `__plant__` is verandert naar: __value__%."
+            "device_changed" : "De batterij van `__plant__` is verandert naar: __value__%.",
+            "device_updated" : "De batterij van `__plant__` is geupdate naar: __value__%."
         }
     }
 }

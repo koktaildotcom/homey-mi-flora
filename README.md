@@ -12,32 +12,59 @@ This app integrate the `Xiaomi mi flora sensor` and `Xiaomi mi flora ropot` into
 You can configure the timeout between polls in the app's settings.
 
 ## Cards
-### Global cards
+### Device cards
 #### Trigger cards
 1. Some device sensor is changed.
-   * device (Flora 1)
    * sensor (Moisture)
    * value (20%)
-   * report (The moisture of `Flora 1` is changed to: 20%.)
+   * report (The moisture of Flora 1 is changed to: 20%.)
+2. Some device sensor is updated.
+   * sensor (Moisture)`
+   * value (20%)
+   * report (The moisture is updated to: 20%.)
+3. Sensor value is below the configured threshold.
+   * sensor (Moisture)`
+   * value (20%)
+   * report (The moisture (20%) is to low. This can be at least 30%.)
+4. Sensor value is above the configured threshold.
+   * sensor (Moisture)`
+   * value (20%)
+   * report (The moisture (20%) is to high. This must be a maximum of 15%.)
 
-### Device cards
+#### Condition cards
+1. De plant has a correct temperature.
+2. De plant has enough sunlight.
+3. De plant has enough nutrition.
+4. De plant has enough moisture.
+
+### Global cards
 #### Trigger cards
 1. Some device sensor is changed.
    * device (Flora 1)`
    * sensor (Moisture)`
    * value (20%)
    * report (The moisture is changed to: 20%.)
-1. Sensor value is below the configured threshold.
+2. Some device sensor is updated.
+   * device (Flora 1)`
+   * sensor (Moisture)`
+   * value (20%)
+   * report (The moisture is updated to: 20%.)
+3. Sensor value is below the configured threshold.
    * device (Flora 1)`
    * sensor (Moisture)`
    * value (20%)
    * report (The moisture (20%) is to low. This can be at least 30%.)
-2. Sensor value is above the configured threshold.
+4. Sensor value is above the configured threshold.
    * device (Flora 1)`
    * sensor (Moisture)`
    * value (20%)
    * report (The moisture (20%) is to high. This must be a maximum of 15%.)
-
+5. Sensor value is outside the configured threshold.
+   * device (Flora 1)`
+   * sensor (Moisture)`
+   * value (20%)
+   * report (The moisture (20%) is to high. This must be a maximum of 15%.)
+   
 #### Condition cards
 1. De plant has a correct temperature.
 2. De plant has enough sunlight.
@@ -63,7 +90,14 @@ You can configure the timeout between polls in the app's settings.
 ### v1.0.5 - 20.04.18
   * bump 1.0.4
 ### v1.0.6 - 23.04.18
-  * bump 1.0.4
+  * bump 1.0.5
+### v1.0.7 - 27.04.18
+  * change trigger min/max with correct translation
+  * fixed validation error
+  * remove unused try catch
+  * add trigger: 'outside threshold'
+  * add documentation
+  * bubble up error and throw exception, but before that add new timeout
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
