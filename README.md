@@ -90,7 +90,14 @@ You can configure the timeout between polls in the app's settings.
 ### v1.0.5 - 20.04.18
   * bump 1.0.4
 ### v1.0.6 - 23.04.18
-  * bump 1.0.4
+  * bump 1.0.5
+### v1.0.7 - 27.04.18
+  * change trigger min/max with correct translation
+  * fixed validation error
+  * remove unused try catch
+  * add trigger: 'outside threshold'
+  * add documentation
+  * bubble up error and throw exception, but before that add new timeout
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
