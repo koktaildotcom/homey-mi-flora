@@ -2,8 +2,8 @@
     "id": "com.koktail.homey-mi-flora",
     "sdk": 2,
     "name": {
-        "en": "Xiaomi mi flora",
-        "nl": "Xiaomi mi flora"
+        "en": "Xiaomi Mi Flora",
+        "nl": "Xiaomi Mi Flora"
     },
     "description": {
         "en": "Integrate Xiaomi mi flora sensor into Homey",
