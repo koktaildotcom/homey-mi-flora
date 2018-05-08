@@ -2,8 +2,8 @@
     "id": "com.koktail.homey-mi-flora",
     "sdk": 2,
     "name": {
-        "en": "Xiaomi mi flora sensor",
-        "nl": "Xiaomi mi flora sensor"
+        "en": "Xiaomi mi flora",
+        "nl": "Xiaomi mi flora"
     },
     "description": {
         "en": "Integrate Xiaomi mi flora sensor into Homey",
@@ -14,11 +14,13 @@
         "climate",
         "appliances"
     ],
+    "permissions": [],
     "version": "1.0.7",
     "compatibility": ">=1.5.0",
     "athomForumDiscussionId" : 5030,
     "tags": {
         "en": [
+            "xiaomi",
             "xiaomi",
             "xiaomi",
             "mi",
@@ -61,7 +63,7 @@
         }
     },
     "capabilities": {
-        "measure_conductivity": {
+        "flora_measure_fertility": {
             "type": "number",
             "title": {
                 "en": "Conductivity",
@@ -77,7 +79,7 @@
             "max": 5000,
             "step": 1
         },
-        "measure_moisture": {
+        "flora_measure_moisture": {
             "type": "number",
             "title": {
                 "en": "Moisture",
@@ -96,21 +98,20 @@
     },
     "drivers": [
         {
-            "id": "mi_flora_pot",
+            "id": "ropot",
             "name": {
                 "en": "Xiaomi mi flora pot",
                 "nl": "Xiaomi mi flora pot"
             },
             "images": {
-                "small": "drivers/mi_flora_pot/assets/images/small.png",
-                "large": "drivers/mi_flora_pot/assets/images/large.png"
+                "small": "drivers/ropot/assets/images/small.png",
+                "large": "drivers/ropot/assets/images/large.png"
             },
             "class": "sensor",
             "capabilities": [
                 "measure_temperature",
-                "measure_luminance",
-                "measure_conductivity",
-                "measure_moisture",
+                "flora_measure_fertility",
+                "flora_measure_moisture",
                 "measure_battery"
             ],
             "pair": [
@@ -216,7 +217,7 @@
                     },
                     "children": [
                         {
-                            "id": "measure_conductivity_min",
+                            "id": "flora_measure_fertility_min",
                             "type": "number",
                             "value": 0,
                             "label": {
@@ -225,7 +226,7 @@
                             }
                         },
                         {
-                            "id": "measure_conductivity_max",
+                            "id": "flora_measure_fertility_max",
                             "type": "number",
                             "value": 0,
                             "label": {
@@ -243,7 +244,7 @@
                     },
                     "children": [
                         {
-                            "id": "measure_moisture_min",
+                            "id": "flora_measure_moisture_min",
                             "type": "number",
                             "value": 0,
                             "label": {
@@ -252,7 +253,7 @@
                             }
                         },
                         {
-                            "id": "measure_moisture_max",
+                            "id": "flora_measure_moisture_max",
                             "type": "number",
                             "value": 0,
                             "label": {
@@ -279,15 +280,15 @@
                         "capabilities": [
                             "measure_temperature",
                             "measure_luminance",
-                            "measure_conductivity",
-                            "measure_moisture"
+                            "flora_measure_fertility",
+                            "flora_measure_moisture"
                         ],
                         "options": {
                             "icons": {
                                 "measure_temperature": "/assets/temperature.svg",
                                 "measure_luminance": "/assets/luminance.svg",
-                                "measure_conductivity": "/assets/nutritions.svg",
-                                "measure_moisture": "/assets/moisture.svg"
+                                "flora_measure_fertility": "/assets/nutritions.svg",
+                                "flora_measure_moisture": "/assets/moisture.svg"
                             }
                         }
                     }
@@ -295,21 +296,21 @@
             }
         },
         {
-            "id": "mi_flora",
+            "id": "flora",
             "name": {
                 "en": "Xiaomi mi flora sensor",
                 "nl": "Xiaomi mi flora sensor"
             },
             "images": {
-                "small": "drivers/mi_flora/assets/images/small.png",
-                "large": "drivers/mi_flora/assets/images/large.png"
+                "small": "drivers/flora/assets/images/small.png",
+                "large": "drivers/flora/assets/images/large.png"
             },
             "class": "sensor",
             "capabilities": [
                 "measure_temperature",
                 "measure_luminance",
-                "measure_conductivity",
-                "measure_moisture",
+                "flora_measure_fertility",
+                "flora_measure_moisture",
                 "measure_battery"
             ],
             "pair": [
@@ -415,7 +416,7 @@
                     },
                     "children": [
                         {
-                            "id": "measure_conductivity_min",
+                            "id": "flora_measure_fertility_min",
                             "type": "number",
                             "value": 0,
                             "label": {
@@ -424,7 +425,7 @@
                             }
                         },
                         {
-                            "id": "measure_conductivity_max",
+                            "id": "flora_measure_fertility_max",
                             "type": "number",
                             "value": 0,
                             "label": {
@@ -442,7 +443,7 @@
                     },
                     "children": [
                         {
-                            "id": "measure_moisture_min",
+                            "id": "flora_measure_moisture_min",
                             "type": "number",
                             "value": 0,
                             "label": {
@@ -451,7 +452,7 @@
                             }
                         },
                         {
-                            "id": "measure_moisture_max",
+                            "id": "flora_measure_moisture_max",
                             "type": "number",
                             "value": 0,
                             "label": {
@@ -478,15 +479,15 @@
                         "capabilities": [
                             "measure_temperature",
                             "measure_luminance",
-                            "measure_conductivity",
-                            "measure_moisture"
+                            "flora_measure_fertility",
+                            "flora_measure_moisture"
                         ],
                         "options": {
                             "icons": {
                                 "measure_temperature": "/assets/temperature.svg",
                                 "measure_luminance": "/assets/luminance.svg",
-                                "measure_conductivity": "/assets/nutritions.svg",
-                                "measure_moisture": "/assets/moisture.svg"
+                                "flora_measure_fertility": "/assets/nutritions.svg",
+                                "flora_measure_moisture": "/assets/moisture.svg"
                             }
                         }
                     }
@@ -806,7 +807,7 @@
                     {
                         "name": "device",
                         "type": "device",
-                        "filter": "driver_id=mi_flora"
+                        "filter": "driver_id=flora"
                     }
                 ]
             },
@@ -855,7 +856,7 @@
                     {
                         "name": "device",
                         "type": "device",
-                        "filter": "driver_id=mi_flora"
+                        "filter": "driver_id=flora"
                     }
                 ]
             },
@@ -904,7 +905,7 @@
                     {
                         "name": "device",
                         "type": "device",
-                        "filter": "driver_id=mi_flora"
+                        "filter": "driver_id=flora"
                     }
                 ]
             },
@@ -953,7 +954,7 @@
                     {
                         "name": "device",
                         "type": "device",
-                        "filter": "driver_id=mi_flora"
+                        "filter": "driver_id=flora"
                     }
                 ]
             },
@@ -1002,7 +1003,7 @@
                     {
                         "name": "device",
                         "type": "device",
-                        "filter": "driver_id=mi_flora"
+                        "filter": "driver_id=flora"
                     }
                 ]
             }
@@ -1045,7 +1046,7 @@
                 ]
             },
             {
-                "id": "measure_conductivity_threshold",
+                "id": "flora_measure_fertility_threshold",
                 "title": {
                     "en": "The plant !{{has not|has}} enough nutritions.",
                     "nl": "De plant !{{heeft niet|heeft}} genoeg voeding."
@@ -1063,7 +1064,7 @@
                 ]
             },
             {
-                "id": "measure_moisture_threshold",
+                "id": "flora_measure_moisture_threshold",
                 "title": {
                     "en": "The plant !{{has not|has}} enough moisture.",
                     "nl": "De plant !{{heeft niet|heeft}} genoeg vocht."
@@ -1076,7 +1077,7 @@
                     {
                         "name": "device",
                         "type": "device",
-                        "filter": "capabilities=measure_moisture"
+                        "filter": "capabilities=flora_measure_moisture"
                     }
                 ]
             }

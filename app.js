@@ -189,8 +189,8 @@ class HomeyMiFlora extends Homey.App {
                                                     let characteristicValues = {
                                                         'measure_temperature': data.readUInt16LE(0) / 10,
                                                         'measure_luminance': data.readUInt32LE(3),
-                                                        'measure_conductivity': data.readUInt16LE(8),
-                                                        'measure_moisture': data.readUInt16BE(6)
+                                                        'flora_measure_fertility': data.readUInt16LE(8),
+                                                        'flora_measure_moisture': data.readUInt16BE(6)
                                                     }
 
                                                     console.log(characteristicValues);

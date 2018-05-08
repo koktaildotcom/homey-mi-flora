@@ -32,7 +32,7 @@
                 "max" : "De lichtintensiteit (__value__ lux) van `__plant__` is te hoog. Deze moet maximaal __max__ lux zijn."
             }
         },
-        "measure_conductivity": {
+        "flora_measure_fertility": {
             "name" : "voedingwaarde",
             "changed" : "De voedingwaarde is verandert naar: __value__ µS/cm.",
             "device_changed" : "De voedingwaarde van `__plant__` is verandert naar: __value__ µS/cm.",
@@ -42,7 +42,7 @@
                 "max" : "De voedingwaarde (__value__ µS/cm) van `__plant__` is te hoog. Deze moet maximaal __max__ µS/cm zijn."
             }
         },
-        "measure_moisture": {
+        "flora_measure_moisture": {
             "name" : "vochtigheid",
             "changed" : "De vochtigheid is verandert naar: __value__%.",
             "device_changed" : "De vochtigheid van `__plant__` is verandert naar: __value__%.",
