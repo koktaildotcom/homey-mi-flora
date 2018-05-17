@@ -9,7 +9,10 @@
         "save" : {
             "label" : "Opslaan"
         },
-        "success" : "De instellingen zijn opgeslagen"
+        "success" : "De instellingen zijn opgeslagen",
+        "error" : {
+            "threshold" : "De min and max grens voor `__capability__` is niet geldig."
+        }
     },
     "capability": {
         "measure_temperature": {

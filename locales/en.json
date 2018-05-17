@@ -9,7 +9,10 @@
         "save" : {
             "label" : "Save"
         },
-        "success" : "The settings has been saved"
+        "success" : "The settings has been saved",
+        "error" : {
+            "threshold" : "The min and max threshold for `__capability__` is not a valid."
+        }
     },
     "capability": {
         "measure_temperature": {

@@ -368,6 +368,10 @@
                             "label": {
                                 "en": "min",
                                 "nl": "min"
+                            },
+                            "hint": {
+                                "en": "The minimal threshold value for temperature.",
+                                "nl": "De minimale grenswaarde voor temperatuur."
                             }
                         },
                         {
@@ -377,6 +381,10 @@
                             "label": {
                                 "en": "max",
                                 "nl": "max"
+                            },
+                            "hint": {
+                                "en": "The maximum threshold value for temperature.",
+                                "nl": "De maximale grenswaarde voor temperatuur."
                             }
                         }
                     ]
@@ -395,6 +403,10 @@
                             "label": {
                                 "en": "min",
                                 "nl": "min"
+                            },
+                            "hint": {
+                                "en": "The minimal threshold value for luminance.",
+                                "nl": "De minimale grenswaarde voor lichtintensiteit."
                             }
                         },
                         {
@@ -404,6 +416,10 @@
                             "label": {
                                 "en": "max",
                                 "nl": "max"
+                            },
+                            "hint": {
+                                "en": "The maximum threshold value for luminance.",
+                                "nl": "De maximale grenswaarde voor lichtintensiteit."
                             }
                         }
                     ]
@@ -422,6 +438,10 @@
                             "label": {
                                 "en": "min",
                                 "nl": "min"
+                            },
+                            "hint": {
+                                "en": "The minimal threshold value for nutrition.",
+                                "nl": "De minimale grenswaarde voor voeding."
                             }
                         },
                         {
@@ -431,6 +451,10 @@
                             "label": {
                                 "en": "max",
                                 "nl": "max"
+                            },
+                            "hint": {
+                                "en": "The maximum threshold value for nutrition.",
+                                "nl": "De maximale grenswaarde voor voeding."
                             }
                         }
                     ]
@@ -449,6 +473,10 @@
                             "label": {
                                 "en": "min",
                                 "nl": "min"
+                            },
+                            "hint": {
+                                "en": "The minimal threshold value for moisture.",
+                                "nl": "De minimale grenswaarde voor vochtigheid."
                             }
                         },
                         {
@@ -458,6 +486,10 @@
                             "label": {
                                 "en": "max",
                                 "nl": "max"
+                            },
+                            "hint": {
+                                "en": "The maximum threshold value for moisture.",
+                                "nl": "De maximale grenswaarde voor vochtigheid."
                             }
                         }
                     ]
@@ -1059,7 +1091,7 @@
                     {
                         "name": "device",
                         "type": "device",
-                        "filter": "capabilities=flora_measure_fertility"
+                        "filter": "capabilities=measure_luminance"
                     }
                 ]
             },
