@@ -98,6 +98,11 @@ You can configure the timeout between polls in the app's settings.
   * add trigger: 'outside threshold'
   * add documentation
   * bubble up error and throw exception, but before that add new timeout
+### v2.0.0 - 17.05.18
+  * make drivers compatible with com.mi.flora
+  * refactoring capabilities
+  * add settings explanation for threshold
+  * add min/max validation for threshold
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
