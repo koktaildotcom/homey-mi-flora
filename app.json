@@ -1059,7 +1059,7 @@
                     {
                         "name": "device",
                         "type": "device",
-                        "filter": "capabilities=measure_luminance"
+                        "filter": "capabilities=flora_measure_fertility"
                     }
                 ]
             },

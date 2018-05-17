@@ -81,7 +81,7 @@ class HomeyMiFlora extends Homey.App {
                     if (advertisements) {
 
                         let matchedAdvertisements = advertisements.filter(function (advertisement) {
-                            return (advertisement.uuid === device.getData().uuid);
+                            return (advertisement.uuid === device.getAddress() || advertisement.uuid === device.getAddress());
                         });
 
                         if (matchedAdvertisements.length === 1) {
@@ -90,7 +90,7 @@ class HomeyMiFlora extends Homey.App {
                             resolve(device);
                         }
                         else {
-                            reject("Cannot find advertisement with uuid " + device.getData().uuid);
+                            reject("Cannot find advertisement with uuid " + device.getAddress());
                         }
                     }
                     else {
@@ -278,6 +278,7 @@ class HomeyMiFlora extends Homey.App {
                             "data": {
                                 "id": advertisement.id,
                                 "uuid": advertisement.uuid,
+                                "address": advertisement.uuid,
                                 "name": advertisement.name,
                                 "type": advertisement.type,
                                 "version": "v" + Homey.manifest.version,
