@@ -50,8 +50,6 @@
     <button id="save" class="right"><p data-i18n="settings.save.label"></p></button>
 </div>
 
-<p data-i18n="settings.success" id="notice" style="display:none;"></p>
-
 <script type="text/javascript">
 
     function onHomeyReady(Homey) {
@@ -71,7 +69,7 @@
                 if (err) return Homey.alert(err);
             });
 
-            document.getElementById('notice').style.display = "block";
+            Homey.alert(__("settings.success"));
         });
     }
 </script>

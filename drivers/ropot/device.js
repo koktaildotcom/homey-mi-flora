@@ -2,8 +2,7 @@
 
 const MiFloraDevice = require('../../lib/MiFloraDevice.js');
 
-class MiFloraSensor extends MiFloraDevice {
-
+class MiFloraRopot extends MiFloraDevice {
 }
 
-module.exports = MiFloraSensor;
+module.exports = MiFloraRopot;

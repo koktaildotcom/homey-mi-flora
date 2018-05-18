@@ -12,32 +12,98 @@ This app integrate the `Xiaomi mi flora sensor` and `Xiaomi mi flora ropot` into
 You can configure the timeout between polls in the app's settings.
 
 ## Cards
-### Global cards
-#### Trigger cards
-1. Some device sensor is changed.
-   * device
-   * sensor
-   * value
-
 ### Device cards
 #### Trigger cards
 1. Some device sensor is changed.
-   * device
-   * sensor
-   * value
-1. Sensor value is below the configured threshold.
-2. Sensor value is above the configured threshold.
+   * sensor (Moisture)
+   * value (20%)
+   * report (The moisture of Flora 1 is changed to: 20%.)
+2. Some device sensor is updated.
+   * sensor (Moisture)`
+   * value (20%)
+   * report (The moisture is updated to: 20%.)
+3. Sensor value is below the configured threshold.
+   * sensor (Moisture)`
+   * value (20%)
+   * report (The moisture (20%) is to low. This can be at least 30%.)
+4. Sensor value is above the configured threshold.
+   * sensor (Moisture)`
+   * value (20%)
+   * report (The moisture (20%) is to high. This must be a maximum of 15%.)
 
 #### Condition cards
-1. De plant !{{has not|has}} a correct temperature.
-2. De plant !{{has not|has}} a enough sunlight.
-3. De plant !{{has not|has}} a enough fertilizer.
-4. De plant !{{has not|has}} a enough moisture.
+1. De plant has a correct temperature.
+2. De plant has enough sunlight.
+3. De plant has enough nutrition.
+4. De plant has enough moisture.
+
+### Global cards
+#### Trigger cards
+1. Some device sensor is changed.
+   * device (Flora 1)`
+   * sensor (Moisture)`
+   * value (20%)
+   * report (The moisture is changed to: 20%.)
+2. Some device sensor is updated.
+   * device (Flora 1)`
+   * sensor (Moisture)`
+   * value (20%)
+   * report (The moisture is updated to: 20%.)
+3. Sensor value is below the configured threshold.
+   * device (Flora 1)`
+   * sensor (Moisture)`
+   * value (20%)
+   * report (The moisture (20%) is to low. This can be at least 30%.)
+4. Sensor value is above the configured threshold.
+   * device (Flora 1)`
+   * sensor (Moisture)`
+   * value (20%)
+   * report (The moisture (20%) is to high. This must be a maximum of 15%.)
+5. Sensor value is outside the configured threshold.
+   * device (Flora 1)`
+   * sensor (Moisture)`
+   * value (20%)
+   * report (The moisture (20%) is to high. This must be a maximum of 15%.)
+   
+#### Condition cards
+1. De plant has a correct temperature.
+2. De plant has enough sunlight.
+3. De plant has enough nutrition.
+4. De plant has enough moisture.
 
 ## History
-### 1.0.0
-  * First alpha to app store.
-
+### v1.0.0 - 09.04.18
+  * first alpha to app store.
+### v1.0.1 - 10.04.18
+  * add documentation
+  * revert changes because it breaks the flow card.
+### v1.0.2 - 17.04.18
+  * moved capabilities to drivers because of RoPot missing one.
+  * update capability name from fertilizer to nutritions.
+  * change tags for `capability` in card to user preferred language.
+  * add tags: `report` with a human readable report of the status.
+### v1.0.3 - 17.04.18
+  * add missing battery report translation
+### v1.0.4 - 18.04.18
+  * add missing icon
+  * add documentation to readme
+### v1.0.5 - 20.04.18
+  * bump 1.0.4
+### v1.0.6 - 23.04.18
+  * bump 1.0.5
+### v1.0.7 - 27.04.18
+  * change trigger min/max with correct translation
+  * fixed validation error
+  * remove unused try catch
+  * add trigger: 'outside threshold'
+  * add documentation
+  * bubble up error and throw exception, but before that add new timeout
+### v2.0.0 - 17.05.18
+  * make drivers compatible with com.mi.flora
+  * refactoring capabilities
+  * add settings explanation for threshold
+  * add min/max validation for threshold
+  
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
 
