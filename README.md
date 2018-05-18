@@ -103,7 +103,9 @@ You can configure the timeout between polls in the app's settings.
   * refactoring capabilities
   * add settings explanation for threshold
   * add min/max validation for threshold
-  
+### v2.0.1 - 18.05.18
+  * change app id
+    
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
 
