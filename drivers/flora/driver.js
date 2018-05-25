@@ -15,8 +15,8 @@ class MiFloraSensorDriver extends MiFloraDriver {
         return [
             "measure_temperature",
             "measure_luminance",
-            "measure_conductivity",
-            "measure_moisture",
+            "flora_measure_fertility",
+            "flora_measure_moisture",
             "measure_battery"
         ];
     }

@@ -15,15 +15,27 @@ You can configure the timeout between polls in the app's settings.
 ### Device cards
 #### Trigger cards
 1. Some device sensor is changed.
-   * device (Flora 1)
    * sensor (Moisture)
    * value (20%)
    * report (The moisture of Flora 1 is changed to: 20%.)
 2. Some device sensor is updated.
-   * device (Flora 1)`
    * sensor (Moisture)`
    * value (20%)
    * report (The moisture is updated to: 20%.)
+3. Sensor value is below the configured threshold.
+   * sensor (Moisture)`
+   * value (20%)
+   * report (The moisture (20%) is to low. This can be at least 30%.)
+4. Sensor value is above the configured threshold.
+   * sensor (Moisture)`
+   * value (20%)
+   * report (The moisture (20%) is to high. This must be a maximum of 15%.)
+
+#### Condition cards
+1. De plant has a correct temperature.
+2. De plant has enough sunlight.
+3. De plant has enough nutrition.
+4. De plant has enough moisture.
 
 ### Global cards
 #### Trigger cards
@@ -77,6 +89,20 @@ You can configure the timeout between polls in the app's settings.
   * add documentation to readme
 ### v1.0.5 - 20.04.18
   * bump 1.0.4
+### v1.0.6 - 23.04.18
+  * bump 1.0.5
+### v1.0.7 - 27.04.18
+  * change trigger min/max with correct translation
+  * fixed validation error
+  * remove unused try catch
+  * add trigger: 'outside threshold'
+  * add documentation
+  * bubble up error and throw exception, but before that add new timeout
+### v2.0.0 - 17.05.18
+  * make drivers compatible with com.mi.flora
+  * refactoring capabilities
+  * add settings explanation for threshold
+  * add min/max validation for threshold
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora

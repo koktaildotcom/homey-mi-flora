@@ -9,7 +9,10 @@
         "save" : {
             "label" : "Save"
         },
-        "success" : "The settings has been saved"
+        "success" : "The settings has been saved",
+        "error" : {
+            "threshold" : "The min and max threshold for `__capability__` is not a valid."
+        }
     },
     "capability": {
         "measure_temperature": {
@@ -32,7 +35,7 @@
                 "max" : "The sunlight (__value__ lux) of `__plant__` is to high. This must be a maximum of __max__ lux."
             }
         },
-        "measure_conductivity": {
+        "flora_measure_fertility": {
             "name" : "nutrition",
             "changed" : "The temperature is changed to: __value__ µS/cm.",
             "device_changed" : "The temperature of `__plant__` is changed to: __value__ µS/cm.",
@@ -42,7 +45,7 @@
                 "max" : "The nutrition (__value__ µS/cm) of `__plant__` is to high. This must be a maximum of __max__ µS/cm."
             }
         },
-        "measure_moisture": {
+        "flora_measure_moisture": {
             "name": "moisture",
             "changed" : "The moisture is changed to: __value__%.",
             "device_changed" : "The moisture of `__plant__` is changed to: __value__%.",

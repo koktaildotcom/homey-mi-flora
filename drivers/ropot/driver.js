@@ -14,8 +14,8 @@ class MiFloraRopotDriver extends MiFloraDriver {
     getSupportedCapabilities() {
         return [
             "measure_temperature",
-            "measure_conductivity",
-            "measure_moisture",
+            "flora_measure_fertility",
+            "flora_measure_moisture",
             "measure_battery"
         ];
     }

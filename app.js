@@ -57,10 +57,18 @@ if (process.env.HOMEY_VERSION.replace(/\W/g, '') < 159) {
 
 class HomeyMiFlora extends Homey.App {
 
+    /**
+     * init the app
+     */
     onInit() {
         console.log('Successfully init HomeyMiFlora');
     }
 
+    /**
+     * discover advertisements
+     *
+     * @returns {Promise.<MiFloraDevice>}
+     */
     discover(device) {
         console.log('Discover');
         return new Promise((resolve, reject) => {
@@ -73,7 +81,7 @@ class HomeyMiFlora extends Homey.App {
                     if (advertisements) {
 
                         let matchedAdvertisements = advertisements.filter(function (advertisement) {
-                            return (advertisement.uuid === device.getData().uuid);
+                            return (advertisement.uuid === device.getAddress() || advertisement.uuid === device.getAddress());
                         });
 
                         if (matchedAdvertisements.length === 1) {
@@ -82,7 +90,7 @@ class HomeyMiFlora extends Homey.App {
                             resolve(device);
                         }
                         else {
-                            reject("Cannot find advertisement with uuid " + device.getData().uuid);
+                            reject("Cannot find advertisement with uuid " + device.getAddress());
                         }
                     }
                     else {
@@ -96,6 +104,11 @@ class HomeyMiFlora extends Homey.App {
         });
     }
 
+    /**
+     * connect to advertisement and return peripheral
+     *
+     * @returns {Promise.<MiFloraDevice>}
+     */
     connect(device) {
         console.log('Connect');
         return new Promise((resolve, reject) => {
@@ -112,6 +125,11 @@ class HomeyMiFlora extends Homey.App {
         })
     }
 
+    /**
+     * disconnect from peripheral
+     *
+     * @returns {Promise.<MiFloraDevice>}
+     */
     disconnect(device) {
         console.log('Disconnect');
         return new Promise((resolve, reject) => {
@@ -130,6 +148,11 @@ class HomeyMiFlora extends Homey.App {
         })
     }
 
+    /**
+     * disconnect from peripheral
+     *
+     * @returns {Promise.<MiFloraDevice>}
+     */
     updateDeviceCharacteristicData(device) {
         return new Promise((resolve, reject) => {
             if (device) {
@@ -166,8 +189,8 @@ class HomeyMiFlora extends Homey.App {
                                                     let characteristicValues = {
                                                         'measure_temperature': data.readUInt16LE(0) / 10,
                                                         'measure_luminance': data.readUInt32LE(3),
-                                                        'measure_conductivity': data.readUInt16LE(8),
-                                                        'measure_moisture': data.readUInt16BE(6)
+                                                        'flora_measure_fertility': data.readUInt16LE(8),
+                                                        'flora_measure_moisture': data.readUInt16BE(6)
                                                     }
 
                                                     console.log(characteristicValues);
@@ -237,6 +260,11 @@ class HomeyMiFlora extends Homey.App {
         });
     }
 
+    /**
+     * disconnect from peripheral
+     *
+     * @returns {Promise.<object[]>}
+     */
     discoverDevices(driver) {
         return new Promise((resolve, reject) => {
             let devices = [];
@@ -250,6 +278,7 @@ class HomeyMiFlora extends Homey.App {
                             "data": {
                                 "id": advertisement.id + 'x',
                                 "uuid": advertisement.uuid,
+                                "address": advertisement.uuid,
                                 "name": advertisement.name,
                                 "type": advertisement.type,
                                 "version": "v" + Homey.manifest.version,
