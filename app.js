@@ -2,152 +2,74 @@
 
 const Homey = require('homey');
 
-const APP_VERSION = 'v1.0.1';
-
-const MAX_RETRIES = 3;
-
 const DATA_CHARACTERISTIC_UUID = '00001a0100001000800000805f9b34fb';
 const REALTIME_CHARACTERISTIC_UUID = '00001a0000001000800000805f9b34fb';
 const FIRMWARE_CHARACTERISTIC_UUID = '00001a0200001000800000805f9b34fb';
 
-Homey.BlePeripheral.prototype.disconnect = function disconnect(callback) {
-    if (typeof callback === 'function')
-        return Homey.util.callbackAfterPromise(this, this.disconnect, arguments);
+// make the BLE beta backwards compatible for 1.5.8 and maybe previous versions (not tested).
+if (process.env.HOMEY_VERSION.replace(/\W/g, '') < 159) {
+    Homey.BlePeripheral.prototype.disconnect = function disconnect(callback) {
+        if (typeof callback === 'function')
+            return Homey.util.callbackAfterPromise(this, this.disconnect, arguments);
 
-    const disconnectPromise = new Promise((resolve, reject) => {
-        this._disconnectQueue.push((err, result) => err ? reject(err) : resolve(result));
-    });
+        const disconnectPromise = new Promise((resolve, reject) => {
+            this._disconnectQueue.push((err, result) => err ? reject(err) : resolve(result));
+        });
 
-    if (this._disconnectLockCounter === 0) {
-        clearTimeout(this._disconnectTimeout);
-        this._disconnectTimeout = setTimeout(() => {
-            if (this._disconnectLockCounter === 0) {
-                this._disconnected();
-                // console.log('called disconnect', new Error().stack);
-                this.__client.emit('disconnect', [this._connectionId, this.uuid], err => {
-                    this._connectionId = null;
-                    this._disconnectQueue.forEach(cb => cb(err));
-                    this._disconnectQueue.length = 0;
-                });
-            }
-        }, 100);
-    }
-
-    return disconnectPromise;
-};
-
-Homey.BlePeripheral.prototype.getService = async function getService(uuid, callback) {
-    if (typeof callback === 'function')
-        return Homey.util.callbackAfterPromise(this, this.getService, arguments);
-
-    this.resetConnectionWarning();
-
-    let service = Array.isArray(this.services) ? this.services.find(service => service.uuid === uuid) : null;
-
-    if (!service) {
-        const [discoveredService] = await this.discoverServices([uuid]);
-
-        if (!discoveredService && !Array.isArray(this.services)) {
-            return Promise.reject(new Error('Error, could not get services'));
+        if (this._disconnectLockCounter === 0) {
+            clearTimeout(this._disconnectTimeout);
+            this._disconnectTimeout = setTimeout(() => {
+                if (this._disconnectLockCounter === 0) {
+                    this._disconnected();
+                    // console.log('called disconnect', new Error().stack);
+                    this.__client.emit('disconnect', [this._connectionId, this.uuid], err => {
+                        this._connectionId = null;
+                        this._disconnectQueue.forEach(cb => cb(err));
+                        this._disconnectQueue.length = 0;
+                    });
+                }
+            }, 100);
         }
-        service = discoveredService;
-    }
 
-    return service || Promise.reject(new Error(`No service found with UUID ${uuid}`));
-};
+        return disconnectPromise;
+    };
+
+    Homey.BlePeripheral.prototype.getService = async function getService(uuid, callback) {
+        if (typeof callback === 'function')
+            return Homey.util.callbackAfterPromise(this, this.getService, arguments);
+
+        this.resetConnectionWarning();
+
+        let service = Array.isArray(this.services) ? this.services.find(service => service.uuid === uuid) : null;
+
+        if (!service) {
+            const [discoveredService] = await this.discoverServices([uuid]);
+
+            if (!discoveredService && !Array.isArray(this.services)) {
+                return Promise.reject(new Error('Error, could not get services'));
+            }
+            service = discoveredService;
+        }
+
+        return service || Promise.reject(new Error(`No service found with UUID ${uuid}`));
+    };
+}
 
 class HomeyMiFlora extends Homey.App {
 
+    /**
+     * init the app
+     */
     onInit() {
         console.log('Successfully init HomeyMiFlora');
     }
 
-    _updateDevice(device) {
-        return new Promise((resolve, reject) => {
-            console.log('update device ' + device.getName());
-            this._handleUpdateSequence(device)
-                .then(device => {
-                    device.retry = 0;
-                    resolve(device);
-                })
-                .catch(error => {
-                    device.retry++;
-                    console.log('retry ' + device.retry);
-                    console.log(error);
-
-                    if (device.retry < MAX_RETRIES) {
-                        resolve(this._updateDevice(device));
-                    }
-
-                    reject('Max retries exceeded, no success');
-                });
-        })
-    }
-
-    _updateDevices(devices) {
-        return devices.reduce((promise, device) => {
-            return promise
-                .then(() => {
-                    device.retry = 0;
-                    return this._updateDevice(device);
-                }).catch(error => {
-                    console.log(error);
-                });
-        }, Promise.resolve());
-    }
-
-    _handleUpdateSequenceTest(device) {
-        return new Promise((resolve, reject) => {
-            // reject by name
-            if (device.getName() === 'Aloe') {
-                setTimeout(function () {
-                    console.log('_updateDeviceDataPromise reject');
-                    reject('some exception');
-                }, 500);
-            }
-            else {
-                setTimeout(function () {
-                    console.log('_updateDeviceDataPromise resolve');
-                    resolve(device);
-                }, 500);
-            }
-        });
-    }
-
-    _handleUpdateSequence(device) {
-        return new Promise((resolve, reject) => {
-            let updateDeviceTime = new Date();
-
-            try {
-                this._discover(device).then((device) => {
-                    return this._connect(device);
-                }).catch(error => {
-                    reject(error);
-                })
-                    .then((device) => {
-                        return this._updateDeviceCharacteristicData(device);
-                    }).catch(error => {
-                    reject(error);
-                })
-                    .then((device) => {
-                        return this._disconnect(device);
-                    }).catch(error => {
-                    reject(error);
-                })
-                    .then((device) => {
-                        console.log('Device sync complete in: ' + (new Date() - updateDeviceTime) / 1000 + ' seconds');
-                        resolve(device);
-                    }).catch(error => {
-                    reject(error);
-                });
-            }
-            catch (exception) {
-                reject(exception);
-            }
-        });
-    }
-
-    _discover(device) {
+    /**
+     * discover advertisements
+     *
+     * @returns {Promise.<MiFloraDevice>}
+     */
+    discover(device) {
         console.log('Discover');
         return new Promise((resolve, reject) => {
             if (device) {
@@ -158,17 +80,17 @@ class HomeyMiFlora extends Homey.App {
                 Homey.ManagerBLE.discover().then(function (advertisements) {
                     if (advertisements) {
 
-                        let matched = advertisements.filter(function (advertisement) {
-                            return (advertisement.uuid === device.getData().uuid);
+                        let matchedAdvertisements = advertisements.filter(function (advertisement) {
+                            return (advertisement.uuid === device.getAddress() || advertisement.uuid === device.getAddress());
                         });
 
-                        if (matched.length === 1) {
-                            device.advertisement = matched[0];
+                        if (matchedAdvertisements.length === 1) {
+                            device.advertisement = matchedAdvertisements[0];
 
                             resolve(device);
                         }
                         else {
-                            reject("Cannot find advertisement with uuid " + device.getData().uuid);
+                            reject("Cannot find advertisement with uuid " + device.getAddress());
                         }
                     }
                     else {
@@ -182,30 +104,37 @@ class HomeyMiFlora extends Homey.App {
         });
     }
 
-    _connect(device) {
+    /**
+     * connect to advertisement and return peripheral
+     *
+     * @returns {Promise.<MiFloraDevice>}
+     */
+    connect(device) {
         console.log('Connect');
         return new Promise((resolve, reject) => {
-            try {
-                device.advertisement.connect((error, peripheral) => {
-                    if (error) {
-                        reject('failed connection to peripheral: ' + error);
-                    }
 
-                    device.peripheral = peripheral;
+            device.advertisement.connect((error, peripheral) => {
+                if (error) {
+                    reject('failed connection to peripheral: ' + error);
+                }
 
-                    resolve(device);
-                });
-            }
-            catch (error) {
-                reject(error);
-            }
+                device.peripheral = peripheral;
+
+                resolve(device);
+            });
         })
     }
 
-    _disconnect(device) {
+    /**
+     * disconnect from peripheral
+     *
+     * @returns {Promise.<MiFloraDevice>}
+     */
+    disconnect(device) {
         console.log('Disconnect');
         return new Promise((resolve, reject) => {
-            try {
+
+            if (device && device.peripheral) {
                 device.peripheral.disconnect((error, peripheral) => {
                     if (error) {
                         reject('failed connection to peripheral: ' + error);
@@ -213,165 +142,148 @@ class HomeyMiFlora extends Homey.App {
                     resolve(device);
                 });
             }
-            catch (error) {
-                reject(error);
+            else {
+                reject('cannot disconnect to unknown device or peripheral');
             }
         })
     }
 
-    _updateDeviceCharacteristicData(device) {
+    /**
+     * disconnect from peripheral
+     *
+     * @returns {Promise.<MiFloraDevice>}
+     */
+    updateDeviceCharacteristicData(device) {
         return new Promise((resolve, reject) => {
-            try {
-                const updateCapabilityValue = function (device, index, value) {
-                    let currentValue = device.getCapabilityValue(index);
-
-                    // force change if its the save value
-                    if (currentValue === value) {
-                        device.setCapabilityValue(index, null);
-                        device.setCapabilityValue(index, value);
-                        device.triggerCapabilityListener(index, value);
-                    }
-                    else {
-                        device.setCapabilityValue(index, value);
-                        device.triggerCapabilityListener(index, value);
-                    }
+            if (device) {
+                console.log('Update :%s', device.getName());
+            }
+            else {
+                reject('Cannot update device anymore');
+            }
+            device.peripheral.discoverServices((error, services) => {
+                if (error) {
+                    reject('failed discoverServices: ' + error);
                 }
 
-                if (device) {
-                    console.log('Update :%s', device.getName());
+                if (services) {
+                    services.forEach(function (service) {
+                        service.discoverCharacteristics((error, characteristics) => {
+                            if (error) {
+                                reject('failed discoverCharacteristics: ' + error);
+                            }
+
+                            if (characteristics) {
+                                characteristics.forEach(function (characteristic) {
+                                    switch (characteristic.uuid) {
+                                        case DATA_CHARACTERISTIC_UUID:
+                                            characteristic.read(function (error, data) {
+                                                if (error) {
+                                                    reject('failed to read DATA_CHARACTERISTIC_UUID: ' + error);
+                                                }
+
+                                                if (data) {
+
+                                                    let checkCharacteristics = device.getCapabilities();
+
+                                                    let characteristicValues = {
+                                                        'measure_temperature': data.readUInt16LE(0) / 10,
+                                                        'measure_luminance': data.readUInt32LE(3),
+                                                        'flora_measure_fertility': data.readUInt16LE(8),
+                                                        'flora_measure_moisture': data.readUInt16BE(6)
+                                                    }
+
+                                                    console.log(characteristicValues);
+
+                                                    checkCharacteristics.forEach(function (characteristic) {
+                                                        if (characteristicValues.hasOwnProperty(characteristic)) {
+                                                            device.updateCapabilityValue(characteristic, characteristicValues[characteristic]);
+                                                        }
+                                                    });
+                                                }
+                                                else {
+                                                    reject('No data found for sensor values.');
+                                                }
+                                            })
+                                            break
+                                        case FIRMWARE_CHARACTERISTIC_UUID:
+                                            characteristic.read(function (error, data) {
+                                                if (error) {
+                                                    reject('failed to read FIRMWARE_CHARACTERISTIC_UUID: ' + error);
+                                                }
+                                                if (data) {
+                                                    let checkCharacteristics = [
+                                                        "measure_battery"
+                                                    ];
+
+                                                    let characteristicValues = {
+                                                        'measure_battery': parseInt(data.toString('hex', 0, 1), 16),
+                                                    }
+
+                                                    checkCharacteristics.forEach(function (characteristic) {
+                                                        if (characteristicValues.hasOwnProperty(characteristic)) {
+                                                            device.updateCapabilityValue(characteristic, characteristicValues[characteristic]);
+                                                        }
+                                                    });
+
+                                                    let firmwareVersion = data.toString('ascii', 2, data.length);
+
+                                                    device.setSettings({
+                                                        firmware_version: firmwareVersion,
+                                                        last_updated: new Date().toISOString()
+                                                    });
+
+                                                    resolve(device);
+                                                }
+                                                else {
+                                                    reject('No data found for firmware.');
+                                                }
+                                            });
+
+                                            break;
+                                        case REALTIME_CHARACTERISTIC_UUID:
+                                            characteristic.write(Buffer.from([0xA0, 0x1F]), false);
+                                            break;
+                                    }
+                                })
+                            }
+                            else {
+                                reject('No characteristics found.');
+                            }
+                        });
+                    });
                 }
                 else {
-                    reject('Cannot device anymore');
+                    reject('No services found.');
                 }
-                device.peripheral.discoverServices((error, services) => {
-                    if (error) {
-                        reject('failed discoverServices: ' + error);
-                    }
-
-                    if (services) {
-                        services.forEach(function (service) {
-                            service.discoverCharacteristics((error, characteristics) => {
-                                if (error) {
-                                    reject('failed discoverCharacteristics: ' + error);
-                                }
-
-                                if (characteristics) {
-                                    characteristics.forEach(function (characteristic) {
-                                        switch (characteristic.uuid) {
-                                            case DATA_CHARACTERISTIC_UUID:
-                                                characteristic.read(function (error, data) {
-                                                    if (error) {
-                                                        reject('failed to read DATA_CHARACTERISTIC_UUID: ' + error);
-                                                    }
-
-                                                    if (data) {
-                                                        let checkCharacteristics = [
-                                                            "measure_temperature",
-                                                            "measure_luminance",
-                                                            "measure_conductivity",
-                                                            "measure_moisture",
-                                                        ];
-
-                                                        let characteristicValues = {
-                                                            'measure_temperature': data.readUInt16LE(0) / 10,
-                                                            'measure_luminance': data.readUInt32LE(3),
-                                                            'measure_conductivity': data.readUInt16LE(8),
-                                                            'measure_moisture': data.readUInt16BE(6)
-                                                        }
-
-                                                        checkCharacteristics.forEach(function (characteristic) {
-                                                            if (characteristicValues.hasOwnProperty(characteristic)) {
-                                                                updateCapabilityValue(device, characteristic, characteristicValues[characteristic]);
-                                                            }
-                                                        });
-                                                    }
-                                                    else {
-                                                        reject('No data found for sensor values.');
-                                                    }
-                                                })
-                                                break
-                                            case FIRMWARE_CHARACTERISTIC_UUID:
-                                                characteristic.read(function (error, data) {
-                                                    if (error) {
-                                                        reject('failed to read FIRMWARE_CHARACTERISTIC_UUID: ' + error);
-                                                    }
-                                                    if (data) {
-                                                        let checkCharacteristics = [
-                                                            "measure_battery"
-                                                        ];
-
-                                                        let characteristicValues = {
-                                                            'measure_battery': parseInt(data.toString('hex', 0, 1), 16),
-                                                        }
-
-                                                        checkCharacteristics.forEach(function (characteristic) {
-                                                            if (characteristicValues.hasOwnProperty(characteristic)) {
-                                                                updateCapabilityValue(device, characteristic, characteristicValues[characteristic]);
-                                                            }
-                                                        });
-
-                                                        let firmwareVersion = data.toString('ascii', 2, data.length);
-
-                                                        device.setSettings({
-                                                            firmware_version: firmwareVersion,
-                                                            last_updated: new Date().toISOString()
-                                                        });
-
-                                                        resolve(device);
-                                                    }
-                                                    else {
-                                                        reject('No data found for firmware.');
-                                                    }
-                                                });
-
-                                                break;
-                                            case REALTIME_CHARACTERISTIC_UUID:
-                                                characteristic.write(Buffer.from([0xA0, 0x1F]), false);
-                                                break;
-                                        }
-                                    })
-                                }
-                                else {
-                                    reject('No characteristics found.');
-                                }
-                            });
-                        });
-                    }
-                    else {
-                        reject('No services found.');
-                    }
-                });
-            }
-            catch (error) {
-                reject(error);
-            }
+            });
         });
     }
 
-    getDevices(identification, name) {
+    /**
+     * disconnect from peripheral
+     *
+     * @returns {Promise.<object[]>}
+     */
+    discoverDevices(driver) {
         return new Promise((resolve, reject) => {
             let devices = [];
             let index = 0;
             Homey.ManagerBLE.discover().then(function (advertisements) {
                 advertisements.forEach(function (advertisement) {
-                    if (advertisement.localName === identification) {
+                    if (advertisement.localName === driver.getMiFloraBleIdentification()) {
                         ++index;
                         devices.push({
-                            "name": name + " " + index,
+                            "name": driver.getMiFloraBleName() + " " + index,
                             "data": {
                                 "id": advertisement.id,
                                 "uuid": advertisement.uuid,
+                                "address": advertisement.uuid,
                                 "name": advertisement.name,
                                 "type": advertisement.type,
-                                "version": APP_VERSION,
+                                "version": "v" + Homey.manifest.version,
                             },
-                            "capabilities": [
-                                "measure_temperature",
-                                "measure_luminance",
-                                "measure_conductivity",
-                                "measure_moisture",
-                                "measure_battery"
-                            ],
+                            "capabilities": driver.getSupportedCapabilities(),
                         });
                     }
                 });
