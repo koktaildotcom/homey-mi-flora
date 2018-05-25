@@ -1,4 +1,18 @@
 {
+    "pair" : {
+        "title" : "Setting up Xiaomi Mi Flora devices",
+        "info" : {
+            "title" : "Keep in mind:",
+            "row1" : "For an optimal signal strength keep the sensor within a close distance of Homey.",
+            "row2" : "Always download the original `Xiaomi Mi Flora` app and add the devices to the app. This automatically updates the sensor's firmware to the latest version."
+        },
+        "faq" : {
+            "title" : "Frequently asked questions:",
+            "question1" : "Why can't the sensor be found by Homey?",
+            "answer1" : "Check if the sensor is not connected to another bluetooth device. The `Xiaomi Mi Flora` app for example"
+        },
+        "configure" : "Search devices"
+    },
     "settings" : {
         "title" : "Settings Xiaomi Mi Flora",
         "update" : "Update settings",
