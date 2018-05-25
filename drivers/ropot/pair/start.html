@@ -1,0 +1,33 @@
+<html>
+<head>
+    <script type="text/javascript">
+        Homey.setTitle( __('pair.title') );
+    </script>
+    <style>
+        .next.button {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            display: block;
+        }
+        .view-content{
+            overflow: hidden !important;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 data-i18n="pair.info.title"></h1>
+    <ul>
+        <li data-i18n="pair.info.row1"></li>
+        <li data-i18n="pair.info.row2"></li>
+    </ul>
+
+    <h1 data-i18n="pair.faq.title"></h1>
+    <h3 data-i18n="pair.faq.question1"></h3>
+    <p data-i18n="pair.faq.answer1"></p>
+
+    <button class="next button" onclick="Homey.showView('list_my_devices')" data-i18n="pair.configure"></button>
+
+</body>
+</html>

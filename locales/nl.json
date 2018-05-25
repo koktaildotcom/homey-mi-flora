@@ -1,4 +1,18 @@
 {
+    "pair" : {
+        "title" : "Setting up Xiaomi Mi Flora devices",
+        "info" : {
+            "title" : "Let op:",
+            "row1" : "Voor een optimale signaalsterkte moet de sensor dichtbij Homey geplaatst zijn.",
+            "row2" : "Download altijd de originele `Xiaomi Mi Flora` app en voeg hier de apparaten aan toe. Hierdoor wordt de sensor's firmware automatisch naar de laatste versie geupdate."
+        },
+        "faq" : {
+            "title" : "Veel gestelde vragen:",
+            "question1" : "Waarom worden mijn apparaten niet gevonden door Homey?",
+            "answer1" : "Controleer of je sensor niet is gekoppeld met een andere bluetooth apparaat. Bijvoorbeeld de `Xiaomi Mi Flora` app"
+        },
+        "configure" : "Zoek apparaten"
+    },
     "settings" : {
         "title" : "Instellingen Xiaomi Mi Flora",
         "update" : "Update instellingen",
