@@ -109,6 +109,8 @@ You can configure the timeout between polls in the app's settings.
   * mark device as broken due to missing capability battery
 ### v2.0.3 - 25.05.18
   * add support for ropot condition cards
+### v2.0.4 - 25.05.18
+  * add information on the pairing screen
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
