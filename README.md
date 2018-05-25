@@ -111,6 +111,8 @@ You can configure the timeout between polls in the app's settings.
   * add support for ropot condition cards
 ### v2.0.4 - 25.05.18
   * add information on the pairing screen
+### v2.0.5 - 25.05.18
+  * removed test code
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora

@@ -276,7 +276,7 @@ class HomeyMiFlora extends Homey.App {
                         devices.push({
                             "name": driver.getMiFloraBleName() + " " + index,
                             "data": {
-                                "id": advertisement.id + 'x',
+                                "id": advertisement.id,
                                 "uuid": advertisement.uuid,
                                 "address": advertisement.uuid,
                                 "name": advertisement.name,
