@@ -103,6 +103,12 @@ You can configure the timeout between polls in the app's settings.
   * refactoring capabilities
   * add settings explanation for threshold
   * add min/max validation for threshold
+### v2.0.1 - 18.05.18
+  * change app id
+### v2.0.2 - 18.05.18
+  * mark device as broken due to missing capability battery
+### v2.0.3 - 25.05.18
+  * add support for ropot condition cards
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
