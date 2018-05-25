@@ -116,14 +116,17 @@
             ],
             "pair": [
                 {
-                    "id": "list_devices",
+                    "id": "start"
+                },
+                {
+                    "id": "list_my_devices",
                     "template": "list_devices",
                     "navigation": {
-                        "next": "add_devices"
+                        "next": "add_my_devices"
                     }
                 },
                 {
-                    "id": "add_devices",
+                    "id": "add_my_devices",
                     "template": "add_devices"
                 }
             ],
@@ -327,7 +330,6 @@
                 {
                     "id": "add_my_devices",
                     "template": "add_devices"
-                    // again, use a template
                 }
             ],
             "settings": [
