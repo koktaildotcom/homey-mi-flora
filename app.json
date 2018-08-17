@@ -188,33 +188,6 @@
                 {
                     "type": "group",
                     "label": {
-                        "en": "Luminance (lux)",
-                        "nl": "Lichtintensiteit (lux)"
-                    },
-                    "children": [
-                        {
-                            "id": "measure_luminance_min",
-                            "type": "number",
-                            "value": 0,
-                            "label": {
-                                "en": "min",
-                                "nl": "min"
-                            }
-                        },
-                        {
-                            "id": "measure_luminance_max",
-                            "type": "number",
-                            "value": 0,
-                            "label": {
-                                "en": "max",
-                                "nl": "max"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "group",
-                    "label": {
                         "en": "Nutrition (µS/cm)",
                         "nl": "Voeding (µS/cm)"
                     },
@@ -282,14 +255,12 @@
                         "id": "sensor",
                         "capabilities": [
                             "measure_temperature",
-                            "measure_luminance",
                             "flora_measure_fertility",
                             "flora_measure_moisture"
                         ],
                         "options": {
                             "icons": {
                                 "measure_temperature": "/assets/temperature.svg",
-                                "measure_luminance": "/assets/luminance.svg",
                                 "flora_measure_fertility": "/assets/nutritions.svg",
                                 "flora_measure_moisture": "/assets/moisture.svg"
                             }
