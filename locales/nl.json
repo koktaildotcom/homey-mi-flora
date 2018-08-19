@@ -31,6 +31,7 @@
     "capability": {
         "measure_temperature": {
             "name" : "temperatuur",
+            "suffix" : " °C",
             "changed" : "De temperatuur is verandert naar: __value__°C.",
             "device_changed" : "De temperatuur van `__plant__` is verandert naar: __value__°C.",
             "device_updated" : "De temperatuur van `__plant__` is geupdate naar: __value__°C.",
@@ -41,6 +42,7 @@
         },
         "measure_luminance": {
             "name" : "lichtintensiteit",
+            "suffix" : " lux",
             "changed" : "De lichtintensiteit is verandert naar: __value__ lux.",
             "device_changed" : "De lichtintensiteit van `__plant__` is verandert naar: __value__ lux.",
             "device_updated" : "De lichtintensiteit van `__plant__` is geupdate naar: __value__ lux.",
@@ -51,6 +53,7 @@
         },
         "flora_measure_fertility": {
             "name" : "voedingwaarde",
+            "suffix" : " µS/cm",
             "changed" : "De voedingwaarde is verandert naar: __value__ µS/cm.",
             "device_changed" : "De voedingwaarde van `__plant__` is verandert naar: __value__ µS/cm.",
             "device_updated" : "De voedingwaarde van `__plant__` is geupdate naar: __value__ µS/cm.",
@@ -61,6 +64,7 @@
         },
         "flora_measure_moisture": {
             "name" : "vochtigheid",
+            "suffix" : " %",
             "changed" : "De vochtigheid is verandert naar: __value__%.",
             "device_changed" : "De vochtigheid van `__plant__` is verandert naar: __value__%.",
             "device_updated" : "De vochtigheid van `__plant__` is geupdate naar: __value__%.",
