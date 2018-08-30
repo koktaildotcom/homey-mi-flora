@@ -4,34 +4,32 @@
     <meta charset="UTF-8">
 
     <script>
-        function buildHtmlChart(device) {
 
-            const thresholdMapping = {
-                'temperature': {
-                    'min': 'temperature_min',
-                    'max': 'temperature_max'
-                }
-            };
-            const conditionsMapping = {
-                'temperature': 'temperature_threshold'
-            };
-
-            const target = document.createElement("div");
-            target.style.fontFamily = 'sans-serif';
+        /**
+         * @private
+         *
+         * @param document
+         * @param deviceDisplay
+         *
+         * @return string
+         *
+         */
+        function _generateHtml(document, deviceDisplay) {
 
             let borderColor = '';
             let color = '';
+            let colorBackgroundColor = '#f7f5f5';
             let colorGreen = '#d3fec4';
             let borderColorGreen = '#b3e0a2';
             let colorRed = '#ffd3cb';
             let borderColorRed = '#dd958f';
-            let colorDefault = '#fafafa';
-            let borderColorDefault = '#ebebeb';
-            let textColor = '#5c5c5c';
-            let borderTable = '#434343';
+            let borderColorDefault = '#e6e6e6';
+            let textColor = '#9c9c9c';
+            let borderTable = '#c6c6c6';
+            let textColorSecondary = '#c7c7c7';
 
             let widthDefault = 200;
-            let heightDefault = 20;
+            let heightDefault = 25;
 
             let flowerTable = document;
             let td = document;
@@ -40,6 +38,9 @@
             let loaderTr = document;
             let loaderTd = document;
             let title = document;
+
+            const target = document.createElement("div");
+            target.style.fontFamily = 'sans-serif';
 
             flowerTable = document.createElement("table");
             flowerTable.cellPadding = 0;
@@ -51,47 +52,28 @@
             td.colSpan = 5;
             title = document.createElement("span");
             title.style.fontFamily = 'sans-serif';
-            title.style.fontSize = '1.5em';
+            title.style.fontSize = '16px';
             title.style.color = textColor;
-            title.innerHTML = device.name;
+            title.innerHTML = deviceDisplay.name;
             td.appendChild(title);
             tr.appendChild(td);
             flowerTable.appendChild(tr);
-
-            let trBuffer = document.createElement("tr");
-            let tdBuffer = document;
-            for (let i = 1; i <= 4; i++) {
-                // buffer tr
-                tdBuffer = document.createElement("td");
-                if (i !== 1 && i !== 4) {
-                    tdBuffer.style.borderRight = '1px solid ' + borderColorDefault;
-                }
-                if (i === 2) {
-                    tdBuffer.style.borderLeft = '1px solid ' + borderTable;
-                }
-                trBuffer.appendChild(tdBuffer);
-            }
-            flowerTable.appendChild(trBuffer.cloneNode(true));
 
             let trThreshold = document.createElement("tr");
             let tdThreshold = document;
             for (let i = 1; i <= 4; i++) {
                 // threshold tr
                 tdThreshold = document.createElement("td");
-                tdThreshold.style.height = "10px";
-                if (i !== 1 && i !== 4) {
-                    tdThreshold.style.borderRight = '1px solid ' + borderColorDefault;
-                }
+                tdThreshold.style.height = "6px";
                 if (i === 2) {
                     tdThreshold.style.borderLeft = '1px solid ' + borderTable;
                 }
                 trThreshold.appendChild(tdThreshold);
             }
-            flowerTable.appendChild(trThreshold.cloneNode(true));
 
-            for (const capabilityName in device.capabilities) {
+            for (const capabilityName in deviceDisplay.capabilities) {
 
-                const capability = device.capabilities[capabilityName];
+                const capability = deviceDisplay.capabilities[capabilityName];
 
                 const min = capability.min;
                 const max = capability.max;
@@ -119,7 +101,7 @@
                 borderColor = borderColorRed;
                 for (let i = 0; i < parts.length; i++) {
                     const part = parts[i];
-                    if (part.min < value && part.max >= value && i === 1) {
+                    if (part.min <= value && part.max >= value && i === 1) {
                         color = colorGreen;
                         borderColor = borderColorGreen;
                     }
@@ -130,15 +112,19 @@
                 td = document.createElement("td");
                 td.style.height = heightDefault + "px";
                 td.colspan = 5;
-                td.style.width = "px";
                 title = document.createElement("span");
-                title.innerHTML = capabilityName;
-                title.style.margin = '0 8px 0 0';
-                title.style.fontSize = '0.7em';
+                title.innerHTML = capability.sensor;
+                title.style.margin = '0 5px 0 0';
+                title.style.fontSize = '14px';
                 title.style.fontFamily = 'sans-serif';
                 title.style.color = textColor;
                 td.appendChild(title);
                 tr.appendChild(td);
+
+                let trBuffer = document.createElement("tr");
+                // add title
+                let tdBuffer = document.createElement("td");
+                trBuffer.appendChild(tdBuffer);
 
                 for (let i = 0; i < parts.length; i++) {
                     const part = parts[i];
@@ -174,16 +160,47 @@
 
                     title = document.createElement("span");
                     //title.innerHTML = value + Homey.__('capability.' + capability + '.suffix');
-                    title.innerHTML = value;
+                    title.innerHTML = value + capability.suffix;
                     title.style.lineHeight = heightDefault + "px";
-                    title.style.margin = '0 3px';
-                    title.style.fontSize = '0.7em';
+                    title.style.margin = '0 5px';
+                    title.style.fontSize = '12px';
                     title.style.fontFamily = 'sans-serif';
                     title.style.color = textColor;
 
                     if (false === loaderDone) {
                         td.appendChild(loader);
                     }
+
+                    // buffer tr
+                    let tdBuffer = document.createElement("td");
+                    tdBuffer.style.lineHeight = "15px";
+
+                    let thresholdValue = document.createElement("span");
+                    thresholdValue.style.lineHeight = "15px";
+                    thresholdValue.style.margin = '0 3px';
+                    thresholdValue.style.fontSize = '12px';
+                    thresholdValue.style.fontFamily = 'sans-serif';
+
+                    if (i === 0) {
+                        tdBuffer.style.borderLeft = '1px solid ' + borderTable;
+                    }
+                    if (i === 0) {
+                        tdBuffer.style.borderRight = '1px solid ' + borderColorDefault;
+                        tdBuffer.style.textAlign = 'right';
+                        thresholdValue.style.color = textColorSecondary;
+                        thresholdValue.innerHTML = capability.min + capability.suffix;
+                    }
+                    if (i === 1) {
+                        tdBuffer.style.borderRight = '1px solid ' + borderColorDefault;
+                    }
+                    if (i === 2) {
+                        thresholdValue.style.color = textColorSecondary;
+                        thresholdValue.innerHTML = capability.max + capability.suffix;
+                        tdBuffer.style.textAlign = 'left';
+                    }
+
+                    tdBuffer.appendChild(thresholdValue);
+                    trBuffer.appendChild(tdBuffer);
 
                     if (value <= part.min && i === 0) {
                         loaderTd.style.width = 0 + "px";
@@ -192,7 +209,6 @@
                         loaderDone = true;
                     }
                     else if (part.min < value && part.max >= value) {
-                        title.innerHTML = value;
                         loaderTd.style.width = widthDefault - (widthDefault / 100 * percent) - 1 + "px";
                         loaderTd.appendChild(title);
                         loaderTd.style.borderRight = '1px solid ' + borderColor;
@@ -208,7 +224,7 @@
                     loader.appendChild(loaderTr);
 
                     // min / max threshold
-                    td.style.backgroundColor = colorDefault;
+                    td.style.backgroundColor = colorBackgroundColor;
                     td.style.width = widthDefault + "px";
                     td.style.height = heightDefault + "px";
                     if (i !== 2) {
@@ -217,57 +233,84 @@
                     }
                     tr.appendChild(td);
                 }
+
+                flowerTable.appendChild(trThreshold.cloneNode(true));
+                flowerTable.appendChild(trBuffer);
                 flowerTable.appendChild(tr);
-                flowerTable.appendChild(trBuffer.cloneNode(true));
             }
 
             flowerTable.appendChild(trThreshold.cloneNode(true));
+
+            tr = document.createElement("tr");
+            td = document.createElement("td");
+            tr.appendChild(td);
+            td = document.createElement("td");
+            td.style.borderBottom = '1px solid ' + borderTable;
+            td.colSpan = 4;
+            tr.appendChild(td);
+            flowerTable.appendChild(tr);
+
             target.appendChild(flowerTable);
+            target.style.backgroundColor = '#fbfbfb';
 
             return target.innerHTML;
         }
 
+
         // self executing function here
         document.addEventListener("DOMContentLoaded", function (event) {
 
-            const device = {
-                'name': 'test',
+            const deviceDisplay = {
+                'name': 'Device name',
                 'capabilities': {
                     'temperature': {
+                        'sensor' : 'temperature',
                         'min': 20,
                         'max': 30,
-                        'value': 25
+                        'value': 25,
+                        'suffix': ' %'
                     },
                     'vochtigheid': {
+                        'sensor' : 'vochtigheid',
                         'min': 20,
                         'max': 30,
-                        'value': 5
+                        'value': 5,
+                        'suffix': ' %'
                     },
                     'voeding': {
+                        'sensor' : 'voeding',
                         'min': 20,
                         'max': 30,
-                        'value': 100
+                        'value': 100,
+                        'suffix': ' %'
                     },
                     'licht': {
+                        'sensor' : 'licht',
                         'min': 20,
                         'max': 30,
-                        'value': 20
+                        'value': 20,
+                        'suffix': ' %'
                     }
                 }
             };
 
-            capabilities = {};
-            for (let x = 6; x < 43; x++) {
-                capabilities['index ' + x] = {
-                    'min': 200,
-                    'max': 300,
-                    'value': x * 10
-                }
-            }
+//            capabilities = {};
+//            for (let x = 6; x < 43; x++) {
+//                capabilities['index ' + x] = {
+//                    'sensor' : 'index ' + x,
+//                    'min': 200,
+//                    'max': 300,
+//                    'value': x * 10,
+//                    'suffix': ' %'
+//                }
+//            }
+//
+//            deviceDisplay['capabilities'] = capabilities;
 
-            device['capabilities'] = capabilities;
+            const html = _generateHtml(document, deviceDisplay);
+            document.getElementById('target').innerHTML = html + html;
 
-            document.getElementById('target').innerHTML = buildHtmlChart(device);
+
         });
 
     </script>
