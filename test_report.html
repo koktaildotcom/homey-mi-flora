@@ -25,8 +25,8 @@
             let borderColorGreen = '#b3e0a2';
             let colorRed = '#ffd3cb';
             let borderColorRed = '#dd958f';
-            let colorDefault = '#f4f4f4';
-            let borderColorDefault = '#cccccc';
+            let colorDefault = '#fafafa';
+            let borderColorDefault = '#ebebeb';
 
             let widthDefault = 200;
             let heightDefault = 20;
@@ -60,7 +60,7 @@
             for (let i = 1; i <= 4; i++) {
                 // threshold tr
                 tdThreshold = document.createElement("td");
-                tdThreshold.style.height = "8px";
+                tdThreshold.style.height = "3px";
                 if (i !== 1 && i !== 4) {
                     tdThreshold.style.borderRight = '1px solid ' + borderColorDefault;
                 }
@@ -186,6 +186,7 @@
                     tr.appendChild(td);
                 }
                 flowerTable.appendChild(tr);
+                flowerTable.appendChild(trThreshold.cloneNode(true));
 
             }
 
@@ -226,7 +227,7 @@
 
             capabilities = {};
             for (let x = 6; x < 43; x++) {
-                capabilities[x] = {
+                capabilities['index ' + x] = {
                     'min': 200,
                     'max': 300,
                     'value': x * 10
@@ -235,12 +236,13 @@
 
             device['capabilities'] = capabilities;
 
-            document.body.innerHTML = buildHtmlChart(device);
+            document.getElementById('target').innerHTML = buildHtmlChart(device);
         });
 
     </script>
     <title>Title</title>
 </head>
 <body>
+    <div id="target"></div>
 </body>
 </html>
