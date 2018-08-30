@@ -17,7 +17,7 @@
             };
 
             const target = document.createElement("div");
-            target.style.fontFamily = '"Roboto",Helvetica,sans-serif';
+            target.style.fontFamily = 'sans-serif';
 
             let borderColor = '';
             let color = '';
@@ -27,6 +27,8 @@
             let borderColorRed = '#dd958f';
             let colorDefault = '#fafafa';
             let borderColorDefault = '#ebebeb';
+            let textColor = '#5c5c5c';
+            let borderTable = '#434343';
 
             let widthDefault = 200;
             let heightDefault = 20;
@@ -38,8 +40,6 @@
             let loaderTr = document;
             let loaderTd = document;
             let title = document;
-            let trThreshold = document;
-            let tdThreshold = document;
 
             flowerTable = document.createElement("table");
             flowerTable.cellPadding = 0;
@@ -50,19 +50,40 @@
             td.style.height = heightDefault + "px";
             td.colSpan = 5;
             title = document.createElement("span");
-            title.style.fontSize = '2em';
+            title.style.fontFamily = 'sans-serif';
+            title.style.fontSize = '1.5em';
+            title.style.color = textColor;
             title.innerHTML = device.name;
             td.appendChild(title);
             tr.appendChild(td);
             flowerTable.appendChild(tr);
 
-            trThreshold = document.createElement("tr");
+            let trBuffer = document.createElement("tr");
+            let tdBuffer = document;
+            for (let i = 1; i <= 4; i++) {
+                // buffer tr
+                tdBuffer = document.createElement("td");
+                if (i !== 1 && i !== 4) {
+                    tdBuffer.style.borderRight = '1px solid ' + borderColorDefault;
+                }
+                if (i === 2) {
+                    tdBuffer.style.borderLeft = '1px solid ' + borderTable;
+                }
+                trBuffer.appendChild(tdBuffer);
+            }
+            flowerTable.appendChild(trBuffer.cloneNode(true));
+
+            let trThreshold = document.createElement("tr");
+            let tdThreshold = document;
             for (let i = 1; i <= 4; i++) {
                 // threshold tr
                 tdThreshold = document.createElement("td");
-                tdThreshold.style.height = "3px";
+                tdThreshold.style.height = "10px";
                 if (i !== 1 && i !== 4) {
                     tdThreshold.style.borderRight = '1px solid ' + borderColorDefault;
+                }
+                if (i === 2) {
+                    tdThreshold.style.borderLeft = '1px solid ' + borderTable;
                 }
                 trThreshold.appendChild(tdThreshold);
             }
@@ -113,6 +134,9 @@
                 title = document.createElement("span");
                 title.innerHTML = capabilityName;
                 title.style.margin = '0 8px 0 0';
+                title.style.fontSize = '0.7em';
+                title.style.fontFamily = 'sans-serif';
+                title.style.color = textColor;
                 td.appendChild(title);
                 tr.appendChild(td);
 
@@ -120,6 +144,7 @@
                     const part = parts[i];
 
                     td = document.createElement("td");
+                    td.style.whiteSpace = 'nowrap';
                     loader = document.createElement("table");
                     loader.cellPadding = 0;
                     loader.cellSpacing = 0;
@@ -128,6 +153,10 @@
                     loaderTd = document.createElement("td");
                     loaderTd.style.width = widthDefault + "px";
                     loaderTd.style.height = heightDefault + "px";
+
+                    if (i === 0) {
+                        td.style.borderLeft = '1px solid ' + borderTable;
+                    }
 
                     loaderTd.style.backgroundColor = color;
 
@@ -141,35 +170,38 @@
                     let length = part.max - part.min;
                     let offset = part.max - value;
                     let percent = 100 / (length / offset);
-                    loaderTd.style.borderRight = '1px solid ' + borderColor;
                     loaderTd.style.textAlign = 'right';
 
                     title = document.createElement("span");
                     //title.innerHTML = value + Homey.__('capability.' + capability + '.suffix');
                     title.innerHTML = value;
                     title.style.lineHeight = heightDefault + "px";
-                    title.style.color = '#000';
-                    title.style.margin = '0 8px 0 0';
-                    title.style.fontSize = '1em';
+                    title.style.margin = '0 3px';
+                    title.style.fontSize = '0.7em';
+                    title.style.fontFamily = 'sans-serif';
+                    title.style.color = textColor;
 
                     if (false === loaderDone) {
                         td.appendChild(loader);
                     }
 
-                    if (value <= part.min && i === 0){
+                    if (value <= part.min && i === 0) {
                         loaderTd.style.width = 0 + "px";
                         loaderTd.appendChild(title);
+                        loaderTd.style.borderRight = '1px solid ' + borderColor;
                         loaderDone = true;
                     }
                     else if (part.min < value && part.max >= value) {
-                        loaderTd.style.width = widthDefault - (widthDefault / 100 * percent) - 1 + "px";
                         title.innerHTML = value;
+                        loaderTd.style.width = widthDefault - (widthDefault / 100 * percent) - 1 + "px";
                         loaderTd.appendChild(title);
+                        loaderTd.style.borderRight = '1px solid ' + borderColor;
                         loaderDone = true;
                     }
-                    else if (value > part.max && i === 2){
+                    else if (value > part.max && i === 2) {
                         loaderTd.style.width = widthDefault + "px";
                         loaderTd.appendChild(title);
+                        loaderTd.style.borderRight = '1px solid ' + borderColor;
                         loaderDone = true;
                     }
                     loaderTr.appendChild(loaderTd);
@@ -186,8 +218,7 @@
                     tr.appendChild(td);
                 }
                 flowerTable.appendChild(tr);
-                flowerTable.appendChild(trThreshold.cloneNode(true));
-
+                flowerTable.appendChild(trBuffer.cloneNode(true));
             }
 
             flowerTable.appendChild(trThreshold.cloneNode(true));
@@ -243,6 +274,6 @@
     <title>Title</title>
 </head>
 <body>
-    <div id="target"></div>
+<div id="target"></div>
 </body>
 </html>
