@@ -117,6 +117,8 @@ You can configure the timeout between polls in the app's settings.
   * resolved merge conflicts
 ### v2.0.7 - 17.08.18
   * resolved issue: https://github.com/koktaildotcom/homey-mi-flora/issues/34
+### v2.0.8 - 17.08.18
+  * resolved issue: https://github.com/koktaildotcom/homey-mi-flora/issues/41
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
