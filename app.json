@@ -18,6 +18,7 @@
     "version": "2.0.8",
     "compatibility": ">=1.5.0",
     "athomForumDiscussionId": 5030,
+    "homeyCommunityTopicId": 45,
     "tags": {
         "en": [
             "xiaomi",
@@ -506,6 +507,26 @@
     ],
     "flow": {
         "triggers": [
+			{
+				"id": "sensor_timout",
+				"title": {
+					"en": "The sensor gives a timeout",
+					"nl": "Een sensor geeft een timeout"
+				},
+				"tokens": [
+					{
+						"name": "device",
+						"title": {
+							"en": "device",
+							"nl": "apparaat"
+						},
+						"example": {
+							"en": "Flowercare 1",
+							"nl": "Flowercare 1"
+						}
+					}
+				]
+			},
             {
                 "id": "sensor_changed",
                 "title": {
