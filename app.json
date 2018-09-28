@@ -508,6 +508,26 @@
     "flow": {
         "triggers": [
 			{
+				"id": "html_report",
+				"title": {
+					"en": "The html report is changed",
+					"nl": "De html rapportage is verandert"
+				},
+				"tokens": [
+					{
+						"name": "html_report",
+						"title": {
+							"en": "html report",
+							"nl": "html rapport"
+						},
+						"example": {
+							"en": "The moisture (22%) is to low. This can be at least 30%.",
+							"nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
+						}
+					}
+				]
+			},
+			{
 				"id": "sensor_timout",
 				"title": {
 					"en": "The sensor gives a timeout",
@@ -1034,26 +1054,6 @@
                         "name": "device",
                         "type": "device",
                         "filter": "driver_id=flora|ropot"
-                    }
-                ]
-            },
-            {
-                "id": "html_report",
-                "title": {
-                    "en": "The html report is changed",
-                    "nl": "De html rapportage is verandert"
-                },
-                "tokens": [
-                    {
-                        "name": "html_report",
-                        "title": {
-                            "en": "html report",
-                            "nl": "html rapport"
-                        },
-                        "example": {
-                            "en": "The moisture (22%) is to low. This can be at least 30%.",
-                            "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
-                        }
                     }
                 ]
             }
