@@ -131,6 +131,8 @@ You can configure the timeout between polls in the app's settings.
   * add homeyCommunityTopicId for linking to new community forum
   * add html report for sending status report as email 
   * improve error handling and prevent `un-disconnected` devices
-
+### v2.0.10 - 01.10.18
+  * add missing dependencies
+  
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
