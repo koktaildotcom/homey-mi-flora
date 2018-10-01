@@ -3,6 +3,8 @@
 ## Introduction
 This app integrate the `Xiaomi mi flora sensor` and `Xiaomi mi flora ropot` into Homey.
 
+Do you like the app? You can make me happy by buying me a beer! [![](https://img.shields.io/badge/paypal-donate-green.svg)](https://www.paypal.me/koktaildotcom)
+
 ## Usage
 1. Install app
 2. Add device(s) to Homey.
@@ -19,15 +21,15 @@ You can configure the timeout between polls in the app's settings.
    * value (20%)
    * report (The moisture of Flora 1 is changed to: 20%.)
 2. Some device sensor is updated.
-   * sensor (Moisture)`
+   * sensor (Moisture)
    * value (20%)
    * report (The moisture is updated to: 20%.)
 3. Sensor value is below the configured threshold.
-   * sensor (Moisture)`
+   * sensor (Moisture)
    * value (20%)
    * report (The moisture (20%) is to low. This can be at least 30%.)
 4. Sensor value is above the configured threshold.
-   * sensor (Moisture)`
+   * sensor (Moisture)
    * value (20%)
    * report (The moisture (20%) is to high. This must be a maximum of 15%.)
 
@@ -40,30 +42,35 @@ You can configure the timeout between polls in the app's settings.
 ### Global cards
 #### Trigger cards
 1. Some device sensor is changed.
-   * device (Flora 1)`
-   * sensor (Moisture)`
+   * device (Flora 1)
+   * sensor (Moisture)
    * value (20%)
    * report (The moisture is changed to: 20%.)
 2. Some device sensor is updated.
-   * device (Flora 1)`
-   * sensor (Moisture)`
+   * device (Flora 1)
+   * sensor (Moisture)
    * value (20%)
    * report (The moisture is updated to: 20%.)
 3. Sensor value is below the configured threshold.
-   * device (Flora 1)`
-   * sensor (Moisture)`
+   * device (Flora 1)
+   * sensor (Moisture)
    * value (20%)
    * report (The moisture (20%) is to low. This can be at least 30%.)
 4. Sensor value is above the configured threshold.
-   * device (Flora 1)`
-   * sensor (Moisture)`
+   * device (Flora 1)
+   * sensor (Moisture)
    * value (20%)
    * report (The moisture (20%) is to high. This must be a maximum of 15%.)
 5. Sensor value is outside the configured threshold.
-   * device (Flora 1)`
-   * sensor (Moisture)`
+   * device (Flora 1)
+   * sensor (Moisture)
    * value (20%)
    * report (The moisture (20%) is to high. This must be a maximum of 15%.)
+6. Sensor gives a timeout after 3 tries.
+   * device (Flora 1)
+   * reason (Not in range)
+7. The html report is changed
+   * html_report (table with sensor data)
    
 #### Condition cards
 1. De plant has a correct temperature.
@@ -116,11 +123,18 @@ You can configure the timeout between polls in the app's settings.
 ### v2.0.6 - 25.05.18
   * resolved merge conflicts
 ### v2.0.7 - 17.08.18
-  * resolved issue: https://github.com/koktaildotcom/homey-mi-flora/issues/34
+  * resolved issue: https://github.com/koktaildotcom/homey-mi-flora/issues/34 (Too many settings available for RoPot)
 ### v2.0.8 - 17.08.18
-  * resolved issue: https://github.com/koktaildotcom/homey-mi-flora/issues/41
+  * resolved issue: https://github.com/koktaildotcom/homey-mi-flora/issues/41 (App crash due to missing condition card arguments)
+### v2.0.9 - 01.10.18
+  * resolved issue: https://github.com/koktaildotcom/homey-mi-flora/issues/45 (Add a trigger card: Device is `out of range`)
+  * add homeyCommunityTopicId for linking to new community forum
+  * add html report for sending status report as email 
+  * improve error handling and prevent `un-disconnected` devices
+### v2.0.10 - 01.10.18
+  * add missing dependencies
+### v2.0.11 - 01.10.18
+  * add missing dependencies
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
-
-Do you like the app? You can buy me a beer! [![](https://img.shields.io/badge/paypal-donate-green.svg)](https://www.paypal.me/koktaildotcom)
