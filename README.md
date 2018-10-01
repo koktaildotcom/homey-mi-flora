@@ -135,6 +135,9 @@ You can configure the timeout between polls in the app's settings.
   * add missing dependencies
 ### v2.0.11 - 01.10.18
   * add missing dependencies
+### v2.0.12 - 01.10.18
+  * improve settings page
+  * verbose forced disconnect from BLE after error
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
