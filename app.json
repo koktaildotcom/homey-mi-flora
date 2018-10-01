@@ -15,7 +15,7 @@
         "appliances"
     ],
     "permissions": [],
-    "version": "2.0.8",
+    "version": "2.0.11",
     "compatibility": ">=1.5.0",
     "athomForumDiscussionId": 5030,
     "homeyCommunityTopicId": 45,
@@ -528,23 +528,34 @@
 				]
 			},
 			{
-				"id": "sensor_timout",
+				"id": "sensor_timeout",
 				"title": {
 					"en": "The sensor gives a timeout",
 					"nl": "Een sensor geeft een timeout"
 				},
 				"tokens": [
-					{
-						"name": "device",
-						"title": {
-							"en": "device",
-							"nl": "apparaat"
-						},
-						"example": {
-							"en": "Flowercare 1",
-							"nl": "Flowercare 1"
-						}
-					}
+                    {
+                        "name": "device",
+                        "title": {
+                            "en": "device",
+                            "nl": "apparaat"
+                        },
+                        "example": {
+                            "en": "Flowercare 1",
+                            "nl": "Flowercare 1"
+                        }
+                    },
+                    {
+                        "name": "reason",
+                        "title": {
+                            "en": "reason",
+                            "nl": "oorzaak"
+                        },
+                        "example": {
+                            "en": "Not in range",
+                            "nl": "Niet binnen bereik"
+                        }
+                    }
 				]
 			},
             {
