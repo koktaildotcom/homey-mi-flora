@@ -38,7 +38,7 @@
                 </label>
             </td>
             <td>
-                <input id="updateInterval" class="left" type="number" step=1 min=5 max=99 style="width:55px; padding: 5px 10px;"/>
+                <input id="updateInterval" type="text" value="5"/>
             </td>
         </tr>
         </tbody>
@@ -46,23 +46,30 @@
 
 </fieldset>
 
+<div class="field row">
+    <button id="save" class="right"><p data-i18n="settings.save.label"></p></button>
+</div>
+
 <script type="text/javascript">
 
     function onHomeyReady(Homey) {
+
         Homey.ready();
+
         let updateIntervalElement = document.getElementById('updateInterval');
+        let saveElement = document.getElementById('save');
 
         Homey.get('updateInterval', function (err, updateInterval) {
             if (err) return Homey.alert(err);
-            if (updateInterval != (null || undefined)) {
-              document.getElementById('updateInterval').value = updateInterval;
-            }
+            updateIntervalElement.value = updateInterval;
         });
 
-        updateIntervalElement.addEventListener('input', function (e) {
+        saveElement.addEventListener('click', function (e) {
             Homey.set('updateInterval', updateIntervalElement.value, function (err) {
                 if (err) return Homey.alert(err);
             });
+
+            Homey.alert(__("settings.success"));
         });
     }
 </script>
