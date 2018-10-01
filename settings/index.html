@@ -13,6 +13,10 @@
         .setting-row{
             width: 100%;
         }
+        #updateInterval{
+            width:55px;
+            padding: 5px 10px;
+        }
     </style>
 </head>
 <body>
@@ -38,7 +42,7 @@
                 </label>
             </td>
             <td>
-                <input id="updateInterval" type="text" value="5"/>
+                <input id="updateInterval" class="left" type="number" step=1 min=5 max=60/>
             </td>
         </tr>
         </tbody>
