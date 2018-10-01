@@ -67,16 +67,14 @@ class HomeyMiFlora extends Homey.App {
     /**
      * discover advertisements
      *
+     * @param device MiFloraDevice
+     *
      * @returns {Promise.<MiFloraDevice>}
      */
     discover(device) {
         console.log('Discover');
         return new Promise((resolve, reject) => {
             if (device) {
-                if (device.advertisement) {
-                    console.log('Already found');
-                    resolve(device);
-                }
                 Homey.ManagerBLE.discover().then(function (advertisements) {
                     if (advertisements) {
 
@@ -107,6 +105,8 @@ class HomeyMiFlora extends Homey.App {
     /**
      * connect to advertisement and return peripheral
      *
+     * @param device MiFloraDevice
+     *
      * @returns {Promise.<MiFloraDevice>}
      */
     connect(device) {
@@ -128,16 +128,19 @@ class HomeyMiFlora extends Homey.App {
     /**
      * disconnect from peripheral
      *
+     * @param device  MiFloraDevice
+     * @param verbose boolean
+     *
      * @returns {Promise.<MiFloraDevice>}
      */
-    disconnect(device) {
+    disconnect(device, verbose) {
         console.log('Disconnect');
         return new Promise((resolve, reject) => {
 
             if (device && device.peripheral) {
                 device.peripheral.disconnect((error, peripheral) => {
-                    if (error) {
-                        reject('failed connection to peripheral: ' + error);
+                    if (error && verbose) {
+                        reject('failed disconnecting from peripheral: ' + error);
                     }
                     resolve(device);
                 });
@@ -150,6 +153,8 @@ class HomeyMiFlora extends Homey.App {
 
     /**
      * disconnect from peripheral
+     *
+     * @param device MiFloraDevice
      *
      * @returns {Promise.<MiFloraDevice>}
      */
@@ -262,6 +267,8 @@ class HomeyMiFlora extends Homey.App {
 
     /**
      * disconnect from peripheral
+     *
+     * @param driver MiFloraDriver
      *
      * @returns {Promise.<object[]>}
      */
