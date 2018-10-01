@@ -31,6 +31,7 @@
     "capability": {
         "measure_temperature": {
             "name" : "temperature",
+            "suffix" : " °C",
             "changed" : "The temperature is changed to: __value__°C.",
             "device_changed" : "The temperature of `__plant__` is changed to: __value__°C.",
             "device_updated" : "The temperature of `__plant__` is updated to: __value__°C.",
@@ -41,6 +42,7 @@
         },
         "measure_luminance": {
             "name" : "sunlight",
+            "suffix" : " lux",
             "changed" : "The sunlight is changed to: __value__ lux.",
             "device_changed" : "The sunlight of `__plant__` is changed to: __value__ lux.",
             "device_updated" : "The sunlight of `__plant__` is updated to: __value__ lux.",
@@ -51,6 +53,7 @@
         },
         "flora_measure_fertility": {
             "name" : "nutrition",
+            "suffix" : " µS/cm",
             "changed" : "The temperature is changed to: __value__ µS/cm.",
             "device_changed" : "The temperature of `__plant__` is changed to: __value__ µS/cm.",
             "device_updated" : "The temperature of `__plant__` is updated to: __value__ µS/cm.",
@@ -61,6 +64,7 @@
         },
         "flora_measure_moisture": {
             "name": "moisture",
+            "suffix" : " %",
             "changed" : "The moisture is changed to: __value__%.",
             "device_changed" : "The moisture of `__plant__` is changed to: __value__%.",
             "device_updated" : "The moisture of `__plant__` is updated to: __value__%.",
