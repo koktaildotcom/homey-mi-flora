@@ -133,6 +133,8 @@ You can configure the timeout between polls in the app's settings.
   * improve error handling and prevent `un-disconnected` devices
 ### v2.0.10 - 01.10.18
   * add missing dependencies
+### v2.0.11 - 01.10.18
+  * add missing dependencies
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
