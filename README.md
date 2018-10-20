@@ -140,6 +140,7 @@ You can configure the timeout between polls in the app's settings.
   * verbose forced disconnect from BLE after error
 ### v2.0.13 - 20.10.18
   * filter the existing devices out of the device list on pairing
-   
+  * add readable time format to HTML report
+  
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora

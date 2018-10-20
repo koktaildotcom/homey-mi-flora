@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
+    <script src="node_modules/moment/moment.js"></script>
     <script>
 
         /**
@@ -57,7 +57,9 @@
             title.style.fontFamily = 'sans-serif';
             title.style.fontSize = '1em';
             title.style.color = textColor;
-            title.innerHTML = deviceDisplay.name + ' (' + deviceDisplay.lastUpdate + ')';
+            moment.locale('nl')
+            let momentDate = moment(new Date(Date.parse(deviceDisplay.lastUpdate)));
+            title.innerHTML = deviceDisplay.name + ' (' + momentDate.fromNow() + ')';
             td.appendChild(title);
             tr.appendChild(td);
             flowerTable.appendChild(tr);
@@ -265,7 +267,7 @@
 
             const deviceDisplay = {
                 'name': 'Device name',
-                'lastUpdate': Date.parse(new Date().toISOString()),
+                'lastUpdate': new Date().toISOString(),
                 'capabilities': {
                     'temperature': {
                         'sensor' : 'temperature',
