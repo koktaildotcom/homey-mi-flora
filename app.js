@@ -276,7 +276,17 @@ class HomeyMiFlora extends Homey.App {
         return new Promise((resolve, reject) => {
             let devices = [];
             let index = 0;
+
+            let currentUuids = [];
+            driver.getDevices().forEach(device => {
+                let data = device.getData();
+                currentUuids.push(data.uuid);
+            });
+
             Homey.ManagerBLE.discover().then(function (advertisements) {
+                advertisements = advertisements.filter(function (advertisement) {
+                    return (currentUuids.indexOf(advertisement.uuid) === -1);
+                });
                 advertisements.forEach(function (advertisement) {
                     if (advertisement.localName === driver.getMiFloraBleIdentification()) {
                         ++index;
