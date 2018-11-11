@@ -94,7 +94,10 @@ class HomeyMiFlora extends Homey.App {
                     else {
                         reject("Cannot find any advertisements");
                     }
-                });
+                })
+                    .catch(function (error) {
+                        reject(error);
+                    });
             }
             else {
                 reject("No device found");
@@ -136,14 +139,14 @@ class HomeyMiFlora extends Homey.App {
     disconnect(device, verbose) {
         console.log('Disconnect');
         return new Promise((resolve, reject) => {
-
             if (device && device.peripheral) {
-                device.peripheral.disconnect((error, peripheral) => {
-                    if (error && verbose) {
+                device.peripheral.disconnect()
+                    .then(function () {
+                        resolve(device);
+                    })
+                    .catch(function (error) {
                         reject('failed disconnecting from peripheral: ' + error);
-                    }
-                    resolve(device);
-                });
+                    });
             }
             else {
                 reject('cannot disconnect to unknown device or peripheral');

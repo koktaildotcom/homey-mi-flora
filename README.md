@@ -148,6 +148,9 @@ You can configure the timeout between polls in the app's settings.
   * improve check on available settings
   * make html rapport generating optional
   * add uuid to device settings for flora sensor
+### v2.0.16 - 11.11.18
+  * resolved ManagerSettings get exception
+  * improve handling exceptions
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
