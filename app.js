@@ -97,7 +97,6 @@ class HomeyMiFlora extends Homey.App {
      * init the app
      */
     onInit() {
-        console.log(process.env.HOMEY_VERSION);
         console.log('Successfully init HomeyMiFlora version: %s', Homey.app.manifest.version);
     }
 
@@ -147,7 +146,7 @@ class HomeyMiFlora extends Homey.App {
             console.log('Using the 1.5.11 compatible find strategy');
             return new Promise((resolve, reject) => {
                 if (device) {
-                    Homey.ManagerBLE.find(device.getAddress(), 5000).then(function (advertisement) {
+                    Homey.ManagerBLE.find(device.getAddress()).then(function (advertisement) {
                         if (advertisement) {
 
                             device.advertisement = advertisement;
