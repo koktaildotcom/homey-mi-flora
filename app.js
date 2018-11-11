@@ -61,7 +61,7 @@ class HomeyMiFlora extends Homey.App {
      * init the app
      */
     onInit() {
-        console.log('Successfully init HomeyMiFlora');
+        console.log('Successfully init HomeyMiFlora version: %s', Homey.app.manifest.version);
     }
 
     /**

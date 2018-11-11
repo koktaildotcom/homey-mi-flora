@@ -141,8 +141,13 @@ You can configure the timeout between polls in the app's settings.
 ### v2.0.13 - 20.10.18
   * filter the existing devices out of the device list on pairing
   * add readable time format to HTML report
-### v2.0.14 - 20.10.24
+### v2.0.14 - 24.10.18
   * throw error and stop loading if no devices can be found
+### v2.0.15 - 11.11.18
+  * add version number app for logging
+  * improve check on available settings
+  * make html rapport generating optional
+  * add uuid to device settings for flora sensor
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
