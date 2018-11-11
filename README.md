@@ -151,6 +151,9 @@ You can configure the timeout between polls in the app's settings.
 ### v2.0.16 - 11.11.18
   * resolved ManagerSettings get exception
   * improve handling exceptions
-  
+  * limit timeout by 5 seconds
+### v2.0.17 - 11.11.18
+    * use a different strategy based on homey version
+    
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora

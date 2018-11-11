@@ -6,8 +6,44 @@ const DATA_CHARACTERISTIC_UUID = '00001a0100001000800000805f9b34fb';
 const REALTIME_CHARACTERISTIC_UUID = '00001a0000001000800000805f9b34fb';
 const FIRMWARE_CHARACTERISTIC_UUID = '00001a0200001000800000805f9b34fb';
 
+function splitVersion(version) {
+    let parts = version.split(".");
+    let firmware = [];
+    for (let x = 0; x < parts.length; x++) {
+        if (x < 3) {
+            let part = parts[x];
+            let number = '';
+            for (let i = 0; i < part.length; i++) {
+                number += part.charAt(i).replace(/\D/g, '');
+            }
+            firmware.push(number);
+        }
+    }
+    return firmware;
+}
+
+function versionIsCompatible(target, compareWith) {
+    let targetRange = splitVersion(target);
+    let compareRange = splitVersion(compareWith);
+    for (let i = 0; i < targetRange.length; i++) {
+        if (!compareRange[i]) {
+            return false;
+        }
+        if (parseInt(targetRange[i]) > parseInt(compareRange[i])) {
+            return false;
+        }
+        else {
+            if (i + 1 === 3) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
 // make the BLE beta backwards compatible for 1.5.8 and maybe previous versions (not tested).
-if (process.env.HOMEY_VERSION.replace(/\W/g, '') < 159) {
+if (!versionIsCompatible('1.5.9', process.env.HOMEY_VERSION)) {
     Homey.BlePeripheral.prototype.disconnect = function disconnect(callback) {
         if (typeof callback === 'function')
             return Homey.util.callbackAfterPromise(this, this.disconnect, arguments);
@@ -61,6 +97,7 @@ class HomeyMiFlora extends Homey.App {
      * init the app
      */
     onInit() {
+        console.log(process.env.HOMEY_VERSION);
         console.log('Successfully init HomeyMiFlora version: %s', Homey.app.manifest.version);
     }
 
@@ -73,36 +110,63 @@ class HomeyMiFlora extends Homey.App {
      */
     discover(device) {
         console.log('Discover');
-        return new Promise((resolve, reject) => {
-            if (device) {
-                Homey.ManagerBLE.discover().then(function (advertisements) {
-                    if (advertisements) {
+        if (!versionIsCompatible('1.5.11', process.env.HOMEY_VERSION)) {
+            console.log('Using the 1.5.11 incompatible discovery strategy');
+            return new Promise((resolve, reject) => {
+                if (device) {
+                    Homey.ManagerBLE.discover().then(function (advertisements) {
+                        if (advertisements) {
 
-                        let matchedAdvertisements = advertisements.filter(function (advertisement) {
-                            return (advertisement.uuid === device.getAddress() || advertisement.uuid === device.getAddress());
+                            let matchedAdvertisements = advertisements.filter(function (advertisement) {
+                                return (advertisement.uuid === device.getAddress() || advertisement.uuid === device.getAddress());
+                            });
+
+                            if (matchedAdvertisements.length === 1) {
+                                device.advertisement = matchedAdvertisements[0];
+
+                                resolve(device);
+                            }
+                            else {
+                                reject("Cannot find advertisement with uuid " + device.getAddress());
+                            }
+                        }
+                        else {
+                            reject("Cannot find any advertisements");
+                        }
+                    })
+                        .catch(function (error) {
+                            reject(error);
                         });
+                }
+                else {
+                    reject("No device found");
+                }
+            });
+        }
+        else {
+            console.log('Using the 1.5.11 compatible find strategy');
+            return new Promise((resolve, reject) => {
+                if (device) {
+                    Homey.ManagerBLE.find(device.getAddress(), 5000).then(function (advertisement) {
+                        if (advertisement) {
 
-                        if (matchedAdvertisements.length === 1) {
-                            device.advertisement = matchedAdvertisements[0];
+                            device.advertisement = advertisement;
 
                             resolve(device);
                         }
                         else {
-                            reject("Cannot find advertisement with uuid " + device.getAddress());
+                            reject("Cannot find any advertisements");
                         }
-                    }
-                    else {
-                        reject("Cannot find any advertisements");
-                    }
-                })
-                    .catch(function (error) {
-                        reject(error);
-                    });
-            }
-            else {
-                reject("No device found");
-            }
-        });
+                    })
+                        .catch(function (error) {
+                            reject(error);
+                        });
+                }
+                else {
+                    reject("No device found");
+                }
+            });
+        }
     }
 
     /**
