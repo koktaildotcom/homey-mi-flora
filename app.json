@@ -156,6 +156,15 @@
                                 "nl": "Laatste update"
                             },
                             "value": ""
+                        },
+                        {
+                            "id": "uuid",
+                            "type": "label",
+                            "label": {
+                                "en": "Device uuid address",
+                                "nl": "Apparaat uuid adres"
+                            },
+                            "value": ""
                         }
                     ]
                 },

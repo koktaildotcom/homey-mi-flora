@@ -235,7 +235,8 @@ class HomeyMiFlora extends Homey.App {
 
                                                     device.setSettings({
                                                         firmware_version: firmwareVersion,
-                                                        last_updated: new Date().toISOString()
+                                                        last_updated: new Date().toISOString(),
+                                                        uuid: device.getData().uuid
                                                     });
 
                                                     resolve(device);
