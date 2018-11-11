@@ -13,7 +13,12 @@
         },
         "configure" : "Zoek apparaten"
     },
-    "settings" : {
+    "settings" :  {
+        "html_report" : {
+            "label" :  "Html rapportage instellingen",
+            "title" :  "Html rapportage aanzetten",
+            "note" :  "Als deze optie aanstaat zal er een html rapportage worden gegenereerd"
+        },
         "title" : "Instellingen Xiaomi Mi Flora",
         "update" : "Update instellingen",
         "interval" : {

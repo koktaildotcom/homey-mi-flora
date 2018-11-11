@@ -14,6 +14,11 @@
         "configure" : "Search devices"
     },
     "settings" : {
+        "html_report" : {
+            "label" :  "Html report settings",
+            "title" :  "Enable generating html report",
+            "note" :  "It this option is enabled the app will generate a html status report for all sensors"
+        },
         "title" : "Settings Xiaomi Mi Flora",
         "update" : "Update settings",
         "interval" : {
