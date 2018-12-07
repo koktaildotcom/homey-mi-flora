@@ -110,7 +110,7 @@ class HomeyMiFlora extends Homey.App {
     discover(device) {
         console.log('Discover');
         if (!versionIsCompatible('1.5.11', process.env.HOMEY_VERSION)) {
-            console.log('Using the 1.5.11 incompatible discovery strategy');
+            console.log('Using the 1.5.11 incompatible `discovery` strategy');
             return new Promise((resolve, reject) => {
                 if (device) {
                     Homey.ManagerBLE.discover().then(function (advertisements) {
@@ -143,7 +143,7 @@ class HomeyMiFlora extends Homey.App {
             });
         }
         else {
-            console.log('Using the 1.5.11 compatible find strategy');
+            console.log('Using the 1.5.11 compatible `find` strategy');
             return new Promise((resolve, reject) => {
                 if (device) {
                     Homey.ManagerBLE.find(device.getAddress()).then(function (advertisement) {
