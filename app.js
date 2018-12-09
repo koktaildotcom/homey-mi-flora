@@ -29,8 +29,8 @@ function versionIsCompatible(target, compareWith) {
         if (!compareRange[i]) {
             return false;
         }
-        if (parseInt(targetRange[i]) > parseInt(compareRange[i])) {
-            return false;
+        if (parseInt(targetRange[i]) < parseInt(compareRange[i])) {
+            return true;
         }
         else {
             if (i + 1 === 3) {
@@ -98,6 +98,43 @@ class HomeyMiFlora extends Homey.App {
      */
     onInit() {
         console.log('Successfully init HomeyMiFlora version: %s', Homey.app.manifest.version);
+
+        this.deviceSensorUpdated = new Homey.FlowCardTriggerDevice('device_sensor_updated');
+        this.deviceSensorUpdated.register();
+
+        this.globalSensorUpdated = new Homey.FlowCardTrigger('sensor_updated');
+        this.globalSensorUpdated.register();
+
+
+        this.deviceSensorChanged = new Homey.FlowCardTriggerDevice('device_sensor_changed');
+        this.deviceSensorChanged.register();
+
+        this.globalSensorChanged = new Homey.FlowCardTrigger('sensor_changed');
+        this.globalSensorChanged.register();
+
+        this.globalSensorTimeout = new Homey.FlowCardTrigger('sensor_timeout');
+        this.globalSensorTimeout.register();
+
+
+        this.globalSensorThresholdMinExceeds = new Homey.FlowCardTrigger('sensor_threshold_min_exceeds');
+        this.globalSensorThresholdMinExceeds.register();
+
+        this.deviceSensorThresholdMinExceeds = new Homey.FlowCardTrigger('device_sensor_threshold_min_exceeds');
+        this.deviceSensorThresholdMinExceeds.register();
+
+
+        this.globalSensorThresholdMaxExceeds = new Homey.FlowCardTrigger('sensor_threshold_max_exceeds');
+        this.globalSensorThresholdMaxExceeds.register();
+
+        this.deviceSensorThresholdMaxExceeds = new Homey.FlowCardTrigger('device_sensor_threshold_max_exceeds');
+        this.deviceSensorThresholdMaxExceeds.register();
+
+
+        this.globalSensorOutsideThreshold = new Homey.FlowCardTrigger('sensor_outside_threshold');
+        this.globalSensorOutsideThreshold.register();
+
+        this.deviceSensorOutsideThreshold = new Homey.FlowCardTrigger('device_sensor_outside_threshold');
+        this.deviceSensorOutsideThreshold.register();
     }
 
     /**
