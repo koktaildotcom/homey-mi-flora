@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "jsdom": "^12.1.0",
-    "moment": "^2.22.2"
-  }
-}

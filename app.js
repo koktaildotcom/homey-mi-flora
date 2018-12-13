@@ -2,94 +2,7 @@
 
 const Homey = require('homey');
 
-const DATA_CHARACTERISTIC_UUID = '00001a0100001000800000805f9b34fb';
-const REALTIME_CHARACTERISTIC_UUID = '00001a0000001000800000805f9b34fb';
-const FIRMWARE_CHARACTERISTIC_UUID = '00001a0200001000800000805f9b34fb';
-
-function splitVersion(version) {
-    let parts = version.split(".");
-    let firmware = [];
-    for (let x = 0; x < parts.length; x++) {
-        if (x < 3) {
-            let part = parts[x];
-            let number = '';
-            for (let i = 0; i < part.length; i++) {
-                number += part.charAt(i).replace(/\D/g, '');
-            }
-            firmware.push(number);
-        }
-    }
-    return firmware;
-}
-
-function versionIsCompatible(target, compareWith) {
-    let targetRange = splitVersion(target);
-    let compareRange = splitVersion(compareWith);
-    for (let i = 0; i < targetRange.length; i++) {
-        if (!compareRange[i]) {
-            return false;
-        }
-        if (parseInt(targetRange[i]) < parseInt(compareRange[i])) {
-            return true;
-        }
-        else {
-            if (i + 1 === 3) {
-                return true;
-            }
-        }
-    }
-
-    return false;
-}
-
-// make the BLE beta backwards compatible for 1.5.8 and maybe previous versions (not tested).
-if (!versionIsCompatible('1.5.9', process.env.HOMEY_VERSION)) {
-    Homey.BlePeripheral.prototype.disconnect = function disconnect(callback) {
-        if (typeof callback === 'function')
-            return Homey.util.callbackAfterPromise(this, this.disconnect, arguments);
-
-        const disconnectPromise = new Promise((resolve, reject) => {
-            this._disconnectQueue.push((err, result) => err ? reject(err) : resolve(result));
-        });
-
-        if (this._disconnectLockCounter === 0) {
-            clearTimeout(this._disconnectTimeout);
-            this._disconnectTimeout = setTimeout(() => {
-                if (this._disconnectLockCounter === 0) {
-                    this._disconnected();
-                    // console.log('called disconnect', new Error().stack);
-                    this.__client.emit('disconnect', [this._connectionId, this.uuid], err => {
-                        this._connectionId = null;
-                        this._disconnectQueue.forEach(cb => cb(err));
-                        this._disconnectQueue.length = 0;
-                    });
-                }
-            }, 100);
-        }
-
-        return disconnectPromise;
-    };
-
-    Homey.BlePeripheral.prototype.getService = async function getService(uuid, callback) {
-        if (typeof callback === 'function')
-            return Homey.util.callbackAfterPromise(this, this.getService, arguments);
-
-        this.resetConnectionWarning();
-
-        let service = Array.isArray(this.services) ? this.services.find(service => service.uuid === uuid) : null;
-
-        if (!service) {
-            const [discoveredService] = await this.discoverServices([uuid]);
-
-            if (!discoveredService && !Array.isArray(this.services)) {
-                return Promise.reject(new Error('Error, could not get services'));
-            }
-            service = discoveredService;
-        }
-
-        return service || Promise.reject(new Error(`No service found with UUID ${uuid}`));
-    };
-}
+const DATA_SERVICE_UUID = '0000120400001000800000805f9b34fb';
 
 class HomeyMiFlora extends Homey.App {
 
@@ -105,7 +18,6 @@ class HomeyMiFlora extends Homey.App {
         this.globalSensorUpdated = new Homey.FlowCardTrigger('sensor_updated');
         this.globalSensorUpdated.register();
 
-
         this.deviceSensorChanged = new Homey.FlowCardTriggerDevice('device_sensor_changed');
         this.deviceSensorChanged.register();
 
@@ -115,25 +27,22 @@ class HomeyMiFlora extends Homey.App {
         this.globalSensorTimeout = new Homey.FlowCardTrigger('sensor_timeout');
         this.globalSensorTimeout.register();
 
-
         this.globalSensorThresholdMinExceeds = new Homey.FlowCardTrigger('sensor_threshold_min_exceeds');
         this.globalSensorThresholdMinExceeds.register();
 
-        this.deviceSensorThresholdMinExceeds = new Homey.FlowCardTrigger('device_sensor_threshold_min_exceeds');
+        this.deviceSensorThresholdMinExceeds = new Homey.FlowCardTriggerDevice('device_sensor_threshold_min_exceeds');
         this.deviceSensorThresholdMinExceeds.register();
-
 
         this.globalSensorThresholdMaxExceeds = new Homey.FlowCardTrigger('sensor_threshold_max_exceeds');
         this.globalSensorThresholdMaxExceeds.register();
 
-        this.deviceSensorThresholdMaxExceeds = new Homey.FlowCardTrigger('device_sensor_threshold_max_exceeds');
+        this.deviceSensorThresholdMaxExceeds = new Homey.FlowCardTriggerDevice('device_sensor_threshold_max_exceeds');
         this.deviceSensorThresholdMaxExceeds.register();
-
 
         this.globalSensorOutsideThreshold = new Homey.FlowCardTrigger('sensor_outside_threshold');
         this.globalSensorOutsideThreshold.register();
 
-        this.deviceSensorOutsideThreshold = new Homey.FlowCardTrigger('device_sensor_outside_threshold');
+        this.deviceSensorOutsideThreshold = new Homey.FlowCardTriggerDevice('device_sensor_outside_threshold');
         this.deviceSensorOutsideThreshold.register();
     }
 
@@ -142,117 +51,30 @@ class HomeyMiFlora extends Homey.App {
      *
      * @param device MiFloraDevice
      *
-     * @returns {Promise.<MiFloraDevice>}
+     * @returns {Promise.<BleAdvertisement>}
      */
-    discover(device) {
-        console.log('Discover');
-        if (!versionIsCompatible('1.5.11', process.env.HOMEY_VERSION)) {
-            console.log('Using the 1.5.11 incompatible `discovery` strategy');
-            return new Promise((resolve, reject) => {
-                if (device) {
-                    Homey.ManagerBLE.discover().then(function (advertisements) {
-                        if (advertisements) {
+    async discover(device) {
+        return await Homey.ManagerBLE.discover().then(function (advertisements) {
 
-                            let matchedAdvertisements = advertisements.filter(function (advertisement) {
-                                return (advertisement.uuid === device.getAddress() || advertisement.uuid === device.getAddress());
-                            });
-
-                            if (matchedAdvertisements.length === 1) {
-                                device.advertisement = matchedAdvertisements[0];
-
-                                resolve(device);
-                            }
-                            else {
-                                reject("Cannot find advertisement with uuid " + device.getAddress());
-                            }
-                        }
-                        else {
-                            reject("Cannot find any advertisements");
-                        }
-                    })
-                        .catch(function (error) {
-                            reject(error);
-                        });
-                }
-                else {
-                    reject("No device found");
-                }
+            let matchedAdvertisements = advertisements.filter(function (advertisement) {
+                return (advertisement.uuid === device.getAddress() || advertisement.uuid === device.getAddress());
             });
-        }
-        else {
-            console.log('Using the 1.5.11 compatible `find` strategy');
-            return new Promise((resolve, reject) => {
-                if (device) {
-                    Homey.ManagerBLE.find(device.getAddress()).then(function (advertisement) {
-                        if (advertisement) {
 
-                            device.advertisement = advertisement;
-
-                            resolve(device);
-                        }
-                        else {
-                            reject("Cannot find any advertisements");
-                        }
-                    })
-                        .catch(function (error) {
-                            reject(error);
-                        });
-                }
-                else {
-                    reject("No device found");
-                }
-            });
-        }
-    }
-
-    /**
-     * connect to advertisement and return peripheral
-     *
-     * @param device MiFloraDevice
-     *
-     * @returns {Promise.<MiFloraDevice>}
-     */
-    connect(device) {
-        console.log('Connect');
-        return new Promise((resolve, reject) => {
-
-            device.advertisement.connect((error, peripheral) => {
-                if (error) {
-                    reject('failed connection to peripheral: ' + error);
-                }
-
-                device.peripheral = peripheral;
-
-                resolve(device);
-            });
-        })
-    }
-
-    /**
-     * disconnect from peripheral
-     *
-     * @param device  MiFloraDevice
-     * @param verbose boolean
-     *
-     * @returns {Promise.<MiFloraDevice>}
-     */
-    disconnect(device, verbose) {
-        console.log('Disconnect');
-        return new Promise((resolve, reject) => {
-            if (device && device.peripheral) {
-                device.peripheral.disconnect()
-                    .then(function () {
-                        resolve(device);
-                    })
-                    .catch(function (error) {
-                        reject('failed disconnecting from peripheral: ' + error);
-                    });
+            if (matchedAdvertisements.length === 0) {
+                throw new Error('Advertisement not found.');
             }
-            else {
-                reject('cannot disconnect to unknown device or peripheral');
-            }
+
+            return matchedAdvertisements[0];
         })
+            .catch((error) => {
+                throw new Error(error);
+            });
+
+        // await Homey.ManagerBLE.find(device.getAddress()).then(function (advertisement) {
+        //     return advertisement;
+        // });
     }
+
 
     /**
      * disconnect from peripheral
@@ -265,8 +87,7 @@ class HomeyMiFlora extends Homey.App {
         return new Promise((resolve, reject) => {
             if (device) {
                 console.log('Update :%s', device.getName());
-            }
-            else {
+            } else {
                 reject('Cannot update device anymore');
             }
             device.peripheral.discoverServices((error, services) => {
@@ -308,8 +129,7 @@ class HomeyMiFlora extends Homey.App {
                                                             device.updateCapabilityValue(characteristic, characteristicValues[characteristic]);
                                                         }
                                                     });
-                                                }
-                                                else {
+                                                } else {
                                                     reject('No data found for sensor values.');
                                                 }
                                             })
@@ -343,8 +163,7 @@ class HomeyMiFlora extends Homey.App {
                                                     });
 
                                                     resolve(device);
-                                                }
-                                                else {
+                                                } else {
                                                     reject('No data found for firmware.');
                                                 }
                                             });
@@ -355,19 +174,18 @@ class HomeyMiFlora extends Homey.App {
                                             break;
                                     }
                                 })
-                            }
-                            else {
+                            } else {
                                 reject('No characteristics found.');
                             }
                         });
                     });
-                }
-                else {
+                } else {
                     reject('No services found.');
                 }
             });
         });
     }
+
 
     /**
      * disconnect from peripheral
