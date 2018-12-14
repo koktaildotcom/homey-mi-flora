@@ -2,8 +2,6 @@
 
 const Homey = require('homey');
 
-const DATA_SERVICE_UUID = '0000120400001000800000805f9b34fb';
-
 class HomeyMiFlora extends Homey.App {
 
     /**
@@ -54,6 +52,7 @@ class HomeyMiFlora extends Homey.App {
      * @returns {Promise.<BleAdvertisement>}
      */
     async discover(device) {
+        console.log('discover');
         return await Homey.ManagerBLE.discover().then(function (advertisements) {
 
             let matchedAdvertisements = advertisements.filter(function (advertisement) {
@@ -64,6 +63,7 @@ class HomeyMiFlora extends Homey.App {
                 throw new Error('Advertisement not found.');
             }
 
+            console.log('return discover->matchedAdvertisements');
             return matchedAdvertisements[0];
         })
             .catch((error) => {
