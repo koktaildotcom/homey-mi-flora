@@ -115,7 +115,8 @@
                 "measure_temperature",
                 "flora_measure_fertility",
                 "flora_measure_moisture",
-                "measure_battery"
+                "measure_battery",
+                "onoff"
             ],
             "pair": [
                 {
@@ -297,7 +298,8 @@
                 "measure_luminance",
                 "flora_measure_fertility",
                 "flora_measure_moisture",
-                "measure_battery"
+                "measure_battery",
+                "onoff"
             ],
             "pair": [
                 {
@@ -520,6 +522,10 @@
                                 "flora_measure_moisture": "/assets/moisture.svg"
                             }
                         }
+                    },
+                    {
+                        "id": "toggle",
+                        "capabilities": [ "onoff" ]
                     }
                 ]
             }
