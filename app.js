@@ -29,8 +29,8 @@ function versionIsCompatible(target, compareWith) {
         if (!compareRange[i]) {
             return false;
         }
-        if (parseInt(targetRange[i]) > parseInt(compareRange[i])) {
-            return false;
+        if (parseInt(targetRange[i]) < parseInt(compareRange[i])) {
+            return true;
         }
         else {
             if (i + 1 === 3) {
