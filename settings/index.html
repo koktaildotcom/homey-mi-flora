@@ -25,34 +25,6 @@
 
 <fieldset>
     <legend>
-        <p data-i18n="settings.html_report.label"></p>
-    </legend>
-
-    <table class="setting-row">
-        <table class="setting-row">
-            <tbody>
-            <tr>
-                <td colspan="2">
-                    <i data-i18n="settings.html_report.note" class="note"></i>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="updateInterval">
-                        <p data-i18n="settings.html_report.title"></p>
-                    </label>
-                </td>
-                <td>
-                    <input id="htmlReportEnabled" class="left" type="checkbox"/>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </table>
-</fieldset>
-
-<fieldset>
-    <legend>
         <p data-i18n="settings.update"></p>
     </legend>
 
@@ -93,19 +65,9 @@
             updateIntervalElement.value = updateInterval;
         });
 
-        let htmlReportEnabledElement = document.getElementById('htmlReportEnabled');
-        Homey.get('htmlReportEnabled', function (err, htmlReportEnabled) {
-            if (err) return Homey.alert(err);
-            htmlReportEnabledElement.checked = htmlReportEnabled;
-        });
-
         let saveElement = document.getElementById('save');
         saveElement.addEventListener('click', function (e) {
             Homey.set('updateInterval', updateIntervalElement.value, function (err) {
-                if (err) return Homey.alert(err);
-            });
-
-            Homey.set('htmlReportEnabled', htmlReportEnabledElement.checked, function (err) {
                 if (err) return Homey.alert(err);
             });
 

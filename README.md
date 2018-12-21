@@ -69,8 +69,6 @@ You can configure the timeout between polls in the app's settings.
 6. Sensor gives a timeout after 3 tries.
    * device (Flora 1)
    * reason (Not in range)
-7. The html report is changed
-   * html_report (table with sensor data)
    
 #### Condition cards
 1. De plant has a correct temperature.

@@ -18,7 +18,7 @@
         "homey:wireless:ble"
     ],
     "version": "2.0.17",
-    "compatibility": ">=1.5.0",
+    "compatibility": ">=2.0.0",
     "athomForumDiscussionId": 5030,
     "homeyCommunityTopicId": 45,
     "tags": {
@@ -72,6 +72,7 @@
                 "en": "Conductivity",
                 "nl": "Geleidingsvermogen"
             },
+            "icon": "/assets/nutritions.svg",
             "getable": true,
             "setable": false,
             "units": {
@@ -88,6 +89,7 @@
                 "en": "Moisture",
                 "nl": "Vochtigheid"
             },
+            "icon": "/assets/moisture.svg",
             "getable": true,
             "setable": false,
             "units": {
@@ -272,9 +274,9 @@
                         ],
                         "options": {
                             "icons": {
-                                "measure_temperature": "/assets/temperature.svg",
-                                "flora_measure_fertility": "/assets/nutritions.svg",
-                                "flora_measure_moisture": "/assets/moisture.svg"
+                                "measure_temperature": "./drivers/ropot/assets/temperature.svg",
+                                "flora_measure_fertility": "./drivers/ropot/assets/nutritions.svg",
+                                "flora_measure_moisture": "./drivers/ropot/assets/moisture.svg"
                             }
                         }
                     }
@@ -527,26 +529,6 @@
     ],
     "flow": {
         "triggers": [
-			{
-				"id": "html_report",
-				"title": {
-					"en": "The html report is changed",
-					"nl": "De html rapportage is verandert"
-				},
-				"tokens": [
-					{
-						"name": "html_report",
-						"title": {
-							"en": "html report",
-							"nl": "html rapport"
-						},
-						"example": {
-							"en": "The moisture (22%) is to low. This can be at least 30%.",
-							"nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
-						}
-					}
-				]
-			},
 			{
 				"id": "sensor_timeout",
 				"title": {
