@@ -151,8 +151,14 @@ You can configure the timeout between polls in the app's settings.
   * improve handling exceptions
   * limit timeout by 5 seconds
   * use a different strategy based on homey version
-### v2.0.17 - 06.12.2018
+### v2.0.17 - 11.12.2018
   * add BLE permission into manifest
-    
+### v2.0.18 - 12.12.2018
+  * removed BLE permission into manifest due to incompatibility with < v2.0.0
+### v2.0.19 - 21.12.2018
+  * removed html report to prevent cpu warns
+  * changed version number strategy because it failed with on 2.0.0
+  * try to resolve `not setting a timer on exception` issue
+  
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
