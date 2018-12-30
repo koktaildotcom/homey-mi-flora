@@ -70,7 +70,7 @@ class HomeyMiFlora extends Homey.App {
                 throw new Error(error);
             });
 
-        // await Homey.ManagerBLE.find(device.getAddress()).then(function (advertisement) {
+        // return await Homey.ManagerBLE.find(device.getAddress()).then(function (advertisement) {
         //     return advertisement;
         // });
     }

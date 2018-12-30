@@ -537,7 +537,7 @@
 				},
 				"tokens": [
                     {
-                        "name": "device",
+                        "name": "deviceName",
                         "title": {
                             "en": "device",
                             "nl": "apparaat"
@@ -601,7 +601,7 @@
                         }
                     },
                     {
-                        "name": "device",
+                        "name": "deviceName",
                         "title": {
                             "en": "device",
                             "nl": "apparaat"
@@ -654,7 +654,7 @@
                         }
                     },
                     {
-                        "name": "device",
+                        "name": "deviceName",
                         "title": {
                             "en": "device",
                             "nl": "apparaat"
@@ -707,7 +707,7 @@
                         }
                     },
                     {
-                        "name": "device",
+                        "name": "deviceName",
                         "title": {
                             "en": "device",
                             "nl": "apparaat"
@@ -760,7 +760,7 @@
                         }
                     },
                     {
-                        "name": "device",
+                        "name": "deviceName",
                         "title": {
                             "en": "device",
                             "nl": "apparaat"
@@ -813,7 +813,7 @@
                         }
                     },
                     {
-                        "name": "device",
+                        "name": "deviceName",
                         "title": {
                             "en": "device",
                             "nl": "apparaat"
