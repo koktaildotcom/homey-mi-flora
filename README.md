@@ -159,6 +159,12 @@ You can configure the timeout between polls in the app's settings.
   * removed html report to prevent cpu warns
   * changed version number strategy because it failed with on 2.0.0
   * try to resolve `not setting a timer on exception` issue
+### v2.1.0 - 11.01.2019
+  * trigger flows static thought the app (best practice 2.0)
+  * rewrite the update sequence part for better performance
+  * try to resolve issue with bug https://github.com/athombv/homey-apps-sdk-issues/issues/11
+  * try to resolve issue with bug https://github.com/athombv/homey-apps-sdk-issues/issues/7
+  * fixed typo bug `true` => `this` in the `Homey.FlowCardTriggerDevice`
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
