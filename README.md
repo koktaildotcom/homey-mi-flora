@@ -5,6 +5,19 @@ This app integrate the `Xiaomi mi flora sensor` and `Xiaomi mi flora ropot` into
 
 Do you like the app? You can make me happy by buying me a beer! [![](https://img.shields.io/badge/paypal-donate-green.svg)](https://www.paypal.me/koktaildotcom)
 
+## Q&amp;A
+
+> **Q1**  Why can’t the sensor be found by Homey?
+
+* _Check if the eensor is not connected to another bluetooth device. The  `Xiaomi Mi Flora`  app for example_
+
+> **Q1**  Why are the readings from the sensors different than in the  `Xiaomi Mi Flora`  app?
+
+* _It is caused by old firmware (2.7.0), try to update the sensors through the  `Xiaomi Mi Flora`  app_
+
+> **Q3**  Is the app compatibel with v2.0.0?
+
+* All the functionality is the same as in the v2 compatibel version. All issues of not triggering flowcards are resolved in the newest RC as wel. The app is rewrited for v2.0 but **does update just once** due to Homey core issues as mentioned in de skd-app [issue](https://github.com/athombv/homey-apps-sdk-issues/issues/6) ticket to athom on github. Athom is looking for a fix for this issue ‘soon’ untill than the app wil  **not** be fully compatibel with v2.0.
 ## Usage
 1. Install app
 2. Add device(s) to Homey.
