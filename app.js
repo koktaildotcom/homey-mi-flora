@@ -63,7 +63,6 @@ class HomeyMiFlora extends Homey.App {
                 throw new Error('Advertisement not found.');
             }
 
-            console.log('return discover->matchedAdvertisements');
             return matchedAdvertisements[0];
         })
             .catch((error) => {
