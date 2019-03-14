@@ -52,26 +52,9 @@ class HomeyMiFlora extends Homey.App {
      * @returns {Promise.<BleAdvertisement>}
      */
     async discover(device) {
-        console.log('discover');
-        return await Homey.ManagerBLE.discover().then(function (advertisements) {
-
-            let matchedAdvertisements = advertisements.filter(function (advertisement) {
-                return (advertisement.uuid === device.getAddress() || advertisement.uuid === device.getAddress());
-            });
-
-            if (matchedAdvertisements.length === 0) {
-                throw new Error('Advertisement not found.');
-            }
-
-            return matchedAdvertisements[0];
-        })
-            .catch((error) => {
-                throw new Error(error);
-            });
-
-        // return await Homey.ManagerBLE.find(device.getAddress()).then(function (advertisement) {
-        //     return advertisement;
-        // });
+        return await Homey.ManagerBLE.find(device.getAddress()).then(function (advertisement) {
+            return advertisement;
+        });
     }
 
 

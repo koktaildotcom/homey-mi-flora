@@ -180,6 +180,8 @@ You can configure the timeout between polls in the app's settings.
   * fixed typo bug `true` => `this` in the `Homey.FlowCardTriggerDevice`
 ### v2.1.1 - 05.03.2019
   * refactor to the previous iteration strategy
-  
+### v2.1.2 - 14.03.2019
+  * connect to service directly
+
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
