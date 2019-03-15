@@ -45,13 +45,13 @@ class HomeyMiFlora extends Homey.App {
     }
 
     /**
-     * discover advertisements
+     * find advertisements
      *
      * @param device MiFloraDevice
      *
      * @returns {Promise.<BleAdvertisement>}
      */
-    async discover(device) {
+    async find(device) {
         return await Homey.ManagerBLE.find(device.getAddress()).then(function (advertisement) {
             return advertisement;
         });
@@ -187,7 +187,7 @@ class HomeyMiFlora extends Homey.App {
                 currentUuids.push(data.uuid);
             });
 
-            Homey.ManagerBLE.discover().then(function (advertisements) {
+            Homey.ManagerBLE.find().then(function (advertisements) {
                 advertisements = advertisements.filter(function (advertisement) {
                     return (currentUuids.indexOf(advertisement.uuid) === -1);
                 });
@@ -212,7 +212,7 @@ class HomeyMiFlora extends Homey.App {
                 resolve(devices);
             })
                 .catch(function (error) {
-                    reject('Cannot discover BLE devices from the homey manager. ' + error);
+                    reject('Cannot find BLE devices from the homey manager. ' + error);
                 });
         })
     }
