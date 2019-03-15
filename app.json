@@ -144,6 +144,15 @@
                     },
                     "children": [
                         {
+                            "id": "identify",
+                            "type": "checkbox",
+                            "label": {
+                                "en": "Identify",
+                                "nl": "Identificeren"
+                            },
+                            "value": false
+                        },
+                        {
                             "id": "firmware_version",
                             "type": "label",
                             "label": {
@@ -325,6 +334,15 @@
                         "nl": "Apparaat informatie"
                     },
                     "children": [
+                        {
+                            "id": "identify",
+                            "type": "checkbox",
+                            "label": {
+                                "en": "Identify",
+                                "nl": "Identificeren"
+                            },
+                            "value": false
+                        },
                         {
                             "id": "firmware_version",
                             "type": "label",

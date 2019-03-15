@@ -356,6 +356,53 @@ class HomeyMiFlora extends Homey.App {
      *
      * @returns {Promise.<MiFloraDevice>}
      */
+    async indentify (device) {
+        console.log('find')
+        const advertisement = await Homey.app.find(device)
+
+        console.log('connect')
+        const peripheral = await advertisement.connect()
+
+        const disconnectPeripheral = async () => {
+            try {
+                console.log('try to disconnect peripheral')
+                if (peripheral.isConnected) {
+                    console.log('disconnect peripheral')
+                    return await peripheral.disconnect()
+                }
+            } catch (err) {
+                throw new Error(err)
+            }
+        }
+
+        try {
+            console.log('get dataServive')
+            const dataServive = await peripheral.getService(DATA_SERVICE_UUID)
+
+            console.log('Send blink bits');
+            await dataServive.write(Buffer.from([0xA0, 0x1F]));
+
+            console.log('call disconnectPeripheral')
+            await disconnectPeripheral()
+            console.log('Device sync complete in: ' +
+              (new Date() - updateDeviceTime) / 1000 + ' seconds')
+
+            return device
+        }
+        catch (error) {
+            await disconnectPeripheral()
+
+            throw error
+        }
+    }
+
+    /**
+     * update the devices one by one
+     *
+     * @param device MiFloraDevice
+     *
+     * @returns {Promise.<MiFloraDevice>}
+     */
     async updateDevice(device) {
 
         console.log('#########################################');
@@ -364,10 +411,10 @@ class HomeyMiFlora extends Homey.App {
 
         console.log('call handleUpdateSequence');
 
-        device.retry = 0;
-
         return await Homey.app.handleUpdateSequence(device)
         .then(() => {
+            device.retry = 0;
+
             return device;
         })
         .catch(error => {
