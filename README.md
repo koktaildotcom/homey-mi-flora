@@ -182,6 +182,10 @@ You can configure the timeout between polls in the app's settings.
   * refactor to the previous iteration strategy
 ### v2.1.2 - 14.03.2019
   * connect to service directly
+### v2.1.3 - 15.03.2019
+  * fixed bug that gives an error on pairing
+  * moved update sequence to app to centralize
+  * add callback on added device so updating starts right away
 
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
