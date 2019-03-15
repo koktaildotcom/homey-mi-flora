@@ -186,6 +186,8 @@ You can configure the timeout between polls in the app's settings.
   * fixed bug that gives an error on pairing
   * moved update sequence to app to centralize
   * add callback on added device so updating starts right away
-
+### v2.1.4 - 15.03.2019
+  * add identify possibility into settings
+  
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora

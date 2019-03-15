@@ -379,13 +379,23 @@ class HomeyMiFlora extends Homey.App {
             console.log('get dataServive')
             const dataServive = await peripheral.getService(DATA_SERVICE_UUID)
 
-            console.log('Send blink bits');
-            await dataServive.write(Buffer.from([0xA0, 0x1F]));
+            console.log('get characteristics');
+            const characteristics = await dataServive.discoverCharacteristics();
+
+            await asyncForEach(characteristics, async (characteristic) => {
+                console.log(characteristic.uuid);
+                switch (characteristic.uuid) {
+                    case REALTIME_CHARACTERISTIC_UUID:
+                        console.log('REALTIME_CHARACTERISTIC_UUID::write');
+                        await characteristic.write(Buffer.from([0xA0, 0x1F]));
+                        console.log('REALTIME_CHARACTERISTIC_UUID::read ok!');
+
+                        break;
+                }
+            });
 
             console.log('call disconnectPeripheral')
             await disconnectPeripheral()
-            console.log('Device sync complete in: ' +
-              (new Date() - updateDeviceTime) / 1000 + ' seconds')
 
             return device
         }
