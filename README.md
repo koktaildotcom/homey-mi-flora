@@ -190,6 +190,10 @@ You can configure the timeout between polls in the app's settings.
   * add identify possibility into settings
   * add initializing the retry counter before fail scenario
   * improve catching the exceptions within the handling function
+### v2.1.4 - 15.03.2019
+  * add identify possibility into settings
+### v2.1.5 - 17.03.2019
+  * bump version due to invalid build
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
