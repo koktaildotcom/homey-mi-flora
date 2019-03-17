@@ -215,28 +215,32 @@ class HomeyMiFlora extends Homey.App {
      */
     async handleUpdateSequence(device) {
 
-        console.log('handleUpdateSequence');
-        let updateDeviceTime = new Date();
-
-        console.log('find');
-        const advertisement = await Homey.app.find(device);
-
-        console.log('connect');
-        const peripheral = await advertisement.connect();
-
-        const disconnectPeripheral = async () => {
-            try {
-                console.log('try to disconnect peripheral')
-                if (peripheral.isConnected) {
-                    console.log('disconnect peripheral')
-                    return await peripheral.disconnect()
-                }
-            } catch (err) {
-                throw new Error(err);
-            }
+        let disconnectPeripheral = async () => {
+            console.log('disconnectPeripheral not registered yet')
         };
 
         try {
+            console.log('handleUpdateSequence');
+            let updateDeviceTime = new Date();
+
+            console.log('find');
+            const advertisement = await Homey.app.find(device);
+
+            console.log('connect');
+            const peripheral = await advertisement.connect();
+
+            disconnectPeripheral = async () => {
+                try {
+                    console.log('try to disconnect peripheral')
+                    if (peripheral.isConnected) {
+                        console.log('disconnect peripheral')
+                        return await peripheral.disconnect()
+                    }
+                } catch (err) {
+                    throw new Error(err);
+                }
+            };
+
             console.log('get dataServive');
             const dataServive = await peripheral.getService(DATA_SERVICE_UUID);
 
@@ -331,9 +335,6 @@ class HomeyMiFlora extends Homey.App {
     async updateDevices(devices) {
         console.log('_updateDevices');
         return await devices.reduce((promise, device) => {
-            if (device.retry === undefined) {
-                device.retry = 0;
-            }
             return promise
             .then(() => {
                 console.log('reduce');
@@ -357,42 +358,35 @@ class HomeyMiFlora extends Homey.App {
      * @returns {Promise.<MiFloraDevice>}
      */
     async indentify (device) {
-        console.log('find')
-        const advertisement = await Homey.app.find(device)
 
-        console.log('connect')
-        const peripheral = await advertisement.connect()
-
-        const disconnectPeripheral = async () => {
-            try {
-                console.log('try to disconnect peripheral')
-                if (peripheral.isConnected) {
-                    console.log('disconnect peripheral')
-                    return await peripheral.disconnect()
-                }
-            } catch (err) {
-                throw new Error(err)
-            }
-        }
+        let disconnectPeripheral = async () => {
+            console.log('disconnectPeripheral not registered yet')
+        };
 
         try {
+            console.log('find')
+            const advertisement = await Homey.app.find(device)
+
+            console.log('connect')
+            const peripheral = await advertisement.connect()
+
+            disconnectPeripheral = async () => {
+                try {
+                    console.log('try to disconnect peripheral')
+                    if (peripheral.isConnected) {
+                        console.log('disconnect peripheral')
+                        return await peripheral.disconnect()
+                    }
+                } catch (err) {
+                    throw new Error(err)
+                }
+            }
+
             console.log('get dataServive')
             const dataServive = await peripheral.getService(DATA_SERVICE_UUID)
 
-            console.log('get characteristics');
-            const characteristics = await dataServive.discoverCharacteristics();
-
-            await asyncForEach(characteristics, async (characteristic) => {
-                console.log(characteristic.uuid);
-                switch (characteristic.uuid) {
-                    case REALTIME_CHARACTERISTIC_UUID:
-                        console.log('REALTIME_CHARACTERISTIC_UUID::write');
-                        await characteristic.write(Buffer.from([0xA0, 0x1F]));
-                        console.log('REALTIME_CHARACTERISTIC_UUID::read ok!');
-
-                        break;
-                }
-            });
+            console.log('blink');
+            await dataServive.write(Buffer.from([0xfd, 0xff]));
 
             console.log('call disconnectPeripheral')
             await disconnectPeripheral()
@@ -421,6 +415,10 @@ class HomeyMiFlora extends Homey.App {
 
         console.log('call handleUpdateSequence');
 
+        if (device.retry === undefined) {
+            device.retry = 0;
+        }
+
         return await Homey.app.handleUpdateSequence(device)
         .then(() => {
             device.retry = 0;
@@ -429,7 +427,7 @@ class HomeyMiFlora extends Homey.App {
         })
         .catch(error => {
             device.retry++;
-            console.log('timeout, retry again' + device.retry);
+            console.log('timeout, retry again ' + device.retry);
             console.log(error);
 
             if (device.retry < MAX_RETRIES) {

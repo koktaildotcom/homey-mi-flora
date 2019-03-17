@@ -192,6 +192,8 @@
                             "id": "measure_temperature_min",
                             "type": "number",
                             "value": 0,
+                            "min": 0,
+                            "max": 40,
                             "label": {
                                 "en": "min",
                                 "nl": "min"
@@ -201,6 +203,8 @@
                             "id": "measure_temperature_max",
                             "type": "number",
                             "value": 0,
+                            "min": 0,
+                            "max": 40,
                             "label": {
                                 "en": "max",
                                 "nl": "max"
@@ -219,6 +223,8 @@
                             "id": "flora_measure_fertility_min",
                             "type": "number",
                             "value": 0,
+                            "min": 0,
+                            "max": 10000,
                             "label": {
                                 "en": "min",
                                 "nl": "min"
@@ -228,6 +234,8 @@
                             "id": "flora_measure_fertility_max",
                             "type": "number",
                             "value": 0,
+                            "min": 0,
+                            "max": 10000,
                             "label": {
                                 "en": "max",
                                 "nl": "max"
@@ -246,6 +254,8 @@
                             "id": "flora_measure_moisture_min",
                             "type": "number",
                             "value": 0,
+                            "min": 0,
+                            "max": 100,
                             "label": {
                                 "en": "min",
                                 "nl": "min"
@@ -255,6 +265,8 @@
                             "id": "flora_measure_moisture_max",
                             "type": "number",
                             "value": 0,
+                            "min": 0,
+                            "max": 100,
                             "label": {
                                 "en": "max",
                                 "nl": "max"
@@ -383,6 +395,8 @@
                             "id": "measure_temperature_min",
                             "type": "number",
                             "value": 0,
+                            "min": 0,
+                            "max": 40,
                             "label": {
                                 "en": "min",
                                 "nl": "min"
@@ -396,6 +410,8 @@
                             "id": "measure_temperature_max",
                             "type": "number",
                             "value": 0,
+                            "min": 0,
+                            "max": 40,
                             "label": {
                                 "en": "max",
                                 "nl": "max"
@@ -418,6 +434,8 @@
                             "id": "measure_luminance_min",
                             "type": "number",
                             "value": 0,
+                            "min": 0,
+                            "max": 10000,
                             "label": {
                                 "en": "min",
                                 "nl": "min"
@@ -431,6 +449,8 @@
                             "id": "measure_luminance_max",
                             "type": "number",
                             "value": 0,
+                            "min": 0,
+                            "max": 10000,
                             "label": {
                                 "en": "max",
                                 "nl": "max"
@@ -453,6 +473,8 @@
                             "id": "flora_measure_fertility_min",
                             "type": "number",
                             "value": 0,
+                            "min": 0,
+                            "max": 10000,
                             "label": {
                                 "en": "min",
                                 "nl": "min"
@@ -466,6 +488,8 @@
                             "id": "flora_measure_fertility_max",
                             "type": "number",
                             "value": 0,
+                            "min": 0,
+                            "max": 10000,
                             "label": {
                                 "en": "max",
                                 "nl": "max"
@@ -488,6 +512,8 @@
                             "id": "flora_measure_moisture_min",
                             "type": "number",
                             "value": 0,
+                            "min": 0,
+                            "max": 100,
                             "label": {
                                 "en": "min",
                                 "nl": "min"
@@ -501,6 +527,8 @@
                             "id": "flora_measure_moisture_max",
                             "type": "number",
                             "value": 0,
+                            "min": 0,
+                            "max": 100,
                             "label": {
                                 "en": "max",
                                 "nl": "max"

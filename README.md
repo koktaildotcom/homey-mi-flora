@@ -188,6 +188,8 @@ You can configure the timeout between polls in the app's settings.
   * add callback on added device so updating starts right away
 ### v2.1.4 - 15.03.2019
   * add identify possibility into settings
+  * add initializing the retry counter before fail scenario
+  * improve catching the exceptions within the handling function
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
