@@ -194,6 +194,9 @@ You can configure the timeout between polls in the app's settings.
   * add identify possibility into settings
 ### v2.1.5 - 17.03.2019
   * bump version due to invalid build
+### v2.1.6 - 22.03.2019
+  * call the callback after saving the settings to prevent throwing an error
+  * change the min/max to better threshold
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora

@@ -17,7 +17,7 @@
     "permissions": [
         "homey:wireless:ble"
     ],
-	"version": "2.1.5",
+	"version": "2.1.6",
     "compatibility": ">=2.0.5",
     "athomForumDiscussionId": 5030,
     "homeyCommunityTopicId": 45,
@@ -80,7 +80,7 @@
                 "nl": "µS/cm"
             },
             "min": 0,
-            "max": 5000,
+            "max": 10000,
             "step": 1
         },
         "flora_measure_moisture": {
@@ -435,7 +435,7 @@
                             "type": "number",
                             "value": 0,
                             "min": 0,
-                            "max": 10000,
+                            "max": 50000,
                             "label": {
                                 "en": "min",
                                 "nl": "min"
@@ -450,7 +450,7 @@
                             "type": "number",
                             "value": 0,
                             "min": 0,
-                            "max": 10000,
+                            "max": 50000,
                             "label": {
                                 "en": "max",
                                 "nl": "max"
