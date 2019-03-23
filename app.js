@@ -357,7 +357,7 @@ class HomeyMiFlora extends Homey.App {
      *
      * @returns {Promise.<MiFloraDevice>}
      */
-    async indentify (device) {
+    async identify (device) {
 
         let disconnectPeripheral = async () => {
             console.log('disconnectPeripheral not registered yet')
