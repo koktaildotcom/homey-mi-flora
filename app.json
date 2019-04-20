@@ -17,7 +17,7 @@
     "permissions": [
         "homey:wireless:ble"
     ],
-	"version": "2.1.6",
+	"version": "2.1.7",
     "compatibility": ">=2.0.5",
     "athomForumDiscussionId": 5030,
     "homeyCommunityTopicId": 45,
@@ -1139,12 +1139,12 @@
             {
                 "id": "measure_luminance_threshold",
                 "title": {
-                    "en": "The plant !{{has not|has}} enough sunlight.",
-                    "nl": "De plant !{{heeft niet|heeft}} genoeg zonlicht."
+                    "en": "The plant !{{has not|has}} correct amount of sunlight.",
+                    "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid zonlicht."
                 },
                 "hint": {
-                    "en": "Use this card to determine if the plant has enough sunlight.",
-                    "nl": "Gebruik deze kaart om te bepalen of de plant genoeg zonlicht heeft."
+                    "en": "Use this card to determine if the plant has a correct amount of sunlight.",
+                    "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid zonlicht heeft."
                 },
                 "args": [
                     {
@@ -1157,12 +1157,12 @@
             {
                 "id": "flora_measure_fertility_threshold",
                 "title": {
-                    "en": "The plant !{{has not|has}} enough nutritions.",
-                    "nl": "De plant !{{heeft niet|heeft}} genoeg voeding."
+                    "en": "The plant !{{has not|has}} correct amount of nutritions.",
+                    "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid voeding."
                 },
                 "hint": {
-                    "en": "Use this card to determine if the plant has enough nutritions.",
-                    "nl": "Gebruik deze kaart om te bepalen of de plant genoeg voeding heeft."
+                    "en": "Use this card to determine if the plant has a correct amount of nutritions.",
+                    "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid voeding heeft."
                 },
                 "args": [
                     {
@@ -1175,12 +1175,12 @@
             {
                 "id": "flora_measure_moisture_threshold",
                 "title": {
-                    "en": "The plant !{{has not|has}} enough moisture.",
-                    "nl": "De plant !{{heeft niet|heeft}} genoeg vocht."
+                    "en": "The plant !{{has not|has}} correct amount of moisture.",
+                    "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid vocht."
                 },
                 "hint": {
-                    "en": "Use this card to determine if the plant has enough moisture.",
-                    "nl": "Gebruik deze kaart om te bepalen of de plant genoeg vocht heeft."
+                    "en": "Use this card to determine if the plant has a correct amount of moisture.",
+                    "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid vocht heeft."
                 },
                 "args": [
                     {

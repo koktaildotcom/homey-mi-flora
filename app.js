@@ -105,11 +105,11 @@ class HomeyMiFlora extends Homey.App {
                 }
             };
 
-            console.log('get dataServive');
-            const dataServive = await peripheral.getService(DATA_SERVICE_UUID);
+            console.log('get dataService');
+            const dataService = await peripheral.getService(DATA_SERVICE_UUID);
 
             console.log('get characteristics');
-            const characteristics = await dataServive.discoverCharacteristics();
+            const characteristics = await dataService.discoverCharacteristics();
 
             let characteristicsNames = await device.getCapabilities();
 
@@ -298,11 +298,11 @@ class HomeyMiFlora extends Homey.App {
                 }
             }
 
-            console.log('get dataServive')
-            const dataServive = await peripheral.getService(DATA_SERVICE_UUID)
+            console.log('get dataService')
+            const dataService = await peripheral.getService(DATA_SERVICE_UUID)
 
             console.log('blink');
-            await dataServive.write(Buffer.from([0xfd, 0xff]));
+            await dataService.write(Buffer.from([0xfd, 0xff]));
 
             console.log('call disconnectPeripheral')
             await disconnectPeripheral()
