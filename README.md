@@ -200,6 +200,8 @@ You can configure the timeout between polls in the app's settings.
 ### v2.1.7 - 20.04.2019
   * removing the update device after pairing https://github.com/koktaildotcom/homey-mi-flora/issues/70
   * renaming condition cards because of unknown behaviour https://github.com/koktaildotcom/homey-mi-flora/issues/71
-  
+### v2.1.8 - 20.04.2019
+  * bump version v2.1.7 because its is rejected from the store somehow
+
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
