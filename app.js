@@ -105,86 +105,90 @@ class HomeyMiFlora extends Homey.App {
                 }
             };
 
-            console.log('get dataService');
-            const dataService = await peripheral.getService(DATA_SERVICE_UUID);
+            const services = await peripheral.discoverServices();
 
-            console.log('get characteristics');
+            console.log('dataService');
+            const dataService = await services.find(service => service.uuid === DATA_SERVICE_UUID);
+            if (!dataService) {
+                throw new Error('Missing data service');
+            }
             const characteristics = await dataService.discoverCharacteristics();
 
-            let characteristicsNames = await device.getCapabilities();
+            // get realtime
+            console.log('realtime');
+            const realtime = await characteristics.find(characteristic => characteristic.uuid === REALTIME_CHARACTERISTIC_UUID);
+            if(!realtime) {
+                throw new Error('Missing realtime characteristic');
+            }
+            await realtime.write(Buffer.from([0xA0, 0x1F]));
 
-            await asyncForEach(characteristics, async (characteristic) => {
-                console.log(characteristic.uuid);
-                switch (characteristic.uuid) {
-                    case DATA_CHARACTERISTIC_UUID:
-                        console.log('DATA_CHARACTERISTIC_UUID::read');
-                        const sensorData = await characteristic.read();
+            // get data
+            console.log('data');
+            const data = await characteristics.find(characteristic => characteristic.uuid === DATA_CHARACTERISTIC_UUID);
+            if(!data) {
+                throw new Error('Missing data characteristic');
+            }
+            console.log('DATA_CHARACTERISTIC_UUID::read');
+            const sensorData = await data.read();
 
-                        let sensorValues = {
-                            'measure_temperature': sensorData.readUInt16LE(0) / 10,
-                            'measure_luminance': sensorData.readUInt32LE(3),
-                            'flora_measure_fertility': sensorData.readUInt16LE(8),
-                            'flora_measure_moisture': sensorData.readUInt16BE(6)
-                        }
-                        console.log(sensorValues);
+            let sensorValues = {
+                'measure_temperature': sensorData.readUInt16LE(0) / 10,
+                'measure_luminance': sensorData.readUInt32LE(3),
+                'flora_measure_fertility': sensorData.readUInt16LE(8),
+                'flora_measure_moisture': sensorData.readUInt16BE(6)
+            }
+            console.log(sensorValues);
 
-                        await asyncForEach(characteristicsNames, async (characteristic) => {
-                            if (sensorValues.hasOwnProperty(characteristic)) {
-                                device.updateCapabilityValue(characteristic, sensorValues[characteristic]);
-                            }
-                        });
-
-                        break
-                    case FIRMWARE_CHARACTERISTIC_UUID:
-                        console.log('FIRMWARE_CHARACTERISTIC_UUID::read');
-
-                        const firmwareData = await characteristic.read();
-
-                        const batteryValue = parseInt(firmwareData.toString('hex', 0, 1), 16);
-                        const batteryValues = {
-                            'measure_battery': batteryValue
-                        }
-
-                        await asyncForEach(characteristicsNames, async (characteristic) => {
-                            if (batteryValues.hasOwnProperty(characteristic)) {
-                                device.updateCapabilityValue(characteristic, batteryValues[characteristic]);
-                            }
-                        });
-
-                        let firmwareVersion = firmwareData.toString('ascii', 2, firmwareData.length);
-
-                        await device.setSettings({
-                            firmware_version: firmwareVersion,
-                            last_updated: new Date().toISOString(),
-                            uuid: device.getData().uuid
-                        });
-
-                        console.log({
-                            firmware_version: firmwareVersion,
-                            last_updated: new Date().toISOString(),
-                            uuid: device.getData().uuid,
-                            battery: batteryValue
-                        });
-
-                        break;
-                    case REALTIME_CHARACTERISTIC_UUID:
-                        console.log('REALTIME_CHARACTERISTIC_UUID::write');
-                        await characteristic.write(Buffer.from([0xA0, 0x1F]));
-                        console.log('REALTIME_CHARACTERISTIC_UUID::read ok!');
-
-                        break;
+            await asyncForEach(device.getCapabilities(), async (characteristic) => {
+                if (sensorValues.hasOwnProperty(characteristic)) {
+                    device.updateCapabilityValue(characteristic, sensorValues[characteristic]);
                 }
+            });
+
+            // get firmware
+            const firmware = characteristics.find(characteristic => characteristic.uuid === FIRMWARE_CHARACTERISTIC_UUID);
+            if(!firmware) {
+                disconnectPeripheral();
+                throw new Error('Missing firmware characteristic');
+            }
+            console.log('FIRMWARE_CHARACTERISTIC_UUID::read');
+            const firmwareData = await firmware.read();
+
+            const batteryValue = parseInt(firmwareData.toString('hex', 0, 1), 16);
+            const batteryValues = {
+                'measure_battery': batteryValue
+            };
+
+            await asyncForEach(device.getCapabilities(), async (characteristic) => {
+                if (batteryValues.hasOwnProperty(characteristic)) {
+                    device.updateCapabilityValue(characteristic, batteryValues[characteristic]);
+                }
+            });
+
+            let firmwareVersion = firmwareData.toString('ascii', 2, firmwareData.length);
+
+            await device.setSettings({
+                firmware_version: firmwareVersion,
+                last_updated: new Date().toISOString(),
+                uuid: device.getData().uuid
+            });
+
+            console.log({
+                firmware_version: firmwareVersion,
+                last_updated: new Date().toISOString(),
+                uuid: device.getData().uuid,
+                battery: batteryValue
             });
 
             console.log('call disconnectPeripheral');
             await disconnectPeripheral();
+
             console.log('Device sync complete in: ' + (new Date() - updateDeviceTime) / 1000 + ' seconds');
 
             return device;
         }
         catch (error) {
             await disconnectPeripheral();
-
             throw error;
         }
     }
@@ -261,6 +265,8 @@ class HomeyMiFlora extends Homey.App {
             .catch(function (error) {
                 console.error('Cannot trigger flow card sensor_timeout device: %s.', error);
             });
+
+            device.retry = 0;
 
             throw new Error('Max retries exceeded, no success');
         });
@@ -358,9 +364,9 @@ class HomeyMiFlora extends Homey.App {
 
                 resolve(devices);
             })
-                .catch(function (error) {
-                    reject('Cannot discover BLE devices from the homey manager. ' + error);
-                });
+            .catch(function (error) {
+                reject('Cannot discover BLE devices from the homey manager. ' + error);
+            });
         })
     }
 }
