@@ -202,6 +202,8 @@ You can configure the timeout between polls in the app's settings.
   * renaming condition cards because of unknown behaviour https://github.com/koktaildotcom/homey-mi-flora/issues/71
 ### v2.1.8 - 20.04.2019
   * bump version v2.1.7 because its is rejected from the store somehow
-
+### v2.1.9 - 27.04.2019
+  * try to discovery services with every update to prevent [sequence bug](https://github.com/athombv/homey-apps-sdk-issues/issues/73) (only compatible with >=2.1.2 because of the [timout bug](https://github.com/athombv/homey-apps-sdk-issues/issues/77)
+  
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
