@@ -17,7 +17,8 @@ Do you like the app? You can make me happy by buying me a beer! [![](https://img
 
 > **Q3**  Is the app compatibel with v2.0.0?
 
-* All the functionality is the same as in the v2 compatibel version. All issues of not triggering flowcards are resolved in the newest RC as wel. The app is rewrited for v2.0 but **does update just once** due to Homey core issues as mentioned in de skd-app [issue](https://github.com/athombv/homey-apps-sdk-issues/issues/6) ticket to athom on github. Athom is looking for a fix for this issue ‘soon’ untill than the app wil  **not** be fully compatibel with v2.0.
+* The app is only compatible from v2.1.2 and up due to change to the BLE core.
+
 ## Usage
 1. Install app
 2. Add device(s) to Homey.
@@ -204,6 +205,9 @@ You can configure the timeout between polls in the app's settings.
   * bump version v2.1.7 because its is rejected from the store somehow
 ### v2.1.9 - 27.04.2019
   * try to discovery services with every update to prevent [sequence bug](https://github.com/athombv/homey-apps-sdk-issues/issues/73) (only compatible with >=2.1.2 because of the [timout bug](https://github.com/athombv/homey-apps-sdk-issues/issues/77)
+### v2.1.10 - 15.05.2019
+  * add [custom capability insights](https://github.com/koktaildotcom/homey-mi-flora/issues/74)
+  * change documentation about 2.0 compatiblitiy
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora

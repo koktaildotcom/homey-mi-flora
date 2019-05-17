@@ -17,7 +17,7 @@
     "permissions": [
         "homey:wireless:ble"
     ],
-	"version": "2.1.9",
+	"version": "2.1.10",
     "compatibility": ">=2.1.2",
     "athomForumDiscussionId": 5030,
     "homeyCommunityTopicId": 45,
@@ -81,7 +81,8 @@
             },
             "min": 0,
             "max": 10000,
-            "step": 1
+            "step": 1,
+            "insights": true
         },
         "flora_measure_moisture": {
             "type": "number",
@@ -98,7 +99,8 @@
             },
             "min": 0,
             "max": 100,
-            "step": 1
+            "step": 1,
+            "insights": true
         }
     },
     "drivers": [
