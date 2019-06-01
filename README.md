@@ -9,7 +9,7 @@ Do you like the app? You can make me happy by buying me a beer! [![](https://img
 
 > **Q1**  Why can’t the sensor be found by Homey?
 
-* _Check if the eensor is not connected to another bluetooth device. The  `Xiaomi Mi Flora`  app for example_
+* _Check if the sensor is not connected to another bluetooth device. The  `Xiaomi Mi Flora`  app for example_
 
 > **Q1**  Why are the readings from the sensors different than in the  `Xiaomi Mi Flora`  app?
 
