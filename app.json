@@ -1,1197 +1,1364 @@
 {
-    "id": "com.mi.flora",
-    "sdk": 2,
-    "name": {
-        "en": "Xiaomi Mi Flora",
-        "nl": "Xiaomi Mi Flora"
-    },
-    "description": {
-        "en": "Integrate Xiaomi mi flora sensor into Homey",
-        "nl": "Integreer Xiaomi mi flora sensor in Homey"
-    },
-    "category": [
-        "tools",
-        "climate",
-        "appliances"
+  "id": "com.mi.flora",
+  "sdk": 2,
+  "name": {
+    "en": "Xiaomi Mi Flora",
+    "nl": "Xiaomi Mi Flora",
+    "de": "Xiaomi Mi Flora"
+  },
+  "description": {
+    "en": "Integrate Xiaomi mi flora sensor into Homey",
+    "nl": "Integreer Xiaomi mi flora sensor in Homey",
+    "de": "Integriert Xiaomi Mi Flora Sensoren in Homey"
+  },
+  "category": [
+    "tools",
+    "climate",
+    "appliances"
+  ],
+  "permissions": [
+    "homey:wireless:ble"
+  ],
+  "version": "2.1.11",
+  "compatibility": ">=2.1.2",
+  "athomForumDiscussionId": 5030,
+  "homeyCommunityTopicId": 45,
+  "tags": {
+    "en": [
+      "xiaomi",
+      "xiaomi",
+      "xiaomi",
+      "mi",
+      "plant",
+      "flower",
+      "flora",
+      "sensor",
+      "temperature",
+      "luminance",
+      "humidity",
+      "nutrition"
     ],
-    "permissions": [
-        "homey:wireless:ble"
+    "nl": [
+      "xiaomi",
+      "xiaomi",
+      "mi",
+      "plant",
+      "flower",
+      "flora",
+      "sensor",
+      "temperatuur",
+      "licht",
+      "vochtigheid",
+      "voeding"
     ],
-	"version": "2.1.10",
-    "compatibility": ">=2.1.2",
-    "athomForumDiscussionId": 5030,
-    "homeyCommunityTopicId": 45,
-    "tags": {
-        "en": [
-            "xiaomi",
-            "xiaomi",
-            "xiaomi",
-            "mi",
-            "plant",
-            "flower",
-            "flora",
-            "sensor",
-            "temperature",
-            "luminance",
-            "humidity",
-            "nutrition"
-        ],
-        "nl": [
-            "xiaomi",
-            "xiaomi",
-            "mi",
-            "plant",
-            "flower",
-            "flora",
-            "sensor",
-            "temperatuur",
-            "licht",
-            "vochtigheid",
-            "voeding"
-        ]
-    },
-    "images": {
-        "small": "/assets/images/small.png",
-        "large": "/assets/images/large.png"
-    },
-    "author": {
+    "de": [
+      "xiaomi",
+      "xiaomi",
+      "xiaomi",
+      "mi",
+      "Pflanze",
+      "Blume",
+      "Flora",
+      "Sensor",
+      "Temperatur",
+      "Helligkeit",
+      "Feuchtigkeit",
+      "dünger"
+    ]
+  },
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png"
+  },
+  "author": {
+    "name": "Leendert De Kok",
+    "email": "koktaildotcom@hotmail.com"
+  },
+  "contributors": {
+    "developers": [
+      {
         "name": "Leendert De Kok",
         "email": "koktaildotcom@hotmail.com"
-    },
-    "contributing": {
-        "donate": {
-            "paypal": {
-                "username": "koktaildotcom"
-            }
-        }
-    },
-    "capabilities": {
-        "flora_measure_fertility": {
-            "type": "number",
-            "title": {
-                "en": "Conductivity",
-                "nl": "Geleidingsvermogen"
-            },
-            "icon": "/assets/nutritions.svg",
-            "getable": true,
-            "setable": false,
-            "units": {
-                "en": "µS/cm",
-                "nl": "µS/cm"
-            },
-            "min": 0,
-            "max": 10000,
-            "step": 1,
-            "insights": true
-        },
-        "flora_measure_moisture": {
-            "type": "number",
-            "title": {
-                "en": "Moisture",
-                "nl": "Vochtigheid"
-            },
-            "icon": "/assets/moisture.svg",
-            "getable": true,
-            "setable": false,
-            "units": {
-                "en": "%",
-                "nl": "%"
-            },
-            "min": 0,
-            "max": 100,
-            "step": 1,
-            "insights": true
-        }
-    },
-    "drivers": [
-        {
-            "id": "ropot",
-            "name": {
-                "en": "Xiaomi mi flora pot",
-                "nl": "Xiaomi mi flora pot"
-            },
-            "images": {
-                "small": "drivers/ropot/assets/images/small.png",
-                "large": "drivers/ropot/assets/images/large.png"
-            },
-            "class": "sensor",
-            "capabilities": [
-                "measure_temperature",
-                "flora_measure_fertility",
-                "flora_measure_moisture",
-                "measure_battery"
-            ],
-            "pair": [
-                {
-                    "id": "start"
-                },
-                {
-                    "id": "list_my_devices",
-                    "template": "list_devices",
-                    "navigation": {
-                        "next": "add_my_devices"
-                    }
-                },
-                {
-                    "id": "add_my_devices",
-                    "template": "add_devices"
-                }
-            ],
-            "settings": [
-                {
-                    "type": "group",
-                    "label": {
-                        "en": "Device info",
-                        "nl": "Apparaat informatie"
-                    },
-                    "children": [
-                        {
-                            "id": "identify",
-                            "type": "checkbox",
-                            "label": {
-                                "en": "Identify",
-                                "nl": "Identificeren"
-                            },
-                            "value": false
-                        },
-                        {
-                            "id": "firmware_version",
-                            "type": "label",
-                            "label": {
-                                "en": "Firmware version",
-                                "nl": "Firmware versie"
-                            },
-                            "value": ""
-                        },
-                        {
-                            "id": "last_updated",
-                            "type": "label",
-                            "label": {
-                                "en": "Last updated",
-                                "nl": "Laatste update"
-                            },
-                            "value": ""
-                        },
-                        {
-                            "id": "uuid",
-                            "type": "label",
-                            "label": {
-                                "en": "Device uuid address",
-                                "nl": "Apparaat uuid adres"
-                            },
-                            "value": ""
-                        }
-                    ]
-                },
-                {
-                    "type": "group",
-                    "label": {
-                        "en": "Temperature (°C)",
-                        "nl": "Temperatuur (°C)"
-                    },
-                    "children": [
-                        {
-                            "id": "measure_temperature_min",
-                            "type": "number",
-                            "value": 0,
-                            "min": 0,
-                            "max": 40,
-                            "label": {
-                                "en": "min",
-                                "nl": "min"
-                            }
-                        },
-                        {
-                            "id": "measure_temperature_max",
-                            "type": "number",
-                            "value": 0,
-                            "min": 0,
-                            "max": 40,
-                            "label": {
-                                "en": "max",
-                                "nl": "max"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "group",
-                    "label": {
-                        "en": "Nutrition (µS/cm)",
-                        "nl": "Voeding (µS/cm)"
-                    },
-                    "children": [
-                        {
-                            "id": "flora_measure_fertility_min",
-                            "type": "number",
-                            "value": 0,
-                            "min": 0,
-                            "max": 10000,
-                            "label": {
-                                "en": "min",
-                                "nl": "min"
-                            }
-                        },
-                        {
-                            "id": "flora_measure_fertility_max",
-                            "type": "number",
-                            "value": 0,
-                            "min": 0,
-                            "max": 10000,
-                            "label": {
-                                "en": "max",
-                                "nl": "max"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "group",
-                    "label": {
-                        "en": "Moisture (%)",
-                        "nl": "Vochtigheid (%)"
-                    },
-                    "children": [
-                        {
-                            "id": "flora_measure_moisture_min",
-                            "type": "number",
-                            "value": 0,
-                            "min": 0,
-                            "max": 100,
-                            "label": {
-                                "en": "min",
-                                "nl": "min"
-                            }
-                        },
-                        {
-                            "id": "flora_measure_moisture_max",
-                            "type": "number",
-                            "value": 0,
-                            "min": 0,
-                            "max": 100,
-                            "label": {
-                                "en": "max",
-                                "nl": "max"
-                            }
-                        }
-                    ]
-                }
-            ],
-            "mobile": {
-                "components": [
-                    {
-                        "id": "icon"
-                    },
-                    {
-                        "id": "battery",
-                        "capabilities": [
-                            "measure_battery"
-                        ]
-                    },
-                    {
-                        "id": "sensor",
-                        "capabilities": [
-                            "measure_temperature",
-                            "flora_measure_fertility",
-                            "flora_measure_moisture"
-                        ],
-                        "options": {
-                            "icons": {
-                                "measure_temperature": "./drivers/ropot/assets/temperature.svg",
-                                "flora_measure_fertility": "./drivers/ropot/assets/nutritions.svg",
-                                "flora_measure_moisture": "./drivers/ropot/assets/moisture.svg"
-                            }
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "id": "flora",
-            "name": {
-                "en": "Xiaomi mi flora sensor",
-                "nl": "Xiaomi mi flora sensor"
-            },
-            "images": {
-                "small": "drivers/flora/assets/images/small.png",
-                "large": "drivers/flora/assets/images/large.png"
-            },
-            "class": "sensor",
-            "capabilities": [
-                "measure_temperature",
-                "measure_luminance",
-                "flora_measure_fertility",
-                "flora_measure_moisture",
-                "measure_battery"
-            ],
-            "pair": [
-                {
-                    "id": "start"
-                },
-                {
-                    "id": "list_my_devices",
-                    "template": "list_devices",
-                    "navigation": {
-                        "next": "add_my_devices"
-                    }
-                },
-                {
-                    "id": "add_my_devices",
-                    "template": "add_devices"
-                }
-            ],
-            "settings": [
-                {
-                    "type": "group",
-                    "label": {
-                        "en": "Device info",
-                        "nl": "Apparaat informatie"
-                    },
-                    "children": [
-                        {
-                            "id": "identify",
-                            "type": "checkbox",
-                            "label": {
-                                "en": "Identify",
-                                "nl": "Identificeren"
-                            },
-                            "value": false
-                        },
-                        {
-                            "id": "firmware_version",
-                            "type": "label",
-                            "label": {
-                                "en": "Firmware version",
-                                "nl": "Firmware versie"
-                            },
-                            "value": ""
-                        },
-                        {
-                            "id": "last_updated",
-                            "type": "label",
-                            "label": {
-                                "en": "Last updated",
-                                "nl": "Laatste update"
-                            },
-                            "value": ""
-                        },
-                        {
-                            "id": "uuid",
-                            "type": "label",
-                            "label": {
-                                "en": "Device uuid address",
-                                "nl": "Apparaat uuid adres"
-                            },
-                            "value": ""
-                        }
-                    ]
-                },
-                {
-                    "type": "group",
-                    "label": {
-                        "en": "Temperature (°C)",
-                        "nl": "Temperatuur (°C)"
-                    },
-                    "children": [
-                        {
-                            "id": "measure_temperature_min",
-                            "type": "number",
-                            "value": 0,
-                            "min": 0,
-                            "max": 40,
-                            "label": {
-                                "en": "min",
-                                "nl": "min"
-                            },
-                            "hint": {
-                                "en": "The minimal threshold value for temperature.",
-                                "nl": "De minimale grenswaarde voor temperatuur."
-                            }
-                        },
-                        {
-                            "id": "measure_temperature_max",
-                            "type": "number",
-                            "value": 0,
-                            "min": 0,
-                            "max": 40,
-                            "label": {
-                                "en": "max",
-                                "nl": "max"
-                            },
-                            "hint": {
-                                "en": "The maximum threshold value for temperature.",
-                                "nl": "De maximale grenswaarde voor temperatuur."
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "group",
-                    "label": {
-                        "en": "Luminance (lux)",
-                        "nl": "Lichtintensiteit (lux)"
-                    },
-                    "children": [
-                        {
-                            "id": "measure_luminance_min",
-                            "type": "number",
-                            "value": 0,
-                            "min": 0,
-                            "max": 50000,
-                            "label": {
-                                "en": "min",
-                                "nl": "min"
-                            },
-                            "hint": {
-                                "en": "The minimal threshold value for luminance.",
-                                "nl": "De minimale grenswaarde voor lichtintensiteit."
-                            }
-                        },
-                        {
-                            "id": "measure_luminance_max",
-                            "type": "number",
-                            "value": 0,
-                            "min": 0,
-                            "max": 50000,
-                            "label": {
-                                "en": "max",
-                                "nl": "max"
-                            },
-                            "hint": {
-                                "en": "The maximum threshold value for luminance.",
-                                "nl": "De maximale grenswaarde voor lichtintensiteit."
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "group",
-                    "label": {
-                        "en": "Nutrition (µS/cm)",
-                        "nl": "Voeding (µS/cm)"
-                    },
-                    "children": [
-                        {
-                            "id": "flora_measure_fertility_min",
-                            "type": "number",
-                            "value": 0,
-                            "min": 0,
-                            "max": 10000,
-                            "label": {
-                                "en": "min",
-                                "nl": "min"
-                            },
-                            "hint": {
-                                "en": "The minimal threshold value for nutrition.",
-                                "nl": "De minimale grenswaarde voor voeding."
-                            }
-                        },
-                        {
-                            "id": "flora_measure_fertility_max",
-                            "type": "number",
-                            "value": 0,
-                            "min": 0,
-                            "max": 10000,
-                            "label": {
-                                "en": "max",
-                                "nl": "max"
-                            },
-                            "hint": {
-                                "en": "The maximum threshold value for nutrition.",
-                                "nl": "De maximale grenswaarde voor voeding."
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "group",
-                    "label": {
-                        "en": "Moisture (%)",
-                        "nl": "Vochtigheid (%)"
-                    },
-                    "children": [
-                        {
-                            "id": "flora_measure_moisture_min",
-                            "type": "number",
-                            "value": 0,
-                            "min": 0,
-                            "max": 100,
-                            "label": {
-                                "en": "min",
-                                "nl": "min"
-                            },
-                            "hint": {
-                                "en": "The minimal threshold value for moisture.",
-                                "nl": "De minimale grenswaarde voor vochtigheid."
-                            }
-                        },
-                        {
-                            "id": "flora_measure_moisture_max",
-                            "type": "number",
-                            "value": 0,
-                            "min": 0,
-                            "max": 100,
-                            "label": {
-                                "en": "max",
-                                "nl": "max"
-                            },
-                            "hint": {
-                                "en": "The maximum threshold value for moisture.",
-                                "nl": "De maximale grenswaarde voor vochtigheid."
-                            }
-                        }
-                    ]
-                }
-            ],
-            "mobile": {
-                "components": [
-                    {
-                        "id": "icon"
-                    },
-                    {
-                        "id": "battery",
-                        "capabilities": [
-                            "measure_battery"
-                        ]
-                    },
-                    {
-                        "id": "sensor",
-                        "capabilities": [
-                            "measure_temperature",
-                            "measure_luminance",
-                            "flora_measure_fertility",
-                            "flora_measure_moisture"
-                        ],
-                        "options": {
-                            "icons": {
-                                "measure_temperature": "/assets/temperature.svg",
-                                "measure_luminance": "/assets/luminance.svg",
-                                "flora_measure_fertility": "/assets/nutritions.svg",
-                                "flora_measure_moisture": "/assets/moisture.svg"
-                            }
-                        }
-                    }
-                ]
-            }
-        }
+      }
     ],
-    "flow": {
-        "triggers": [
-			{
-				"id": "sensor_timeout",
-				"title": {
-					"en": "The sensor gives a timeout",
-					"nl": "Een sensor geeft een timeout"
-				},
-				"tokens": [
-                    {
-                        "name": "deviceName",
-                        "title": {
-                            "en": "device",
-                            "nl": "apparaat"
-                        },
-                        "example": {
-                            "en": "Flowercare 1",
-                            "nl": "Flowercare 1"
-                        }
-                    },
-                    {
-                        "name": "reason",
-                        "title": {
-                            "en": "reason",
-                            "nl": "oorzaak"
-                        },
-                        "example": {
-                            "en": "Not in range",
-                            "nl": "Niet binnen bereik"
-                        }
-                    }
-				]
-			},
-            {
-                "id": "sensor_changed",
-                "title": {
-                    "en": "A sensor value is changed",
-                    "nl": "Een sensor waarde is veranderd"
-                },
-                "tokens": [
-                    {
-                        "name": "report",
-                        "title": {
-                            "en": "report",
-                            "nl": "rapport"
-                        },
-                        "example": {
-                            "en": "The moisture (22%) is to low. This can be at least 30%.",
-                            "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
-                        }
-                    },
-                    {
-                        "name": "value",
-                        "title": {
-                            "en": "value",
-                            "nl": "waarde"
-                        },
-                        "example": {
-                            "en": "22.5",
-                            "nl": "22.5"
-                        }
-                    },
-                    {
-                        "name": "sensor",
-                        "title": {
-                            "en": "sensor",
-                            "nl": "sensor"
-                        },
-                        "example": {
-                            "en": "Moisture",
-                            "nl": "Vochtigheid"
-                        }
-                    },
-                    {
-                        "name": "deviceName",
-                        "title": {
-                            "en": "device",
-                            "nl": "apparaat"
-                        },
-                        "example": {
-                            "en": "Flowercare 1",
-                            "nl": "Flowercare 1"
-                        }
-                    }
-                ]
-            },
-            {
-                "id": "sensor_updated",
-                "title": {
-                    "en": "A sensor value is updated",
-                    "nl": "Een sensor waarde is geupdate"
-                },
-                "tokens": [
-                    {
-                        "name": "report",
-                        "title": {
-                            "en": "report",
-                            "nl": "rapport"
-                        },
-                        "example": {
-                            "en": "The moisture (22%) is to low. This can be at least 30%.",
-                            "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
-                        }
-                    },
-                    {
-                        "name": "value",
-                        "title": {
-                            "en": "value",
-                            "nl": "waarde"
-                        },
-                        "example": {
-                            "en": "22.5",
-                            "nl": "22.5"
-                        }
-                    },
-                    {
-                        "name": "sensor",
-                        "title": {
-                            "en": "sensor",
-                            "nl": "sensor"
-                        },
-                        "example": {
-                            "en": "Moisture",
-                            "nl": "Vochtigheid"
-                        }
-                    },
-                    {
-                        "name": "deviceName",
-                        "title": {
-                            "en": "device",
-                            "nl": "apparaat"
-                        },
-                        "example": {
-                            "en": "Flowercare 1",
-                            "nl": "Flowercare 1"
-                        }
-                    }
-                ]
-            },
-            {
-                "id": "sensor_threshold_min_exceeds",
-                "title": {
-                    "en": "Sensor value is below the configured threshold",
-                    "nl": "Sensor waarde is beneden de gestelde drempel"
-                },
-                "tokens": [
-                    {
-                        "name": "report",
-                        "title": {
-                            "en": "report",
-                            "nl": "rapport"
-                        },
-                        "example": {
-                            "en": "The moisture (22%) is to low. This can be at least 30%.",
-                            "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
-                        }
-                    },
-                    {
-                        "name": "value",
-                        "title": {
-                            "en": "value",
-                            "nl": "waarde"
-                        },
-                        "example": {
-                            "en": "22.5",
-                            "nl": "22.5"
-                        }
-                    },
-                    {
-                        "name": "sensor",
-                        "title": {
-                            "en": "sensor",
-                            "nl": "sensor"
-                        },
-                        "example": {
-                            "en": "Moisture",
-                            "nl": "Vochtigheid"
-                        }
-                    },
-                    {
-                        "name": "deviceName",
-                        "title": {
-                            "en": "device",
-                            "nl": "apparaat"
-                        },
-                        "example": {
-                            "en": "Flowercare 1",
-                            "nl": "Flowercare 1"
-                        }
-                    }
-                ]
-            },
-            {
-                "id": "sensor_threshold_max_exceeds",
-                "title": {
-                    "en": "Sensor value is above the configured threshold",
-                    "nl": "Sensor waarde is boven de gestelde drempel"
-                },
-                "tokens": [
-                    {
-                        "name": "report",
-                        "title": {
-                            "en": "report",
-                            "nl": "rapport"
-                        },
-                        "example": {
-                            "en": "The moisture (22%) is to low. This can be at least 30%.",
-                            "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
-                        }
-                    },
-                    {
-                        "name": "value",
-                        "title": {
-                            "en": "value",
-                            "nl": "waarde"
-                        },
-                        "example": {
-                            "en": "22.5",
-                            "nl": "22.5"
-                        }
-                    },
-                    {
-                        "name": "sensor",
-                        "title": {
-                            "en": "sensor",
-                            "nl": "sensor"
-                        },
-                        "example": {
-                            "en": "Moisture",
-                            "nl": "Vochtigheid"
-                        }
-                    },
-                    {
-                        "name": "deviceName",
-                        "title": {
-                            "en": "device",
-                            "nl": "apparaat"
-                        },
-                        "example": {
-                            "en": "Flowercare 1",
-                            "nl": "Flowercare 1"
-                        }
-                    }
-                ]
-            },
-            {
-                "id": "sensor_outside_threshold",
-                "title": {
-                    "en": "Sensor value is outside the configured threshold",
-                    "nl": "Sensor waarde is buiten de gestelde drempel"
-                },
-                "tokens": [
-                    {
-                        "name": "report",
-                        "title": {
-                            "en": "report",
-                            "nl": "rapport"
-                        },
-                        "example": {
-                            "en": "The moisture (22%) is to low. This can be at least 30%.",
-                            "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
-                        }
-                    },
-                    {
-                        "name": "value",
-                        "title": {
-                            "en": "value",
-                            "nl": "waarde"
-                        },
-                        "example": {
-                            "en": "22.5",
-                            "nl": "22.5"
-                        }
-                    },
-                    {
-                        "name": "sensor",
-                        "title": {
-                            "en": "sensor",
-                            "nl": "sensor"
-                        },
-                        "example": {
-                            "en": "Moisture",
-                            "nl": "Vochtigheid"
-                        }
-                    },
-                    {
-                        "name": "deviceName",
-                        "title": {
-                            "en": "device",
-                            "nl": "apparaat"
-                        },
-                        "example": {
-                            "en": "Flowercare 1",
-                            "nl": "Flowercare 1"
-                        }
-                    }
-                ]
-            },
-            {
-                "id": "device_sensor_changed",
-                "title": {
-                    "en": "A sensor value is changed",
-                    "nl": "Een sensor waarde is veranderd"
-                },
-                "tokens": [
-                    {
-                        "name": "report",
-                        "title": {
-                            "en": "report",
-                            "nl": "rapport"
-                        },
-                        "example": {
-                            "en": "The moisture (22%) is to low. This can be at least 30%.",
-                            "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
-                        }
-                    },
-                    {
-                        "name": "value",
-                        "title": {
-                            "en": "value",
-                            "nl": "waarde"
-                        },
-                        "example": {
-                            "en": "22.5",
-                            "nl": "22.5"
-                        }
-                    },
-                    {
-                        "name": "sensor",
-                        "title": {
-                            "en": "sensor",
-                            "nl": "sensor"
-                        },
-                        "example": {
-                            "en": "Moisture",
-                            "nl": "Vochtigheid"
-                        }
-                    }
-                ],
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=flora|ropot"
-                    }
-                ]
-            },
-            {
-                "id": "device_sensor_updated",
-                "title": {
-                    "en": "A sensor value is updated",
-                    "nl": "Een sensor waarde is geupdate"
-                },
-                "tokens": [
-                    {
-                        "name": "report",
-                        "title": {
-                            "en": "report",
-                            "nl": "rapport"
-                        },
-                        "example": {
-                            "en": "The moisture (22%) is to low. This can be at least 30%.",
-                            "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
-                        }
-                    },
-                    {
-                        "name": "value",
-                        "title": {
-                            "en": "value",
-                            "nl": "waarde"
-                        },
-                        "example": {
-                            "en": "22.5",
-                            "nl": "22.5"
-                        }
-                    },
-                    {
-                        "name": "sensor",
-                        "title": {
-                            "en": "sensor",
-                            "nl": "sensor"
-                        },
-                        "example": {
-                            "en": "Moisture",
-                            "nl": "Vochtigheid"
-                        }
-                    }
-                ],
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=flora|ropot"
-                    }
-                ]
-            },
-            {
-                "id": "device_sensor_threshold_min_exceeds",
-                "title": {
-                    "en": "Sensor value is below the configured threshold",
-                    "nl": "Sensor waarde is beneden de gestelde drempel"
-                },
-                "tokens": [
-                    {
-                        "name": "report",
-                        "title": {
-                            "en": "report",
-                            "nl": "rapport"
-                        },
-                        "example": {
-                            "en": "The moisture (22%) is to low. This can be at least 30%.",
-                            "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
-                        }
-                    },
-                    {
-                        "name": "value",
-                        "title": {
-                            "en": "value",
-                            "nl": "waarde"
-                        },
-                        "example": {
-                            "en": "22.5",
-                            "nl": "22.5"
-                        }
-                    },
-                    {
-                        "name": "sensor",
-                        "title": {
-                            "en": "sensor",
-                            "nl": "sensor"
-                        },
-                        "example": {
-                            "en": "Moisture",
-                            "nl": "Vochtigheid"
-                        }
-                    }
-                ],
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=flora|ropot"
-                    }
-                ]
-            },
-            {
-                "id": "device_sensor_threshold_max_exceeds",
-                "title": {
-                    "en": "Sensor value is above the configured threshold",
-                    "nl": "Sensor waarde is boven de gestelde drempel"
-                },
-                "tokens": [
-                    {
-                        "name": "report",
-                        "title": {
-                            "en": "report",
-                            "nl": "rapport"
-                        },
-                        "example": {
-                            "en": "The moisture (22%) is to low. This can be at least 30%.",
-                            "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
-                        }
-                    },
-                    {
-                        "name": "value",
-                        "title": {
-                            "en": "value",
-                            "nl": "waarde"
-                        },
-                        "example": {
-                            "en": "22.5",
-                            "nl": "22.5"
-                        }
-                    },
-                    {
-                        "name": "sensor",
-                        "title": {
-                            "en": "sensor",
-                            "nl": "sensor"
-                        },
-                        "example": {
-                            "en": "Moisture",
-                            "nl": "Vochtigheid"
-                        }
-                    }
-                ],
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=flora|ropot"
-                    }
-                ]
-            },
-            {
-                "id": "device_sensor_outside_threshold",
-                "title": {
-                    "en": "Sensor value is outside the configured threshold",
-                    "nl": "Sensor waarde is buiten de gestelde drempel"
-                },
-                "tokens": [
-                    {
-                        "name": "report",
-                        "title": {
-                            "en": "report",
-                            "nl": "rapport"
-                        },
-                        "example": {
-                            "en": "The moisture (22%) is to low. This can be at least 30%.",
-                            "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
-                        }
-                    },
-                    {
-                        "name": "value",
-                        "title": {
-                            "en": "value",
-                            "nl": "waarde"
-                        },
-                        "example": {
-                            "en": "22.5",
-                            "nl": "22.5"
-                        }
-                    },
-                    {
-                        "name": "sensor",
-                        "title": {
-                            "en": "sensor",
-                            "nl": "sensor"
-                        },
-                        "example": {
-                            "en": "Moisture",
-                            "nl": "Vochtigheid"
-                        }
-                    }
-                ],
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=flora|ropot"
-                    }
-                ]
-            }
-        ],
-        "conditions": [
-            {
-                "id": "measure_temperature_threshold",
-                "title": {
-                    "en": "De plant !{{has not|has}} a correct temperature.",
-                    "nl": "De plant !{{heeft niet|heeft}} de juiste temperatuur."
-                },
-                "hint": {
-                    "en": "Use this card to determine if the plant has a correct temperature.",
-                    "nl": "Gebruik deze kaart om te bepalen of de plant de juiste temperatuur heeft."
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "capabilities=measure_temperature"
-                    }
-                ]
-            },
-            {
-                "id": "measure_luminance_threshold",
-                "title": {
-                    "en": "The plant !{{has not|has}} correct amount of sunlight.",
-                    "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid zonlicht."
-                },
-                "hint": {
-                    "en": "Use this card to determine if the plant has a correct amount of sunlight.",
-                    "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid zonlicht heeft."
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "capabilities=measure_luminance"
-                    }
-                ]
-            },
-            {
-                "id": "flora_measure_fertility_threshold",
-                "title": {
-                    "en": "The plant !{{has not|has}} correct amount of nutritions.",
-                    "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid voeding."
-                },
-                "hint": {
-                    "en": "Use this card to determine if the plant has a correct amount of nutritions.",
-                    "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid voeding heeft."
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "capabilities=measure_luminance"
-                    }
-                ]
-            },
-            {
-                "id": "flora_measure_moisture_threshold",
-                "title": {
-                    "en": "The plant !{{has not|has}} correct amount of moisture.",
-                    "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid vocht."
-                },
-                "hint": {
-                    "en": "Use this card to determine if the plant has a correct amount of moisture.",
-                    "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid vocht heeft."
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "capabilities=flora_measure_moisture"
-                    }
-                ]
-            }
-        ]
+    "translators": [
+      {
+        "name": "JackDaniel007"
+      }
+    ]
+  },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "koktaildotcom"
+      }
     }
+  },
+  "capabilities": {
+    "flora_measure_fertility": {
+      "type": "number",
+      "title": {
+        "en": "Conductivity",
+        "nl": "Geleidingsvermogen",
+        "de": "Dünger"
+      },
+      "icon": "/assets/nutritions.svg",
+      "getable": true,
+      "setable": false,
+      "units": {
+        "en": "µS/cm",
+        "nl": "µS/cm",
+        "de": "µS/cm"
+      },
+      "min": 0,
+      "max": 10000,
+      "step": 1,
+      "insights": true
+    },
+    "flora_measure_moisture": {
+      "type": "number",
+      "title": {
+        "en": "Moisture",
+        "nl": "Vochtigheid",
+        "de": "Feuchtigkeit"
+      },
+      "icon": "/assets/moisture.svg",
+      "getable": true,
+      "setable": false,
+      "units": {
+        "en": "%",
+        "nl": "%",
+        "de": "%"
+      },
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "insights": true
+    }
+  },
+  "drivers": [
+    {
+      "id": "ropot",
+      "name": {
+        "en": "Xiaomi mi flora pot",
+        "nl": "Xiaomi mi flora pot",
+        "de": "Xiaomi Mi Flora Blumentopf"
+      },
+      "images": {
+        "small": "drivers/ropot/assets/images/small.png",
+        "large": "drivers/ropot/assets/images/large.png"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_temperature",
+        "flora_measure_fertility",
+        "flora_measure_moisture",
+        "measure_battery"
+      ],
+      "pair": [
+        {
+          "id": "start"
+        },
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Device info",
+            "nl": "Apparaat informatie",
+            "de": "Geräteinfo"
+          },
+          "children": [
+            {
+              "id": "identify",
+              "type": "checkbox",
+              "label": {
+                "en": "Identify",
+                "nl": "Identificeren",
+                "de": "Identifizieren"
+              },
+              "value": false
+            },
+            {
+              "id": "firmware_version",
+              "type": "label",
+              "label": {
+                "en": "Firmware version",
+                "nl": "Firmware versie",
+                "de": "Firmware-Version"
+              },
+              "value": ""
+            },
+            {
+              "id": "last_updated",
+              "type": "label",
+              "label": {
+                "en": "Last updated",
+                "nl": "Laatste update",
+                "de": "Letzte Aktualisierung"
+              },
+              "value": ""
+            },
+            {
+              "id": "uuid",
+              "type": "label",
+              "label": {
+                "en": "Device uuid address",
+                "nl": "Apparaat uuid adres",
+                "de": "Geräte-UUID-Adresse"
+              },
+              "value": ""
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Temperature (°C)",
+            "nl": "Temperatuur (°C)",
+            "de": "Temperatur (°C)"
+          },
+          "children": [
+            {
+              "id": "measure_temperature_min",
+              "type": "number",
+              "value": 0,
+              "min": 0,
+              "max": 40,
+              "label": {
+                "en": "min",
+                "nl": "min",
+                "de": "min"
+              }
+            },
+            {
+              "id": "measure_temperature_max",
+              "type": "number",
+              "value": 0,
+              "min": 0,
+              "max": 40,
+              "label": {
+                "en": "max",
+                "nl": "max",
+                "de": "max"
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Nutrition (µS/cm)",
+            "nl": "Voeding (µS/cm)",
+            "de": "Dünger (µS/cm)"
+          },
+          "children": [
+            {
+              "id": "flora_measure_fertility_min",
+              "type": "number",
+              "value": 0,
+              "min": 0,
+              "max": 10000,
+              "label": {
+                "en": "min",
+                "nl": "min",
+                "de": "min"
+              }
+            },
+            {
+              "id": "flora_measure_fertility_max",
+              "type": "number",
+              "value": 0,
+              "min": 0,
+              "max": 10000,
+              "label": {
+                "en": "max",
+                "nl": "max",
+                "de": "max"
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Moisture (%)",
+            "nl": "Vochtigheid (%)",
+            "de": "Feuchtigkeit (%)"
+          },
+          "children": [
+            {
+              "id": "flora_measure_moisture_min",
+              "type": "number",
+              "value": 0,
+              "min": 0,
+              "max": 100,
+              "label": {
+                "en": "min",
+                "nl": "min",
+                "de": "min"
+              }
+            },
+            {
+              "id": "flora_measure_moisture_max",
+              "type": "number",
+              "value": 0,
+              "min": 0,
+              "max": 100,
+              "label": {
+                "en": "max",
+                "nl": "max",
+                "de": "max"
+              }
+            }
+          ]
+        }
+      ],
+      "mobile": {
+        "components": [
+          {
+            "id": "icon"
+          },
+          {
+            "id": "battery",
+            "capabilities": [
+              "measure_battery"
+            ]
+          },
+          {
+            "id": "sensor",
+            "capabilities": [
+              "measure_temperature",
+              "flora_measure_fertility",
+              "flora_measure_moisture"
+            ],
+            "options": {
+              "icons": {
+                "measure_temperature": "./drivers/ropot/assets/temperature.svg",
+                "flora_measure_fertility": "./drivers/ropot/assets/nutritions.svg",
+                "flora_measure_moisture": "./drivers/ropot/assets/moisture.svg"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "flora",
+      "name": {
+        "en": "Xiaomi mi flora sensor",
+        "nl": "Xiaomi mi flora sensor",
+        "de": "Xiaomi Mi Flora Sensor"
+      },
+      "images": {
+        "small": "drivers/flora/assets/images/small.png",
+        "large": "drivers/flora/assets/images/large.png"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_temperature",
+        "measure_luminance",
+        "flora_measure_fertility",
+        "flora_measure_moisture",
+        "measure_battery"
+      ],
+      "pair": [
+        {
+          "id": "start"
+        },
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Device info",
+            "nl": "Apparaat informatie",
+            "de": "Geräteinfo"
+          },
+          "children": [
+            {
+              "id": "identify",
+              "type": "checkbox",
+              "label": {
+                "en": "Identify",
+                "nl": "Identificeren",
+                "de": "Identifizieren"
+              },
+              "value": false
+            },
+            {
+              "id": "firmware_version",
+              "type": "label",
+              "label": {
+                "en": "Firmware version",
+                "nl": "Firmware versie",
+                "de": "Firmware-Version"
+              },
+              "value": ""
+            },
+            {
+              "id": "last_updated",
+              "type": "label",
+              "label": {
+                "en": "Last updated",
+                "nl": "Laatste update",
+                "de": "Letzte Aktualisierung"
+              },
+              "value": ""
+            },
+            {
+              "id": "uuid",
+              "type": "label",
+              "label": {
+                "en": "Device uuid address",
+                "nl": "Apparaat uuid adres",
+                "de": "Geräte-UUID-Adresse"
+              },
+              "value": ""
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Temperature (°C)",
+            "nl": "Temperatuur (°C)",
+            "de": "Temperatur (°C)"
+          },
+          "children": [
+            {
+              "id": "measure_temperature_min",
+              "type": "number",
+              "value": 0,
+              "min": 0,
+              "max": 40,
+              "label": {
+                "en": "min",
+                "nl": "min",
+                "de": "min"
+              },
+              "hint": {
+                "en": "The minimal threshold value for temperature.",
+                "nl": "De minimale grenswaarde voor temperatuur.",
+                "de": "Der minimale Grenzwert für die Temperatur."
+              }
+            },
+            {
+              "id": "measure_temperature_max",
+              "type": "number",
+              "value": 0,
+              "min": 0,
+              "max": 40,
+              "label": {
+                "en": "max",
+                "nl": "max",
+                "de": "max"
+              },
+              "hint": {
+                "en": "The maximum threshold value for temperature.",
+                "nl": "De maximale grenswaarde voor temperatuur.",
+                "de": "Der maximale Grenzwert für die Temperatur."
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Luminance (lux)",
+            "nl": "Lichtintensiteit (lux)",
+            "de": "Helligkeit (lux)"
+          },
+          "children": [
+            {
+              "id": "measure_luminance_min",
+              "type": "number",
+              "value": 0,
+              "min": 0,
+              "max": 50000,
+              "label": {
+                "en": "min",
+                "nl": "min",
+                "de": "min"
+              },
+              "hint": {
+                "en": "The minimal threshold value for luminance.",
+                "nl": "De minimale grenswaarde voor lichtintensiteit.",
+                "de": "Der minimale Grenzwert für die Helligkeit."
+              }
+            },
+            {
+              "id": "measure_luminance_max",
+              "type": "number",
+              "value": 0,
+              "min": 0,
+              "max": 50000,
+              "label": {
+                "en": "max",
+                "nl": "max",
+                "de": "max"
+              },
+              "hint": {
+                "en": "The maximum threshold value for luminance.",
+                "nl": "De maximale grenswaarde voor lichtintensiteit.",
+                "de": "Der maximale Grenzwert für die Helligkeit."
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Nutrition (µS/cm)",
+            "nl": "Voeding (µS/cm)",
+            "de": "Dünger (µS/cm)"
+          },
+          "children": [
+            {
+              "id": "flora_measure_fertility_min",
+              "type": "number",
+              "value": 0,
+              "min": 0,
+              "max": 10000,
+              "label": {
+                "en": "min",
+                "nl": "min",
+                "de": "min"
+              },
+              "hint": {
+                "en": "The minimal threshold value for nutrition.",
+                "nl": "De minimale grenswaarde voor voeding.",
+                "de": "Der minimale Grenzwert für den Dünger."
+              }
+            },
+            {
+              "id": "flora_measure_fertility_max",
+              "type": "number",
+              "value": 0,
+              "min": 0,
+              "max": 10000,
+              "label": {
+                "en": "max",
+                "nl": "max",
+                "de": "max"
+              },
+              "hint": {
+                "en": "The maximum threshold value for nutrition.",
+                "nl": "De maximale grenswaarde voor voeding.",
+                "de": "Der maximale Grenzwert für den Dünger."
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Moisture (%)",
+            "nl": "Vochtigheid (%)",
+            "de": "Feuchtigkeit (%)"
+          },
+          "children": [
+            {
+              "id": "flora_measure_moisture_min",
+              "type": "number",
+              "value": 0,
+              "min": 0,
+              "max": 100,
+              "label": {
+                "en": "min",
+                "nl": "min",
+                "de": "min"
+              },
+              "hint": {
+                "en": "The minimal threshold value for moisture.",
+                "nl": "De minimale grenswaarde voor vochtigheid.",
+                "de": "Der minimale Grenzwert für die Feuchtigkeit."
+              }
+            },
+            {
+              "id": "flora_measure_moisture_max",
+              "type": "number",
+              "value": 0,
+              "min": 0,
+              "max": 100,
+              "label": {
+                "en": "max",
+                "nl": "max",
+                "de": "max"
+              },
+              "hint": {
+                "en": "The maximum threshold value for moisture.",
+                "nl": "De maximale grenswaarde voor vochtigheid.",
+                "de": "Der maximale Grenzwert für die Feuchtigkeit."
+              }
+            }
+          ]
+        }
+      ],
+      "mobile": {
+        "components": [
+          {
+            "id": "icon"
+          },
+          {
+            "id": "battery",
+            "capabilities": [
+              "measure_battery"
+            ]
+          },
+          {
+            "id": "sensor",
+            "capabilities": [
+              "measure_temperature",
+              "measure_luminance",
+              "flora_measure_fertility",
+              "flora_measure_moisture"
+            ],
+            "options": {
+              "icons": {
+                "measure_temperature": "/assets/temperature.svg",
+                "measure_luminance": "/assets/luminance.svg",
+                "flora_measure_fertility": "/assets/nutritions.svg",
+                "flora_measure_moisture": "/assets/moisture.svg"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "flow": {
+    "triggers": [
+      {
+        "id": "sensor_timeout",
+        "title": {
+          "en": "The sensor gives a timeout",
+          "nl": "Een sensor geeft een timeout",
+          "de": "Der Sensor gibt eine Zeitüberschreitung aus"
+        },
+        "tokens": [
+          {
+            "name": "deviceName",
+            "title": {
+              "en": "device",
+              "nl": "apparaat",
+              "de": "Gerät"
+            },
+            "example": {
+              "en": "Flowercare 1",
+              "nl": "Flowercare 1",
+              "de": "Flowercare 1"
+            }
+          },
+          {
+            "name": "reason",
+            "title": {
+              "en": "reason",
+              "nl": "oorzaak",
+              "de": "Grund"
+            },
+            "example": {
+              "en": "Not in range",
+              "nl": "Niet binnen bereik",
+              "de": "Nicht in Reichweite"
+            }
+          }
+        ]
+      },
+      {
+        "id": "sensor_changed",
+        "title": {
+          "en": "A sensor value is changed",
+          "nl": "Een sensor waarde is veranderd",
+          "de": "Ein Sensorwert wurde geändert"
+        },
+        "tokens": [
+          {
+            "name": "report",
+            "title": {
+              "en": "report",
+              "nl": "rapport",
+              "de": "Bericht"
+            },
+            "example": {
+              "en": "The moisture (22%) is to low. This can be at least 30%.",
+              "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
+              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+            }
+          },
+          {
+            "name": "value",
+            "title": {
+              "en": "value",
+              "nl": "waarde",
+              "de": "Wert"
+            },
+            "example": {
+              "en": "22.5",
+              "nl": "22.5",
+              "de": "22.5"
+            }
+          },
+          {
+            "name": "sensor",
+            "title": {
+              "en": "sensor",
+              "nl": "sensor",
+              "de": "Sensor"
+            },
+            "example": {
+              "en": "Moisture",
+              "nl": "Vochtigheid",
+              "de": "Feuchtigkeit"
+            }
+          },
+          {
+            "name": "deviceName",
+            "title": {
+              "en": "device",
+              "nl": "apparaat",
+              "de": "Gerät"
+            },
+            "example": {
+              "en": "Flowercare 1",
+              "nl": "Flowercare 1",
+              "de": "Flowercare 1"
+            }
+          }
+        ]
+      },
+      {
+        "id": "sensor_updated",
+        "title": {
+          "en": "A sensor value is updated",
+          "nl": "Een sensor waarde is geupdate",
+          "de": "Ein Sensorwert wird aktualisiert"
+        },
+        "tokens": [
+          {
+            "name": "report",
+            "title": {
+              "en": "report",
+              "nl": "rapport",
+              "de": "Bericht"
+            },
+            "example": {
+              "en": "The moisture (22%) is to low. This can be at least 30%.",
+              "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
+              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+            }
+          },
+          {
+            "name": "value",
+            "title": {
+              "en": "value",
+              "nl": "waarde",
+              "de": "Wert"
+            },
+            "example": {
+              "en": "22.5",
+              "nl": "22.5",
+              "de": "22.5"
+            }
+          },
+          {
+            "name": "sensor",
+            "title": {
+              "en": "sensor",
+              "nl": "sensor",
+              "de": "Sensor"
+            },
+            "example": {
+              "en": "Moisture",
+              "nl": "Vochtigheid",
+              "de": "Feuchtigkeit"
+            }
+          },
+          {
+            "name": "deviceName",
+            "title": {
+              "en": "device",
+              "nl": "apparaat",
+              "de": "Gerät"
+            },
+            "example": {
+              "en": "Flowercare 1",
+              "nl": "Flowercare 1",
+              "de": "Flowercare 1"
+            }
+          }
+        ]
+      },
+      {
+        "id": "sensor_threshold_min_exceeds",
+        "title": {
+          "en": "Sensor value is below the configured threshold",
+          "nl": "Sensor waarde is beneden de gestelde drempel",
+          "de": "Der Sensorwert liegt unter dem konfigurierten Grenzwert"
+        },
+        "tokens": [
+          {
+            "name": "report",
+            "title": {
+              "en": "report",
+              "nl": "rapport",
+              "de": "Bericht"
+            },
+            "example": {
+              "en": "The moisture (22%) is to low. This can be at least 30%.",
+              "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
+              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+            }
+          },
+          {
+            "name": "value",
+            "title": {
+              "en": "value",
+              "nl": "waarde",
+              "de": "Wert"
+            },
+            "example": {
+              "en": "22.5",
+              "nl": "22.5",
+              "de": "22.5"
+            }
+          },
+          {
+            "name": "sensor",
+            "title": {
+              "en": "sensor",
+              "nl": "sensor",
+              "de": "Sensor"
+            },
+            "example": {
+              "en": "Moisture",
+              "nl": "Vochtigheid",
+              "de": "Feuchtigkeit"
+            }
+          },
+          {
+            "name": "deviceName",
+            "title": {
+              "en": "device",
+              "nl": "apparaat",
+              "de": "Gerät"
+            },
+            "example": {
+              "en": "Flowercare 1",
+              "nl": "Flowercare 1",
+              "de": "Flowercare 1"
+            }
+          }
+        ]
+      },
+      {
+        "id": "sensor_threshold_max_exceeds",
+        "title": {
+          "en": "Sensor value is above the configured threshold",
+          "nl": "Sensor waarde is boven de gestelde drempel",
+          "de": "Der Sensorwert liegt über dem konfigurierten Grenzwert"
+        },
+        "tokens": [
+          {
+            "name": "report",
+            "title": {
+              "en": "report",
+              "nl": "rapport",
+              "de": "Bericht"
+            },
+            "example": {
+              "en": "The moisture (22%) is to low. This can be at least 30%.",
+              "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
+              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+            }
+          },
+          {
+            "name": "value",
+            "title": {
+              "en": "value",
+              "nl": "waarde",
+              "de": "Wert"
+            },
+            "example": {
+              "en": "22.5",
+              "nl": "22.5",
+              "de": "22.5"
+            }
+          },
+          {
+            "name": "sensor",
+            "title": {
+              "en": "sensor",
+              "nl": "sensor",
+              "de": "Sensor"
+            },
+            "example": {
+              "en": "Moisture",
+              "nl": "Vochtigheid",
+              "de": "Feuchtigkeit"
+            }
+          },
+          {
+            "name": "deviceName",
+            "title": {
+              "en": "device",
+              "nl": "apparaat",
+              "de": "Gerät"
+            },
+            "example": {
+              "en": "Flowercare 1",
+              "nl": "Flowercare 1",
+              "de": "Flowercare 1"
+            }
+          }
+        ]
+      },
+      {
+        "id": "sensor_outside_threshold",
+        "title": {
+          "en": "Sensor value is outside the configured threshold",
+          "nl": "Sensor waarde is buiten de gestelde drempel",
+          "de": "Der Sensorwert liegt außerhab der konfigurierten Grenzwerte"
+        },
+        "tokens": [
+          {
+            "name": "report",
+            "title": {
+              "en": "report",
+              "nl": "rapport",
+              "de": "Bericht"
+            },
+            "example": {
+              "en": "The moisture (22%) is to low. This can be at least 30%.",
+              "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
+              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+            }
+          },
+          {
+            "name": "value",
+            "title": {
+              "en": "value",
+              "nl": "waarde",
+              "de": "Wert"
+            },
+            "example": {
+              "en": "22.5",
+              "nl": "22.5",
+              "de": "22.5"
+            }
+          },
+          {
+            "name": "sensor",
+            "title": {
+              "en": "sensor",
+              "nl": "sensor",
+              "de": "Sensor"
+            },
+            "example": {
+              "en": "Moisture",
+              "nl": "Vochtigheid",
+              "de": "Feuchtigkeit"
+            }
+          },
+          {
+            "name": "deviceName",
+            "title": {
+              "en": "device",
+              "nl": "apparaat",
+              "de": "Gerät"
+            },
+            "example": {
+              "en": "Flowercare 1",
+              "nl": "Flowercare 1",
+              "de": "Flowercare 1"
+            }
+          }
+        ]
+      },
+      {
+        "id": "device_sensor_changed",
+        "title": {
+          "en": "A sensor value is changed",
+          "nl": "Een sensor waarde is veranderd",
+          "de": "Ein Sensorwert wurde geändert"
+        },
+        "tokens": [
+          {
+            "name": "report",
+            "title": {
+              "en": "report",
+              "nl": "rapport",
+              "de": "Bericht"
+            },
+            "example": {
+              "en": "The moisture (22%) is to low. This can be at least 30%.",
+              "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
+              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+            }
+          },
+          {
+            "name": "value",
+            "title": {
+              "en": "value",
+              "nl": "waarde",
+              "de": "Wert"
+            },
+            "example": {
+              "en": "22.5",
+              "nl": "22.5",
+              "de": "22.5"
+            }
+          },
+          {
+            "name": "sensor",
+            "title": {
+              "en": "sensor",
+              "nl": "sensor",
+              "de": "Sensor"
+            },
+            "example": {
+              "en": "Moisture",
+              "nl": "Vochtigheid",
+              "de": "Feuchtigkeit"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=flora|ropot"
+          }
+        ]
+      },
+      {
+        "id": "device_sensor_updated",
+        "title": {
+          "en": "A sensor value is updated",
+          "nl": "Een sensor waarde is geupdate",
+          "de": "Ein Sensorwert wird aktualisiert"
+        },
+        "tokens": [
+          {
+            "name": "report",
+            "title": {
+              "en": "report",
+              "nl": "rapport",
+              "de": "Bericht"
+            },
+            "example": {
+              "en": "The moisture (22%) is to low. This can be at least 30%.",
+              "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
+              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+            }
+          },
+          {
+            "name": "value",
+            "title": {
+              "en": "value",
+              "nl": "waarde",
+              "de": "Wert"
+            },
+            "example": {
+              "en": "22.5",
+              "nl": "22.5",
+              "de": "22.5"
+            }
+          },
+          {
+            "name": "sensor",
+            "title": {
+              "en": "sensor",
+              "nl": "sensor",
+              "de": "Sensor"
+            },
+            "example": {
+              "en": "Moisture",
+              "nl": "Vochtigheid",
+              "de": "Feuchtigkeit"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=flora|ropot"
+          }
+        ]
+      },
+      {
+        "id": "device_sensor_threshold_min_exceeds",
+        "title": {
+          "en": "Sensor value is below the configured threshold",
+          "nl": "Sensor waarde is beneden de gestelde drempel",
+          "de": "Der Sensorwert liegt unter dem konfigurierten Grenzwert"
+        },
+        "tokens": [
+          {
+            "name": "report",
+            "title": {
+              "en": "report",
+              "nl": "rapport",
+              "de": "Bericht"
+            },
+            "example": {
+              "en": "The moisture (22%) is to low. This can be at least 30%.",
+              "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
+              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+            }
+          },
+          {
+            "name": "value",
+            "title": {
+              "en": "value",
+              "nl": "waarde",
+              "de": "Wert"
+            },
+            "example": {
+              "en": "22.5",
+              "nl": "22.5",
+              "de": "22.5"
+            }
+          },
+          {
+            "name": "sensor",
+            "title": {
+              "en": "sensor",
+              "nl": "sensor",
+              "de": "Sensor"
+            },
+            "example": {
+              "en": "Moisture",
+              "nl": "Vochtigheid",
+              "de": "Feuchtigkeit"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=flora|ropot"
+          }
+        ]
+      },
+      {
+        "id": "device_sensor_threshold_max_exceeds",
+        "title": {
+          "en": "Sensor value is above the configured threshold",
+          "nl": "Sensor waarde is boven de gestelde drempel",
+          "de": "Der Sensorwert liegt über dem konfigurierten Grenzwert"
+        },
+        "tokens": [
+          {
+            "name": "report",
+            "title": {
+              "en": "report",
+              "nl": "rapport",
+              "de": "Bericht"
+            },
+            "example": {
+              "en": "The moisture (22%) is to low. This can be at least 30%.",
+              "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
+              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+            }
+          },
+          {
+            "name": "value",
+            "title": {
+              "en": "value",
+              "nl": "waarde",
+              "de": "Wert"
+            },
+            "example": {
+              "en": "22.5",
+              "nl": "22.5",
+              "de": "22.5"
+            }
+          },
+          {
+            "name": "sensor",
+            "title": {
+              "en": "sensor",
+              "nl": "sensor",
+              "de": "Sensor"
+            },
+            "example": {
+              "en": "Moisture",
+              "nl": "Vochtigheid",
+              "de": "Feuchtigkeit"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=flora|ropot"
+          }
+        ]
+      },
+      {
+        "id": "device_sensor_outside_threshold",
+        "title": {
+          "en": "Sensor value is outside the configured threshold",
+          "nl": "Sensor waarde is buiten de gestelde drempel",
+          "de": "Der Sensorwert liegt außerhab der konfigurierten Grenzwerte"
+        },
+        "tokens": [
+          {
+            "name": "report",
+            "title": {
+              "en": "report",
+              "nl": "rapport",
+              "de": "Bericht"
+            },
+            "example": {
+              "en": "The moisture (22%) is to low. This can be at least 30%.",
+              "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
+              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+            }
+          },
+          {
+            "name": "value",
+            "title": {
+              "en": "value",
+              "nl": "waarde",
+              "de": "Wert"
+            },
+            "example": {
+              "en": "22.5",
+              "nl": "22.5",
+              "de": "22.5"
+            }
+          },
+          {
+            "name": "sensor",
+            "title": {
+              "en": "sensor",
+              "nl": "sensor",
+              "de": "Sensor"
+            },
+            "example": {
+              "en": "Moisture",
+              "nl": "Vochtigheid",
+              "de": "Feuchtigkeit"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=flora|ropot"
+          }
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "id": "measure_temperature_threshold",
+        "title": {
+          "en": "De plant !{{has not|has}} a correct temperature.",
+          "nl": "De plant !{{heeft niet|heeft}} de juiste temperatuur.",
+          "de": "Die Pflanze !{{hat nicht|hat}} die richtige Temperatur."
+        },
+        "hint": {
+          "en": "Use this card to determine if the plant has a correct temperature.",
+          "nl": "Gebruik deze kaart om te bepalen of de plant de juiste temperatuur heeft.",
+          "de": "Verwenden Sie diese Karte, um festzustellen, das die Pflanze eine korrekte Temperatur hat."
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capabilities=measure_temperature"
+          }
+        ]
+      },
+      {
+        "id": "measure_luminance_threshold",
+        "title": {
+          "en": "The plant !{{has not|has}} correct amount of sunlight.",
+          "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid zonlicht.",
+          "de": "Die Pflanze !{{hat nicht|hat}} genug Licht."
+        },
+        "hint": {
+          "en": "Use this card to determine if the plant has a correct amount of sunlight.",
+          "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid zonlicht heeft.",
+          "de": "Verwenden Sie diese Karte, um festzustellen, das die Pflanze die richtige Menge Sonnenlicht hat."
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capabilities=measure_luminance"
+          }
+        ]
+      },
+      {
+        "id": "flora_measure_fertility_threshold",
+        "title": {
+          "en": "The plant !{{has not|has}} correct amount of nutritions.",
+          "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid voeding.",
+          "de": "Die Pflanze !{{hat nicht|hat}} genug Dünger."
+        },
+        "hint": {
+          "en": "Use this card to determine if the plant has a correct amount of nutritions.",
+          "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid voeding heeft.",
+          "de": "Verwenden Sie diese Karte, um festzustellen, das die Pflanze genug Düngemittel hat."
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capabilities=measure_luminance"
+          }
+        ]
+      },
+      {
+        "id": "flora_measure_moisture_threshold",
+        "title": {
+          "en": "The plant !{{has not|has}} correct amount of moisture.",
+          "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid vocht.",
+          "de": "Die Pflanze !{{hat nicht|hat}} genug Wasser."
+        },
+        "hint": {
+          "en": "Use this card to determine if the plant has a correct amount of moisture.",
+          "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid vocht heeft.",
+          "de": "Verwenden Sie diese Karte, um festzustellen, das die Pflanze genug Wasser hat."
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capabilities=flora_measure_moisture"
+          }
+        ]
+      }
+    ]
+  }
 }

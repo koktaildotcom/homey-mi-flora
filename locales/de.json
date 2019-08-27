@@ -1,0 +1,83 @@
+{
+  "pair": {
+    "title": "Suche nach Xiaomi Mi Flora Geräten",
+    "info": {
+      "title": "Allgemeiner Hinweis:",
+      "row1": "Halten Sie den Sensor für eine optimale Signalstärke in unmittelbarer Nähe von Homey.",
+      "row2": "Laden Sie immer die Original-App \"Xiaomi Mi Flora\" herunter und fügen Sie die Geräte der App hinzu. Dadurch wird die Firmware des Sensors automatisch auf die neueste Version aktualisiert."
+    },
+    "faq": {
+      "title": "Häufig gestellte Fragen:",
+      "question1": "Warum kann Homey den Sensor nicht finden?",
+      "answer1": "Überprüfen Sie, ob der Sensor nicht mit einem anderen Bluetooth-Gerät verbunden ist. Die `Xiaomi Mi Flora` App zum Beispiel."
+    },
+    "configure": "Suche Geräte"
+  },
+  "settings": {
+    "title": "Einstellungen Xiaomi Mi Flora",
+    "update": "Einstellungen aktualisieren",
+    "interval": {
+      "label": "Der Intervall zwischen den Aktualisierungen in Minuten",
+      "info": "Die Verzögerung zwischen dem Lesen der Sensorwerte in Minuten. Der Mindestintervall beträgt 5 Minuten.Der Standardintervall beträgt 15 Minuten."
+    },
+    "save": {
+      "label": "Speichern"
+    },
+    "success": "Die Einstellungen wurden gespeichert",
+    "error": {
+      "threshold": "Der minimale und maximale Grenzwert für `__capability__` sind ungültig."
+    }
+  },
+  "capability": {
+    "measure_temperature": {
+      "name": "Temperatur",
+      "suffix": " °C",
+      "changed": "Die Temperatur hat sich auf __value__°C geändert.",
+      "device_changed": "Die Temperatur von `__plant__` hat sich geändert auf: __value__°C.",
+      "device_updated": "Die Temperatur von `__plant__` wurde aktualisiert auf: __value__°C.",
+      "threshold": {
+        "min": "Die Temperatur (__value__°C) von `__plant__` ist zu niedrig. Die muss mindestens __min__°C betragen.",
+        "max": "Die Temperatur (__value__°C) von `__plant__` ist zu hoch. Die darf maximal __max__°C betragen."
+      }
+    },
+    "measure_luminance": {
+      "name": "Helligkeit",
+      "suffix": " lux",
+      "changed": "Die Helligkeit hat sich auf __value__ lux geändert.",
+      "device_changed": "Die Helligkeit von `__plant__` hat sich geändert auf: __value__ lux.",
+      "device_updated": "Die Helligkeit von `__plant__` wurde aktualisiert auf: __value__ lux.",
+      "threshold": {
+        "min": "Die Helligkeit (__value__ lux) von `__plant__` ist zu niedrig. Die muss mindestens __min__ lux betragen.",
+        "max": "Die Helligkeit (__value__ lux) von `__plant__` ist zu hoch. Die darf maximal __max__ lux betragen."
+      }
+    },
+    "flora_measure_fertility": {
+      "name": "Dünger",
+      "suffix": " µS/cm",
+      "changed": "Die Konzentration vom Dünger hat sich auf __value__ µS/cm geändert.",
+      "device_changed": "Die Konzentration vom Dünger bei `__plant__` hat sich geändert auf: __value__ µS/cm.",
+      "device_updated": "Die Konzentartion vom Dünger bei `__plant__` wurde aktualisiert auf: __value__ µS/cm.",
+      "threshold": {
+        "min": "Das Düngemittel (__value__ µS/cm) von `__plant__` ist zu niedrig. Die muss mindestens __min__ µS/cm betragen.",
+        "max": "Das Düngemittel (__value__ µS/cm) von `__plant__` ist zu hoch. Die darf maximal __max__ µS/cm betragen."
+      }
+    },
+    "flora_measure_moisture": {
+      "name": "Feuchtigkeit",
+      "suffix": " %",
+      "changed": "Die Feuchtigkeit hat sich auf __value__% geändert.",
+      "device_changed": "Die Feuchtigkeit von `__plant__` hat sich geändert auf: __value__%.",
+      "device_updated": "Die Feuchtigkeit von `__plant__` wurde aktualisiert auf: __value__%.",
+      "threshold": {
+        "min": "Die Feuchtigkeit (__value__%) von `__plant__` ist zu niedrig. Die muss mindestens __min__% betragen.",
+        "max": "Die Feuchtigkeit (__value__%) von `__plant__` ist zu hoch. Die darf maximal __max__% betragen."
+      }
+    },
+    "measure_battery": {
+      "name": "Batterie",
+      "changed": "Die Batteriestärke hat sich auf __value__% geändert.",
+      "device_changed": "Die Batteriestärke von `__plant__` hat sich geändert auf: __value__%.",
+      "device_updated": "Die Batteriestärke von `__plant__` wurde aktualisiert auf: __value__%."
+    }
+  }
+}
