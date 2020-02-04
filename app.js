@@ -55,6 +55,10 @@ class HomeyMiFlora extends Homey.App {
 
         this.deviceSensorOutsideThreshold = new Homey.FlowCardTriggerDevice('device_sensor_outside_threshold');
         this.deviceSensorOutsideThreshold.register();
+
+        if (!Homey.ManagerSettings.get('updateInterval')) {
+            Homey.ManagerSettings.set('updateInterval', 15)
+        }
     }
 
     /**
