@@ -17,7 +17,7 @@
     "permissions": [
         "homey:wireless:ble"
     ],
-	"version": "2.1.10",
+	  "version": "2.1.11",
     "compatibility": ">=2.1.2",
     "athomForumDiscussionId": 5030,
     "homeyCommunityTopicId": 45,
@@ -622,7 +622,7 @@
                             "nl": "rapport"
                         },
                         "example": {
-                            "en": "The moisture (22%) is to low. This can be at least 30%.",
+                            "en": "The moisture (22%) is too low. This can be at least 30%.",
                             "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
                         }
                     },
@@ -675,7 +675,7 @@
                             "nl": "rapport"
                         },
                         "example": {
-                            "en": "The moisture (22%) is to low. This can be at least 30%.",
+                            "en": "The moisture (22%) is too low. This can be at least 30%.",
                             "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
                         }
                     },
@@ -728,7 +728,7 @@
                             "nl": "rapport"
                         },
                         "example": {
-                            "en": "The moisture (22%) is to low. This can be at least 30%.",
+                            "en": "The moisture (22%) is too low. This can be at least 30%.",
                             "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
                         }
                     },
@@ -781,7 +781,7 @@
                             "nl": "rapport"
                         },
                         "example": {
-                            "en": "The moisture (22%) is to low. This can be at least 30%.",
+                            "en": "The moisture (22%) is too low. This can be at least 30%.",
                             "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
                         }
                     },
@@ -834,7 +834,7 @@
                             "nl": "rapport"
                         },
                         "example": {
-                            "en": "The moisture (22%) is to low. This can be at least 30%.",
+                            "en": "The moisture (22%) is too low. This can be at least 30%.",
                             "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
                         }
                     },
@@ -887,7 +887,7 @@
                             "nl": "rapport"
                         },
                         "example": {
-                            "en": "The moisture (22%) is to low. This can be at least 30%.",
+                            "en": "The moisture (22%) is too low. This can be at least 30%.",
                             "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
                         }
                     },
@@ -936,7 +936,7 @@
                             "nl": "rapport"
                         },
                         "example": {
-                            "en": "The moisture (22%) is to low. This can be at least 30%.",
+                            "en": "The moisture (22%) is too low. This can be at least 30%.",
                             "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
                         }
                     },
@@ -985,7 +985,7 @@
                             "nl": "rapport"
                         },
                         "example": {
-                            "en": "The moisture (22%) is to low. This can be at least 30%.",
+                            "en": "The moisture (22%) is too low. This can be at least 30%.",
                             "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
                         }
                     },
@@ -1034,7 +1034,7 @@
                             "nl": "rapport"
                         },
                         "example": {
-                            "en": "The moisture (22%) is to low. This can be at least 30%.",
+                            "en": "The moisture (22%) is too low. This can be at least 30%.",
                             "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
                         }
                     },
@@ -1083,7 +1083,7 @@
                             "nl": "rapport"
                         },
                         "example": {
-                            "en": "The moisture (22%) is to low. This can be at least 30%.",
+                            "en": "The moisture (22%) is too low. This can be at least 30%.",
                             "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn."
                         }
                     },

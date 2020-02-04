@@ -208,10 +208,6 @@ class HomeyMiFlora extends Homey.App {
                 console.log('reduce');
                 device.retry = 0;
                 return Homey.app.updateDevice(device)
-                .catch((error) => {
-                    throw new Error(error);
-                });
-
             }).catch(error => {
                 console.log(error);
             });
@@ -268,7 +264,7 @@ class HomeyMiFlora extends Homey.App {
 
             device.retry = 0;
 
-            throw new Error('Max retries exceeded, no success');
+            throw new Error('Max retries (' + MAX_RETRIES + ') exceeded, no success');
         });
     }
 

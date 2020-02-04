@@ -69,17 +69,17 @@ You can configure the timeout between polls in the app's settings.
    * device (Flora 1)
    * sensor (Moisture)
    * value (20%)
-   * report (The moisture (20%) is to low. This can be at least 30%.)
+   * report (The moisture (20%) is too low. This can be at least 30%.)
 4. Sensor value is above the configured threshold.
    * device (Flora 1)
    * sensor (Moisture)
    * value (20%)
-   * report (The moisture (20%) is to high. This must be a maximum of 15%.)
+   * report (The moisture (20%) is too high. This must be a maximum of 15%.)
 5. Sensor value is outside the configured threshold.
    * device (Flora 1)
    * sensor (Moisture)
    * value (20%)
-   * report (The moisture (20%) is to high. This must be a maximum of 15%.)
+   * report (The moisture (20%) is too high. This must be a maximum of 15%.)
 6. Sensor gives a timeout after 3 tries.
    * device (Flora 1)
    * reason (Not in range)
@@ -208,6 +208,8 @@ You can configure the timeout between polls in the app's settings.
 ### v2.1.10 - 15.05.2019
   * add [custom capability insights](https://github.com/koktaildotcom/homey-mi-flora/issues/74)
   * change documentation about 2.0 compatiblitiy
-  
+### v2.1.11 - 04.02.2020
+  * fixed translation https://github.com/koktaildotcom/homey-mi-flora/issues/81
+
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
