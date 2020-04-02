@@ -20,7 +20,7 @@
 	"permissions": [
 		"homey:wireless:ble"
 	],
-	"version": "2.1.11",
+	"version": "2.1.13",
 	"compatibility": ">=2.1.2",
 	"athomForumDiscussionId": 5030,
 	"homeyCommunityTopicId": 45,

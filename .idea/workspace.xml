@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7880eeae-53ac-4c3d-9a34-d1985b2f3c36" name="Default" comment="update device after pairing">
+    <list default="true" id="7880eeae-53ac-4c3d-9a34-d1985b2f3c36" name="Default" comment="add trigger an update sequence when pairing is ready">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,7 +234,7 @@
       <workItem from="1580820749679" duration="85000" />
       <workItem from="1585834759798" duration="2310000" />
       <workItem from="1585837445503" duration="1384000" />
-      <workItem from="1585838833224" duration="1707000" />
+      <workItem from="1585838833224" duration="1788000" />
     </task>
     <task id="LOCAL-00001" summary="fix for missing callback breakage in homey core">
       <created>1520515509723</created>
@@ -453,7 +453,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585840406673</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="add trigger an update sequence when pairing is ready">
+      <created>1585840557267</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1585840557267</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -471,7 +478,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="true" />
-    <MESSAGE value="always throw error on catch" />
     <MESSAGE value="reject promise" />
     <MESSAGE value="refactoring promise function" />
     <MESSAGE value="change device images" />
@@ -496,7 +502,8 @@
     <MESSAGE value="convert project to homey compose" />
     <MESSAGE value="add energy option" />
     <MESSAGE value="update device after pairing" />
-    <option name="LAST_COMMIT_MESSAGE" value="update device after pairing" />
+    <MESSAGE value="add trigger an update sequence when pairing is ready" />
+    <option name="LAST_COMMIT_MESSAGE" value="add trigger an update sequence when pairing is ready" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="187" width="800" height="677" key="#Deployment" timestamp="1585838506963">
@@ -507,14 +514,14 @@
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
     <state x="555" y="187" width="800" height="677" key="#Options/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585836767350" />
-    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2" timestamp="1585840406562">
+    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2" timestamp="1585840641051">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585840406562" />
-    <state x="182" y="111" width="1536" height="830" key="DiffContextDialog" timestamp="1585840390100">
+    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585840641051" />
+    <state x="182" y="111" width="1536" height="830" key="DiffContextDialog" timestamp="1585840640807">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="182" y="111" width="1536" height="830" key="DiffContextDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585840390100" />
+    <state x="182" y="111" width="1536" height="830" key="DiffContextDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585840640807" />
     <state x="738" y="283" width="424" height="484" key="FileChooserDialogImpl" timestamp="1585836787965">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
@@ -527,10 +534,10 @@
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
     <state x="449" y="161" key="SettingsEditor/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585836594653" />
-    <state x="555" y="250" width="800" height="551" key="Vcs.Push.Dialog.v2" timestamp="1585840407963">
+    <state x="555" y="250" width="800" height="551" key="Vcs.Push.Dialog.v2" timestamp="1585840562616">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="555" y="250" width="800" height="551" key="Vcs.Push.Dialog.v2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585840407961" />
+    <state x="555" y="250" width="800" height="551" key="Vcs.Push.Dialog.v2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585840562616" />
     <state x="605" y="257" width="869" height="606" key="find.popup" timestamp="1585835304888">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
@@ -547,5 +554,9 @@
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
     <state x="825" y="422" width="260" height="207" key="publish.login/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585836611184" />
+    <state x="623" y="244" width="672" height="678" key="search.everywhere.popup" timestamp="1585840600525">
+      <screen x="0" y="27" width="1920" height="1000" />
+    </state>
+    <state x="623" y="244" width="672" height="678" key="search.everywhere.popup/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585840600525" />
   </component>
 </project>
