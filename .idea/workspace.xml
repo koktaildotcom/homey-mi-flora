@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7880eeae-53ac-4c3d-9a34-d1985b2f3c36" name="Default" comment="add trigger an update sequence when pairing is ready">
-      <change beforePath="$PROJECT_DIR$/.homeycompose/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/.homeycompose/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="7880eeae-53ac-4c3d-9a34-d1985b2f3c36" name="Default" comment="removed app.json and fixed version number">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,19 +64,19 @@
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/drivers/ropot" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/drivers/ropot" />
-      <recent name="$PROJECT_DIR$/drivers/ropot/assets" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/drivers/flora/assets" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/drivers/ropot" />
+      <recent name="$PROJECT_DIR$/drivers/ropot/assets" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -463,7 +459,21 @@
       <option name="project" value="LOCAL" />
       <updated>1585840557267</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="removed app.json and fixed version number">
+      <created>1585843104645</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1585843104645</updated>
+    </task>
+    <task id="LOCAL-00034" summary="add app.json again">
+      <created>1585844931261</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1585844931261</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -481,8 +491,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="true" />
-    <MESSAGE value="reject promise" />
-    <MESSAGE value="refactoring promise function" />
     <MESSAGE value="change device images" />
     <MESSAGE value="changed ropot identification" />
     <MESSAGE value="add athom forum discussion identifier" />
@@ -506,7 +514,9 @@
     <MESSAGE value="add energy option" />
     <MESSAGE value="update device after pairing" />
     <MESSAGE value="add trigger an update sequence when pairing is ready" />
-    <option name="LAST_COMMIT_MESSAGE" value="add trigger an update sequence when pairing is ready" />
+    <MESSAGE value="removed app.json and fixed version number" />
+    <MESSAGE value="add app.json again" />
+    <option name="LAST_COMMIT_MESSAGE" value="add app.json again" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="187" width="800" height="677" key="#Deployment" timestamp="1585838506963">
@@ -517,34 +527,38 @@
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
     <state x="555" y="187" width="800" height="677" key="#Options/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585836767350" />
-    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2" timestamp="1585843088649">
+    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2" timestamp="1585844931203">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585843088649" />
-    <state x="182" y="111" width="1536" height="830" key="DiffContextDialog" timestamp="1585840640807">
+    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585844931203" />
+    <state x="182" y="111" width="1536" height="830" key="DiffContextDialog" timestamp="1585843176651">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="182" y="111" width="1536" height="830" key="DiffContextDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585840640807" />
+    <state x="182" y="111" width="1536" height="830" key="DiffContextDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585843176651" />
     <state x="738" y="283" width="424" height="484" key="FileChooserDialogImpl" timestamp="1585836787965">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
     <state x="738" y="283" width="424" height="484" key="FileChooserDialogImpl/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585836787965" />
-    <state x="701" y="239" width="507" height="574" key="RollbackChangesDialog" timestamp="1585834800508">
+    <state x="701" y="239" width="507" height="574" key="RollbackChangesDialog" timestamp="1585843167936">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="701" y="239" width="507" height="574" key="RollbackChangesDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585834800508" />
+    <state x="701" y="239" width="507" height="574" key="RollbackChangesDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585843167936" />
     <state x="449" y="161" key="SettingsEditor" timestamp="1585836594653">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
     <state x="449" y="161" key="SettingsEditor/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585836594653" />
-    <state x="555" y="250" width="800" height="551" key="Vcs.Push.Dialog.v2" timestamp="1585840562616">
+    <state x="555" y="250" width="800" height="551" key="Vcs.Push.Dialog.v2" timestamp="1585844935082">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="555" y="250" width="800" height="551" key="Vcs.Push.Dialog.v2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585840562616" />
-    <state x="605" y="257" width="869" height="606" key="find.popup" timestamp="1585843039384">
+    <state x="555" y="250" width="800" height="551" key="Vcs.Push.Dialog.v2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585844935082" />
+    <state x="100" y="125" width="1720" height="802" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1585843176651">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="605" y="257" width="869" height="606" key="find.popup/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585843039384" />
+    <state x="100" y="125" width="1720" height="802" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585843176651" />
+    <state x="605" y="257" width="869" height="606" key="find.popup" timestamp="1585844959156">
+      <screen x="0" y="27" width="1920" height="1000" />
+    </state>
+    <state x="605" y="257" width="869" height="606" key="find.popup/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585844959156" />
     <state x="702" y="280" width="542" height="566" key="ftp.server.browser" timestamp="1585836898829">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
