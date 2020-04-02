@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7880eeae-53ac-4c3d-9a34-d1985b2f3c36" name="Default" comment="removed app.json and fixed version number">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.1" />
+  <component name="ProjectId" id="1W72ZsE9qWk1cbRhdZdmKere7My" />
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>AngularJS</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/drivers/flora/assets" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/drivers/ropot" />
+      <recent name="$PROJECT_DIR$/drivers/ropot/assets" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="&lt;div id=&quot;target&quot;&gt;&lt;/div&gt;" />
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="test.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://145.130.155.137/test.html">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.test.html" />
+        <item itemvalue="JavaScript Debug.test.html" />
+        <item itemvalue="JavaScript Debug.test.html" />
+        <item itemvalue="JavaScript Debug.test.html" />
+        <item itemvalue="JavaScript Debug.test.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>$USER_HOME$/.subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7880eeae-53ac-4c3d-9a34-d1985b2f3c36" name="Default" comment="" />
+      <created>1520515354415</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1520515354415</updated>
+      <workItem from="1520515355559" duration="1713000" />
+      <workItem from="1520518066187" duration="1462000" />
+      <workItem from="1520836809902" duration="10000" />
+      <workItem from="1521533805338" duration="453000" />
+      <workItem from="1521541254486" duration="216000" />
+      <workItem from="1521542871338" duration="1908000" />
+      <workItem from="1521636471870" duration="6000" />
+      <workItem from="1521641386289" duration="1000000" />
+      <workItem from="1521714750538" duration="83000" />
+      <workItem from="1523339963671" duration="68000" />
+      <workItem from="1523533508729" duration="2275000" />
+      <workItem from="1523538810330" duration="223000" />
+      <workItem from="1523967500239" duration="810000" />
+      <workItem from="1524480678645" duration="688000" />
+      <workItem from="1525248580032" duration="119000" />
+      <workItem from="1525251828091" duration="330000" />
+      <workItem from="1533799487964" duration="408000" />
+      <workItem from="1535540115879" duration="5123000" />
+      <workItem from="1535609787375" duration="355000" />
+      <workItem from="1535626036899" duration="23000" />
+      <workItem from="1536831751792" duration="793000" />
+      <workItem from="1536837603473" duration="343000" />
+      <workItem from="1536838098783" duration="974000" />
+      <workItem from="1538391409320" duration="991000" />
+      <workItem from="1538392805758" duration="145000" />
+      <workItem from="1538393049525" duration="751000" />
+      <workItem from="1538396595114" duration="563000" />
+      <workItem from="1538461132431" duration="1265000" />
+      <workItem from="1540363144117" duration="1831000" />
+      <workItem from="1540368861772" duration="23000" />
+      <workItem from="1540381274906" duration="9000" />
+      <workItem from="1540381287523" duration="301000" />
+      <workItem from="1540446248759" duration="8000" />
+      <workItem from="1540446367872" duration="2761000" />
+      <workItem from="1540450678577" duration="633000" />
+      <workItem from="1540459268563" duration="132000" />
+      <workItem from="1540796130407" duration="30000" />
+      <workItem from="1540807966428" duration="447000" />
+      <workItem from="1542102432072" duration="845000" />
+      <workItem from="1542111159798" duration="1505000" />
+      <workItem from="1542273992640" duration="740000" />
+      <workItem from="1542291373490" duration="863000" />
+      <workItem from="1542293283100" duration="1761000" />
+      <workItem from="1543229717731" duration="2905000" />
+      <workItem from="1543502163421" duration="672000" />
+      <workItem from="1543825785849" duration="31000" />
+      <workItem from="1544425510927" duration="819000" />
+      <workItem from="1544427375534" duration="1823000" />
+      <workItem from="1544453001300" duration="11000" />
+      <workItem from="1544512969881" duration="15533000" />
+      <workItem from="1544537831734" duration="2301000" />
+      <workItem from="1544596052904" duration="3037000" />
+      <workItem from="1544599111750" duration="706000" />
+      <workItem from="1544600025244" duration="24000" />
+      <workItem from="1544600110533" duration="725000" />
+      <workItem from="1544605897534" duration="448000" />
+      <workItem from="1544606621183" duration="33000" />
+      <workItem from="1544610918161" duration="2957000" />
+      <workItem from="1544618141143" duration="76000" />
+      <workItem from="1544618881330" duration="75000" />
+      <workItem from="1544620711504" duration="1277000" />
+      <workItem from="1544683874389" duration="319000" />
+      <workItem from="1544684337120" duration="271000" />
+      <workItem from="1544685759626" duration="57000" />
+      <workItem from="1544687129274" duration="49000" />
+      <workItem from="1544687438334" duration="77000" />
+      <workItem from="1544688738936" duration="89000" />
+      <workItem from="1544692138454" duration="215000" />
+      <workItem from="1544693101286" duration="36000" />
+      <workItem from="1544694037489" duration="45000" />
+      <workItem from="1544697915595" duration="70000" />
+      <workItem from="1544698432822" duration="602000" />
+      <workItem from="1544701887246" duration="28000" />
+      <workItem from="1544704155140" duration="25000" />
+      <workItem from="1544706570351" duration="72000" />
+      <workItem from="1544708969899" duration="190000" />
+      <workItem from="1544710048932" duration="34000" />
+      <workItem from="1545127539069" duration="10905000" />
+      <workItem from="1545140180821" duration="3071000" />
+      <workItem from="1545143311635" duration="17000" />
+      <workItem from="1545143387986" duration="85000" />
+      <workItem from="1545201912198" duration="319000" />
+      <workItem from="1545202723688" duration="445000" />
+      <workItem from="1545203381674" duration="246000" />
+      <workItem from="1545203724712" duration="651000" />
+      <workItem from="1545210878610" duration="482000" />
+      <workItem from="1545213846086" duration="640000" />
+      <workItem from="1545215527855" duration="68000" />
+      <workItem from="1545288421945" duration="1708000" />
+      <workItem from="1545303451052" duration="73000" />
+      <workItem from="1546423071900" duration="38000" />
+      <workItem from="1546518244642" duration="465000" />
+      <workItem from="1551777376305" duration="3970000" />
+      <workItem from="1551796210800" duration="5700000" />
+      <workItem from="1551857983181" duration="551000" />
+      <workItem from="1552383775843" duration="1104000" />
+      <workItem from="1553755111757" duration="2144000" />
+      <workItem from="1553758016081" duration="715000" />
+      <workItem from="1553759462018" duration="306000" />
+      <workItem from="1553866373918" duration="373000" />
+      <workItem from="1554212575514" duration="12000" />
+      <workItem from="1555489456336" duration="216000" />
+      <workItem from="1556276357193" duration="1309000" />
+      <workItem from="1556277965869" duration="1956000" />
+      <workItem from="1556779935069" duration="42000" />
+      <workItem from="1557899840212" duration="574000" />
+      <workItem from="1566902536920" duration="1091000" />
+      <workItem from="1566975539904" duration="721000" />
+      <workItem from="1578486372967" duration="26000" />
+      <workItem from="1578487818749" duration="128000" />
+      <workItem from="1580820749679" duration="85000" />
+      <workItem from="1585834759798" duration="2310000" />
+      <workItem from="1585837445503" duration="1384000" />
+      <workItem from="1585838833224" duration="1788000" />
+    </task>
+    <task id="LOCAL-00001" summary="fix for missing callback breakage in homey core">
+      <created>1520515509723</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1520515509723</updated>
+    </task>
+    <task id="LOCAL-00002" summary="change categories">
+      <created>1520516121173</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1520516121173</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add flow triggers">
+      <created>1520518710679</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1520518710679</updated>
+    </task>
+    <task id="LOCAL-00004" summary="moved updateCapabilityValue back to driver">
+      <created>1521533956996</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1521533956997</updated>
+    </task>
+    <task id="LOCAL-00005" summary="always throw error on catch">
+      <created>1521534214088</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1521534214088</updated>
+    </task>
+    <task id="LOCAL-00006" summary="reject promise">
+      <created>1521541460920</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1521541460920</updated>
+    </task>
+    <task id="LOCAL-00007" summary="refactoring promise function">
+      <created>1521545772011</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1521545772011</updated>
+    </task>
+    <task id="LOCAL-00008" summary="change device images">
+      <created>1521714783441</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1521714783441</updated>
+    </task>
+    <task id="LOCAL-00009" summary="changed ropot identification">
+      <created>1523340014927</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1523340014927</updated>
+    </task>
+    <task id="LOCAL-00010" summary="add athom forum discussion identifier">
+      <created>1523967667133</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1523967667133</updated>
+    </task>
+    <task id="LOCAL-00011" summary="bump 1.0.4 again">
+      <created>1524480741290</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1524480741290</updated>
+    </task>
+    <task id="LOCAL-00012" summary="add test report">
+      <created>1535545580428</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1535545580428</updated>
+    </task>
+    <task id="LOCAL-00013" summary="change colors">
+      <created>1535610138573</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1535610138573</updated>
+    </task>
+    <task id="LOCAL-00014" summary="change styles">
+      <created>1535626049152</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1535626049152</updated>
+    </task>
+    <task id="LOCAL-00015" summary="add new release&#10;add documentation&#10;fixed typo in timeout&#10;add reason in timeout tag">
+      <created>1538392387040</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1538392387040</updated>
+    </task>
+    <task id="LOCAL-00016" summary="add package .json">
+      <created>1538393224972</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1538393224972</updated>
+    </task>
+    <task id="LOCAL-00017" summary="add package .json">
+      <created>1538393683223</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1538393683223</updated>
+    </task>
+    <task id="LOCAL-00018" summary="add node_modules">
+      <created>1538396757032</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1538396757032</updated>
+    </task>
+    <task id="LOCAL-00019" summary="throw error and stop loading if no devices can be found">
+      <created>1540363428890</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1540363428890</updated>
+    </task>
+    <task id="LOCAL-00020" summary="update version">
+      <created>1540363479645</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1540363479645</updated>
+    </task>
+    <task id="LOCAL-00021" summary="test js">
+      <created>1542114203804</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1542114203804</updated>
+    </task>
+    <task id="LOCAL-00022" summary="test js">
+      <created>1542114239183</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1542114239183</updated>
+    </task>
+    <task id="LOCAL-00023" summary="refactoring to v2">
+      <created>1544535242388</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1544535242388</updated>
+    </task>
+    <task id="LOCAL-00024" summary="try to push one by one">
+      <created>1544538560559</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1544538560559</updated>
+    </task>
+    <task id="LOCAL-00025" summary="remove node modules&#10;fixed update sequence to v2.0">
+      <created>1544615097675</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1544615097675</updated>
+    </task>
+    <task id="LOCAL-00026" summary="rearrange code">
+      <created>1553755769183</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1553755769183</updated>
+    </task>
+    <task id="LOCAL-00027" summary="add settings from server">
+      <created>1553756973929</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1553756973929</updated>
+    </task>
+    <task id="LOCAL-00028" summary="add german translation">
+      <created>1566903025237</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1566903025237</updated>
+    </task>
+    <task id="LOCAL-00029" summary="convert project to homey compose">
+      <created>1585837624797</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1585837624797</updated>
+    </task>
+    <task id="LOCAL-00030" summary="add energy option">
+      <created>1585838350575</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1585838350575</updated>
+    </task>
+    <task id="LOCAL-00031" summary="update device after pairing">
+      <created>1585840406673</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1585840406673</updated>
+    </task>
+    <task id="LOCAL-00032" summary="add trigger an update sequence when pairing is ready">
+      <created>1585840557267</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1585840557267</updated>
+    </task>
+    <task id="LOCAL-00033" summary="removed app.json and fixed version number">
+      <created>1585843104645</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1585843104645</updated>
+    </task>
+    <task id="LOCAL-00034" summary="add app.json again">
+      <created>1585844931261</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1585844931261</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="true" />
+    <MESSAGE value="change device images" />
+    <MESSAGE value="changed ropot identification" />
+    <MESSAGE value="add athom forum discussion identifier" />
+    <MESSAGE value="bump 1.0.4 again" />
+    <MESSAGE value="add test report" />
+    <MESSAGE value="change colors" />
+    <MESSAGE value="change styles" />
+    <MESSAGE value="add new release&#10;add documentation&#10;fixed typo in timeout&#10;add reason in timeout tag" />
+    <MESSAGE value="add package .json" />
+    <MESSAGE value="add node_modules" />
+    <MESSAGE value="throw error and stop loading if no devices can be found" />
+    <MESSAGE value="update version" />
+    <MESSAGE value="test js" />
+    <MESSAGE value="refactoring to v2" />
+    <MESSAGE value="try to push one by one" />
+    <MESSAGE value="remove node modules&#10;fixed update sequence to v2.0" />
+    <MESSAGE value="rearrange code" />
+    <MESSAGE value="add settings from server" />
+    <MESSAGE value="add german translation" />
+    <MESSAGE value="convert project to homey compose" />
+    <MESSAGE value="add energy option" />
+    <MESSAGE value="update device after pairing" />
+    <MESSAGE value="add trigger an update sequence when pairing is ready" />
+    <MESSAGE value="removed app.json and fixed version number" />
+    <MESSAGE value="add app.json again" />
+    <option name="LAST_COMMIT_MESSAGE" value="add app.json again" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="555" y="187" width="800" height="677" key="#Deployment" timestamp="1585838506963">
+      <screen x="0" y="27" width="1920" height="1000" />
+    </state>
+    <state x="555" y="187" width="800" height="677" key="#Deployment/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585838506963" />
+    <state x="555" y="187" width="800" height="677" key="#Options" timestamp="1585836767350">
+      <screen x="0" y="27" width="1920" height="1000" />
+    </state>
+    <state x="555" y="187" width="800" height="677" key="#Options/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585836767350" />
+    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2" timestamp="1585844931203">
+      <screen x="0" y="27" width="1920" height="1000" />
+    </state>
+    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585844931203" />
+    <state x="182" y="111" width="1536" height="830" key="DiffContextDialog" timestamp="1585843176651">
+      <screen x="0" y="27" width="1920" height="1000" />
+    </state>
+    <state x="182" y="111" width="1536" height="830" key="DiffContextDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585843176651" />
+    <state x="738" y="283" width="424" height="484" key="FileChooserDialogImpl" timestamp="1585836787965">
+      <screen x="0" y="27" width="1920" height="1000" />
+    </state>
+    <state x="738" y="283" width="424" height="484" key="FileChooserDialogImpl/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585836787965" />
+    <state x="701" y="239" width="507" height="574" key="RollbackChangesDialog" timestamp="1585843167936">
+      <screen x="0" y="27" width="1920" height="1000" />
+    </state>
+    <state x="701" y="239" width="507" height="574" key="RollbackChangesDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585843167936" />
+    <state x="449" y="161" key="SettingsEditor" timestamp="1585836594653">
+      <screen x="0" y="27" width="1920" height="1000" />
+    </state>
+    <state x="449" y="161" key="SettingsEditor/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585836594653" />
+    <state x="555" y="250" width="800" height="551" key="Vcs.Push.Dialog.v2" timestamp="1585844935082">
+      <screen x="0" y="27" width="1920" height="1000" />
+    </state>
+    <state x="555" y="250" width="800" height="551" key="Vcs.Push.Dialog.v2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585844935082" />
+    <state x="100" y="125" width="1720" height="802" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1585843176651">
+      <screen x="0" y="27" width="1920" height="1000" />
+    </state>
+    <state x="100" y="125" width="1720" height="802" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585843176651" />
+    <state x="605" y="257" width="869" height="606" key="find.popup" timestamp="1585844959156">
+      <screen x="0" y="27" width="1920" height="1000" />
+    </state>
+    <state x="605" y="257" width="869" height="606" key="find.popup/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585844959156" />
+    <state x="702" y="280" width="542" height="566" key="ftp.server.browser" timestamp="1585836898829">
+      <screen x="0" y="27" width="1920" height="1000" />
+    </state>
+    <state x="702" y="280" width="542" height="566" key="ftp.server.browser/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585836898829" />
+    <state x="602" y="319" width="715" height="413" key="git4idea.merge.GitPullDialog" timestamp="1585834839348">
+      <screen x="0" y="27" width="1920" height="1000" />
+    </state>
+    <state x="602" y="319" width="715" height="413" key="git4idea.merge.GitPullDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585834839348" />
+    <state x="825" y="422" width="260" height="207" key="publish.login" timestamp="1585836611184">
+      <screen x="0" y="27" width="1920" height="1000" />
+    </state>
+    <state x="825" y="422" width="260" height="207" key="publish.login/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585836611184" />
+    <state x="623" y="244" width="672" height="678" key="search.everywhere.popup" timestamp="1585840600525">
+      <screen x="0" y="27" width="1920" height="1000" />
+    </state>
+    <state x="623" y="244" width="672" height="678" key="search.everywhere.popup/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585840600525" />
+  </component>
+</project>

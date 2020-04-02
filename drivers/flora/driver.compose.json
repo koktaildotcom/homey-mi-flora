@@ -1,0 +1,299 @@
+{
+    "id": "flora",
+    "name": {
+        "en": "Xiaomi mi flora sensor",
+        "nl": "Xiaomi mi flora sensor",
+        "de": "Xiaomi Mi Flora Sensor"
+    },
+    "images": {
+        "small": "drivers/flora/assets/images/small.png",
+        "large": "drivers/flora/assets/images/large.png"
+    },
+    "class": "sensor",
+    "capabilities": [
+        "measure_temperature",
+        "measure_luminance",
+        "flora_measure_fertility",
+        "flora_measure_moisture",
+        "measure_battery"
+    ],
+    "pair": [
+        {
+            "id": "start"
+        },
+        {
+            "id": "list_my_devices",
+            "template": "list_devices",
+            "navigation": {
+                "next": "add_my_devices"
+            }
+        },
+        {
+            "id": "add_my_devices",
+            "template": "add_devices"
+        }
+    ],
+    "settings": [
+        {
+            "type": "group",
+            "label": {
+                "en": "Device info",
+                "nl": "Apparaat informatie",
+                "de": "Geräteinfo"
+            },
+            "children": [
+                {
+                    "id": "identify",
+                    "type": "checkbox",
+                    "label": {
+                        "en": "Identify",
+                        "nl": "Identificeren",
+                        "de": "Identifizieren"
+                    },
+                    "value": false
+                },
+                {
+                    "id": "firmware_version",
+                    "type": "label",
+                    "label": {
+                        "en": "Firmware version",
+                        "nl": "Firmware versie",
+                        "de": "Firmware-Version"
+                    },
+                    "value": ""
+                },
+                {
+                    "id": "last_updated",
+                    "type": "label",
+                    "label": {
+                        "en": "Last updated",
+                        "nl": "Laatste update",
+                        "de": "Letzte Aktualisierung"
+                    },
+                    "value": ""
+                },
+                {
+                    "id": "uuid",
+                    "type": "label",
+                    "label": {
+                        "en": "Device uuid address",
+                        "nl": "Apparaat uuid adres",
+                        "de": "Geräte uuid Adresse"
+                    },
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "type": "group",
+            "label": {
+                "en": "Temperature (°C)",
+                "nl": "Temperatuur (°C)",
+                "de": "Temperatur (°C)"
+            },
+            "children": [
+                {
+                    "id": "measure_temperature_min",
+                    "type": "number",
+                    "value": 0,
+                    "min": 0,
+                    "max": 40,
+                    "label": {
+                        "en": "min",
+                        "nl": "min",
+                        "de": "min"
+                    },
+                    "hint": {
+                        "en": "The minimal threshold value for temperature.",
+                        "nl": "De minimale grenswaarde voor temperatuur.",
+                        "de": "Der minimale grenzwert für die Temperatur."
+                    }
+                },
+                {
+                    "id": "measure_temperature_max",
+                    "type": "number",
+                    "value": 0,
+                    "min": 0,
+                    "max": 40,
+                    "label": {
+                        "en": "max",
+                        "nl": "max",
+                        "de": "max"
+                    },
+                    "hint": {
+                        "en": "The maximum threshold value for temperature.",
+                        "nl": "De maximale grenswaarde voor temperatuur.",
+                        "de": "Der maximale grenzwert für die Temperatur."
+                    }
+                }
+            ]
+        },
+        {
+            "type": "group",
+            "label": {
+                "en": "Luminance (lux)",
+                "nl": "Lichtintensiteit (lux)",
+                "de": "Helligkeit (lux)"
+            },
+            "children": [
+                {
+                    "id": "measure_luminance_min",
+                    "type": "number",
+                    "value": 0,
+                    "min": 0,
+                    "max": 50000,
+                    "label": {
+                        "en": "min",
+                        "nl": "min",
+                        "de": "min"
+                    },
+                    "hint": {
+                        "en": "The minimal threshold value for luminance.",
+                        "nl": "De minimale grenswaarde voor lichtintensiteit.",
+                        "de": "Der minimale grenzwert für die Helligkeit."
+                    }
+                },
+                {
+                    "id": "measure_luminance_max",
+                    "type": "number",
+                    "value": 0,
+                    "min": 0,
+                    "max": 50000,
+                    "label": {
+                        "en": "max",
+                        "nl": "max",
+                        "de": "max"
+                    },
+                    "hint": {
+                        "en": "The maximum threshold value for luminance.",
+                        "nl": "De maximale grenswaarde voor lichtintensiteit.",
+                        "de": "Der maximale grenzwert für die Helligkeit."
+                    }
+                }
+            ]
+        },
+        {
+            "type": "group",
+            "label": {
+                "en": "Nutrition (µS/cm)",
+                "nl": "Voeding (µS/cm)",
+                "de": "Dünger (µS/cm)"
+            },
+            "children": [
+                {
+                    "id": "flora_measure_fertility_min",
+                    "type": "number",
+                    "value": 0,
+                    "min": 0,
+                    "max": 10000,
+                    "label": {
+                        "en": "min",
+                        "nl": "min",
+                        "de": "min"
+                    },
+                    "hint": {
+                        "en": "The minimal threshold value for nutrition.",
+                        "nl": "De minimale grenswaarde voor voeding.",
+                        "de": "Der minimale grenzwert für den Dünger."
+                    }
+                },
+                {
+                    "id": "flora_measure_fertility_max",
+                    "type": "number",
+                    "value": 0,
+                    "min": 0,
+                    "max": 10000,
+                    "label": {
+                        "en": "max",
+                        "nl": "max",
+                        "de": "max"
+                    },
+                    "hint": {
+                        "en": "The maximum threshold value for nutrition.",
+                        "nl": "De maximale grenswaarde voor voeding.",
+                        "de": "Der maximale grenzwert für den Dünger."
+                    }
+                }
+            ]
+        },
+        {
+            "type": "group",
+            "label": {
+                "en": "Moisture (%)",
+                "nl": "Vochtigheid (%)",
+                "de": "Feuchtigkeit (%)"
+            },
+            "children": [
+                {
+                    "id": "flora_measure_moisture_min",
+                    "type": "number",
+                    "value": 0,
+                    "min": 0,
+                    "max": 100,
+                    "label": {
+                        "en": "min",
+                        "nl": "min",
+                        "de": "min"
+                    },
+                    "hint": {
+                        "en": "The minimal threshold value for moisture.",
+                        "nl": "De minimale grenswaarde voor vochtigheid.",
+                        "de": "Der minimale grenzwert für die Feuchtigkeit."
+                    }
+                },
+                {
+                    "id": "flora_measure_moisture_max",
+                    "type": "number",
+                    "value": 0,
+                    "min": 0,
+                    "max": 100,
+                    "label": {
+                        "en": "max",
+                        "nl": "max",
+                        "de": "max"
+                    },
+                    "hint": {
+                        "en": "The maximum threshold value for moisture.",
+                        "nl": "De maximale grenswaarde voor vochtigheid.",
+                        "de": "Der maximale grenzwert für die Feuchtigkeit."
+                    }
+                }
+            ]
+        }
+    ],
+    "mobile": {
+        "components": [
+            {
+                "id": "icon"
+            },
+            {
+                "id": "battery",
+                "capabilities": [
+                    "measure_battery"
+                ]
+            },
+            {
+                "id": "sensor",
+                "capabilities": [
+                    "measure_temperature",
+                    "measure_luminance",
+                    "flora_measure_fertility",
+                    "flora_measure_moisture"
+                ],
+                "options": {
+                    "icons": {
+                        "measure_temperature": "/assets/temperature.svg",
+                        "measure_luminance": "/assets/luminance.svg",
+                        "flora_measure_fertility": "/assets/nutritions.svg",
+                        "flora_measure_moisture": "/assets/moisture.svg"
+                    }
+                }
+            }
+        ]
+    },
+    "energy": {
+        "batteries": [
+            "CR2032"
+        ]
+    }
+}

@@ -41,7 +41,7 @@ You can configure the timeout between polls in the app's settings.
 3. Sensor value is below the configured threshold.
    * sensor (Moisture)
    * value (20%)
-   * report (The moisture (20%) is to low. This can be at least 30%.)
+   * report (The moisture (20%) is too low. This can be at least 30%.)
 4. Sensor value is above the configured threshold.
    * sensor (Moisture)
    * value (20%)
@@ -213,6 +213,10 @@ You can configure the timeout between polls in the app's settings.
 ### v2.1.12 - 04.02.2020
   * fixed capital case translation issues
   * fixed translation https://github.com/koktaildotcom/homey-mi-flora/issues/81
+### v2.1.13 - 02.04.2020
+  * convert project to homey compose
+  * add [energy battery setting](https://github.com/koktaildotcom/homey-mi-flora/issues/85)
+  * add [trigger an update sequence when pairing is ready](https://github.com/koktaildotcom/homey-mi-flora/issues/72)
 
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
