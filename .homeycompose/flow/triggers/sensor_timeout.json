@@ -1,0 +1,36 @@
+{
+  "id": "sensor_timeout",
+  "title": {
+    "en": "The sensor gives a timeout",
+    "nl": "Een sensor geeft een timeout",
+    "de": "Der Sensor gibt eine zeitüberschreitung aus"
+  },
+  "tokens": [
+    {
+      "name": "deviceName",
+      "title": {
+        "en": "device",
+        "nl": "apparaat",
+        "de": "Gerät"
+      },
+      "example": {
+        "en": "Flowercare 1",
+        "nl": "Flowercare 1",
+        "de": "Flowercare 1"
+      }
+    },
+    {
+      "name": "reason",
+      "title": {
+        "en": "reason",
+        "nl": "oorzaak",
+        "de": "Grund"
+      },
+      "example": {
+        "en": "Not in range",
+        "nl": "Niet binnen bereik",
+        "de": "Nicht in reichweite"
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Moisture",
+    "nl": "Vochtigheid",
+    "de": "Feuchtigkeit"
+  },
+  "icon": "/assets/moisture.svg",
+  "getable": true,
+  "setable": false,
+  "units": {
+    "en": "%",
+    "nl": "%",
+    "de": "%"
+  },
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "insights": true
+}

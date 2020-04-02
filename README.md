@@ -41,7 +41,7 @@ You can configure the timeout between polls in the app's settings.
 3. Sensor value is below the configured threshold.
    * sensor (Moisture)
    * value (20%)
-   * report (The moisture (20%) is to low. This can be at least 30%.)
+   * report (The moisture (20%) is too low. This can be at least 30%.)
 4. Sensor value is above the configured threshold.
    * sensor (Moisture)
    * value (20%)

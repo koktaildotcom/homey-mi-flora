@@ -1,0 +1,62 @@
+{
+  "id": "sensor_outside_threshold",
+  "title": {
+    "en": "Sensor value is outside the configured threshold",
+    "nl": "Sensor waarde is buiten de gestelde drempel",
+    "de": "Der Sensorwert liegt außerhab der konfigurierten grenzwerte"
+  },
+  "tokens": [
+    {
+      "name": "report",
+      "title": {
+        "en": "report",
+        "nl": "rapport",
+        "de": "Bericht"
+      },
+      "example": {
+        "en": "The moisture (22%) is too low. This can be at least 30%.",
+        "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
+        "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+      }
+    },
+    {
+      "name": "value",
+      "title": {
+        "en": "value",
+        "nl": "waarde",
+        "de": "Wert"
+      },
+      "example": {
+        "en": "22.5",
+        "nl": "22.5",
+        "de": "22.5"
+      }
+    },
+    {
+      "name": "sensor",
+      "title": {
+        "en": "sensor",
+        "nl": "sensor",
+        "de": "Sensor"
+      },
+      "example": {
+        "en": "Moisture",
+        "nl": "Vochtigheid",
+        "de": "Feuchtigkeit"
+      }
+    },
+    {
+      "name": "deviceName",
+      "title": {
+        "en": "device",
+        "nl": "apparaat",
+        "de": "Gerät"
+      },
+      "example": {
+        "en": "Flowercare 1",
+        "nl": "Flowercare 1",
+        "de": "Flowercare 1"
+      }
+    }
+  ]
+}

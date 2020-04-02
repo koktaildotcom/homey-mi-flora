@@ -1,0 +1,56 @@
+{
+  "id": "device_sensor_updated",
+  "title": {
+    "en": "A sensor value is updated",
+    "nl": "Een sensor waarde is geupdate",
+    "de": "Ein Sensorwert wird aktualisiert"
+  },
+  "tokens": [
+    {
+      "name": "report",
+      "title": {
+        "en": "report",
+        "nl": "rapport",
+        "de": "Bericht"
+      },
+      "example": {
+        "en": "The moisture (22%) is too low. This can be at least 30%.",
+        "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
+        "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+      }
+    },
+    {
+      "name": "value",
+      "title": {
+        "en": "value",
+        "nl": "waarde",
+        "de": "Wert"
+      },
+      "example": {
+        "en": "22.5",
+        "nl": "22.5",
+        "de": "22.5"
+      }
+    },
+    {
+      "name": "sensor",
+      "title": {
+        "en": "sensor",
+        "nl": "sensor",
+        "de": "Sensor"
+      },
+      "example": {
+        "en": "Moisture",
+        "nl": "Vochtigheid",
+        "de": "Feuchtigkeit"
+      }
+    }
+  ],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=flora|ropot"
+    }
+  ]
+}

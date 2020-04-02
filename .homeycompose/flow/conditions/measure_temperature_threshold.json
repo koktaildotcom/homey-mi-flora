@@ -1,0 +1,20 @@
+{
+  "id": "measure_temperature_threshold",
+  "title": {
+    "en": "De plant !{{has not|has}} a correct temperature.",
+    "nl": "De plant !{{heeft niet|heeft}} de juiste temperatuur.",
+    "de": "Die Pflanze !{{hat nicht|hat}} die richtige Temperatur."
+  },
+  "hint": {
+    "en": "Use this card to determine if the plant has a correct temperature.",
+    "nl": "Gebruik deze kaart om te bepalen of de plant de juiste temperatuur heeft.",
+    "de": "Verwenden Sie diese Karte, um festzustellen, das die Pflanze eine korrekte Temperatur hat."
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capabilities=measure_temperature"
+    }
+  ]
+}
