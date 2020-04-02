@@ -213,6 +213,9 @@ You can configure the timeout between polls in the app's settings.
 ### v2.1.12 - 04.02.2020
   * fixed capital case translation issues
   * fixed translation https://github.com/koktaildotcom/homey-mi-flora/issues/81
+### v2.1.13 - 02.04.2020
+  * convert project to homey compose
+  * add [energy battery setting](https://github.com/koktaildotcom/homey-mi-flora/issues/85)
 
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora

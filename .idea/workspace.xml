@@ -1,39 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7880eeae-53ac-4c3d-9a34-d1985b2f3c36" name="Default" comment="add german translation">
-      <change afterPath="$PROJECT_DIR$/.homeycompose/app.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.homeycompose/capabilities/flora_measure_fertility.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.homeycompose/capabilities/flora_measure_moisture.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.homeycompose/flow/conditions/flora_measure_fertility_threshold.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.homeycompose/flow/conditions/flora_measure_moisture_threshold.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.homeycompose/flow/conditions/measure_luminance_threshold.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.homeycompose/flow/conditions/measure_temperature_threshold.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.homeycompose/flow/triggers/device_sensor_changed.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.homeycompose/flow/triggers/device_sensor_outside_threshold.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.homeycompose/flow/triggers/device_sensor_threshold_max_exceeds.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.homeycompose/flow/triggers/device_sensor_threshold_min_exceeds.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.homeycompose/flow/triggers/device_sensor_updated.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.homeycompose/flow/triggers/sensor_changed.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.homeycompose/flow/triggers/sensor_outside_threshold.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.homeycompose/flow/triggers/sensor_threshold_max_exceeds.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.homeycompose/flow/triggers/sensor_threshold_min_exceeds.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.homeycompose/flow/triggers/sensor_timeout.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.homeycompose/flow/triggers/sensor_updated.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.homeyplugins.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/flora.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/drivers/flora/driver.compose.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/drivers/ropot/driver.compose.json" afterDir="false" />
+    <list default="true" id="7880eeae-53ac-4c3d-9a34-d1985b2f3c36" name="Default" comment="convert project to homey compose">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/drivers/flora/driver.compose.json" beforeDir="false" afterPath="$PROJECT_DIR$/drivers/flora/driver.compose.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -263,7 +234,7 @@
       <workItem from="1578487818749" duration="128000" />
       <workItem from="1580820749679" duration="85000" />
       <workItem from="1585834759798" duration="2310000" />
-      <workItem from="1585837445503" duration="131000" />
+      <workItem from="1585837445503" duration="812000" />
     </task>
     <task id="LOCAL-00001" summary="fix for missing callback breakage in homey core">
       <created>1520515509723</created>
@@ -461,7 +432,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566903025237</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="convert project to homey compose">
+      <created>1585837624797</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1585837624797</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -479,7 +457,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="true" />
-    <MESSAGE value="change categories" />
     <MESSAGE value="add flow triggers" />
     <MESSAGE value="moved updateCapabilityValue back to driver" />
     <MESSAGE value="always throw error on catch" />
@@ -504,7 +481,8 @@
     <MESSAGE value="rearrange code" />
     <MESSAGE value="add settings from server" />
     <MESSAGE value="add german translation" />
-    <option name="LAST_COMMIT_MESSAGE" value="add german translation" />
+    <MESSAGE value="convert project to homey compose" />
+    <option name="LAST_COMMIT_MESSAGE" value="convert project to homey compose" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="187" width="800" height="677" key="#Deployment" timestamp="1585836899702">
@@ -515,10 +493,10 @@
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
     <state x="555" y="187" width="800" height="677" key="#Options/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585836767350" />
-    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2" timestamp="1585837604677">
+    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2" timestamp="1585837624746">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585837604677" />
+    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585837624746" />
     <state x="182" y="111" width="1536" height="830" key="DiffContextDialog" timestamp="1585835537348">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
@@ -535,6 +513,10 @@
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
     <state x="449" y="161" key="SettingsEditor/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585836594653" />
+    <state x="555" y="250" width="800" height="551" key="Vcs.Push.Dialog.v2" timestamp="1585837896503">
+      <screen x="0" y="27" width="1920" height="1000" />
+    </state>
+    <state x="555" y="250" width="800" height="551" key="Vcs.Push.Dialog.v2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585837896503" />
     <state x="605" y="257" width="869" height="606" key="find.popup" timestamp="1585835304888">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
