@@ -216,6 +216,7 @@ You can configure the timeout between polls in the app's settings.
 ### v2.1.13 - 02.04.2020
   * convert project to homey compose
   * add [energy battery setting](https://github.com/koktaildotcom/homey-mi-flora/issues/85)
+  * add [trigger an update sequence when pairing is ready](https://github.com/koktaildotcom/homey-mi-flora/issues/72)
 
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
