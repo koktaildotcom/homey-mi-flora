@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7880eeae-53ac-4c3d-9a34-d1985b2f3c36" name="Default" comment="add trigger an update sequence when pairing is ready">
+      <change beforePath="$PROJECT_DIR$/.homeycompose/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/.homeycompose/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -514,10 +517,10 @@
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
     <state x="555" y="187" width="800" height="677" key="#Options/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585836767350" />
-    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2" timestamp="1585840641051">
+    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2" timestamp="1585843088649">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585840641051" />
+    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585843088649" />
     <state x="182" y="111" width="1536" height="830" key="DiffContextDialog" timestamp="1585840640807">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
@@ -538,10 +541,10 @@
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
     <state x="555" y="250" width="800" height="551" key="Vcs.Push.Dialog.v2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585840562616" />
-    <state x="605" y="257" width="869" height="606" key="find.popup" timestamp="1585835304888">
+    <state x="605" y="257" width="869" height="606" key="find.popup" timestamp="1585843039384">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="605" y="257" width="869" height="606" key="find.popup/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585835304888" />
+    <state x="605" y="257" width="869" height="606" key="find.popup/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585843039384" />
     <state x="702" y="280" width="542" height="566" key="ftp.server.browser" timestamp="1585836898829">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
