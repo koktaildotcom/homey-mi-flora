@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7880eeae-53ac-4c3d-9a34-d1985b2f3c36" name="Default" comment="removed identify because it doesn't work on all firmware">
-      <change afterPath="$PROJECT_DIR$/.homeychangelog.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="7880eeae-53ac-4c3d-9a34-d1985b2f3c36" name="Default" comment="removed identify because it doesn't work on all firmware&#10;refactoring connection of the advertisement&#10;add homey compose as development environment&#10;removed `measure_battery` from ropot driver&#10;try to measure distance based on the rssi &#10;add debug sequence start header">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drivers/flora/driver.compose.json" beforeDir="false" afterPath="$PROJECT_DIR$/drivers/flora/driver.compose.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drivers/ropot/driver.compose.json" beforeDir="false" afterPath="$PROJECT_DIR$/drivers/ropot/driver.compose.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drivers/ropot/driver.js" beforeDir="false" afterPath="$PROJECT_DIR$/drivers/ropot/driver.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/MiFloraDevice.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/MiFloraDevice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/MiFloraDriver.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/MiFloraDriver.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,7 +230,7 @@
       <workItem from="1588246102358" duration="205000" />
       <workItem from="1588326042513" duration="1007000" />
       <workItem from="1588329245487" duration="716000" />
-      <workItem from="1588335582032" duration="4581000" />
+      <workItem from="1588335582032" duration="5059000" />
     </task>
     <task id="LOCAL-00001" summary="fix for missing callback breakage in homey core">
       <created>1520515509723</created>
@@ -478,7 +470,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585844931261</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="removed identify because it doesn't work on all firmware&#10;refactoring connection of the advertisement&#10;add homey compose as development environment&#10;removed `measure_battery` from ropot driver&#10;try to measure distance based on the rssi &#10;add debug sequence start header">
+      <created>1588340613938</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1588340613938</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -496,7 +495,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="true" />
-    <MESSAGE value="change device images" />
     <MESSAGE value="changed ropot identification" />
     <MESSAGE value="add athom forum discussion identifier" />
     <MESSAGE value="bump 1.0.4 again" />
@@ -521,7 +519,8 @@
     <MESSAGE value="add trigger an update sequence when pairing is ready" />
     <MESSAGE value="removed app.json and fixed version number" />
     <MESSAGE value="add app.json again" />
-    <option name="LAST_COMMIT_MESSAGE" value="add app.json again" />
+    <MESSAGE value="removed identify because it doesn't work on all firmware&#10;refactoring connection of the advertisement&#10;add homey compose as development environment&#10;removed `measure_battery` from ropot driver&#10;try to measure distance based on the rssi &#10;add debug sequence start header" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed identify because it doesn't work on all firmware&#10;refactoring connection of the advertisement&#10;add homey compose as development environment&#10;removed `measure_battery` from ropot driver&#10;try to measure distance based on the rssi &#10;add debug sequence start header" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="187" width="800" height="677" key="#Deployment" timestamp="1588229217312">
@@ -536,14 +535,14 @@
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
     <state x="534" y="174" width="832" height="704" key="#SSH_Configurations/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588225918824" />
-    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2" timestamp="1588326493299">
+    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2" timestamp="1588340613845">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588326493299" />
-    <state x="182" y="111" width="1536" height="830" key="DiffContextDialog" timestamp="1588229387165">
+    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588340613845" />
+    <state x="182" y="111" width="1536" height="830" key="DiffContextDialog" timestamp="1588340599855">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="182" y="111" width="1536" height="830" key="DiffContextDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588229387165" />
+    <state x="182" y="111" width="1536" height="830" key="DiffContextDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588340599855" />
     <state x="738" y="283" width="424" height="484" key="FileChooserDialogImpl" timestamp="1585836787965">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
@@ -572,10 +571,10 @@
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
     <state x="449" y="161" key="SettingsEditor/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588225713147" />
-    <state x="555" y="250" width="800" height="551" key="Vcs.Push.Dialog.v2" timestamp="1588229371314">
+    <state x="555" y="250" width="800" height="551" key="Vcs.Push.Dialog.v2" timestamp="1588340615368">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="555" y="250" width="800" height="551" key="Vcs.Push.Dialog.v2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588229371314" />
+    <state x="555" y="250" width="800" height="551" key="Vcs.Push.Dialog.v2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588340615368" />
     <state x="100" y="125" width="1720" height="802" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1585843176651">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
