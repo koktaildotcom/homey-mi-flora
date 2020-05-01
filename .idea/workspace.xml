@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7880eeae-53ac-4c3d-9a34-d1985b2f3c36" name="Default" comment="removed app.json and fixed version number">
+    <list default="true" id="7880eeae-53ac-4c3d-9a34-d1985b2f3c36" name="Default" comment="removed identify because it doesn't work on all firmware">
+      <change afterPath="$PROJECT_DIR$/.homeychangelog.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/drivers/flora/driver.compose.json" beforeDir="false" afterPath="$PROJECT_DIR$/drivers/flora/driver.compose.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/drivers/ropot/driver.compose.json" beforeDir="false" afterPath="$PROJECT_DIR$/drivers/ropot/driver.compose.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/drivers/ropot/driver.js" beforeDir="false" afterPath="$PROJECT_DIR$/drivers/ropot/driver.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/MiFloraDevice.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/MiFloraDevice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/MiFloraDriver.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/MiFloraDriver.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -10,9 +20,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ComposerSettings">
-    <execution>
-      <executable />
-    </execution>
+    <execution />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -55,7 +63,6 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -68,6 +75,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -84,31 +92,22 @@
       <command value="&lt;div id=&quot;target&quot;&gt;&lt;/div&gt;" />
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Node.js.flora-rssi.js">
     <configuration name="test.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://145.130.155.137/test.html">
+      <method v="2" />
+    </configuration>
+    <configuration name="flora-rssi.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$APPLICATION_CONFIG_DIR$/scratches/leendert/flora-rssi.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.test.html" />
+        <item itemvalue="Node.js.flora-rssi.js" />
         <item itemvalue="JavaScript Debug.test.html" />
         <item itemvalue="JavaScript Debug.test.html" />
         <item itemvalue="JavaScript Debug.test.html" />
         <item itemvalue="JavaScript Debug.test.html" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration>$USER_HOME$/.subversion</configuration>
@@ -234,6 +233,12 @@
       <workItem from="1585834759798" duration="2310000" />
       <workItem from="1585837445503" duration="1384000" />
       <workItem from="1585838833224" duration="1788000" />
+      <workItem from="1588225692613" duration="3859000" />
+      <workItem from="1588235691957" duration="6000" />
+      <workItem from="1588246102358" duration="205000" />
+      <workItem from="1588326042513" duration="1007000" />
+      <workItem from="1588329245487" duration="716000" />
+      <workItem from="1588335582032" duration="4581000" />
     </task>
     <task id="LOCAL-00001" summary="fix for missing callback breakage in homey core">
       <created>1520515509723</created>
@@ -477,7 +482,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -519,58 +524,78 @@
     <option name="LAST_COMMIT_MESSAGE" value="add app.json again" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="555" y="187" width="800" height="677" key="#Deployment" timestamp="1585838506963">
+    <state x="555" y="187" width="800" height="677" key="#Deployment" timestamp="1588229217312">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="555" y="187" width="800" height="677" key="#Deployment/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585838506963" />
+    <state x="555" y="187" width="800" height="677" key="#Deployment/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588229217312" />
     <state x="555" y="187" width="800" height="677" key="#Options" timestamp="1585836767350">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
     <state x="555" y="187" width="800" height="677" key="#Options/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585836767350" />
-    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2" timestamp="1585844931203">
+    <state x="534" y="174" width="832" height="704" key="#SSH_Configurations" timestamp="1588225918824">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585844931203" />
-    <state x="182" y="111" width="1536" height="830" key="DiffContextDialog" timestamp="1585843176651">
+    <state x="534" y="174" width="832" height="704" key="#SSH_Configurations/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588225918824" />
+    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2" timestamp="1588326493299">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="182" y="111" width="1536" height="830" key="DiffContextDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585843176651" />
+    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588326493299" />
+    <state x="182" y="111" width="1536" height="830" key="DiffContextDialog" timestamp="1588229387165">
+      <screen x="0" y="27" width="1920" height="1000" />
+    </state>
+    <state x="182" y="111" width="1536" height="830" key="DiffContextDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588229387165" />
     <state x="738" y="283" width="424" height="484" key="FileChooserDialogImpl" timestamp="1585836787965">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
     <state x="738" y="283" width="424" height="484" key="FileChooserDialogImpl/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585836787965" />
-    <state x="701" y="239" width="507" height="574" key="RollbackChangesDialog" timestamp="1585843167936">
+    <state width="1874" height="261" key="GridCell.Tab.0.bottom" timestamp="1588337416329">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="701" y="239" width="507" height="574" key="RollbackChangesDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585843167936" />
-    <state x="449" y="161" key="SettingsEditor" timestamp="1585836594653">
+    <state width="1874" height="261" key="GridCell.Tab.0.bottom/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588337416329" />
+    <state width="1874" height="261" key="GridCell.Tab.0.center" timestamp="1588337416329">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="449" y="161" key="SettingsEditor/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585836594653" />
-    <state x="555" y="250" width="800" height="551" key="Vcs.Push.Dialog.v2" timestamp="1585844935082">
+    <state width="1874" height="261" key="GridCell.Tab.0.center/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588337416329" />
+    <state width="1874" height="261" key="GridCell.Tab.0.left" timestamp="1588337416329">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="555" y="250" width="800" height="551" key="Vcs.Push.Dialog.v2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585844935082" />
+    <state width="1874" height="261" key="GridCell.Tab.0.left/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588337416329" />
+    <state width="1874" height="261" key="GridCell.Tab.0.right" timestamp="1588337416329">
+      <screen x="0" y="27" width="1920" height="1000" />
+    </state>
+    <state width="1874" height="261" key="GridCell.Tab.0.right/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588337416329" />
+    <state x="701" y="239" width="507" height="574" key="RollbackChangesDialog" timestamp="1588326350984">
+      <screen x="0" y="27" width="1920" height="1000" />
+    </state>
+    <state x="701" y="239" width="507" height="574" key="RollbackChangesDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588326350984" />
+    <state x="449" y="161" key="SettingsEditor" timestamp="1588225713147">
+      <screen x="0" y="27" width="1920" height="1000" />
+    </state>
+    <state x="449" y="161" key="SettingsEditor/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588225713147" />
+    <state x="555" y="250" width="800" height="551" key="Vcs.Push.Dialog.v2" timestamp="1588229371314">
+      <screen x="0" y="27" width="1920" height="1000" />
+    </state>
+    <state x="555" y="250" width="800" height="551" key="Vcs.Push.Dialog.v2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588229371314" />
     <state x="100" y="125" width="1720" height="802" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1585843176651">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
     <state x="100" y="125" width="1720" height="802" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585843176651" />
-    <state x="605" y="257" width="869" height="606" key="find.popup" timestamp="1585844959156">
+    <state x="605" y="257" width="869" height="606" key="find.popup" timestamp="1588337549432">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="605" y="257" width="869" height="606" key="find.popup/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585844959156" />
-    <state x="702" y="280" width="542" height="566" key="ftp.server.browser" timestamp="1585836898829">
+    <state x="605" y="257" width="869" height="606" key="find.popup/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588337549432" />
+    <state x="702" y="280" width="542" height="566" key="ftp.server.browser" timestamp="1588229216686">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="702" y="280" width="542" height="566" key="ftp.server.browser/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585836898829" />
-    <state x="602" y="319" width="715" height="413" key="git4idea.merge.GitPullDialog" timestamp="1585834839348">
+    <state x="702" y="280" width="542" height="566" key="ftp.server.browser/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588229216686" />
+    <state x="602" y="319" width="715" height="413" key="git4idea.merge.GitPullDialog" timestamp="1588225824709">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="602" y="319" width="715" height="413" key="git4idea.merge.GitPullDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585834839348" />
-    <state x="825" y="422" width="260" height="207" key="publish.login" timestamp="1585836611184">
+    <state x="602" y="319" width="715" height="413" key="git4idea.merge.GitPullDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588225824709" />
+    <state x="825" y="422" width="260" height="212" key="publish.login" timestamp="1588225857596">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>
-    <state x="825" y="422" width="260" height="207" key="publish.login/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585836611184" />
+    <state x="825" y="422" width="260" height="212" key="publish.login/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588225857596" />
     <state x="623" y="244" width="672" height="678" key="search.everywhere.popup" timestamp="1585840600525">
       <screen x="0" y="27" width="1920" height="1000" />
     </state>

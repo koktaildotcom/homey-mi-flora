@@ -62,19 +62,6 @@ class HomeyMiFlora extends Homey.App {
     }
 
     /**
-     * find advertisements
-     *
-     * @param device MiFloraDevice
-     *
-     * @returns {Promise.<BleAdvertisement>}
-     */
-    async find(device) {
-        return await Homey.ManagerBLE.find(device.getAddress()).then(function (advertisement) {
-            return advertisement;
-        });
-    }
-
-    /**
      * connect to the sensor, update data and disconnect
      *
      * @param device MiFloraDevice
@@ -92,7 +79,11 @@ class HomeyMiFlora extends Homey.App {
             let updateDeviceTime = new Date();
 
             console.log('find');
-            const advertisement = await Homey.app.find(device);
+            const advertisement = await Homey.ManagerBLE.find(device.getAddress(), 10000).then(function (advertisement) {
+                return advertisement;
+            });
+
+            console.log('distance = ' + this.calculateDistance(advertisement.rssi) + ' meter');
 
             console.log('connect');
             const peripheral = await advertisement.connect();
@@ -121,7 +112,7 @@ class HomeyMiFlora extends Homey.App {
             // get realtime
             console.log('realtime');
             const realtime = await characteristics.find(characteristic => characteristic.uuid === REALTIME_CHARACTERISTIC_UUID);
-            if(!realtime) {
+            if (!realtime) {
                 throw new Error('Missing realtime characteristic');
             }
             await realtime.write(Buffer.from([0xA0, 0x1F]));
@@ -129,7 +120,7 @@ class HomeyMiFlora extends Homey.App {
             // get data
             console.log('data');
             const data = await characteristics.find(characteristic => characteristic.uuid === DATA_CHARACTERISTIC_UUID);
-            if(!data) {
+            if (!data) {
                 throw new Error('Missing data characteristic');
             }
             console.log('DATA_CHARACTERISTIC_UUID::read');
@@ -151,7 +142,7 @@ class HomeyMiFlora extends Homey.App {
 
             // get firmware
             const firmware = characteristics.find(characteristic => characteristic.uuid === FIRMWARE_CHARACTERISTIC_UUID);
-            if(!firmware) {
+            if (!firmware) {
                 disconnectPeripheral();
                 throw new Error('Missing firmware characteristic');
             }
@@ -190,8 +181,7 @@ class HomeyMiFlora extends Homey.App {
             console.log('Device sync complete in: ' + (new Date() - updateDeviceTime) / 1000 + ' seconds');
 
             return device;
-        }
-        catch (error) {
+        } catch (error) {
             await disconnectPeripheral();
             throw error;
         }
@@ -205,16 +195,22 @@ class HomeyMiFlora extends Homey.App {
      * @returns {Promise.<MiFloraDevice[]>}
      */
     async updateDevices(devices) {
-        console.log('_updateDevices');
+        console.log(' ')
+        console.log(' ');
+        console.log(' ');
+        console.log(' ');
+        console.log('-----------------------------------------------------------------');
+        console.log('| New update sequence ');
+        console.log('-----------------------------------------------------------------');
         return await devices.reduce((promise, device) => {
             return promise
-            .then(() => {
-                console.log('reduce');
-                device.retry = 0;
-                return Homey.app.updateDevice(device)
-            }).catch(error => {
-                console.log(error);
-            });
+                .then(() => {
+                    console.log('reduce');
+                    device.retry = 0;
+                    return Homey.app.updateDevice(device)
+                }).catch(error => {
+                    console.log(error);
+                });
         }, Promise.resolve());
     }
 
@@ -228,7 +224,8 @@ class HomeyMiFlora extends Homey.App {
     async updateDevice(device) {
 
         console.log('#########################################');
-        console.log('# update device: '+device.getName());
+        console.log('# update device: ' + device.getName());
+        console.log('# firmware: ' + device.getSetting('firmware_version'));
         console.log('#########################################');
 
         console.log('call handleUpdateSequence');
@@ -238,88 +235,38 @@ class HomeyMiFlora extends Homey.App {
         }
 
         return await Homey.app.handleUpdateSequence(device)
-        .then(() => {
-            device.retry = 0;
+            .then(() => {
+                device.retry = 0;
 
-            return device;
-        })
-        .catch(error => {
-            device.retry++;
-            console.log('timeout, retry again ' + device.retry);
-            console.log(error);
-
-            if (device.retry < MAX_RETRIES) {
-                return Homey.app.updateDevice(device)
-                .catch((error) => {
-                    throw new Error(error);
-                });
-            }
-
-            Homey.app.globalSensorTimeout.trigger({
-                'deviceName': device.getName(),
-                'reason': error
+                return device;
             })
-            .then(function () {
-                console.log('sending device timeout trigger');
-            })
-            .catch(function (error) {
-                console.error('Cannot trigger flow card sensor_timeout device: %s.', error);
-            });
+            .catch(error => {
+                device.retry++;
+                console.log('timeout, retry again ' + device.retry);
+                console.log(error);
 
-            device.retry = 0;
-
-            throw new Error('Max retries (' + MAX_RETRIES + ') exceeded, no success');
-        });
-    }
-
-    /**
-     * update the devices one by one
-     *
-     * @param device MiFloraDevice
-     *
-     * @returns {Promise.<MiFloraDevice>}
-     */
-    async identify (device) {
-
-        let disconnectPeripheral = async () => {
-            console.log('disconnectPeripheral not registered yet')
-        };
-
-        try {
-            console.log('find')
-            const advertisement = await Homey.app.find(device)
-
-            console.log('connect')
-            const peripheral = await advertisement.connect()
-
-            disconnectPeripheral = async () => {
-                try {
-                    console.log('try to disconnect peripheral')
-                    if (peripheral.isConnected) {
-                        console.log('disconnect peripheral')
-                        return await peripheral.disconnect()
-                    }
-                } catch (err) {
-                    throw new Error(err)
+                if (device.retry < MAX_RETRIES) {
+                    return Homey.app.updateDevice(device)
+                        .catch((error) => {
+                            throw new Error(error);
+                        });
                 }
-            }
 
-            console.log('get dataService')
-            const dataService = await peripheral.getService(DATA_SERVICE_UUID)
+                Homey.app.globalSensorTimeout.trigger({
+                    'deviceName': device.getName(),
+                    'reason': error
+                })
+                    .then(function () {
+                        console.log('sending device timeout trigger');
+                    })
+                    .catch(function (error) {
+                        console.error('Cannot trigger flow card sensor_timeout device: %s.', error);
+                    });
 
-            console.log('blink');
-            await dataService.write(Buffer.from([0xfd, 0xff]));
+                device.retry = 0;
 
-            console.log('call disconnectPeripheral')
-            await disconnectPeripheral()
-
-            return device
-        }
-        catch (error) {
-            await disconnectPeripheral()
-
-            throw error
-        }
+                throw new Error('Max retries (' + MAX_RETRIES + ') exceeded, no success');
+            });
     }
 
     /**
@@ -364,10 +311,25 @@ class HomeyMiFlora extends Homey.App {
 
                 resolve(devices);
             })
-            .catch(function (error) {
-                reject('Cannot discover BLE devices from the homey manager. ' + error);
-            });
+                .catch(function (error) {
+                    reject('Cannot discover BLE devices from the homey manager. ' + error);
+                });
         })
+    }
+
+    /**
+     * @param rssi
+     * @return {number}
+     */
+    calculateDistance(rssi) {
+        const txPower = -59;
+        const ratio = rssi / txPower;
+
+        if (ratio < 1.0) {
+            return Math.pow(ratio, 10);
+        }
+
+        return (0.19) * Math.pow(ratio, 8);
     }
 }
 

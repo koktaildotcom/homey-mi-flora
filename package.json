@@ -1,0 +1,26 @@
+{
+  "name": "homey-mi-flora",
+  "version": "2.1.13",
+  "description": "Introduction This app integrate the `Xiaomi mi flora sensor` and `Xiaomi mi flora ropot` into Homey.",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "homey": "^2.3.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koktaildotcom/homey-mi-flora.git"
+  },
+  "author": "Leendert de Kok",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/koktaildotcom/homey-mi-flora/issues"
+  },
+  "homepage": "https://github.com/koktaildotcom/homey-mi-flora#readme"
+}

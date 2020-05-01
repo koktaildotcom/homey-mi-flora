@@ -43,16 +43,6 @@
             },
             "children": [
                 {
-                    "id": "identify",
-                    "type": "checkbox",
-                    "label": {
-                        "en": "Identify",
-                        "nl": "Identificeren",
-                        "de": "Identifizieren"
-                    },
-                    "value": false
-                },
-                {
                     "id": "firmware_version",
                     "type": "label",
                     "label": {
