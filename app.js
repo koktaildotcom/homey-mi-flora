@@ -24,37 +24,16 @@ class HomeyMiFlora extends Homey.App {
         console.log('Successfully init HomeyMiFlora version: %s', this.homey.manifest.version);
 
         this.deviceSensorUpdated = this.homey.flow.getDeviceTriggerCard('device_sensor_updated');
-        this.deviceSensorUpdated.register();
-
         this.globalSensorUpdated = this.homey.flow.getTriggerCard('sensor_updated');
-        this.globalSensorUpdated.register();
-
         this.deviceSensorChanged = this.homey.flow.getDeviceTriggerCard('device_sensor_changed');
-        this.deviceSensorChanged.register();
-
         this.globalSensorChanged = this.homey.flow.getTriggerCard('sensor_changed');
-        this.globalSensorChanged.register();
-
         this.globalSensorTimeout = this.homey.flow.getTriggerCard('sensor_timeout');
-        this.globalSensorTimeout.register();
-
         this.globalSensorThresholdMinExceeds = this.homey.flow.getTriggerCard('sensor_threshold_min_exceeds');
-        this.globalSensorThresholdMinExceeds.register();
-
         this.deviceSensorThresholdMinExceeds = this.homey.flow.getDeviceTriggerCard('device_sensor_threshold_min_exceeds');
-        this.deviceSensorThresholdMinExceeds.register();
-
         this.globalSensorThresholdMaxExceeds = this.homey.flow.getTriggerCard('sensor_threshold_max_exceeds');
-        this.globalSensorThresholdMaxExceeds.register();
-
         this.deviceSensorThresholdMaxExceeds = this.homey.flow.getDeviceTriggerCard('device_sensor_threshold_max_exceeds');
-        this.deviceSensorThresholdMaxExceeds.register();
-
         this.globalSensorOutsideThreshold = this.homey.flow.getTriggerCard('sensor_outside_threshold');
-        this.globalSensorOutsideThreshold.register();
-
         this.deviceSensorOutsideThreshold = this.homey.flow.getDeviceTriggerCard('device_sensor_outside_threshold');
-        this.deviceSensorOutsideThreshold.register();
 
         if (!this.homey.settings.get('updateInterval')) {
             this.homey.settings.set('updateInterval', 15)
@@ -207,7 +186,7 @@ class HomeyMiFlora extends Homey.App {
                 .then(() => {
                     console.log('reduce');
                     device.retry = 0;
-                    return Homey.app.updateDevice(device)
+                    return this.homey.app.updateDevice(device)
                 }).catch(error => {
                     console.log(error);
                 });
@@ -234,7 +213,7 @@ class HomeyMiFlora extends Homey.App {
             device.retry = 0;
         }
 
-        return await Homey.app.handleUpdateSequence(device)
+        return await this.homey.app.handleUpdateSequence(device)
             .then(() => {
                 device.retry = 0;
 
@@ -246,13 +225,13 @@ class HomeyMiFlora extends Homey.App {
                 console.log(error);
 
                 if (device.retry < MAX_RETRIES) {
-                    return Homey.app.updateDevice(device)
+                    return this.homey.app.updateDevice(device)
                         .catch((error) => {
                             throw new Error(error);
                         });
                 }
 
-                Homey.app.globalSensorTimeout.trigger({
+                this.homey.app.globalSensorTimeout.trigger({
                     'deviceName': device.getName(),
                     'reason': error
                 })
