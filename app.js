@@ -275,7 +275,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
                                 type: advertisement.type,
                                 version: "v" + version,
                             },
-                            settings: driver.getDefaultSettings(),
+                            settings: Object.assign({uuid: advertisement.uuid}, driver.getDefaultSettings()),
                             capabilities: driver.getSupportedCapabilities(),
                         });
                     }
