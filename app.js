@@ -23,13 +23,13 @@ class HomeyMiFlora extends Homey.App {
     onInit() {
         console.log('Successfully init HomeyMiFlora version: %s', Homey.app.manifest.version);
 
-        this.deviceSensorUpdated = new Homey.FlowCardTriggerDevice('device_sensor_updated');
+        this.deviceSensorUpdated = this.homey.flow.getTriggerCard('device_sensor_updated');
         this.deviceSensorUpdated.register();
 
         this.globalSensorUpdated = new Homey.FlowCardTrigger('sensor_updated');
         this.globalSensorUpdated.register();
 
-        this.deviceSensorChanged = new Homey.FlowCardTriggerDevice('device_sensor_changed');
+        this.deviceSensorChanged = this.homey.flow.getTriggerCard('device_sensor_changed');
         this.deviceSensorChanged.register();
 
         this.globalSensorChanged = new Homey.FlowCardTrigger('sensor_changed');
@@ -41,19 +41,19 @@ class HomeyMiFlora extends Homey.App {
         this.globalSensorThresholdMinExceeds = new Homey.FlowCardTrigger('sensor_threshold_min_exceeds');
         this.globalSensorThresholdMinExceeds.register();
 
-        this.deviceSensorThresholdMinExceeds = new Homey.FlowCardTriggerDevice('device_sensor_threshold_min_exceeds');
+        this.deviceSensorThresholdMinExceeds = this.homey.flow.getTriggerCard('device_sensor_threshold_min_exceeds');
         this.deviceSensorThresholdMinExceeds.register();
 
         this.globalSensorThresholdMaxExceeds = new Homey.FlowCardTrigger('sensor_threshold_max_exceeds');
         this.globalSensorThresholdMaxExceeds.register();
 
-        this.deviceSensorThresholdMaxExceeds = new Homey.FlowCardTriggerDevice('device_sensor_threshold_max_exceeds');
+        this.deviceSensorThresholdMaxExceeds = this.homey.flow.getTriggerCard('device_sensor_threshold_max_exceeds');
         this.deviceSensorThresholdMaxExceeds.register();
 
         this.globalSensorOutsideThreshold = new Homey.FlowCardTrigger('sensor_outside_threshold');
         this.globalSensorOutsideThreshold.register();
 
-        this.deviceSensorOutsideThreshold = new Homey.FlowCardTriggerDevice('device_sensor_outside_threshold');
+        this.deviceSensorOutsideThreshold = this.homey.flow.getTriggerCard('device_sensor_outside_threshold');
         this.deviceSensorOutsideThreshold.register();
 
         if (!Homey.ManagerSettings.get('updateInterval')) {

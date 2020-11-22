@@ -1,13 +1,15 @@
 {
   "name": "homey-mi-flora",
   "version": "2.1.13",
-  "description": "Introduction This app integrate the `Xiaomi mi flora sensor` and `Xiaomi mi flora ropot` into Homey.",
+  "description": "This app integrates the `Xiaomi mi flora sensor` and `Xiaomi mi flora ropot` into Homey.",
   "main": "app.js",
   "directories": {
     "lib": "lib"
   },
   "devDependencies": {
-    "homey": "^2.3.3"
+    "eslint": "^7.8.1",
+    "eslint-config-athom": "^2.1.0",
+    "homey": "^2.9.1"
   },
   "repository": {
     "type": "git",

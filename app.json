@@ -1,6 +1,8 @@
 {
   "id": "com.mi.flora",
-  "sdk": 2,
+  "version": "3.0.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
   "name": {
     "en": "Xiaomi Mi Flora",
     "nl": "Xiaomi Mi Flora",
@@ -9,7 +11,7 @@
   "description": {
     "en": "Integrate Xiaomi mi flora sensor into Homey",
     "nl": "Integreer Xiaomi mi flora sensor in Homey",
-    "de": "Integriert Xiaomi Mi Flora Sensoren in Homey"
+    "de": "Integriert Xiaomi Mi Flora sensoren in Homey"
   },
   "category": [
     "appliances",
@@ -20,8 +22,6 @@
   "permissions": [
     "homey:wireless:ble"
   ],
-  "version": "2.1.13",
-  "compatibility": ">=2.1.2",
   "athomForumDiscussionId": 5030,
   "homeyCommunityTopicId": 45,
   "tags": {
