@@ -21,7 +21,7 @@ class HomeyMiFlora extends Homey.App {
      * init the app
      */
     onInit() {
-        console.log('Successfully init HomeyMiFlora version: %s', Homey.app.manifest.version);
+        console.log('Successfully init HomeyMiFlora version: %s', this.homey.manifest.version);
 
         this.deviceSensorUpdated = this.homey.flow.getDeviceTriggerCard('device_sensor_updated');
         this.deviceSensorUpdated.register();
@@ -79,7 +79,7 @@ class HomeyMiFlora extends Homey.App {
             let updateDeviceTime = new Date();
 
             console.log('find');
-            const advertisement = await Homey.ManagerBLE.find(device.getAddress(), 10000).then(function (advertisement) {
+            const advertisement = await this.homey.ble.find(device.getAddress(), 10000).then(function (advertisement) {
                 return advertisement;
             });
 
@@ -287,7 +287,7 @@ class HomeyMiFlora extends Homey.App {
                 currentUuids.push(data.uuid);
             });
 
-            Homey.ManagerBLE.discover().then(function (advertisements) {
+            this.homey.ble.discover().then(function (advertisements) {
                 advertisements = advertisements.filter(function (advertisement) {
                     return (currentUuids.indexOf(advertisement.uuid) === -1);
                 });
@@ -302,7 +302,7 @@ class HomeyMiFlora extends Homey.App {
                                 "address": advertisement.uuid,
                                 "name": advertisement.name,
                                 "type": advertisement.type,
-                                "version": "v" + Homey.manifest.version,
+                                "version": "v" + this.homey.manifest.version,
                             },
                             "capabilities": driver.getSupportedCapabilities(),
                         });
