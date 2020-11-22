@@ -15,7 +15,7 @@ async function asyncForEach(array, callback) {
     }
 }
 
-class HomeyMiFlora extends Homey.App {
+module.exports = class HomeyMiFlora extends Homey.App {
 
     /**
      * init the app
@@ -255,45 +255,34 @@ class HomeyMiFlora extends Homey.App {
      *
      * @returns {Promise.<object[]>}
      */
-    discoverDevices(driver) {
-        return new Promise((resolve, reject) => {
-            let devices = [];
-            let index = 0;
-
-            let currentUuids = [];
-            driver.getDevices().forEach(device => {
-                let data = device.getData();
-                currentUuids.push(data.uuid);
-            });
-
-            this.homey.ble.discover().then(function (advertisements) {
-                advertisements = advertisements.filter(function (advertisement) {
-                    return (currentUuids.indexOf(advertisement.uuid) === -1);
-                });
-                advertisements.forEach(function (advertisement) {
+    async discoverDevices(driver) {
+        const version = this.homey.manifest.version;
+        let devices = [];
+        let index = 0;
+        return this.homey.ble.discover()
+            .then(advertisements => {
+                advertisements.forEach(advertisement => {
                     if (advertisement.localName === driver.getMiFloraBleIdentification()) {
                         ++index;
                         devices.push({
-                            "name": driver.getMiFloraBleName() + " " + index,
-                            "data": {
-                                "id": advertisement.id,
-                                "uuid": advertisement.uuid,
-                                "address": advertisement.uuid,
-                                "name": advertisement.name,
-                                "type": advertisement.type,
-                                "version": "v" + this.homey.manifest.version,
+                            id: advertisement.uuid,
+                            name: driver.getMiFloraBleName() + " " + index,
+                            data: {
+                                id: advertisement.id,
+                                uuid: advertisement.uuid,
+                                address: advertisement.uuid,
+                                name: advertisement.name,
+                                type: advertisement.type,
+                                version: "v" + version,
                             },
-                            "capabilities": driver.getSupportedCapabilities(),
+                            settings: driver.getDefaultSettings(),
+                            capabilities: driver.getSupportedCapabilities(),
                         });
                     }
                 });
 
-                resolve(devices);
+                return devices;
             })
-                .catch(function (error) {
-                    reject('Cannot discover BLE devices from the homey manager. ' + error);
-                });
-        })
     }
 
     /**
@@ -311,5 +300,3 @@ class HomeyMiFlora extends Homey.App {
         return (0.19) * Math.pow(ratio, 8);
     }
 }
-
-module.exports = HomeyMiFlora;
