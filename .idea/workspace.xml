@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7880eeae-53ac-4c3d-9a34-d1985b2f3c36" name="Default" comment="removed identify because it doesn't work on all firmware&#10;refactoring connection of the advertisement&#10;add homey compose as development environment&#10;removed `measure_battery` from ropot driver&#10;try to measure distance based on the rssi &#10;add debug sequence start header">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +22,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="feature/ble-timeout-issue" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -61,6 +59,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -68,6 +67,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -101,6 +101,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration>$USER_HOME$/.subversion</configuration>
   </component>
@@ -231,6 +232,12 @@
       <workItem from="1588326042513" duration="1007000" />
       <workItem from="1588329245487" duration="716000" />
       <workItem from="1588335582032" duration="5059000" />
+      <workItem from="1593668465855" duration="1224000" />
+      <workItem from="1594877752207" duration="53000" />
+      <workItem from="1595840614609" duration="14000" />
+      <workItem from="1599116574446" duration="32000" />
+      <workItem from="1601474709273" duration="3000" />
+      <workItem from="1602157552289" duration="6000" />
     </task>
     <task id="LOCAL-00001" summary="fix for missing callback breakage in homey core">
       <created>1520515509723</created>
@@ -481,7 +488,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -492,6 +499,9 @@
         <option value="1" />
       </list>
     </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="true" />
@@ -523,81 +533,15 @@
     <option name="LAST_COMMIT_MESSAGE" value="removed identify because it doesn't work on all firmware&#10;refactoring connection of the advertisement&#10;add homey compose as development environment&#10;removed `measure_battery` from ropot driver&#10;try to measure distance based on the rssi &#10;add debug sequence start header" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="555" y="187" width="800" height="677" key="#Deployment" timestamp="1588229217312">
-      <screen x="0" y="27" width="1920" height="1000" />
+    <state x="2525" y="248" width="869" height="655" key="find.popup" timestamp="1602157554619">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="555" y="187" width="800" height="677" key="#Deployment/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588229217312" />
-    <state x="555" y="187" width="800" height="677" key="#Options" timestamp="1585836767350">
-      <screen x="0" y="27" width="1920" height="1000" />
+    <state x="605" y="248" width="869" height="655" key="find.popup/0.0.1920.1080/1920.0.1920.1080/3840.0.1920.1080@0.0.1920.1080" timestamp="1595840618425" />
+    <state x="605" y="248" width="869" height="655" key="find.popup/0.1080.1920.1080/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1594877770365" />
+    <state x="2525" y="248" width="869" height="655" key="find.popup/0.1080.1920.1080/1920.0.1920.1080/0.0.1920.1080@1920.0.1920.1080" timestamp="1602157554619" />
+    <state x="825" y="424" width="260" height="212" key="publish.login" timestamp="1593628730724">
+      <screen x="0" y="27" width="1920" height="1004" />
     </state>
-    <state x="555" y="187" width="800" height="677" key="#Options/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585836767350" />
-    <state x="534" y="174" width="832" height="704" key="#SSH_Configurations" timestamp="1588225918824">
-      <screen x="0" y="27" width="1920" height="1000" />
-    </state>
-    <state x="534" y="174" width="832" height="704" key="#SSH_Configurations/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588225918824" />
-    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2" timestamp="1588340613845">
-      <screen x="0" y="27" width="1920" height="1000" />
-    </state>
-    <state x="376" y="132" width="1520" height="849" key="CommitChangelistDialog2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588340613845" />
-    <state x="182" y="111" width="1536" height="830" key="DiffContextDialog" timestamp="1588340599855">
-      <screen x="0" y="27" width="1920" height="1000" />
-    </state>
-    <state x="182" y="111" width="1536" height="830" key="DiffContextDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588340599855" />
-    <state x="738" y="283" width="424" height="484" key="FileChooserDialogImpl" timestamp="1585836787965">
-      <screen x="0" y="27" width="1920" height="1000" />
-    </state>
-    <state x="738" y="283" width="424" height="484" key="FileChooserDialogImpl/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585836787965" />
-    <state width="1874" height="261" key="GridCell.Tab.0.bottom" timestamp="1588337416329">
-      <screen x="0" y="27" width="1920" height="1000" />
-    </state>
-    <state width="1874" height="261" key="GridCell.Tab.0.bottom/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588337416329" />
-    <state width="1874" height="261" key="GridCell.Tab.0.center" timestamp="1588337416329">
-      <screen x="0" y="27" width="1920" height="1000" />
-    </state>
-    <state width="1874" height="261" key="GridCell.Tab.0.center/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588337416329" />
-    <state width="1874" height="261" key="GridCell.Tab.0.left" timestamp="1588337416329">
-      <screen x="0" y="27" width="1920" height="1000" />
-    </state>
-    <state width="1874" height="261" key="GridCell.Tab.0.left/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588337416329" />
-    <state width="1874" height="261" key="GridCell.Tab.0.right" timestamp="1588337416329">
-      <screen x="0" y="27" width="1920" height="1000" />
-    </state>
-    <state width="1874" height="261" key="GridCell.Tab.0.right/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588337416329" />
-    <state x="701" y="239" width="507" height="574" key="RollbackChangesDialog" timestamp="1588326350984">
-      <screen x="0" y="27" width="1920" height="1000" />
-    </state>
-    <state x="701" y="239" width="507" height="574" key="RollbackChangesDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588326350984" />
-    <state x="449" y="161" key="SettingsEditor" timestamp="1588225713147">
-      <screen x="0" y="27" width="1920" height="1000" />
-    </state>
-    <state x="449" y="161" key="SettingsEditor/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588225713147" />
-    <state x="555" y="250" width="800" height="551" key="Vcs.Push.Dialog.v2" timestamp="1588340615368">
-      <screen x="0" y="27" width="1920" height="1000" />
-    </state>
-    <state x="555" y="250" width="800" height="551" key="Vcs.Push.Dialog.v2/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588340615368" />
-    <state x="100" y="125" width="1720" height="802" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1585843176651">
-      <screen x="0" y="27" width="1920" height="1000" />
-    </state>
-    <state x="100" y="125" width="1720" height="802" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585843176651" />
-    <state x="605" y="257" width="869" height="606" key="find.popup" timestamp="1588337549432">
-      <screen x="0" y="27" width="1920" height="1000" />
-    </state>
-    <state x="605" y="257" width="869" height="606" key="find.popup/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588337549432" />
-    <state x="702" y="280" width="542" height="566" key="ftp.server.browser" timestamp="1588229216686">
-      <screen x="0" y="27" width="1920" height="1000" />
-    </state>
-    <state x="702" y="280" width="542" height="566" key="ftp.server.browser/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588229216686" />
-    <state x="602" y="319" width="715" height="413" key="git4idea.merge.GitPullDialog" timestamp="1588225824709">
-      <screen x="0" y="27" width="1920" height="1000" />
-    </state>
-    <state x="602" y="319" width="715" height="413" key="git4idea.merge.GitPullDialog/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588225824709" />
-    <state x="825" y="422" width="260" height="212" key="publish.login" timestamp="1588225857596">
-      <screen x="0" y="27" width="1920" height="1000" />
-    </state>
-    <state x="825" y="422" width="260" height="212" key="publish.login/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1588225857596" />
-    <state x="623" y="244" width="672" height="678" key="search.everywhere.popup" timestamp="1585840600525">
-      <screen x="0" y="27" width="1920" height="1000" />
-    </state>
-    <state x="623" y="244" width="672" height="678" key="search.everywhere.popup/0.27.1920.1000/1920.0.1920.1080@0.27.1920.1000" timestamp="1585840600525" />
+    <state x="825" y="424" key="publish.login/0.27.1920.1004@0.27.1920.1004" timestamp="1593628730724" />
   </component>
 </project>
