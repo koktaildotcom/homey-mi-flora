@@ -9,15 +9,19 @@ Do you like the app? You can make me happy by buying me a beer! [![](https://img
 
 > **Q1**  Why can’t the sensor be found by Homey?
 
-* _Check if the sensor is not connected to another bluetooth device. The  `Xiaomi Mi Flora`  app for example_
+* _Check if the sensor is connected to another bluetooth device. The  `Xiaomi Mi Flora`  app for example_
 
-> **Q1**  Why are the readings from the sensors different than in the  `Xiaomi Mi Flora`  app?
+> **Q1**  Why are the readings from the sensors different from in the  `Xiaomi Mi Flora`  app?
 
 * _It is caused by old firmware (2.7.0), try to update the sensors through the  `Xiaomi Mi Flora`  app_
 
 > **Q3**  Is the app compatibel with v2.0.0?
 
 * The app is only compatible from v2.1.2 and up due to change to the BLE core.
+
+> **Q4**  Is the app compatibel with SDK 3?
+
+* Yes the app is compatible from v3.0.0
 
 ## Usage
 1. Install app
@@ -218,7 +222,10 @@ You can configure the timeout between polls in the app's settings.
   * add [energy battery setting](https://github.com/koktaildotcom/homey-mi-flora/issues/85)
   * add [trigger an update sequence when pairing is ready](https://github.com/koktaildotcom/homey-mi-flora/issues/72)
 ### v3.0.0 - 22.11.2020
-  * update to sdk 3
+  * add support for SDK 3
+  * add default threshold settings
+  * refactoring pair logic
+  * improve brand look & feel
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
