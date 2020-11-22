@@ -9,9 +9,9 @@
     "de": "Xiaomi Mi Flora"
   },
   "description": {
-    "en": "Integrate Xiaomi mi flora sensor into Homey",
-    "nl": "Integreer Xiaomi mi flora sensor in Homey",
-    "de": "Integriert Xiaomi Mi Flora Sensoren in Homey"
+    "en": "Integrates Xiaomi mi flora producten into Homey",
+    "nl": "Integreert Xiaomi mi flora products in Homey",
+    "de": "Integriert Xiaomi mi flora produkte in Homey"
   },
   "category": [
     "appliances",
