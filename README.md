@@ -226,6 +226,10 @@ You can configure the timeout between polls in the app's settings.
   * add default threshold settings
   * refactoring pair logic
   * improve brand look & feel
-  
+### v3.0.1 - 04.12.2020
+  * display negative temperature correctly
+  * add todo for next release
+  * change brand color and translations
+
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora

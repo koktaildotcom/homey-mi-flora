@@ -105,8 +105,13 @@ module.exports = class HomeyMiFlora extends Homey.App {
             console.log('DATA_CHARACTERISTIC_UUID::read');
             const sensorData = await data.read();
 
+            let temperature = sensorData.readUInt16LE(0);
+            if (temperature > 65000) {
+                temperature = temperature - 65535
+            }
+
             let sensorValues = {
-                'measure_temperature': sensorData.readUInt16LE(0) / 10,
+                'measure_temperature': temperature / 10,
                 'measure_luminance': sensorData.readUInt32LE(3),
                 'flora_measure_fertility': sensorData.readUInt16LE(8),
                 'flora_measure_moisture': sensorData.readUInt16BE(6)
@@ -162,6 +167,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
             return device;
         } catch (error) {
             await disconnectPeripheral();
+            console.log(error);
             throw error;
         }
     }
