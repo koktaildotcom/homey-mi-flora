@@ -35,6 +35,51 @@ module.exports = class HomeyMiFlora extends Homey.App {
         this.globalSensorOutsideThreshold = this.homey.flow.getTriggerCard('sensor_outside_threshold');
         this.deviceSensorOutsideThreshold = this.homey.flow.getDeviceTriggerCard('device_sensor_outside_threshold');
 
+        this._capabilityOptions = [
+            "measure_temperature",
+            "measure_luminance",
+            "flora_measure_fertility",
+            "flora_measure_moisture",
+            "measure_battery"
+        ];
+        this._conditionsMapping = {};
+        this.thresholdMapping = {};
+        this._capabilityOptions.forEach( (capability) => {
+            if (this._capabilityOptions.indexOf(capability) !== -1 && capability !== 'measure_battery') {
+                this._conditionsMapping[capability] = capability + '_threshold';
+                this.thresholdMapping[capability] = {
+                    'min': capability + '_min',
+                    'max': capability + '_max'
+                }
+            }
+        });
+
+        for (const capability of this._capabilityOptions) {
+            if (this._conditionsMapping.hasOwnProperty(capability)) {
+                this.homey.flow.getConditionCard(this._conditionsMapping[capability])
+                  .registerRunListener((args) => {
+                      const target = args.device;
+
+                      const mapping = this.thresholdMapping[capability];
+                      if (target && mapping.min && mapping.max) {
+                          let minValue = target.getSetting(mapping.min);
+                          let maxValue = target.getSetting(mapping.max);
+                          let value = target.getCapabilityValue(capability);
+
+                          console.log("%s < %s || %s > %s", value, minValue, value, maxValue);
+
+                          return (value < minValue || value > maxValue);
+                      }
+
+                      console.log("No device is attached to the flow card condition");
+                      console.log("dumping args:");
+                      console.log(args);
+
+                      return false;
+                  });
+            }
+        }
+
         if (!this.homey.settings.get('updateInterval')) {
             this.homey.settings.set('updateInterval', 15)
         }
