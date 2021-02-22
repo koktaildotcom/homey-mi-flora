@@ -7,5 +7,8 @@
   },
   "3.0.1": {
     "en" : "display negative temperature correctly, add todo for next release, change brand color and translations"
+  },
+  "3.0.2": {
+    "en" : "filter known devices when pairing"
   }
 }

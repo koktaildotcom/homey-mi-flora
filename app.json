@@ -1,19 +1,19 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.mi.flora",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "compatibility": ">=5.0.0",
   "brandColor": "#02988c",
   "sdk": 3,
   "name": {
-    "en": "Xiaomi Mi Flora",
-    "nl": "Xiaomi Mi Flora",
-    "de": "Xiaomi Mi Flora"
+    "en": "Xiaomi Vegtrug (mi flora)",
+    "nl": "Xiaomi Vegtrug (mi flora)",
+    "de": "Xiaomi Vegtrug (mi flora)"
   },
   "description": {
-    "en": "Track every need of your plants and flowers with Xiaomi mi flora products",
-    "nl": "Volg de behoefte van uw planten en bloemen met Xiaomi mi flora producten",
-    "de": "Verfolgen sie jeden bedarf ihrer pflanzen und blumen mit Xiaomi mi flora produkten"
+    "en": "Track every need of your plants and flowers with Xiaomi Vegtrug (mi flora) products",
+    "nl": "Volg de behoefte van uw planten en bloemen met Xiaomi Vegtrug (mi flora) producten",
+    "de": "Verfolgen sie jeden bedarf ihrer pflanzen und blumen mit Xiaomi Vegtrug (mi flora) produkten"
   },
   "category": [
     "appliances",
@@ -35,6 +35,7 @@
       "plant",
       "flower",
       "flora",
+      "vegtrug",
       "sensor",
       "temperature",
       "luminance",
@@ -48,6 +49,7 @@
       "plant",
       "flower",
       "flora",
+      "vegtrug",
       "sensor",
       "temperatuur",
       "licht",
@@ -62,6 +64,7 @@
       "pflanze",
       "blume",
       "flora",
+      "vegtrug",
       "sensor",
       "temperatur",
       "helligkeit",

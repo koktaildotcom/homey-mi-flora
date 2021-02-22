@@ -265,8 +265,16 @@ module.exports = class HomeyMiFlora extends Homey.App {
         const version = this.homey.manifest.version;
         let devices = [];
         let index = 0;
+        let currentUuids = [];
+        driver.getDevices().forEach(device => {
+            let data = device.getData();
+            currentUuids.push(data.uuid);
+        });
         return this.homey.ble.discover()
             .then(advertisements => {
+                advertisements = advertisements.filter(function (advertisement) {
+                    return (currentUuids.indexOf(advertisement.uuid) === -1);
+                });
                 advertisements.forEach(advertisement => {
                     if (advertisement.localName === driver.getMiFloraBleIdentification()) {
                         ++index;

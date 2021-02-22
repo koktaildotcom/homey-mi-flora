@@ -230,6 +230,9 @@ You can configure the timeout between polls in the app's settings.
   * display negative temperature correctly
   * add todo for next release
   * change brand color and translations
+### v3.0.2 - 22.02.2021
+  * filter known devices when pairing
+  * add Vegtrug to title
 
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
