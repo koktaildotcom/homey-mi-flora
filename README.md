@@ -1,7 +1,7 @@
 # Xiaomi mi flora sensor
 
 ## Introduction
-This app integrate the `Xiaomi mi flora sensor` and `Xiaomi mi flora ropot` into Homey.
+This app integrates the `Xiaomi mi flora sensor` and `Xiaomi mi flora ropot` into Homey.
 
 Do you like the app? You can make me happy by buying me a beer! [![](https://img.shields.io/badge/paypal-donate-green.svg)](https://www.paypal.me/koktaildotcom)
 
@@ -9,9 +9,9 @@ Do you like the app? You can make me happy by buying me a beer! [![](https://img
 
 > **Q1**  Why can’t the sensor be found by Homey?
 
-* _Check if the sensor is not connected to another bluetooth device. The  `Xiaomi Mi Flora`  app for example_
+* _Check if the sensor is connected to another bluetooth device. The  `Xiaomi Mi Flora`  app for example_
 
-> **Q1**  Why are the readings from the sensors different than in the  `Xiaomi Mi Flora`  app?
+> **Q1**  Why are the readings from the sensors different from in the  `Xiaomi Mi Flora`  app?
 
 * _It is caused by old firmware (2.7.0), try to update the sensors through the  `Xiaomi Mi Flora`  app_
 
@@ -19,10 +19,14 @@ Do you like the app? You can make me happy by buying me a beer! [![](https://img
 
 * The app is only compatible from v2.1.2 and up due to change to the BLE core.
 
+> **Q4**  Is the app compatibel with SDK 3?
+
+* Yes the app is compatible from v3.0.0
+
 ## Usage
 1. Install app
-2. Add device(s) to Homey.
-3. Configure threshold in the device configuration.
+2. Add the device(s) to Homey.
+3. Configure the threshold in the device configuration.
 4. Make a flow with one of the cards.
 
 You can configure the timeout between polls in the app's settings.
@@ -30,10 +34,10 @@ You can configure the timeout between polls in the app's settings.
 ## Cards
 ### Device cards
 #### Trigger cards
-1. Some device sensor is changed.
+1. Some device sensor has changed.
    * sensor (Moisture)
    * value (20%)
-   * report (The moisture of Flora 1 is changed to: 20%.)
+   * report (The moisture of Flora 1 has changed to: 20%.)
 2. Some device sensor is updated.
    * sensor (Moisture)
    * value (20%)
@@ -45,7 +49,7 @@ You can configure the timeout between polls in the app's settings.
 4. Sensor value is above the configured threshold.
    * sensor (Moisture)
    * value (20%)
-   * report (The moisture (20%) is to high. This must be a maximum of 15%.)
+   * report (The moisture (20%) is too high. This must be a maximum of 15%.)
 
 #### Condition cards
 1. De plant has a correct temperature.
@@ -55,11 +59,11 @@ You can configure the timeout between polls in the app's settings.
 
 ### Global cards
 #### Trigger cards
-1. Some device sensor is changed.
+1. Some device sensor has changed.
    * device (Flora 1)
    * sensor (Moisture)
    * value (20%)
-   * report (The moisture is changed to: 20%.)
+   * report (The moisture has changed to: 20%.)
 2. Some device sensor is updated.
    * device (Flora 1)
    * sensor (Moisture)
@@ -176,8 +180,8 @@ You can configure the timeout between polls in the app's settings.
 ### v2.1.0 - 11.01.2019
   * trigger flows static thought the app (best practice 2.0)
   * rewrite the update sequence part for better performance
-  * try to resolve issue with bug https://github.com/athombv/homey-apps-sdk-issues/issues/11
-  * try to resolve issue with bug https://github.com/athombv/homey-apps-sdk-issues/issues/7
+  * try to resolve issue with a bug https://github.com/athombv/homey-apps-sdk-issues/issues/11
+  * try to resolve issue with a bug https://github.com/athombv/homey-apps-sdk-issues/issues/7
   * fixed typo bug `true` => `this` in the `Homey.FlowCardTriggerDevice`
 ### v2.1.1 - 05.03.2019
   * refactor to the previous iteration strategy
@@ -217,6 +221,18 @@ You can configure the timeout between polls in the app's settings.
   * convert project to homey compose
   * add [energy battery setting](https://github.com/koktaildotcom/homey-mi-flora/issues/85)
   * add [trigger an update sequence when pairing is ready](https://github.com/koktaildotcom/homey-mi-flora/issues/72)
+### v3.0.0 - 22.11.2020
+  * add support for SDK 3
+  * add default threshold settings
+  * refactoring pair logic
+  * improve brand look & feel
+### v3.0.1 - 04.12.2020
+  * display negative temperature correctly
+  * add todo for next release
+  * change brand color and translations
+### v3.0.2 - 22.02.2021
+  * filter known devices when pairing
+  * add Vegtrug to title
 
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora

@@ -1,15 +1,18 @@
 {
   "id": "com.mi.flora",
-  "sdk": 2,
+  "version": "3.0.2",
+  "compatibility": ">=5.0.0",
+  "brandColor": "#02988c",
+  "sdk": 3,
   "name": {
-    "en": "Xiaomi Mi Flora",
-    "nl": "Xiaomi Mi Flora",
-    "de": "Xiaomi Mi Flora"
+    "en": "Xiaomi Vegtrug (mi flora)",
+    "nl": "Xiaomi Vegtrug (mi flora)",
+    "de": "Xiaomi Vegtrug (mi flora)"
   },
   "description": {
-    "en": "Integrate Xiaomi mi flora sensor into Homey",
-    "nl": "Integreer Xiaomi mi flora sensor in Homey",
-    "de": "Integriert Xiaomi Mi Flora Sensoren in Homey"
+    "en": "Track every need of your plants and flowers with Xiaomi Vegtrug (mi flora) products",
+    "nl": "Volg de behoefte van uw planten en bloemen met Xiaomi Vegtrug (mi flora) producten",
+    "de": "Verfolgen sie jeden bedarf ihrer pflanzen und blumen mit Xiaomi Vegtrug (mi flora) produkten"
   },
   "category": [
     "appliances",
@@ -20,8 +23,6 @@
   "permissions": [
     "homey:wireless:ble"
   ],
-  "version": "2.1.13",
-  "compatibility": ">=2.1.2",
   "athomForumDiscussionId": 5030,
   "homeyCommunityTopicId": 45,
   "tags": {
@@ -33,6 +34,7 @@
       "plant",
       "flower",
       "flora",
+      "vegtrug",
       "sensor",
       "temperature",
       "luminance",
@@ -46,6 +48,7 @@
       "plant",
       "flower",
       "flora",
+      "vegtrug",
       "sensor",
       "temperatuur",
       "licht",
@@ -60,6 +63,7 @@
       "pflanze",
       "blume",
       "flora",
+      "vegtrug",
       "sensor",
       "temperatur",
       "helligkeit",

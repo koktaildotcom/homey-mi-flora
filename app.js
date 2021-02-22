@@ -15,49 +15,28 @@ async function asyncForEach(array, callback) {
     }
 }
 
-class HomeyMiFlora extends Homey.App {
+module.exports = class HomeyMiFlora extends Homey.App {
 
     /**
      * init the app
      */
     onInit() {
-        console.log('Successfully init HomeyMiFlora version: %s', Homey.app.manifest.version);
+        console.log('Successfully init HomeyMiFlora version: %s', this.homey.manifest.version);
 
-        this.deviceSensorUpdated = new Homey.FlowCardTriggerDevice('device_sensor_updated');
-        this.deviceSensorUpdated.register();
+        this.deviceSensorUpdated = this.homey.flow.getDeviceTriggerCard('device_sensor_updated');
+        this.globalSensorUpdated = this.homey.flow.getTriggerCard('sensor_updated');
+        this.deviceSensorChanged = this.homey.flow.getDeviceTriggerCard('device_sensor_changed');
+        this.globalSensorChanged = this.homey.flow.getTriggerCard('sensor_changed');
+        this.globalSensorTimeout = this.homey.flow.getTriggerCard('sensor_timeout');
+        this.globalSensorThresholdMinExceeds = this.homey.flow.getTriggerCard('sensor_threshold_min_exceeds');
+        this.deviceSensorThresholdMinExceeds = this.homey.flow.getDeviceTriggerCard('device_sensor_threshold_min_exceeds');
+        this.globalSensorThresholdMaxExceeds = this.homey.flow.getTriggerCard('sensor_threshold_max_exceeds');
+        this.deviceSensorThresholdMaxExceeds = this.homey.flow.getDeviceTriggerCard('device_sensor_threshold_max_exceeds');
+        this.globalSensorOutsideThreshold = this.homey.flow.getTriggerCard('sensor_outside_threshold');
+        this.deviceSensorOutsideThreshold = this.homey.flow.getDeviceTriggerCard('device_sensor_outside_threshold');
 
-        this.globalSensorUpdated = new Homey.FlowCardTrigger('sensor_updated');
-        this.globalSensorUpdated.register();
-
-        this.deviceSensorChanged = new Homey.FlowCardTriggerDevice('device_sensor_changed');
-        this.deviceSensorChanged.register();
-
-        this.globalSensorChanged = new Homey.FlowCardTrigger('sensor_changed');
-        this.globalSensorChanged.register();
-
-        this.globalSensorTimeout = new Homey.FlowCardTrigger('sensor_timeout');
-        this.globalSensorTimeout.register();
-
-        this.globalSensorThresholdMinExceeds = new Homey.FlowCardTrigger('sensor_threshold_min_exceeds');
-        this.globalSensorThresholdMinExceeds.register();
-
-        this.deviceSensorThresholdMinExceeds = new Homey.FlowCardTriggerDevice('device_sensor_threshold_min_exceeds');
-        this.deviceSensorThresholdMinExceeds.register();
-
-        this.globalSensorThresholdMaxExceeds = new Homey.FlowCardTrigger('sensor_threshold_max_exceeds');
-        this.globalSensorThresholdMaxExceeds.register();
-
-        this.deviceSensorThresholdMaxExceeds = new Homey.FlowCardTriggerDevice('device_sensor_threshold_max_exceeds');
-        this.deviceSensorThresholdMaxExceeds.register();
-
-        this.globalSensorOutsideThreshold = new Homey.FlowCardTrigger('sensor_outside_threshold');
-        this.globalSensorOutsideThreshold.register();
-
-        this.deviceSensorOutsideThreshold = new Homey.FlowCardTriggerDevice('device_sensor_outside_threshold');
-        this.deviceSensorOutsideThreshold.register();
-
-        if (!Homey.ManagerSettings.get('updateInterval')) {
-            Homey.ManagerSettings.set('updateInterval', 15)
+        if (!this.homey.settings.get('updateInterval')) {
+            this.homey.settings.set('updateInterval', 15)
         }
     }
 
@@ -79,7 +58,7 @@ class HomeyMiFlora extends Homey.App {
             let updateDeviceTime = new Date();
 
             console.log('find');
-            const advertisement = await Homey.ManagerBLE.find(device.getAddress(), 10000).then(function (advertisement) {
+            const advertisement = await this.homey.ble.find(device.getAddress(), 10000).then(function (advertisement) {
                 return advertisement;
             });
 
@@ -188,6 +167,7 @@ class HomeyMiFlora extends Homey.App {
             return device;
         } catch (error) {
             await disconnectPeripheral();
+            console.log(error);
             throw error;
         }
     }
@@ -212,7 +192,7 @@ class HomeyMiFlora extends Homey.App {
                 .then(() => {
                     console.log('reduce');
                     device.retry = 0;
-                    return Homey.app.updateDevice(device)
+                    return this.homey.app.updateDevice(device)
                 }).catch(error => {
                     console.log(error);
                 });
@@ -239,7 +219,7 @@ class HomeyMiFlora extends Homey.App {
             device.retry = 0;
         }
 
-        return await Homey.app.handleUpdateSequence(device)
+        return await this.homey.app.handleUpdateSequence(device)
             .then(() => {
                 device.retry = 0;
 
@@ -251,13 +231,13 @@ class HomeyMiFlora extends Homey.App {
                 console.log(error);
 
                 if (device.retry < MAX_RETRIES) {
-                    return Homey.app.updateDevice(device)
+                    return this.homey.app.updateDevice(device)
                         .catch((error) => {
                             throw new Error(error);
                         });
                 }
 
-                Homey.app.globalSensorTimeout.trigger({
+                this.homey.app.globalSensorTimeout.trigger({
                     'deviceName': device.getName(),
                     'reason': error
                 })
@@ -281,45 +261,42 @@ class HomeyMiFlora extends Homey.App {
      *
      * @returns {Promise.<object[]>}
      */
-    discoverDevices(driver) {
-        return new Promise((resolve, reject) => {
-            let devices = [];
-            let index = 0;
-
-            let currentUuids = [];
-            driver.getDevices().forEach(device => {
-                let data = device.getData();
-                currentUuids.push(data.uuid);
-            });
-
-            Homey.ManagerBLE.discover().then(function (advertisements) {
+    async discoverDevices(driver) {
+        const version = this.homey.manifest.version;
+        let devices = [];
+        let index = 0;
+        let currentUuids = [];
+        driver.getDevices().forEach(device => {
+            let data = device.getData();
+            currentUuids.push(data.uuid);
+        });
+        return this.homey.ble.discover()
+            .then(advertisements => {
                 advertisements = advertisements.filter(function (advertisement) {
                     return (currentUuids.indexOf(advertisement.uuid) === -1);
                 });
-                advertisements.forEach(function (advertisement) {
+                advertisements.forEach(advertisement => {
                     if (advertisement.localName === driver.getMiFloraBleIdentification()) {
                         ++index;
                         devices.push({
-                            "name": driver.getMiFloraBleName() + " " + index,
-                            "data": {
-                                "id": advertisement.id,
-                                "uuid": advertisement.uuid,
-                                "address": advertisement.uuid,
-                                "name": advertisement.name,
-                                "type": advertisement.type,
-                                "version": "v" + Homey.manifest.version,
+                            id: advertisement.uuid,
+                            name: driver.getMiFloraBleName() + " " + index,
+                            data: {
+                                id: advertisement.id,
+                                uuid: advertisement.uuid,
+                                address: advertisement.uuid,
+                                name: advertisement.name,
+                                type: advertisement.type,
+                                version: "v" + version,
                             },
-                            "capabilities": driver.getSupportedCapabilities(),
+                            settings: Object.assign({uuid: advertisement.uuid}, driver.getDefaultSettings()),
+                            capabilities: driver.getSupportedCapabilities(),
                         });
                     }
                 });
 
-                resolve(devices);
+                return devices;
             })
-                .catch(function (error) {
-                    reject('Cannot discover BLE devices from the homey manager. ' + error);
-                });
-        })
     }
 
     /**
@@ -337,5 +314,3 @@ class HomeyMiFlora extends Homey.App {
         return (0.19) * Math.pow(ratio, 8);
     }
 }
-
-module.exports = HomeyMiFlora;

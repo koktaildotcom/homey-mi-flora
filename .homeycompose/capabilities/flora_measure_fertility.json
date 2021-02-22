@@ -1,8 +1,8 @@
 {
   "type": "number",
   "title": {
-    "en": "Conductivity",
-    "nl": "Geleidingsvermogen",
+    "en": "Nutrition",
+    "nl": "Voeding",
     "de": "Dünger"
   },
   "icon": "/assets/nutritions.svg",
