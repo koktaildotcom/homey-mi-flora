@@ -6,14 +6,14 @@
   "brandColor": "#02988c",
   "sdk": 3,
   "name": {
-    "en": "Xiaomi Vegtrug (mi flora)",
-    "nl": "Xiaomi Vegtrug (mi flora)",
-    "de": "Xiaomi Vegtrug (mi flora)"
+    "en": "Xiaomi vegtrug mi flora",
+    "nl": "Xiaomi vegtrug mi flora",
+    "de": "Xiaomi vegtrug mi flora"
   },
   "description": {
-    "en": "Track every need of your plants and flowers with Xiaomi Vegtrug (mi flora) products",
-    "nl": "Volg de behoefte van uw planten en bloemen met Xiaomi Vegtrug (mi flora) producten",
-    "de": "Verfolgen sie jeden bedarf ihrer pflanzen und blumen mit Xiaomi Vegtrug (mi flora) produkten"
+    "en": "Track every need of your plants and flowers with Xiaomi vegtrug mi flora products",
+    "nl": "Volg de behoefte van uw planten en bloemen met Xiaomi vegtrug mi flora producten",
+    "de": "Verfolgen sie jeden bedarf ihrer pflanzen und blumen mit Xiaomi vegtrug mi flora produkten"
   },
   "category": [
     "appliances",
@@ -816,9 +816,9 @@
     {
       "id": "flora",
       "name": {
-        "en": "Xiaomi mi flora sensor",
-        "nl": "Xiaomi mi flora sensor",
-        "de": "Xiaomi Mi Flora Sensor"
+        "en": "Xiaomi vegtrug mi flora sensor",
+        "nl": "Xiaomi vegtrug mi flora sensor",
+        "de": "Xiaomi vegtrug mi flora sensor"
       },
       "images": {
         "small": "drivers/flora/assets/images/small.png",
@@ -1107,7 +1107,7 @@
       "name": {
         "en": "Xiaomi mi flora pot",
         "nl": "Xiaomi mi flora pot",
-        "de": "Xiaomi Mi Flora blumentopf"
+        "de": "Xiaomi mi flora blumentopf"
       },
       "images": {
         "small": "drivers/ropot/assets/images/small.png",
