@@ -22,7 +22,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
      */
     onInit() {
         console.log('Successfully init HomeyMiFlora version: %s', this.homey.manifest.version);
-
+        this.devices = [];
         this.deviceSensorUpdated = this.homey.flow.getDeviceTriggerCard('device_sensor_updated');
         this.globalSensorUpdated = this.homey.flow.getTriggerCard('sensor_updated');
         this.deviceSensorChanged = this.homey.flow.getDeviceTriggerCard('device_sensor_changed');
@@ -34,6 +34,12 @@ module.exports = class HomeyMiFlora extends Homey.App {
         this.deviceSensorThresholdMaxExceeds = this.homey.flow.getDeviceTriggerCard('device_sensor_threshold_max_exceeds');
         this.globalSensorOutsideThreshold = this.homey.flow.getTriggerCard('sensor_outside_threshold');
         this.deviceSensorOutsideThreshold = this.homey.flow.getDeviceTriggerCard('device_sensor_outside_threshold');
+        this.update = this.homey.flow.getActionCard('update');
+
+		this.update.registerRunListener(async () => {
+		    this._synchroniseSensorData();
+		    return Promise.resolve(true);
+		});
 
         this._capabilityOptions = [
             "measure_temperature",
@@ -83,6 +89,24 @@ module.exports = class HomeyMiFlora extends Homey.App {
         if (!this.homey.settings.get('updateInterval')) {
             this.homey.settings.set('updateInterval', 15)
         }
+
+        //this._synchroniseSensorData();
+        this.syncInProgress = false;
+        this._setNewTimeout();
+    }
+
+    /**
+     * @param device MiFloraDevice
+     */
+    registerDevice(device) {
+        this.devices.push(device);
+    }
+
+    /**
+     * @param device MiFloraDevice
+     */
+    unregisterDevice(device) {
+        this.devices = this.devices.filter(current => current.id !== device.id);
     }
 
     /**
@@ -237,7 +261,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
                 .then(() => {
                     console.log('reduce');
                     device.retry = 0;
-                    return this.homey.app.updateDevice(device)
+                    return this.updateDevice(device)
                 }).catch(error => {
                     console.log(error);
                 });
@@ -260,11 +284,11 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
         console.log('call handleUpdateSequence');
 
-        if (device.retry === undefined) {
+        if (!device.hasOwnProperty('retry') || device.retry === undefined) {
             device.retry = 0;
         }
 
-        return await this.homey.app.handleUpdateSequence(device)
+        return await this.handleUpdateSequence(device)
             .then(() => {
                 device.retry = 0;
 
@@ -276,7 +300,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
                 console.log(error);
 
                 if (device.retry < MAX_RETRIES) {
-                    return this.homey.app.updateDevice(device)
+                    return this.updateDevice(device)
                         .catch((error) => {
                             throw new Error(error);
                         });
@@ -297,6 +321,84 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
                 throw new Error('Max retries (' + MAX_RETRIES + ') exceeded, no success');
             });
+    }
+
+    /**
+     * @private
+     *
+     * start the synchronisation
+     */
+    _synchroniseSensorDataTimeout() {
+        this._synchroniseSensorData()
+          .then((result) => {
+              this._setNewTimeout();
+              console.log(result);
+          })
+          .catch((error) => {
+              this._setNewTimeout();
+              console.error(error);
+          })
+    }
+
+    /**
+     * @private
+     *
+     * start the synchronisation
+     */
+    _synchroniseSensorData() {
+        if (this.syncInProgress === true) {
+            console.log('syncInProgress not ready yet, wait for it');
+            return false;
+        }
+
+        // @todo remove testing one
+        let devices = [];
+        if(this.devices.length !== 0) {
+            devices.push(this.devices[0]);
+        }
+
+        let updateDevicesTime = new Date();
+
+        if (devices.length > 0) {
+            this.syncInProgress = true;
+            this.updateDevices(devices)
+              .then(() => {
+                  this.syncInProgress = false;
+                  return 'All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds';
+              })
+              .catch(error => {
+                  this.syncInProgress = false;
+                  throw new Error(error);
+              });
+        }
+    }
+
+    /**
+     * @private
+     *
+     * set a new timeout for synchronisation
+     */
+    _setNewTimeout() {
+        let updateInterval = this.homey.settings.get('updateInterval');
+
+        if (!updateInterval) {
+            updateInterval = 15;
+            this.homey.settings.set('updateInterval', updateInterval)
+        }
+
+        let interval = 1000 * 60 * updateInterval;
+
+        // @todo remove
+        // test fast iteration timeout
+        // interval = 1000 * 5;
+
+        if (this._syncTimeout) {
+            clearTimeout(this._syncTimeout);
+        }
+
+        this._syncTimeout = setTimeout(this._synchroniseSensorDataTimeout.bind(this), interval);
+
+        this.syncInProgress = false;
     }
 
     /**

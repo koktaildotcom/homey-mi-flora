@@ -810,6 +810,15 @@
           }
         ]
       }
+    ],
+    "actions": [
+      {
+        "id": "update",
+        "title": {
+          "en": "Update all the devices",
+          "nl": "Update alle apparaten"
+        }
+      }
     ]
   },
   "drivers": [
