@@ -351,8 +351,8 @@ module.exports = class HomeyMiFlora extends Homey.App {
             return false;
         }
 
+        let devices = this.devices;
         // @todo remove testing one
-        // let devices = [];
         // if(this.devices.length !== 0) {
         //     devices.push(this.devices[0]);
         // }
