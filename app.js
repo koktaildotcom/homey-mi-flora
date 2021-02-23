@@ -90,7 +90,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
             this.homey.settings.set('updateInterval', 15)
         }
 
-        //this._synchroniseSensorData();
+        this._synchroniseSensorData();
         this.syncInProgress = false;
         this._setNewTimeout();
     }
@@ -352,10 +352,10 @@ module.exports = class HomeyMiFlora extends Homey.App {
         }
 
         // @todo remove testing one
-        let devices = [];
-        if(this.devices.length !== 0) {
-            devices.push(this.devices[0]);
-        }
+        // let devices = [];
+        // if(this.devices.length !== 0) {
+        //     devices.push(this.devices[0]);
+        // }
 
         let updateDevicesTime = new Date();
 
