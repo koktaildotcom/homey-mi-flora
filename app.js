@@ -17,6 +17,8 @@ async function asyncForEach(array, callback) {
 
 module.exports = class HomeyMiFlora extends Homey.App {
 
+    debounce = null;
+
     /**
      * init the app
      */
@@ -36,10 +38,10 @@ module.exports = class HomeyMiFlora extends Homey.App {
         this.deviceSensorOutsideThreshold = this.homey.flow.getDeviceTriggerCard('device_sensor_outside_threshold');
         this.update = this.homey.flow.getActionCard('update');
 
-		this.update.registerRunListener(async () => {
-		    this._synchroniseSensorData();
-		    return Promise.resolve(true);
-		});
+        this.update.registerRunListener(async () => {
+            this._synchroniseSensorData();
+            return Promise.resolve(true);
+        });
 
         this._capabilityOptions = [
             "measure_temperature",
@@ -50,7 +52,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
         ];
         this._conditionsMapping = {};
         this.thresholdMapping = {};
-        this._capabilityOptions.forEach( (capability) => {
+        this._capabilityOptions.forEach((capability) => {
             if (this._capabilityOptions.indexOf(capability) !== -1 && capability !== 'measure_battery') {
                 this._conditionsMapping[capability] = capability + '_threshold';
                 this.thresholdMapping[capability] = {
@@ -63,26 +65,26 @@ module.exports = class HomeyMiFlora extends Homey.App {
         for (const capability of this._capabilityOptions) {
             if (this._conditionsMapping.hasOwnProperty(capability)) {
                 this.homey.flow.getConditionCard(this._conditionsMapping[capability])
-                  .registerRunListener((args) => {
-                      const target = args.device;
+                    .registerRunListener((args) => {
+                        const target = args.device;
 
-                      const mapping = this.thresholdMapping[capability];
-                      if (target && mapping.min && mapping.max) {
-                          let minValue = target.getSetting(mapping.min);
-                          let maxValue = target.getSetting(mapping.max);
-                          let value = target.getCapabilityValue(capability);
+                        const mapping = this.thresholdMapping[capability];
+                        if (target && mapping.min && mapping.max) {
+                            let minValue = target.getSetting(mapping.min);
+                            let maxValue = target.getSetting(mapping.max);
+                            let value = target.getCapabilityValue(capability);
 
-                          console.log("%s < %s || %s > %s", value, minValue, value, maxValue);
+                            console.log("%s < %s || %s > %s", value, minValue, value, maxValue);
 
-                          return (value < minValue || value > maxValue);
-                      }
+                            return (value < minValue || value > maxValue);
+                        }
 
-                      console.log("No device is attached to the flow card condition");
-                      console.log("dumping args:");
-                      console.log(args);
+                        console.log("No device is attached to the flow card condition");
+                        console.log("dumping args:");
+                        console.log(args);
 
-                      return false;
-                  });
+                        return false;
+                    });
             }
         }
 
@@ -90,7 +92,6 @@ module.exports = class HomeyMiFlora extends Homey.App {
             this.homey.settings.set('updateInterval', 15)
         }
 
-        this._synchroniseSensorData();
         this.syncInProgress = false;
         this._setNewTimeout();
     }
@@ -100,6 +101,12 @@ module.exports = class HomeyMiFlora extends Homey.App {
      */
     registerDevice(device) {
         this.devices.push(device);
+        if (this.debounce) {
+            clearTimeout(this.debounce);
+        }
+        this.debounce = setTimeout(() => {
+            this._synchroniseSensorDataTimeout();
+        }, 200);
     }
 
     /**
@@ -330,14 +337,14 @@ module.exports = class HomeyMiFlora extends Homey.App {
      */
     _synchroniseSensorDataTimeout() {
         this._synchroniseSensorData()
-          .then((result) => {
-              this._setNewTimeout();
-              console.log(result);
-          })
-          .catch((error) => {
-              this._setNewTimeout();
-              console.error(error);
-          })
+            .then((result) => {
+                this._setNewTimeout();
+                console.log(result);
+            })
+            .catch((error) => {
+                this._setNewTimeout();
+                console.error(error);
+            })
     }
 
     /**
@@ -345,7 +352,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
      *
      * start the synchronisation
      */
-    _synchroniseSensorData() {
+    async _synchroniseSensorData() {
         if (this.syncInProgress === true) {
             console.log('syncInProgress not ready yet, wait for it');
             return false;
@@ -359,18 +366,21 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
         let updateDevicesTime = new Date();
 
-        if (devices.length > 0) {
-            this.syncInProgress = true;
-            this.updateDevices(devices)
-              .then(() => {
-                  this.syncInProgress = false;
-                  return 'All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds';
-              })
-              .catch(error => {
-                  this.syncInProgress = false;
-                  throw new Error(error);
-              });
+        if (devices.length === 0) {
+            console.log('No devices found');
+            return false;
         }
+
+        this.syncInProgress = true;
+        return this.updateDevices(devices)
+            .then(() => {
+                this.syncInProgress = false;
+                return 'All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds';
+            })
+            .catch(error => {
+                this.syncInProgress = false;
+                throw new Error(error);
+            });
     }
 
     /**
