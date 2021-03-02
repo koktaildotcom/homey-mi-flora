@@ -94,6 +94,9 @@ You can configure the timeout between polls in the app's settings.
 3. De plant has enough nutrition.
 4. De plant has enough moisture.
 
+#### Action cards
+1. Update all the devices.
+   
 ## History
 ### v1.0.0 - 09.04.2018
   * first alpha to app store.
@@ -231,8 +234,9 @@ You can configure the timeout between polls in the app's settings.
   * add todo for next release
   * change brand color and translations
 ### v3.0.2 - 22.02.2021
+  * add trigger card: 'update all devices'
   * filter known devices when pairing
-  * add Vegtrug to title
+  * add debounce for updating all the devices
 
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
