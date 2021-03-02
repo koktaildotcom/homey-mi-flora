@@ -39,8 +39,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
         this.update = this.homey.flow.getActionCard('update');
 
         this.update.registerRunListener(async () => {
-            this._synchroniseSensorData();
-            return Promise.resolve(true);
+            return Promise.resolve(await this._synchroniseSensorData());
         });
 
         this._capabilityOptions = [
@@ -359,10 +358,14 @@ module.exports = class HomeyMiFlora extends Homey.App {
         }
 
         let devices = this.devices;
-        // @todo remove testing one
-        // if(this.devices.length !== 0) {
-        //     devices.push(this.devices[0]);
-        // }
+
+        const debugging = false;
+        if (debugging) {
+            if (this.devices.length !== 0) {
+                devices = [];
+                devices.push(this.devices[0], this.devices[1]);
+            }
+        }
 
         let updateDevicesTime = new Date();
 
