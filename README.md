@@ -95,7 +95,7 @@ You can configure the timeout between polls in the app's settings.
 4. De plant has enough moisture.
 
 #### Action cards
-1. Update all the devices.
+1. Synchronise all sensor values with Homey.
    
 ## History
 ### v1.0.0 - 09.04.2018
