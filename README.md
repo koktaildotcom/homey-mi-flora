@@ -234,9 +234,11 @@ You can configure the timeout between polls in the app's settings.
   * add todo for next release
   * change brand color and translations
 ### v3.0.2 - 22.02.2021
-  * add trigger card: 'update all devices'
+  * add trigger card: 'Synchronise all sensor values with Homey'
   * filter known devices when pairing
   * add debounce for updating all the devices
+### v3.0.3 - 10.03.2021
+  * bugfix when sync is in progress in action card 'Synchronise all sensor values with Homey'
 
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
