@@ -11,7 +11,10 @@
             "question1" : "Why can't the sensor be found by Homey?",
             "answer1" : "Check if the sensor is not connected to another bluetooth device. The `Xiaomi Mi Flora` app for example"
         },
-        "configure" : "Search devices"
+        "configure" : "Search devices",
+        "error": {
+            "ble-unavailable": "Ble is not available: a sync of devices is currently in progress."
+        }
     },
     "settings" : {
         "title" : "Settings Xiaomi Mi Flora",

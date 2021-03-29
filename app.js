@@ -104,12 +104,6 @@ module.exports = class HomeyMiFlora extends Homey.App {
      */
     registerDevice(device) {
         this.devices.push(device);
-        if (this.debounce) {
-            clearTimeout(this.debounce);
-        }
-        this.debounce = setTimeout(() => {
-            this._synchroniseSensorDataTimeout();
-        }, 200);
     }
 
     /**
@@ -424,6 +418,9 @@ module.exports = class HomeyMiFlora extends Homey.App {
      * @returns {Promise.<object[]>}
      */
     async discoverDevices(driver) {
+        if(this.syncInProgress){
+            throw new Error(this.homey.__('pair.error.ble-unavailable'));
+        }
         const version = this.homey.manifest.version;
         let devices = [];
         let index = 0;

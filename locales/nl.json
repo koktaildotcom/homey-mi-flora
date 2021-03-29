@@ -11,7 +11,10 @@
             "question1" : "Waarom worden mijn apparaten niet gevonden door Homey?",
             "answer1" : "Controleer of je sensor niet is gekoppeld met een andere bluetooth apparaat. Bijvoorbeeld de `Xiaomi Mi Flora` app"
         },
-        "configure" : "Zoek apparaten"
+        "configure" : "Zoek apparaten",
+        "error": {
+            "ble-unavailable": "Ble is niet beschikbaar: een synchronisatie van apparaten wordt momenteel uitgevoerd."
+        }
     },
     "settings" :  {
         "title" : "Instellingen Xiaomi Mi Flora",
