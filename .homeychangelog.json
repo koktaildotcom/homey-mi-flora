@@ -13,5 +13,8 @@
   },
   "3.0.3": {
     "en" : "bugfix when sync is in progress in action card 'Synchronise all sensor values with Homey'"
+  },
+  "3.0.4": {
+    "en": "bugfix no results when pairing and sync is in progress"
   }
 }

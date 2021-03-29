@@ -423,7 +423,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
         }
         const version = this.homey.manifest.version;
         let devices = [];
-        let index = 0;
+        let index = driver.getDevices() ? driver.getDevices().length : 0;
         let currentUuids = [];
         driver.getDevices().forEach(device => {
             let data = device.getData();
