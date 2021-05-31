@@ -22,8 +22,16 @@
     "appliances"
   ],
   "permissions": [
-    "homey:wireless:ble"
+    "homey:wireless:ble",
+    "homey:manager:api"
   ],
+  "api": {
+    "getDevices": {
+      "method": "get",
+      "path": "/devices",
+      "public": true
+    }
+  },
   "athomForumDiscussionId": 5030,
   "homeyCommunityTopicId": 45,
   "tags": {
@@ -825,9 +833,9 @@
     {
       "id": "flora",
       "name": {
-        "en": "Xiaomi Mi Flora (Vegtrug) sensor",
-        "nl": "Xiaomi Mi Flora (Vegtrug) sensor",
-        "de": "Xiaomi Mi Flora (Vegtrug) sensor"
+        "en": "Xiaomi Mi Flora sensor",
+        "nl": "Xiaomi Mi Flora sensor",
+        "de": "Xiaomi Mi Flora sensor"
       },
       "images": {
         "small": "drivers/flora/assets/images/small.png",

@@ -1,6 +1,7 @@
 'use strict';
 
 const Homey = require('homey');
+const {HomeyAPI} = require('athom-api');
 
 const DATA_SERVICE_UUID = '0000120400001000800000805f9b34fb';
 const DATA_CHARACTERISTIC_UUID = '00001a0100001000800000805f9b34fb';
@@ -111,6 +112,67 @@ module.exports = class HomeyMiFlora extends Homey.App {
      */
     unregisterDevice(device) {
         this.devices = this.devices.filter(current => current.id !== device.id);
+    }
+
+    /**
+     * @returns {[]}
+     */
+    async getApiDevices() {
+      // @todo add cache layer
+      const apiDevices = []
+
+      this.homeyAPI = await HomeyAPI.forCurrentHomey(this.homey);
+      const logs = await this.homeyAPI.insights.getLogs();
+
+      for (const device of this.devices) {
+        apiDevices.push(await this.toApiResponse(device, logs))
+      }
+
+      return apiDevices;
+    }
+
+
+    /**
+     * Result for the API
+     */
+    async toApiResponse(device, logs) {
+        const capabilities = {};
+        for (const capability of device.getCapabilities()) {
+            const deviceLog = logs.find(log => {
+                return log.uriObj.id === 'd9abc6ae-827f-41a2-b830-1542bb444031' && log.id === capability
+            });
+
+            if (!deviceLog) {
+               continue;
+            }
+
+            const logEntries = await this.homeyAPI.insights.getLogEntries({
+                uri: deviceLog.uri,
+                id: deviceLog.id,
+            });
+
+            if (0 === logEntries.values.length) {
+                continue;
+            }
+
+            const mapping = this.homey.app.thresholdMapping[capability];
+            capabilities[capability] = {};
+            //capabilities[capability]['value'] = deviceLog.lastValue
+            capabilities[capability]['value'] = this.getCapabilityValue(capability);
+            capabilities[capability]['lastUpdated'] = logEntries.values.pop().t;
+            capabilities[capability]['history'] = logEntries.values;
+            capabilities[capability]['name'] = deviceLog.title;
+            if (mapping && mapping.min && mapping.max) {
+                capabilities[capability]['min'] = device.getSetting(mapping.min);
+                capabilities[capability]['max'] = device.getSetting(mapping.max);
+                capabilities[capability]['unit'] = deviceLog.unit;
+            }
+        }
+        return {
+            id: device.getDeviceData('id'),
+            name: device.getName(),
+            capabilities: capabilities
+        };
     }
 
     /**

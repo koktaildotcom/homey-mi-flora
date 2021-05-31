@@ -3,7 +3,7 @@
 ## Introduction
 This app integrates the `Xiaomi mi flora sensor` and `Xiaomi mi flora ropot` into Homey.
 
-Do you like the app? You can make me happy by buying me a beer! [![](https://img.shields.io/badge/paypal-donate-green.svg)](https://www.paypal.me/koktaildotcom)
+Do you like the app? [Donate me a beer!](https://www.paypal.me/koktaildotcom)
 
 ## Q&amp;A
 
@@ -244,3 +244,5 @@ You can configure the timeout between polls in the app's settings.
 
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
+
+Do you like the app? [Donate me a beer!](https://www.paypal.me/koktaildotcom)
