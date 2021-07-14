@@ -3,7 +3,7 @@
   "title": {
     "en": "The plant !{{has not|has}} correct amount of moisture.",
     "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid vocht.",
-    "de": "Die Pflanze !{{hat nicht|hat}} genug Wasser."
+    "de": "Die Pflanze !{{hat nicht|hat}} korrekte Menge an Wasser."
   },
   "hint": {
     "en": "Use this card to determine if the plant has a correct amount of moisture.",

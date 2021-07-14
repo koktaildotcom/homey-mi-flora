@@ -241,6 +241,8 @@ You can configure the timeout between polls in the app's settings.
   * bugfix when sync is in progress in action card 'Synchronise all sensor values with Homey'
 ### v3.0.4 - 29.03.2021
   * bugfix no results when pairing and sync is in progress
+### v3.0.5 - 14.07.2021
+  * bugfix DE translation issue https://github.com/koktaildotcom/homey-mi-flora/issues/101
 
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
