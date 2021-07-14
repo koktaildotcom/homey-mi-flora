@@ -825,9 +825,9 @@
     {
       "id": "flora",
       "name": {
-        "en": "Xiaomi Mi Flora (Vegtrug) sensor",
-        "nl": "Xiaomi Mi Flora (Vegtrug) sensor",
-        "de": "Xiaomi Mi Flora (Vegtrug) sensor"
+        "en": "Xiaomi mi flora sensor",
+        "nl": "Xiaomi mi flora sensor",
+        "de": "Xiaomi mi flora sensor"
       },
       "images": {
         "small": "drivers/flora/assets/images/small.png",
