@@ -1365,7 +1365,6 @@
       "icon": "/assets/nutritions.svg",
       "getable": true,
       "setable": false,
-      "deprecated": true,
       "units": {
         "en": "µS/cm",
         "nl": "µS/cm",
