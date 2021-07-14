@@ -1,36 +1,38 @@
-"use strict";
+'use strict';
 
 const MiFloraDriver = require('../../lib/MiFloraDriver.js');
 
 module.exports = class MiFloraSensorDriver extends MiFloraDriver {
-    getMiFloraBleIdentification() {
-        return 'Flower care';
-    }
 
-    getMiFloraBleName() {
-        return 'Mi Flora Sensor';
-    }
+  getMiFloraBleIdentification() {
+    return 'Flower care';
+  }
 
-    getDefaultSettings() {
-        return {
-            measure_temperature_min: 16,
-            measure_temperature_max: 25,
-            flora_measure_fertility_min: 300,
-            flora_measure_fertility_max: 1000,
-            flora_measure_moisture_min: 15,
-            flora_measure_moisture_max: 30,
-            measure_luminance_min: 1000,
-            measure_luminance_max: 2000,
-        }
-    }
+  getMiFloraBleName() {
+    return 'Mi Flora Sensor';
+  }
 
-    getSupportedCapabilities() {
-        return [
-            "measure_temperature",
-            "measure_luminance",
-            "flora_measure_fertility",
-            "flora_measure_moisture",
-            "measure_battery"
-        ];
-    }
-}
+  getDefaultSettings() {
+    return {
+      measure_temperature_min: 16,
+      measure_temperature_max: 25,
+      measure_nutrition_min: 300,
+      measure_nutrition_max: 1000,
+      measure_moisture_min: 15,
+      measure_moisture_max: 30,
+      measure_luminance_min: 1000,
+      measure_luminance_max: 2000,
+    };
+  }
+
+  getSupportedCapabilities() {
+    return [
+      'measure_temperature',
+      'measure_luminance',
+      'measure_nutrition',
+      'measure_moisture',
+      'measure_battery',
+    ];
+  }
+
+};

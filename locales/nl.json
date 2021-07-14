@@ -1,86 +1,86 @@
 {
-    "pair" : {
-        "title" : "Zoeken naar Xiaomi Mi Flora devices",
-        "info" : {
-            "title" : "Let op:",
-            "row1" : "Voor een optimale signaalsterkte moet de sensor dichtbij Homey geplaatst zijn.",
-            "row2" : "Download altijd de originele `Xiaomi Mi Flora` app en voeg hier de apparaten aan toe. Hierdoor wordt de sensor's firmware automatisch naar de laatste versie geupdate."
-        },
-        "faq" : {
-            "title" : "Veel gestelde vragen:",
-            "question1" : "Waarom worden mijn apparaten niet gevonden door Homey?",
-            "answer1" : "Controleer of je sensor niet is gekoppeld met een andere bluetooth apparaat. Bijvoorbeeld de `Xiaomi Mi Flora` app"
-        },
-        "configure" : "Zoek apparaten",
-        "error": {
-            "ble-unavailable": "Ble is niet beschikbaar: een synchronisatie van apparaten wordt momenteel uitgevoerd."
-        }
-    },
-    "settings" :  {
-        "title" : "Instellingen Xiaomi Mi Flora",
-        "update" : "Update instellingen",
-        "interval" : {
-            "label" : "De interval tussen updates in minuten",
-            "info" : "Het aantal minuten wat gepauzeerd wordt voordat de sensoren opnieuw worden uitgelezen. De minimale update interval is 5 minuten. de default interval is 15 minuten."
-        },
-        "save" : {
-            "label" : "Opslaan"
-        },
-        "success" : "De instellingen zijn opgeslagen",
-        "error" : {
-            "threshold" : "De min and max grens voor `__capability__` is niet geldig."
-        }
-    },
-    "capability": {
-        "measure_temperature": {
-            "name" : "temperatuur",
-            "suffix" : " °C",
-            "changed" : "De temperatuur is verandert naar: __value__°C.",
-            "device_changed" : "De temperatuur van `__plant__` is verandert naar: __value__°C.",
-            "device_updated" : "De temperatuur van `__plant__` is geupdate naar: __value__°C.",
-            "threshold": {
-                "min" : "De temperatuur (__value__°C) van `__plant__` is te laag. Deze moet minimaal __min__°C zijn.",
-                "max" : "De temperatuur (__value__°C) van `__plant__` is te hoog. Deze moet maximaal __max__°C zijn."
-            }
-        },
-        "measure_luminance": {
-            "name" : "lichtintensiteit",
-            "suffix" : " lux",
-            "changed" : "De lichtintensiteit is verandert naar: __value__ lux.",
-            "device_changed" : "De lichtintensiteit van `__plant__` is verandert naar: __value__ lux.",
-            "device_updated" : "De lichtintensiteit van `__plant__` is geupdate naar: __value__ lux.",
-            "threshold": {
-                "min" : "De lichtintensiteit (__value__ lux) van `__plant__` is te laag. Deze moet minimaal __min__ lux zijn.",
-                "max" : "De lichtintensiteit (__value__ lux) van `__plant__` is te hoog. Deze moet maximaal __max__ lux zijn."
-            }
-        },
-        "flora_measure_fertility": {
-            "name" : "voedingwaarde",
-            "suffix" : " µS/cm",
-            "changed" : "De voedingwaarde is verandert naar: __value__ µS/cm.",
-            "device_changed" : "De voedingwaarde van `__plant__` is verandert naar: __value__ µS/cm.",
-            "device_updated" : "De voedingwaarde van `__plant__` is geupdate naar: __value__ µS/cm.",
-            "threshold": {
-                "min" : "De voedingwaarde (__value__ µS/cm) van `__plant__` is te laag. Deze moet minimaal __min__ µS/cm zijn.",
-                "max" : "De voedingwaarde (__value__ µS/cm) van `__plant__` is te hoog. Deze moet maximaal __max__ µS/cm zijn."
-            }
-        },
-        "flora_measure_moisture": {
-            "name" : "vochtigheid",
-            "suffix" : " %",
-            "changed" : "De vochtigheid is verandert naar: __value__%.",
-            "device_changed" : "De vochtigheid van `__plant__` is verandert naar: __value__%.",
-            "device_updated" : "De vochtigheid van `__plant__` is geupdate naar: __value__%.",
-            "threshold": {
-                "min" : "De vochtigheid (__value__%) van `__plant__` is te laag. Deze moet minimaal __min__% zijn.",
-                "max" : "De vochtigheid (__value__%) van `__plant__` is te hoog. Deze moet maximaal __max__% zijn."
-            }
-        },
-        "measure_battery": {
-            "name": "batterij",
-            "changed" : "De batterij is verandert naar: __value__%.",
-            "device_changed" : "De batterij van `__plant__` is verandert naar: __value__%.",
-            "device_updated" : "De batterij van `__plant__` is geupdate naar: __value__%."
-        }
-    }
+  "pair": {
+	"title": "Zoeken naar Xiaomi Mi Flora devices",
+	"info": {
+	  "title": "Let op:",
+	  "row1": "Voor een optimale signaalsterkte moet de sensor dichtbij Homey geplaatst zijn.",
+	  "row2": "Download altijd de originele `Xiaomi Mi Flora` app en voeg hier de apparaten aan toe. Hierdoor wordt de sensor's firmware automatisch naar de laatste versie geupdate."
+	},
+	"faq": {
+	  "title": "Veel gestelde vragen:",
+	  "question1": "Waarom worden mijn apparaten niet gevonden door Homey?",
+	  "answer1": "Controleer of je sensor niet is gekoppeld met een andere bluetooth apparaat. Bijvoorbeeld de `Xiaomi Mi Flora` app"
+	},
+	"configure": "Zoek apparaten",
+	"error": {
+	  "ble-unavailable": "Ble is niet beschikbaar: een synchronisatie van apparaten wordt momenteel uitgevoerd."
+	}
+  },
+  "settings": {
+	"title": "Instellingen Xiaomi Mi Flora",
+	"update": "Update instellingen",
+	"interval": {
+	  "label": "De interval tussen updates in minuten",
+	  "info": "Het aantal minuten wat gepauzeerd wordt voordat de sensoren opnieuw worden uitgelezen. De minimale update interval is 5 minuten. de default interval is 15 minuten."
+	},
+	"save": {
+	  "label": "Opslaan"
+	},
+	"success": "De instellingen zijn opgeslagen",
+	"error": {
+	  "threshold": "De min and max grens voor `__capability__` is niet geldig."
+	}
+  },
+  "capability": {
+	"measure_temperature": {
+	  "name": "temperatuur",
+	  "suffix": " °C",
+	  "changed": "De temperatuur is verandert naar: __value__°C.",
+	  "device_changed": "De temperatuur van `__plant__` is verandert naar: __value__°C.",
+	  "device_updated": "De temperatuur van `__plant__` is geupdate naar: __value__°C.",
+	  "threshold": {
+		"min": "De temperatuur (__value__°C) van `__plant__` is te laag. Deze moet minimaal __min__°C zijn.",
+		"max": "De temperatuur (__value__°C) van `__plant__` is te hoog. Deze moet maximaal __max__°C zijn."
+	  }
+	},
+	"measure_luminance": {
+	  "name": "lichtintensiteit",
+	  "suffix": " lux",
+	  "changed": "De lichtintensiteit is verandert naar: __value__ lux.",
+	  "device_changed": "De lichtintensiteit van `__plant__` is verandert naar: __value__ lux.",
+	  "device_updated": "De lichtintensiteit van `__plant__` is geupdate naar: __value__ lux.",
+	  "threshold": {
+		"min": "De lichtintensiteit (__value__ lux) van `__plant__` is te laag. Deze moet minimaal __min__ lux zijn.",
+		"max": "De lichtintensiteit (__value__ lux) van `__plant__` is te hoog. Deze moet maximaal __max__ lux zijn."
+	  }
+	},
+	"measure_nutrition": {
+	  "name": "voedingwaarde",
+	  "suffix": " µS/cm",
+	  "changed": "De voedingwaarde is verandert naar: __value__ µS/cm.",
+	  "device_changed": "De voedingwaarde van `__plant__` is verandert naar: __value__ µS/cm.",
+	  "device_updated": "De voedingwaarde van `__plant__` is geupdate naar: __value__ µS/cm.",
+	  "threshold": {
+		"min": "De voedingwaarde (__value__ µS/cm) van `__plant__` is te laag. Deze moet minimaal __min__ µS/cm zijn.",
+		"max": "De voedingwaarde (__value__ µS/cm) van `__plant__` is te hoog. Deze moet maximaal __max__ µS/cm zijn."
+	  }
+	},
+	"measure_moisture": {
+	  "name": "vochtigheid",
+	  "suffix": " %",
+	  "changed": "De vochtigheid is verandert naar: __value__%.",
+	  "device_changed": "De vochtigheid van `__plant__` is verandert naar: __value__%.",
+	  "device_updated": "De vochtigheid van `__plant__` is geupdate naar: __value__%.",
+	  "threshold": {
+		"min": "De vochtigheid (__value__%) van `__plant__` is te laag. Deze moet minimaal __min__% zijn.",
+		"max": "De vochtigheid (__value__%) van `__plant__` is te hoog. Deze moet maximaal __max__% zijn."
+	  }
+	},
+	"measure_battery": {
+	  "name": "batterij",
+	  "changed": "De batterij is verandert naar: __value__%.",
+	  "device_changed": "De batterij van `__plant__` is verandert naar: __value__%.",
+	  "device_updated": "De batterij van `__plant__` is geupdate naar: __value__%."
+	}
+  }
 }

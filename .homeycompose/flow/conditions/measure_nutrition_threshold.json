@@ -1,5 +1,5 @@
 {
-  "id": "flora_measure_fertility_threshold",
+  "id": "measure_nutrition_threshold",
   "title": {
     "en": "The plant !{{has not|has}} correct amount of nutritions.",
     "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid voeding.",
@@ -14,8 +14,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capabilities=flora_measure_fertility"
+      "filter": "capabilities=measure_nutrition"
     }
-  ],
-  "deprecated": true
+  ]
 }

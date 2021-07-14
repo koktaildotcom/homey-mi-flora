@@ -1,86 +1,86 @@
 {
-    "pair" : {
-        "title" : "Searching for Xiaomi Mi Flora devices",
-        "info" : {
-            "title" : "Keep in mind:",
-            "row1" : "For an optimal signal strength keep the sensor within a close distance of Homey.",
-            "row2" : "Always download the original `Xiaomi Mi Flora` app and add the devices to the app. This automatically updates the sensor's firmware to the latest version."
-        },
-        "faq" : {
-            "title" : "Frequently asked questions:",
-            "question1" : "Why can't the sensor be found by Homey?",
-            "answer1" : "Check if the sensor is not connected to another bluetooth device. The `Xiaomi Mi Flora` app for example"
-        },
-        "configure" : "Search devices",
-        "error": {
-            "ble-unavailable": "Ble is not available: a sync of devices is currently in progress."
-        }
-    },
-    "settings" : {
-        "title" : "Settings Xiaomi Mi Flora",
-        "update" : "Update settings",
-        "interval" : {
-            "label" : "De interval between updates in minutes",
-            "info" : "The delay between reading sensor values in minutes. The minimal interval is 5 minutes. The default interval is 15 minutes."
-        },
-        "save" : {
-            "label" : "Save"
-        },
-        "success" : "The settings has been saved",
-        "error" : {
-            "threshold" : "The min and max threshold for `__capability__` is not a valid."
-        }
-    },
-    "capability": {
-        "measure_temperature": {
-            "name" : "temperature",
-            "suffix" : " °C",
-            "changed" : "The temperature is changed to: __value__°C.",
-            "device_changed" : "The temperature of `__plant__` is changed to: __value__°C.",
-            "device_updated" : "The temperature of `__plant__` is updated to: __value__°C.",
-            "threshold": {
-                "min" : "The temperature (__value__°C) of `__plant__` is too low. This must be at least __min__°C.",
-                "max" : "The temperature (__value__°C) of `__plant__` is too high. This must be a maximum of __max__°C."
-            }
-        },
-        "measure_luminance": {
-            "name" : "sunlight",
-            "suffix" : " lux",
-            "changed" : "The sunlight is changed to: __value__ lux.",
-            "device_changed" : "The sunlight of `__plant__` is changed to: __value__ lux.",
-            "device_updated" : "The sunlight of `__plant__` is updated to: __value__ lux.",
-            "threshold": {
-                "min" : "The sunlight (__value__ lux) of `__plant__` is too low. This must be at least __min__ lux.",
-                "max" : "The sunlight (__value__ lux) of `__plant__` is too high. This must be a maximum of __max__ lux."
-            }
-        },
-        "flora_measure_fertility": {
-            "name" : "nutrition",
-            "suffix" : " µS/cm",
-            "changed" : "The temperature is changed to: __value__ µS/cm.",
-            "device_changed" : "The temperature of `__plant__` is changed to: __value__ µS/cm.",
-            "device_updated" : "The temperature of `__plant__` is updated to: __value__ µS/cm.",
-            "threshold": {
-                "min" : "The nutrition (__value__ µS/cm) of `__plant__` is too low. This must be at least __min__ µS/cm.",
-                "max" : "The nutrition (__value__ µS/cm) of `__plant__` is too high. This must be a maximum of __max__ µS/cm."
-            }
-        },
-        "flora_measure_moisture": {
-            "name": "moisture",
-            "suffix" : " %",
-            "changed" : "The moisture is changed to: __value__%.",
-            "device_changed" : "The moisture of `__plant__` is changed to: __value__%.",
-            "device_updated" : "The moisture of `__plant__` is updated to: __value__%.",
-            "threshold": {
-                "min": "The moisture (__value__%) of `__plant__` is too low. This must be at least __min__%.",
-                "max": "The moisture (__value__%) of `__plant__` is too high. This must be a maximum of __max__%."
-            }
-        },
-        "measure_battery": {
-            "name": "battery",
-            "changed" : "The battery is changed to: __value__%.",
-            "device_changed" : "The battery of `__plant__` is changed to: __value__%.",
-            "device_updated" : "The battery of `__plant__` is updated to: __value__%."
-        }
-    }
+  "pair": {
+	"title": "Searching for Xiaomi Mi Flora devices",
+	"info": {
+	  "title": "Keep in mind:",
+	  "row1": "For an optimal signal strength keep the sensor within a close distance of Homey.",
+	  "row2": "Always download the original `Xiaomi Mi Flora` app and add the devices to the app. This automatically updates the sensor's firmware to the latest version."
+	},
+	"faq": {
+	  "title": "Frequently asked questions:",
+	  "question1": "Why can't the sensor be found by Homey?",
+	  "answer1": "Check if the sensor is not connected to another bluetooth device. The `Xiaomi Mi Flora` app for example"
+	},
+	"configure": "Search devices",
+	"error": {
+	  "ble-unavailable": "Ble is not available: a sync of devices is currently in progress."
+	}
+  },
+  "settings": {
+	"title": "Settings Xiaomi Mi Flora",
+	"update": "Update settings",
+	"interval": {
+	  "label": "De interval between updates in minutes",
+	  "info": "The delay between reading sensor values in minutes. The minimal interval is 5 minutes. The default interval is 15 minutes."
+	},
+	"save": {
+	  "label": "Save"
+	},
+	"success": "The settings has been saved",
+	"error": {
+	  "threshold": "The min and max threshold for `__capability__` is not a valid."
+	}
+  },
+  "capability": {
+	"measure_temperature": {
+	  "name": "temperature",
+	  "suffix": " °C",
+	  "changed": "The temperature is changed to: __value__°C.",
+	  "device_changed": "The temperature of `__plant__` is changed to: __value__°C.",
+	  "device_updated": "The temperature of `__plant__` is updated to: __value__°C.",
+	  "threshold": {
+		"min": "The temperature (__value__°C) of `__plant__` is too low. This must be at least __min__°C.",
+		"max": "The temperature (__value__°C) of `__plant__` is too high. This must be a maximum of __max__°C."
+	  }
+	},
+	"measure_luminance": {
+	  "name": "sunlight",
+	  "suffix": " lux",
+	  "changed": "The sunlight is changed to: __value__ lux.",
+	  "device_changed": "The sunlight of `__plant__` is changed to: __value__ lux.",
+	  "device_updated": "The sunlight of `__plant__` is updated to: __value__ lux.",
+	  "threshold": {
+		"min": "The sunlight (__value__ lux) of `__plant__` is too low. This must be at least __min__ lux.",
+		"max": "The sunlight (__value__ lux) of `__plant__` is too high. This must be a maximum of __max__ lux."
+	  }
+	},
+	"measure_nutrition": {
+	  "name": "nutrition",
+	  "suffix": " µS/cm",
+	  "changed": "The temperature is changed to: __value__ µS/cm.",
+	  "device_changed": "The temperature of `__plant__` is changed to: __value__ µS/cm.",
+	  "device_updated": "The temperature of `__plant__` is updated to: __value__ µS/cm.",
+	  "threshold": {
+		"min": "The nutrition (__value__ µS/cm) of `__plant__` is too low. This must be at least __min__ µS/cm.",
+		"max": "The nutrition (__value__ µS/cm) of `__plant__` is too high. This must be a maximum of __max__ µS/cm."
+	  }
+	},
+	"measure_moisture": {
+	  "name": "moisture",
+	  "suffix": " %",
+	  "changed": "The moisture is changed to: __value__%.",
+	  "device_changed": "The moisture of `__plant__` is changed to: __value__%.",
+	  "device_updated": "The moisture of `__plant__` is updated to: __value__%.",
+	  "threshold": {
+		"min": "The moisture (__value__%) of `__plant__` is too low. This must be at least __min__%.",
+		"max": "The moisture (__value__%) of `__plant__` is too high. This must be a maximum of __max__%."
+	  }
+	},
+	"measure_battery": {
+	  "name": "battery",
+	  "changed": "The battery is changed to: __value__%.",
+	  "device_changed": "The battery of `__plant__` is changed to: __value__%.",
+	  "device_updated": "The battery of `__plant__` is updated to: __value__%."
+	}
+  }
 }

@@ -1,5 +1,5 @@
 {
-  "id": "flora_measure_moisture_threshold",
+  "id": "measure_moisture_threshold",
   "title": {
     "en": "The plant !{{has not|has}} correct amount of moisture.",
     "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid vocht.",
@@ -14,8 +14,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capabilities=flora_measure_moisture"
+      "filter": "capabilities=measure_moisture"
     }
-  ],
-  "deprecated": true
+  ]
 }

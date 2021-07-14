@@ -13,8 +13,8 @@
     "capabilities": [
         "measure_temperature",
         "measure_luminance",
-        "flora_measure_fertility",
-        "flora_measure_moisture",
+        "measure_nutrition",
+        "measure_moisture",
         "measure_battery"
     ],
     "pair": [
@@ -171,7 +171,7 @@
             },
             "children": [
                 {
-                    "id": "flora_measure_fertility_min",
+                    "id": "measure_nutrition_min",
                     "type": "number",
                     "value": 0,
                     "min": 0,
@@ -188,7 +188,7 @@
                     }
                 },
                 {
-                    "id": "flora_measure_fertility_max",
+                    "id": "measure_nutrition_max",
                     "type": "number",
                     "value": 0,
                     "min": 0,
@@ -215,7 +215,7 @@
             },
             "children": [
                 {
-                    "id": "flora_measure_moisture_min",
+                    "id": "measure_moisture_min",
                     "type": "number",
                     "value": 0,
                     "min": 0,
@@ -232,7 +232,7 @@
                     }
                 },
                 {
-                    "id": "flora_measure_moisture_max",
+                    "id": "measure_moisture_max",
                     "type": "number",
                     "value": 0,
                     "min": 0,
@@ -267,15 +267,15 @@
                 "capabilities": [
                     "measure_temperature",
                     "measure_luminance",
-                    "flora_measure_fertility",
-                    "flora_measure_moisture"
+                    "measure_nutrition",
+                    "measure_moisture"
                 ],
                 "options": {
                     "icons": {
                         "measure_temperature": "/assets/temperature.svg",
                         "measure_luminance": "/assets/luminance.svg",
-                        "flora_measure_fertility": "/assets/nutritions.svg",
-                        "flora_measure_moisture": "/assets/moisture.svg"
+                        "measure_nutrition": "/assets/nutritions.svg",
+                        "measure_moisture": "/assets/moisture.svg"
                     }
                 }
             }

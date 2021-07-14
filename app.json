@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.mi.flora",
-  "version": "3.0.4",
+  "version": "4.0.0",
   "compatibility": ">=5.0.0",
   "brandColor": "#02988c",
   "sdk": 3,
@@ -735,7 +735,7 @@
         "title": {
           "en": "The plant !{{has not|has}} correct amount of nutritions.",
           "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid voeding.",
-          "de": "Die Pflanze !{{hat nicht|hat}} genug Dünger."
+          "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Menge an Dünger."
         },
         "hint": {
           "en": "Use this card to determine if the plant has a correct amount of nutritions.",
@@ -746,16 +746,17 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capabilities=measure_luminance"
+            "filter": "capabilities=flora_measure_fertility"
           }
-        ]
+        ],
+        "deprecated": true
       },
       {
         "id": "flora_measure_moisture_threshold",
         "title": {
           "en": "The plant !{{has not|has}} correct amount of moisture.",
           "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid vocht.",
-          "de": "Die Pflanze !{{hat nicht|hat}} genug Wasser."
+          "de": "Die Pflanze !{{hat nicht|hat}} korrekte Menge an Wasser."
         },
         "hint": {
           "en": "Use this card to determine if the plant has a correct amount of moisture.",
@@ -768,14 +769,15 @@
             "type": "device",
             "filter": "capabilities=flora_measure_moisture"
           }
-        ]
+        ],
+        "deprecated": true
       },
       {
         "id": "measure_luminance_threshold",
         "title": {
           "en": "The plant !{{has not|has}} correct amount of sunlight.",
           "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid zonlicht.",
-          "de": "Die Pflanze !{{hat nicht|hat}} genug Licht."
+          "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Menge an Licht."
         },
         "hint": {
           "en": "Use this card to determine if the plant has a correct amount of sunlight.",
@@ -791,11 +793,51 @@
         ]
       },
       {
+        "id": "measure_moisture_threshold",
+        "title": {
+          "en": "The plant !{{has not|has}} correct amount of moisture.",
+          "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid vocht.",
+          "de": "Die Pflanze !{{hat nicht|hat}} korrekte Menge an Wasser."
+        },
+        "hint": {
+          "en": "Use this card to determine if the plant has a correct amount of moisture.",
+          "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid vocht heeft.",
+          "de": "Verwenden Sie diese Karte, um festzustellen, das die Pflanze genug Wasser hat."
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capabilities=measure_moisture"
+          }
+        ]
+      },
+      {
+        "id": "measure_nutrition_threshold",
+        "title": {
+          "en": "The plant !{{has not|has}} correct amount of nutritions.",
+          "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid voeding.",
+          "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Menge an Dünger."
+        },
+        "hint": {
+          "en": "Use this card to determine if the plant has a correct amount of nutritions.",
+          "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid voeding heeft.",
+          "de": "Verwenden Sie diese Karte, um festzustellen, das die Pflanze genug Düngemittel hat."
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capabilities=measure_nutrition"
+          }
+        ]
+      },
+      {
         "id": "measure_temperature_threshold",
         "title": {
           "en": "De plant !{{has not|has}} a correct temperature.",
           "nl": "De plant !{{heeft niet|heeft}} de juiste temperatuur.",
-          "de": "Die Pflanze !{{hat nicht|hat}} die richtige Temperatur."
+          "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Temperatur."
         },
         "hint": {
           "en": "Use this card to determine if the plant has a correct temperature.",
@@ -837,8 +879,8 @@
       "capabilities": [
         "measure_temperature",
         "measure_luminance",
-        "flora_measure_fertility",
-        "flora_measure_moisture",
+        "measure_nutrition",
+        "measure_moisture",
         "measure_battery"
       ],
       "pair": [
@@ -995,7 +1037,7 @@
           },
           "children": [
             {
-              "id": "flora_measure_fertility_min",
+              "id": "measure_nutrition_min",
               "type": "number",
               "value": 0,
               "min": 0,
@@ -1012,7 +1054,7 @@
               }
             },
             {
-              "id": "flora_measure_fertility_max",
+              "id": "measure_nutrition_max",
               "type": "number",
               "value": 0,
               "min": 0,
@@ -1039,7 +1081,7 @@
           },
           "children": [
             {
-              "id": "flora_measure_moisture_min",
+              "id": "measure_moisture_min",
               "type": "number",
               "value": 0,
               "min": 0,
@@ -1056,7 +1098,7 @@
               }
             },
             {
-              "id": "flora_measure_moisture_max",
+              "id": "measure_moisture_max",
               "type": "number",
               "value": 0,
               "min": 0,
@@ -1091,15 +1133,15 @@
             "capabilities": [
               "measure_temperature",
               "measure_luminance",
-              "flora_measure_fertility",
-              "flora_measure_moisture"
+              "measure_nutrition",
+              "measure_moisture"
             ],
             "options": {
               "icons": {
                 "measure_temperature": "/assets/temperature.svg",
                 "measure_luminance": "/assets/luminance.svg",
-                "flora_measure_fertility": "/assets/nutritions.svg",
-                "flora_measure_moisture": "/assets/moisture.svg"
+                "measure_nutrition": "/assets/nutritions.svg",
+                "measure_moisture": "/assets/moisture.svg"
               }
             }
           }
@@ -1125,8 +1167,8 @@
       "class": "sensor",
       "capabilities": [
         "measure_temperature",
-        "flora_measure_fertility",
-        "flora_measure_moisture"
+        "measure_nutrition",
+        "measure_moisture"
       ],
       "pair": [
         {
@@ -1228,7 +1270,7 @@
           },
           "children": [
             {
-              "id": "flora_measure_fertility_min",
+              "id": "measure_fertility_min",
               "type": "number",
               "value": 0,
               "min": 0,
@@ -1240,7 +1282,7 @@
               }
             },
             {
-              "id": "flora_measure_fertility_max",
+              "id": "measure_fertility_max",
               "type": "number",
               "value": 0,
               "min": 0,
@@ -1262,7 +1304,7 @@
           },
           "children": [
             {
-              "id": "flora_measure_moisture_min",
+              "id": "measure_moisture_min",
               "type": "number",
               "value": 0,
               "min": 0,
@@ -1274,7 +1316,7 @@
               }
             },
             {
-              "id": "flora_measure_moisture_max",
+              "id": "measure_moisture_max",
               "type": "number",
               "value": 0,
               "min": 0,
@@ -1297,14 +1339,14 @@
             "id": "sensor",
             "capabilities": [
               "measure_temperature",
-              "flora_measure_fertility",
-              "flora_measure_moisture"
+              "measure_nutrition",
+              "measure_moisture"
             ],
             "options": {
               "icons": {
                 "measure_temperature": "./drivers/ropot/assets/temperature.svg",
-                "flora_measure_fertility": "./drivers/ropot/assets/nutritions.svg",
-                "flora_measure_moisture": "./drivers/ropot/assets/moisture.svg"
+                "measure_nutrition": "./drivers/ropot/assets/nutritions.svg",
+                "measure_moisture": "./drivers/ropot/assets/moisture.svg"
               }
             }
           }
@@ -1323,6 +1365,7 @@
       "icon": "/assets/nutritions.svg",
       "getable": true,
       "setable": false,
+      "deprecated": true,
       "units": {
         "en": "µS/cm",
         "nl": "µS/cm",
@@ -1350,6 +1393,46 @@
       },
       "min": 0,
       "max": 100,
+      "step": 1,
+      "insights": true
+    },
+    "measure_moisture": {
+      "type": "number",
+      "title": {
+        "en": "Moisture",
+        "nl": "Vochtigheid",
+        "de": "Feuchtigkeit"
+      },
+      "icon": "/assets/moisture.svg",
+      "getable": true,
+      "setable": false,
+      "units": {
+        "en": "%",
+        "nl": "%",
+        "de": "%"
+      },
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "insights": true
+    },
+    "measure_nutrition": {
+      "type": "number",
+      "title": {
+        "en": "Nutrition",
+        "nl": "Voeding",
+        "de": "Dünger"
+      },
+      "icon": "/assets/nutritions.svg",
+      "getable": true,
+      "setable": false,
+      "units": {
+        "en": "µS/cm",
+        "nl": "µS/cm",
+        "de": "µS/cm"
+      },
+      "min": 0,
+      "max": 10000,
       "step": 1,
       "insights": true
     }

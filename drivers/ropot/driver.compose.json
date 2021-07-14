@@ -12,8 +12,8 @@
     "class": "sensor",
     "capabilities": [
         "measure_temperature",
-        "flora_measure_fertility",
-        "flora_measure_moisture"
+        "measure_nutrition",
+        "measure_moisture"
     ],
     "pair": [
         {
@@ -115,7 +115,7 @@
             },
             "children": [
                 {
-                    "id": "flora_measure_fertility_min",
+                    "id": "measure_fertility_min",
                     "type": "number",
                     "value": 0,
                     "min": 0,
@@ -127,7 +127,7 @@
                     }
                 },
                 {
-                    "id": "flora_measure_fertility_max",
+                    "id": "measure_fertility_max",
                     "type": "number",
                     "value": 0,
                     "min": 0,
@@ -149,7 +149,7 @@
             },
             "children": [
                 {
-                    "id": "flora_measure_moisture_min",
+                    "id": "measure_moisture_min",
                     "type": "number",
                     "value": 0,
                     "min": 0,
@@ -161,7 +161,7 @@
                     }
                 },
                 {
-                    "id": "flora_measure_moisture_max",
+                    "id": "measure_moisture_max",
                     "type": "number",
                     "value": 0,
                     "min": 0,
@@ -184,14 +184,14 @@
                 "id": "sensor",
                 "capabilities": [
                     "measure_temperature",
-                    "flora_measure_fertility",
-                    "flora_measure_moisture"
+                    "measure_nutrition",
+                    "measure_moisture"
                 ],
                 "options": {
                     "icons": {
                         "measure_temperature": "./drivers/ropot/assets/temperature.svg",
-                        "flora_measure_fertility": "./drivers/ropot/assets/nutritions.svg",
-                        "flora_measure_moisture": "./drivers/ropot/assets/moisture.svg"
+                        "measure_nutrition": "./drivers/ropot/assets/nutritions.svg",
+                        "measure_moisture": "./drivers/ropot/assets/moisture.svg"
                     }
                 }
             }
