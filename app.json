@@ -13,7 +13,7 @@
   "description": {
     "en": "Track every need of your plants and flowers with Xiaomi mi flora products",
     "nl": "Volg de behoefte van uw planten en bloemen met Xiaomi mi flora producten",
-    "de": "Verfolgen sie jeden bedarf ihrer pflanzen und blumen mit Xiaomi mi flora produkten"
+    "de": "Überwachen Sie den Bedarf Ihrer Pflanzen und Blumen mit Xiaomi Mi Flora Produkten"
   },
   "category": [
     "appliances",
@@ -137,6 +137,16 @@
             }
           },
           {
+            "name": "numeric",
+            "type": "number",
+            "title": {
+              "en": "value (numeric)",
+              "nl": "waarde (numeriek)",
+              "de": "wert (nummeriek)"
+            },
+            "example": 22.5
+          },
+          {
             "name": "sensor",
             "title": {
               "en": "sensor",
@@ -191,6 +201,16 @@
               "nl": "22.5",
               "de": "22.5"
             }
+          },
+          {
+            "name": "numeric",
+            "type": "number",
+            "title": {
+              "en": "value (numeric)",
+              "nl": "waarde (numeriek)",
+              "de": "wert (nummeriek)"
+            },
+            "example": 22.5
           },
           {
             "name": "sensor",
@@ -249,6 +269,16 @@
             }
           },
           {
+            "name": "numeric",
+            "type": "number",
+            "title": {
+              "en": "value (numeric)",
+              "nl": "waarde (numeriek)",
+              "de": "wert (nummeriek)"
+            },
+            "example": 22.5
+          },
+          {
             "name": "sensor",
             "title": {
               "en": "sensor",
@@ -303,6 +333,16 @@
               "nl": "22.5",
               "de": "22.5"
             }
+          },
+          {
+            "name": "numeric",
+            "type": "number",
+            "title": {
+              "en": "value (numeric)",
+              "nl": "waarde (numeriek)",
+              "de": "wert (nummeriek)"
+            },
+            "example": 22.5
           },
           {
             "name": "sensor",
@@ -361,6 +401,16 @@
             }
           },
           {
+            "name": "numeric",
+            "type": "number",
+            "title": {
+              "en": "value (numeric)",
+              "nl": "waarde (numeriek)",
+              "de": "wert (nummeriek)"
+            },
+            "example": 22.5
+          },
+          {
             "name": "sensor",
             "title": {
               "en": "sensor",
@@ -415,6 +465,16 @@
               "nl": "22.5",
               "de": "22.5"
             }
+          },
+          {
+            "name": "numeric",
+            "type": "number",
+            "title": {
+              "en": "value (numeric)",
+              "nl": "waarde (numeriek)",
+              "de": "wert (nummeriek)"
+            },
+            "example": 22.5
           },
           {
             "name": "sensor",
@@ -479,6 +539,16 @@
             }
           },
           {
+            "name": "numeric",
+            "type": "number",
+            "title": {
+              "en": "value (numeric)",
+              "nl": "waarde (numeriek)",
+              "de": "wert (nummeriek)"
+            },
+            "example": 22.5
+          },
+          {
             "name": "sensor",
             "title": {
               "en": "sensor",
@@ -541,6 +611,16 @@
             }
           },
           {
+            "name": "numeric",
+            "type": "number",
+            "title": {
+              "en": "value (numeric)",
+              "nl": "waarde (numeriek)",
+              "de": "wert (nummeriek)"
+            },
+            "example": 22.5
+          },
+          {
             "name": "sensor",
             "title": {
               "en": "sensor",
@@ -601,6 +681,16 @@
               "nl": "22.5",
               "de": "22.5"
             }
+          },
+          {
+            "name": "numeric",
+            "type": "number",
+            "title": {
+              "en": "value (numeric)",
+              "nl": "waarde (numeriek)",
+              "de": "wert (nummeriek)"
+            },
+            "example": 22.5
           },
           {
             "name": "sensor",
@@ -699,6 +789,16 @@
               "nl": "22.5",
               "de": "22.5"
             }
+          },
+          {
+            "name": "numeric",
+            "type": "number",
+            "title": {
+              "en": "value (numeric)",
+              "nl": "waarde (numeriek)",
+              "de": "wert (nummeriek)"
+            },
+            "example": 22.5
           },
           {
             "name": "sensor",
@@ -858,7 +958,8 @@
         "id": "update",
         "title": {
           "en": "Synchronise all sensor values with Homey",
-          "nl": "Synchroniseer alle sensor waarden met Homey"
+          "nl": "Synchroniseer alle sensor waarden met Homey",
+          "de": "Synchronisiere alle Sensorwerte mit Homey"
         }
       }
     ]

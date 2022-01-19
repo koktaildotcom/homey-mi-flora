@@ -244,6 +244,8 @@ You can configure the timeout between polls in the app's settings.
 ### v4.0.0 - 14.07.2021
   * bugfix DE translation issue https://github.com/koktaildotcom/homey-mi-flora/issues/101
   * migrate capabilities to correct homey syntax https://github.com/koktaildotcom/homey-mi-flora/issues/103
-
+### v4.0.1 - 19-01-2020
+  * add numeric value to flowcards: https://github.com/koktaildotcom/homey-mi-flora/issues/105
+  * add german translations
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
