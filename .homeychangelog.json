@@ -19,5 +19,8 @@
   },
   "4.0.0": {
     "en": "Removed and migrated capabilities to correct homey syntax"
+  },
+  "4.0.1": {
+    "en": "add numeric value to flowcards & 🇩🇪"
   }
 }

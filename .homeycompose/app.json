@@ -14,6 +14,10 @@
     "nl": "Volg de behoefte van uw planten en bloemen met Xiaomi mi flora producten",
     "de": "Überwachen Sie den Bedarf Ihrer Pflanzen und Blumen mit Xiaomi Mi Flora Produkten"
   },
+  "platforms": [
+    "local"
+  ],
+  "support": "https://community.homey.app/t/xiaomi-mi-flora-sensor-ropot-app/45",
   "category": [
     "appliances",
     "tools",

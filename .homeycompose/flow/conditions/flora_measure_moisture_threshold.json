@@ -5,6 +5,11 @@
     "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid vocht.",
     "de": "Die Pflanze !{{hat nicht|hat}} korrekte Menge an Wasser."
   },
+  "titleFormatted": {
+    "en": "The plant [[device]] !{{has not|has}} correct amount of moisture.",
+    "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste hoeveelheid vocht.",
+    "de": "Die Pflanze [[device]] !{{hat nicht|hat}} korrekte Menge an Wasser."
+  },
   "hint": {
     "en": "Use this card to determine if the plant has a correct amount of moisture.",
     "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid vocht heeft.",
