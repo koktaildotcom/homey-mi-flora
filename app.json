@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.mi.flora",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "compatibility": ">=5.0.0",
   "brandColor": "#02988c",
   "sdk": 3,
@@ -13,8 +13,12 @@
   "description": {
     "en": "Track every need of your plants and flowers with Xiaomi mi flora products",
     "nl": "Volg de behoefte van uw planten en bloemen met Xiaomi mi flora producten",
-    "de": "Verfolgen sie jeden bedarf ihrer pflanzen und blumen mit Xiaomi mi flora produkten"
+    "de": "Überwachen Sie den Bedarf Ihrer Pflanzen und Blumen mit Xiaomi Mi Flora Produkten"
   },
+  "platforms": [
+    "local"
+  ],
+  "support": "https://community.homey.app/t/xiaomi-mi-flora-sensor-ropot-app/45",
   "category": [
     "appliances",
     "tools",
@@ -137,6 +141,16 @@
             }
           },
           {
+            "name": "numeric",
+            "type": "number",
+            "title": {
+              "en": "value (numeric)",
+              "nl": "waarde (numeriek)",
+              "de": "wert (nummeriek)"
+            },
+            "example": 22.5
+          },
+          {
             "name": "sensor",
             "title": {
               "en": "sensor",
@@ -191,6 +205,16 @@
               "nl": "22.5",
               "de": "22.5"
             }
+          },
+          {
+            "name": "numeric",
+            "type": "number",
+            "title": {
+              "en": "value (numeric)",
+              "nl": "waarde (numeriek)",
+              "de": "wert (nummeriek)"
+            },
+            "example": 22.5
           },
           {
             "name": "sensor",
@@ -249,6 +273,16 @@
             }
           },
           {
+            "name": "numeric",
+            "type": "number",
+            "title": {
+              "en": "value (numeric)",
+              "nl": "waarde (numeriek)",
+              "de": "wert (nummeriek)"
+            },
+            "example": 22.5
+          },
+          {
             "name": "sensor",
             "title": {
               "en": "sensor",
@@ -303,6 +337,16 @@
               "nl": "22.5",
               "de": "22.5"
             }
+          },
+          {
+            "name": "numeric",
+            "type": "number",
+            "title": {
+              "en": "value (numeric)",
+              "nl": "waarde (numeriek)",
+              "de": "wert (nummeriek)"
+            },
+            "example": 22.5
           },
           {
             "name": "sensor",
@@ -361,6 +405,16 @@
             }
           },
           {
+            "name": "numeric",
+            "type": "number",
+            "title": {
+              "en": "value (numeric)",
+              "nl": "waarde (numeriek)",
+              "de": "wert (nummeriek)"
+            },
+            "example": 22.5
+          },
+          {
             "name": "sensor",
             "title": {
               "en": "sensor",
@@ -415,6 +469,16 @@
               "nl": "22.5",
               "de": "22.5"
             }
+          },
+          {
+            "name": "numeric",
+            "type": "number",
+            "title": {
+              "en": "value (numeric)",
+              "nl": "waarde (numeriek)",
+              "de": "wert (nummeriek)"
+            },
+            "example": 22.5
           },
           {
             "name": "sensor",
@@ -479,6 +543,16 @@
             }
           },
           {
+            "name": "numeric",
+            "type": "number",
+            "title": {
+              "en": "value (numeric)",
+              "nl": "waarde (numeriek)",
+              "de": "wert (nummeriek)"
+            },
+            "example": 22.5
+          },
+          {
             "name": "sensor",
             "title": {
               "en": "sensor",
@@ -541,6 +615,16 @@
             }
           },
           {
+            "name": "numeric",
+            "type": "number",
+            "title": {
+              "en": "value (numeric)",
+              "nl": "waarde (numeriek)",
+              "de": "wert (nummeriek)"
+            },
+            "example": 22.5
+          },
+          {
             "name": "sensor",
             "title": {
               "en": "sensor",
@@ -601,6 +685,16 @@
               "nl": "22.5",
               "de": "22.5"
             }
+          },
+          {
+            "name": "numeric",
+            "type": "number",
+            "title": {
+              "en": "value (numeric)",
+              "nl": "waarde (numeriek)",
+              "de": "wert (nummeriek)"
+            },
+            "example": 22.5
           },
           {
             "name": "sensor",
@@ -701,6 +795,16 @@
             }
           },
           {
+            "name": "numeric",
+            "type": "number",
+            "title": {
+              "en": "value (numeric)",
+              "nl": "waarde (numeriek)",
+              "de": "wert (nummeriek)"
+            },
+            "example": 22.5
+          },
+          {
             "name": "sensor",
             "title": {
               "en": "sensor",
@@ -737,6 +841,11 @@
           "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid voeding.",
           "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Menge an Dünger."
         },
+        "titleFormatted": {
+          "en": "The plant [[device]] !{{has not|has}} correct amount of nutritions.",
+          "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste hoeveelheid voeding.",
+          "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Menge an Dünger."
+        },
         "hint": {
           "en": "Use this card to determine if the plant has a correct amount of nutritions.",
           "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid voeding heeft.",
@@ -757,6 +866,11 @@
           "en": "The plant !{{has not|has}} correct amount of moisture.",
           "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid vocht.",
           "de": "Die Pflanze !{{hat nicht|hat}} korrekte Menge an Wasser."
+        },
+        "titleFormatted": {
+          "en": "The plant [[device]] !{{has not|has}} correct amount of moisture.",
+          "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste hoeveelheid vocht.",
+          "de": "Die Pflanze [[device]] !{{hat nicht|hat}} korrekte Menge an Wasser."
         },
         "hint": {
           "en": "Use this card to determine if the plant has a correct amount of moisture.",
@@ -779,6 +893,11 @@
           "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid zonlicht.",
           "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Menge an Licht."
         },
+        "titleFormatted": {
+          "en": "The plant [[device]] !{{has not|has}} correct amount of sunlight.",
+          "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste hoeveelheid zonlicht.",
+          "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Menge an Licht."
+        },
         "hint": {
           "en": "Use this card to determine if the plant has a correct amount of sunlight.",
           "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid zonlicht heeft.",
@@ -798,6 +917,11 @@
           "en": "The plant !{{has not|has}} correct amount of moisture.",
           "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid vocht.",
           "de": "Die Pflanze !{{hat nicht|hat}} korrekte Menge an Wasser."
+        },
+        "titleFormatted": {
+          "en": "The plant [[device]] !{{has not|has}} correct amount of moisture.",
+          "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste hoeveelheid vocht.",
+          "de": "Die Pflanze [[device]] !{{hat nicht|hat}} korrekte Menge an Wasser."
         },
         "hint": {
           "en": "Use this card to determine if the plant has a correct amount of moisture.",
@@ -819,6 +943,11 @@
           "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid voeding.",
           "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Menge an Dünger."
         },
+        "titleFormatted": {
+          "en": "The plant [[device]] !{{has not|has}} correct amount of nutritions.",
+          "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste hoeveelheid voeding.",
+          "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Menge an Dünger."
+        },
         "hint": {
           "en": "Use this card to determine if the plant has a correct amount of nutritions.",
           "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid voeding heeft.",
@@ -839,6 +968,11 @@
           "nl": "De plant !{{heeft niet|heeft}} de juiste temperatuur.",
           "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Temperatur."
         },
+        "titleFormatted": {
+          "en": "De plant [[device]] !{{has not|has}} a correct temperature.",
+          "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste temperatuur.",
+          "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Temperatur."
+        },
         "hint": {
           "en": "Use this card to determine if the plant has a correct temperature.",
           "nl": "Gebruik deze kaart om te bepalen of de plant de juiste temperatuur heeft.",
@@ -858,7 +992,8 @@
         "id": "update",
         "title": {
           "en": "Synchronise all sensor values with Homey",
-          "nl": "Synchroniseer alle sensor waarden met Homey"
+          "nl": "Synchroniseer alle sensor waarden met Homey",
+          "de": "Synchronisiere alle Sensorwerte mit Homey"
         }
       }
     ]
@@ -871,6 +1006,12 @@
         "nl": "Xiaomi mi flora sensor",
         "de": "Xiaomi mi flora sensor"
       },
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "ble"
+      ],
       "images": {
         "small": "drivers/flora/assets/images/small.png",
         "large": "drivers/flora/assets/images/large.png"
@@ -1160,6 +1301,12 @@
         "nl": "Xiaomi mi flora pot",
         "de": "Xiaomi mi flora blumentopf"
       },
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "ble"
+      ],
       "images": {
         "small": "drivers/ropot/assets/images/small.png",
         "large": "drivers/ropot/assets/images/large.png"

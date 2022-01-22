@@ -188,7 +188,6 @@ module.exports = class HomeyMiFlora extends Homey.App {
         measure_nutrition: sensorData.readUInt16LE(8),
         measure_moisture: sensorData.readUInt16BE(6),
       };
-      console.log(sensorValues);
 
       await asyncForEach(device.getCapabilities(), async characteristic => {
         if (sensorValues.hasOwnProperty(characteristic)) {
@@ -197,7 +196,9 @@ module.exports = class HomeyMiFlora extends Homey.App {
       });
 
       // get firmware
-      const firmware = characteristics.find(characteristic => characteristic.uuid === FIRMWARE_CHARACTERISTIC_UUID);
+      const firmware = characteristics.find(
+        characteristic => characteristic.uuid === FIRMWARE_CHARACTERISTIC_UUID
+      );
       if (!firmware) {
         disconnectPeripheral();
         throw new Error('Missing firmware characteristic');

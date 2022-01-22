@@ -38,6 +38,16 @@
       }
     },
     {
+      "name": "numeric",
+      "type": "number",
+      "title": {
+        "en": "value (numeric)",
+        "nl": "waarde (numeriek)",
+        "de": "wert (nummeriek)"
+      },
+      "example":  22.5
+    },
+    {
       "name": "sensor",
       "title": {
         "en": "sensor",

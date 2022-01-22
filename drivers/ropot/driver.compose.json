@@ -6,6 +6,12 @@
         "de": "Xiaomi mi flora blumentopf",
         "sv": "Xiaomi Mi Flora kruka"
     },
+    "platforms": [
+        "local"
+    ],
+    "connectivity": [
+        "ble"
+    ],
     "images": {
         "small": "drivers/ropot/assets/images/small.png",
         "large": "drivers/ropot/assets/images/large.png"

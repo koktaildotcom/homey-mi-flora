@@ -1,6 +1,6 @@
 {
   "id": "com.mi.flora",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "compatibility": ">=5.0.0",
   "brandColor": "#02988c",
   "sdk": 3,
@@ -13,9 +13,13 @@
   "description": {
     "en": "Track every need of your plants and flowers with Xiaomi mi flora products",
     "nl": "Volg de behoefte van uw planten en bloemen met Xiaomi mi flora producten",
-    "de": "Verfolgen sie jeden bedarf ihrer pflanzen und blumen mit Xiaomi mi flora produkten",
+    "de": "Überwachen Sie den Bedarf Ihrer Pflanzen und Blumen mit Xiaomi Mi Flora Produkten",
     "sv": "Spåra dina växters värden med Xiaomi Mi Flora-enheter"
   },
+  "platforms": [
+    "local"
+  ],
+  "support": "https://community.homey.app/t/xiaomi-mi-flora-sensor-ropot-app/45",
   "category": [
     "appliances",
     "tools",
