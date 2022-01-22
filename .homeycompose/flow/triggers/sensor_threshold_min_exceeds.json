@@ -3,7 +3,8 @@
   "title": {
     "en": "Sensor value is below the configured threshold",
     "nl": "Sensor waarde is beneden de gestelde drempel",
-    "de": "Der Sensorwert liegt unter dem konfigurierten grenzwert"
+    "de": "Der Sensorwert liegt unter dem konfigurierten grenzwert",
+    "sv": "Sensorns värde är över det inställda tröskelvärdet"
   },
   "tokens": [
     {
@@ -11,12 +12,14 @@
       "title": {
         "en": "report",
         "nl": "rapport",
-        "de": "Bericht"
+        "de": "Bericht",
+        "sv": "rapportera"
       },
       "example": {
         "en": "The moisture (22%) is too low. This can be at least 30%.",
         "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
-        "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+        "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen.",
+        "sv": "Fuktigheten (22%) är för låg. Det bör vara minst 30%."
       }
     },
     {
@@ -24,12 +27,14 @@
       "title": {
         "en": "value",
         "nl": "waarde",
-        "de": "Wert"
+        "de": "Wert",
+        "sv": "Värde"
       },
       "example": {
         "en": "22.5",
         "nl": "22.5",
-        "de": "22.5"
+        "de": "22.5",
+        "sv": "22,5"
       }
     },
     {
@@ -37,12 +42,14 @@
       "title": {
         "en": "sensor",
         "nl": "sensor",
-        "de": "Sensor"
+        "de": "Sensor",
+        "sv": "Sensor"
       },
       "example": {
         "en": "Moisture",
         "nl": "Vochtigheid",
-        "de": "Feuchtigkeit"
+        "de": "Feuchtigkeit",
+        "sv": "Fuktighet"
       }
     },
     {
@@ -50,12 +57,14 @@
       "title": {
         "en": "device",
         "nl": "apparaat",
-        "de": "Gerät"
+        "de": "Gerät",
+        "sv": "enhet"
       },
       "example": {
         "en": "Flowercare 1",
         "nl": "Flowercare 1",
-        "de": "Flowercare 1"
+        "de": "Flowercare 1",
+        "sv": "Flowercare 1"
       }
     }
   ]

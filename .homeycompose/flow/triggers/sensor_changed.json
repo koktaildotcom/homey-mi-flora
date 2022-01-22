@@ -3,7 +3,8 @@
   "title": {
     "en": "A sensor value is changed",
     "nl": "Een sensor waarde is veranderd",
-    "de": "Ein Sensorwert wurde geändert"
+    "de": "Ein Sensorwert wurde geändert",
+    "sv": "En sensors värde har ändrats"
   },
   "tokens": [
     {
@@ -11,12 +12,14 @@
       "title": {
         "en": "report",
         "nl": "rapport",
-        "de": "Bericht"
+        "de": "Bericht",
+        "sv": "rapportera"
       },
       "example": {
         "en": "The moisture (22%) is too low. This can be at least 30%.",
         "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
-        "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+        "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen.",
+        "sv": "Fuktigheten (22%) är för låg. Det bör vara minst 30%."
       }
     },
     {
@@ -24,12 +27,14 @@
       "title": {
         "en": "value",
         "nl": "waarde",
-        "de": "Wert"
+        "de": "Wert",
+        "sv": "Värde"
       },
       "example": {
         "en": "22.5",
         "nl": "22.5",
-        "de": "22.5"
+        "de": "22.5",
+        "sv": "22,5"
       }
     },
     {
@@ -37,12 +42,14 @@
       "title": {
         "en": "sensor",
         "nl": "sensor",
-        "de": "Sensor"
+        "de": "Sensor",
+        "sv": "sensor"
       },
       "example": {
         "en": "Moisture",
         "nl": "Vochtigheid",
-        "de": "Feuchtigkeit"
+        "de": "Feuchtigkeit",
+        "sv": "Fuktighet"
       }
     },
     {
@@ -50,7 +57,8 @@
       "title": {
         "en": "device",
         "nl": "apparaat",
-        "de": "Gerät"
+        "de": "Gerät",
+        "sv": "enhet"
       },
       "example": {
         "en": "Flowercare 1",
