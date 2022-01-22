@@ -4,18 +4,19 @@
     "en": "The plant !{{has not|has}} correct amount of nutritions.",
     "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid voeding.",
     "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Menge an Dünger.",
-    "sv": "Plantan !{{har inte|har}} rätt mängd näring."
+    "sv": "Plantan !{{har inte|har}} tillräckligt med näring."
   },
   "titleFormatted": {
     "en": "The plant [[device]] !{{has not|has}} correct amount of nutritions.",
     "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste hoeveelheid voeding.",
-    "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Menge an Dünger."
+    "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Menge an Dünger.",
+    "sv": "Plantan [[device]] !{{har inte|har}} tillräckligt med näring."
   },
   "hint": {
     "en": "Use this card to determine if the plant has a correct amount of nutritions.",
     "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid voeding heeft.",
     "de": "Verwenden Sie diese Karte, um festzustellen, das die Pflanze genug Düngemittel hat.",
-    "sv": "Använd detta kort för att kontrollera om plantan har rätt näringsnivå."
+    "sv": "Använd detta kort för att kontrollera om plantan har tillräckligt med näring."
   },
   "args": [
     {

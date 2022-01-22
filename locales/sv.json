@@ -44,14 +44,14 @@
 			}
 		},
 		"measure_luminance": {
-			"name": "solljus",
+			"name": "luminans",
 			"suffix": " lux",
-			"changed": "Solljuset har ändrats till: __value__ lux.",
-			"device_changed": "Solljuset för `__plant__` har ändrats till: __value__ lux.",
-			"device_updated": "Solljuset för `__plant__` har uppdaterats till: __value__ lux.",
+			"changed": "Luminansen har ändrats till: __value__ lux.",
+			"device_changed": "Luminansen för `__plant__` har ändrats till: __value__ lux.",
+			"device_updated": "Luminansen för `__plant__` har uppdaterats till: __value__ lux.",
 			"threshold": {
-				"min": "Solljuset (__value__ lux) för `__plant__` är för lågt. Det bör vara minst __min__ lux.",
-				"max": "Solljuset (__value__ lux) för `__plant__` är för högt. Det bör vara som mest __max__ lux."
+				"min": "Luminansen (__value__ lux) för `__plant__` är för lågt. Det bör vara minst __min__ lux.",
+				"max": "Luminansen (__value__ lux) för `__plant__` är för högt. Det bör vara som mest __max__ lux."
 			}
 		},
 		"measure_nutrition": {

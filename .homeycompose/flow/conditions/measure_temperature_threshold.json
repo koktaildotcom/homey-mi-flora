@@ -9,7 +9,8 @@
   "titleFormatted": {
     "en": "De plant [[device]] !{{has not|has}} a correct temperature.",
     "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste temperatuur.",
-    "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Temperatur."
+    "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Temperatur.",
+    "sv": "Plantan [[device]] !{{har inte|har}} rätt temperatur."
   },
   "hint": {
     "en": "Use this card to determine if the plant has a correct temperature.",

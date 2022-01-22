@@ -238,7 +238,7 @@
                 "en": "Moisture (%)",
                 "nl": "Vochtigheid (%)",
                 "de": "Feuchtigkeit (%)",
-                "sv": "Luftfuktighet (%)"
+                "sv": "Fuktighet (%)"
             },
             "children": [
                 {
@@ -257,7 +257,7 @@
                         "en": "The minimal threshold value for moisture.",
                         "nl": "De minimale grenswaarde voor vochtigheid.",
                         "de": "Der minimale grenzwert für die Feuchtigkeit.",
-                        "sv": "Minsta värde för luftfuktighet."
+                        "sv": "Minsta värde för fuktighet."
                     }
                 },
                 {
@@ -276,7 +276,7 @@
                         "en": "The maximum threshold value for moisture.",
                         "nl": "De maximale grenswaarde voor vochtigheid.",
                         "de": "Der maximale grenzwert für die Feuchtigkeit.",
-                        "sv": "Högsta värde för luftfuktighet."
+                        "sv": "Högsta värde för fuktighet."
                     }
                 }
             ]
