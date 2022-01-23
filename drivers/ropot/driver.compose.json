@@ -62,7 +62,7 @@
                     "label": {
                         "en": "Last updated",
                         "nl": "Laatste update",
-                        "de": "Letzte aktualisierung"
+                        "de": "Letzte Aktualisierung"
                     },
                     "value": ""
                 },
@@ -72,7 +72,7 @@
                     "label": {
                         "en": "Device uuid address",
                         "nl": "Apparaat uuid adres",
-                        "de": "Geräte uuid adresse"
+                        "de": "Geräte uuid Adresse"
                     },
                     "value": ""
                 }
