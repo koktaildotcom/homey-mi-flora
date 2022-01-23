@@ -3,7 +3,7 @@
   "title": {
     "en": "Sensor value is above the configured threshold",
     "nl": "Sensor waarde is boven de gestelde drempel",
-    "de": "Der Sensorwert liegt über dem konfigurierten grenzwert"
+    "de": "Der Sensorwert liegt über dem konfigurierten Grenzwert"
   },
   "tokens": [
     {
