@@ -177,7 +177,7 @@
         "title": {
           "en": "Sensor value is outside the configured threshold",
           "nl": "Sensor waarde is buiten de gestelde drempel",
-          "de": "Der Sensorwert liegt außerhab der konfigurierten grenzwerte"
+          "de": "Der Sensorwert liegt außerhab der konfigurierten Grenzwerte"
         },
         "tokens": [
           {
@@ -243,7 +243,7 @@
         "title": {
           "en": "Sensor value is above the configured threshold",
           "nl": "Sensor waarde is boven de gestelde drempel",
-          "de": "Der Sensorwert liegt über dem konfigurierten grenzwert"
+          "de": "Der Sensorwert liegt über dem konfigurierten Grenzwert"
         },
         "tokens": [
           {
@@ -309,7 +309,7 @@
         "title": {
           "en": "Sensor value is below the configured threshold",
           "nl": "Sensor waarde is beneden de gestelde drempel",
-          "de": "Der Sensorwert liegt unter dem konfigurierten grenzwert"
+          "de": "Der Sensorwert liegt unter dem konfigurierten Grenzwert"
         },
         "tokens": [
           {
@@ -513,7 +513,7 @@
         "title": {
           "en": "Sensor value is outside the configured threshold",
           "nl": "Sensor waarde is buiten de gestelde drempel",
-          "de": "Der Sensorwert liegt außerhab der konfigurierten grenzwerte"
+          "de": "Der Sensorwert liegt außerhab der konfigurierten Grenzwerte"
         },
         "tokens": [
           {
@@ -585,7 +585,7 @@
         "title": {
           "en": "Sensor value is above the configured threshold",
           "nl": "Sensor waarde is boven de gestelde drempel",
-          "de": "Der Sensorwert liegt über dem konfigurierten grenzwert"
+          "de": "Der Sensorwert liegt über dem konfigurierten Grenzwert"
         },
         "tokens": [
           {
@@ -657,7 +657,7 @@
         "title": {
           "en": "Sensor value is below the configured threshold",
           "nl": "Sensor waarde is beneden de gestelde drempel",
-          "de": "Der Sensorwert liegt unter dem konfigurierten grenzwert"
+          "de": "Der Sensorwert liegt unter dem konfigurierten Grenzwert"
         },
         "tokens": [
           {
@@ -729,7 +729,7 @@
         "title": {
           "en": "The sensor gives a timeout",
           "nl": "Een sensor geeft een timeout",
-          "de": "Der Sensor gibt eine zeitüberschreitung aus"
+          "de": "Der Sensor gibt eine Zeitüberschreitung aus"
         },
         "tokens": [
           {
@@ -755,7 +755,7 @@
             "example": {
               "en": "Not in range",
               "nl": "Niet binnen bereik",
-              "de": "Nicht in reichweite"
+              "de": "Nicht in Reichweite"
             }
           }
         ]
@@ -849,7 +849,7 @@
         "hint": {
           "en": "Use this card to determine if the plant has a correct amount of nutritions.",
           "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid voeding heeft.",
-          "de": "Verwenden Sie diese Karte, um festzustellen, das die Pflanze genug Düngemittel hat."
+          "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze genug Düngemittel hat."
         },
         "args": [
           {
@@ -875,7 +875,7 @@
         "hint": {
           "en": "Use this card to determine if the plant has a correct amount of moisture.",
           "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid vocht heeft.",
-          "de": "Verwenden Sie diese Karte, um festzustellen, das die Pflanze genug Wasser hat."
+          "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze genug Wasser hat."
         },
         "args": [
           {
@@ -901,7 +901,7 @@
         "hint": {
           "en": "Use this card to determine if the plant has a correct amount of sunlight.",
           "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid zonlicht heeft.",
-          "de": "Verwenden Sie diese Karte, um festzustellen, das die Pflanze die richtige Menge Sonnenlicht hat."
+          "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze die richtige Menge Sonnenlicht hat."
         },
         "args": [
           {
@@ -926,7 +926,7 @@
         "hint": {
           "en": "Use this card to determine if the plant has a correct amount of moisture.",
           "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid vocht heeft.",
-          "de": "Verwenden Sie diese Karte, um festzustellen, das die Pflanze genug Wasser hat."
+          "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze genug Wasser hat."
         },
         "args": [
           {
@@ -951,7 +951,7 @@
         "hint": {
           "en": "Use this card to determine if the plant has a correct amount of nutritions.",
           "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid voeding heeft.",
-          "de": "Verwenden Sie diese Karte, um festzustellen, das die Pflanze genug Düngemittel hat."
+          "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze genug Düngemittel hat."
         },
         "args": [
           {
@@ -976,7 +976,7 @@
         "hint": {
           "en": "Use this card to determine if the plant has a correct temperature.",
           "nl": "Gebruik deze kaart om te bepalen of de plant de juiste temperatuur heeft.",
-          "de": "Verwenden Sie diese Karte, um festzustellen, das die Pflanze eine korrekte Temperatur hat."
+          "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze eine korrekte Temperatur hat."
         },
         "args": [
           {
@@ -1103,7 +1103,7 @@
               "hint": {
                 "en": "The minimal threshold value for temperature.",
                 "nl": "De minimale grenswaarde voor temperatuur.",
-                "de": "Der minimale grenzwert für die Temperatur."
+                "de": "Der minimale Grenzwert für die Temperatur."
               }
             },
             {
@@ -1120,7 +1120,7 @@
               "hint": {
                 "en": "The maximum threshold value for temperature.",
                 "nl": "De maximale grenswaarde voor temperatuur.",
-                "de": "Der maximale grenzwert für die Temperatur."
+                "de": "Der maximale Grenzwert für die Temperatur."
               }
             }
           ]
@@ -1128,9 +1128,9 @@
         {
           "type": "group",
           "label": {
-            "en": "Luminance (lux)",
-            "nl": "Lichtintensiteit (lux)",
-            "de": "Helligkeit (lux)"
+            "en": "Luminance (Lux)",
+            "nl": "Lichtintensiteit (Lux)",
+            "de": "Helligkeit (Lux)"
           },
           "children": [
             {
@@ -1147,7 +1147,7 @@
               "hint": {
                 "en": "The minimal threshold value for luminance.",
                 "nl": "De minimale grenswaarde voor lichtintensiteit.",
-                "de": "Der minimale grenzwert für die Helligkeit."
+                "de": "Der minimale Grenzwert für die Helligkeit."
               }
             },
             {
@@ -1164,7 +1164,7 @@
               "hint": {
                 "en": "The maximum threshold value for luminance.",
                 "nl": "De maximale grenswaarde voor lichtintensiteit.",
-                "de": "Der maximale grenzwert für die Helligkeit."
+                "de": "Der maximale Grenzwert für die Helligkeit."
               }
             }
           ]
@@ -1191,7 +1191,7 @@
               "hint": {
                 "en": "The minimal threshold value for nutrition.",
                 "nl": "De minimale grenswaarde voor voeding.",
-                "de": "Der minimale grenzwert für den Dünger."
+                "de": "Der minimale Grenzwert für den Dünger."
               }
             },
             {
@@ -1208,7 +1208,7 @@
               "hint": {
                 "en": "The maximum threshold value for nutrition.",
                 "nl": "De maximale grenswaarde voor voeding.",
-                "de": "Der maximale grenzwert für den Dünger."
+                "de": "Der maximale Grenzwert für den Dünger."
               }
             }
           ]
@@ -1235,7 +1235,7 @@
               "hint": {
                 "en": "The minimal threshold value for moisture.",
                 "nl": "De minimale grenswaarde voor vochtigheid.",
-                "de": "Der minimale grenzwert für die Feuchtigkeit."
+                "de": "Der minimale Grenzwert für die Feuchtigkeit."
               }
             },
             {
@@ -1252,7 +1252,7 @@
               "hint": {
                 "en": "The maximum threshold value for moisture.",
                 "nl": "De maximale grenswaarde voor vochtigheid.",
-                "de": "Der maximale grenzwert für die Feuchtigkeit."
+                "de": "Der maximale Grenzwert für die Feuchtigkeit."
               }
             }
           ]
@@ -1358,7 +1358,7 @@
               "label": {
                 "en": "Last updated",
                 "nl": "Laatste update",
-                "de": "Letzte aktualisierung"
+                "de": "Letzte Aktualisierung"
               },
               "value": ""
             },
@@ -1368,7 +1368,7 @@
               "label": {
                 "en": "Device uuid address",
                 "nl": "Apparaat uuid adres",
-                "de": "Geräte uuid adresse"
+                "de": "Geräte uuid Adresse"
               },
               "value": ""
             }
