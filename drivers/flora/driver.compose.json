@@ -102,7 +102,7 @@
                     "hint": {
                         "en": "The minimal threshold value for temperature.",
                         "nl": "De minimale grenswaarde voor temperatuur.",
-                        "de": "Der minimale grenzwert für die Temperatur."
+                        "de": "Der minimale Grenzwert für die Temperatur."
                     }
                 },
                 {
@@ -119,7 +119,7 @@
                     "hint": {
                         "en": "The maximum threshold value for temperature.",
                         "nl": "De maximale grenswaarde voor temperatuur.",
-                        "de": "Der maximale grenzwert für die Temperatur."
+                        "de": "Der maximale Grenzwert für die Temperatur."
                     }
                 }
             ]
@@ -127,9 +127,9 @@
         {
             "type": "group",
             "label": {
-                "en": "Luminance (lux)",
-                "nl": "Lichtintensiteit (lux)",
-                "de": "Helligkeit (lux)"
+                "en": "Luminance (Lux)",
+                "nl": "Lichtintensiteit (Lux)",
+                "de": "Helligkeit (Lux)"
             },
             "children": [
                 {
@@ -146,7 +146,7 @@
                     "hint": {
                         "en": "The minimal threshold value for luminance.",
                         "nl": "De minimale grenswaarde voor lichtintensiteit.",
-                        "de": "Der minimale grenzwert für die Helligkeit."
+                        "de": "Der minimale Grenzwert für die Helligkeit."
                     }
                 },
                 {
@@ -163,7 +163,7 @@
                     "hint": {
                         "en": "The maximum threshold value for luminance.",
                         "nl": "De maximale grenswaarde voor lichtintensiteit.",
-                        "de": "Der maximale grenzwert für die Helligkeit."
+                        "de": "Der maximale Grenzwert für die Helligkeit."
                     }
                 }
             ]
@@ -190,7 +190,7 @@
                     "hint": {
                         "en": "The minimal threshold value for nutrition.",
                         "nl": "De minimale grenswaarde voor voeding.",
-                        "de": "Der minimale grenzwert für den Dünger."
+                        "de": "Der minimale Grenzwert für den Dünger."
                     }
                 },
                 {
@@ -207,7 +207,7 @@
                     "hint": {
                         "en": "The maximum threshold value for nutrition.",
                         "nl": "De maximale grenswaarde voor voeding.",
-                        "de": "Der maximale grenzwert für den Dünger."
+                        "de": "Der maximale Grenzwert für den Dünger."
                     }
                 }
             ]
@@ -234,7 +234,7 @@
                     "hint": {
                         "en": "The minimal threshold value for moisture.",
                         "nl": "De minimale grenswaarde voor vochtigheid.",
-                        "de": "Der minimale grenzwert für die Feuchtigkeit."
+                        "de": "Der minimale Grenzwert für die Feuchtigkeit."
                     }
                 },
                 {
@@ -251,7 +251,7 @@
                     "hint": {
                         "en": "The maximum threshold value for moisture.",
                         "nl": "De maximale grenswaarde voor vochtigheid.",
-                        "de": "Der maximale grenzwert für die Feuchtigkeit."
+                        "de": "Der maximale Grenzwert für die Feuchtigkeit."
                     }
                 }
             ]
