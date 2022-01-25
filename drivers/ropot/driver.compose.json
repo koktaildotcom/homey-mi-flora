@@ -3,7 +3,8 @@
     "name": {
         "en": "Xiaomi mi flora pot",
         "nl": "Xiaomi mi flora pot",
-        "de": "Xiaomi mi flora blumentopf"
+        "de": "Xiaomi mi flora blumentopf",
+        "sv": "Xiaomi Mi Flora kruka"
     },
     "platforms": [
         "local"
@@ -43,7 +44,8 @@
             "label": {
                 "en": "Device info",
                 "nl": "Apparaat informatie",
-                "de": "Geräteinfo"
+                "de": "Geräteinfo",
+                "sv": "Enhetsinformation"
             },
             "children": [
                 {
@@ -52,7 +54,8 @@
                     "label": {
                         "en": "Firmware version",
                         "nl": "Firmware versie",
-                        "de": "Firmware-Version"
+                        "de": "Firmware-Version",
+                        "sv": "Version på mjukvara"
                     },
                     "value": ""
                 },
@@ -62,7 +65,8 @@
                     "label": {
                         "en": "Last updated",
                         "nl": "Laatste update",
-                        "de": "Letzte aktualisierung"
+                        "de": "Letzte aktualisierung",
+                        "sv": "Senast uppdaterad"
                     },
                     "value": ""
                 },
@@ -72,7 +76,8 @@
                     "label": {
                         "en": "Device uuid address",
                         "nl": "Apparaat uuid adres",
-                        "de": "Geräte uuid adresse"
+                        "de": "Geräte uuid adresse",
+                        "sv": "Enhetens uuid-adress"
                     },
                     "value": ""
                 }
@@ -83,7 +88,8 @@
             "label": {
                 "en": "Temperature (°C)",
                 "nl": "Temperatuur (°C)",
-                "de": "Temperatur (°C)"
+                "de": "Temperatur (°C)",
+                "sv": "Temperatur (°C)"
             },
             "children": [
                 {
@@ -95,7 +101,8 @@
                     "label": {
                         "en": "min",
                         "nl": "min",
-                        "de": "min"
+                        "de": "min",
+                        "sv": "min"
                     }
                 },
                 {
@@ -107,7 +114,8 @@
                     "label": {
                         "en": "max",
                         "nl": "max",
-                        "de": "max"
+                        "de": "max",
+                        "sv": "max"
                     }
                 }
             ]
@@ -117,7 +125,8 @@
             "label": {
                 "en": "Nutrition (µS/cm)",
                 "nl": "Voeding (µS/cm)",
-                "de": "Dünger (µS/cm)"
+                "de": "Dünger (µS/cm)",
+                "sv": "Näring (µS/cm)"
             },
             "children": [
                 {
@@ -129,7 +138,8 @@
                     "label": {
                         "en": "min",
                         "nl": "min",
-                        "de": "min"
+                        "de": "min",
+                        "sv": "min"
                     }
                 },
                 {
@@ -141,7 +151,8 @@
                     "label": {
                         "en": "max",
                         "nl": "max",
-                        "de": "max"
+                        "de": "max",
+                        "sv": "max"
                     }
                 }
             ]
@@ -151,7 +162,8 @@
             "label": {
                 "en": "Moisture (%)",
                 "nl": "Vochtigheid (%)",
-                "de": "Feuchtigkeit (%)"
+                "de": "Feuchtigkeit (%)",
+                "sv": "Fuktighet (%)"
             },
             "children": [
                 {
@@ -163,7 +175,8 @@
                     "label": {
                         "en": "min",
                         "nl": "min",
-                        "de": "min"
+                        "de": "min",
+                        "sv": "min"
                     }
                 },
                 {
@@ -175,7 +188,8 @@
                     "label": {
                         "en": "max",
                         "nl": "max",
-                        "de": "max"
+                        "de": "max",
+                        "sv": "max"
                     }
                 }
             ]

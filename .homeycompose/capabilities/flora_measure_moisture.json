@@ -3,7 +3,8 @@
   "title": {
     "en": "Moisture",
     "nl": "Vochtigheid",
-    "de": "Feuchtigkeit"
+    "de": "Feuchtigkeit",
+    "sv": "Fuktighet"
   },
   "icon": "/assets/moisture.svg",
   "getable": true,
@@ -11,7 +12,8 @@
   "units": {
     "en": "%",
     "nl": "%",
-    "de": "%"
+    "de": "%",
+    "sv": "%"
   },
   "min": 0,
   "max": 100,

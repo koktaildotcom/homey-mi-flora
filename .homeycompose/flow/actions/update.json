@@ -3,6 +3,7 @@
   "title": {
     "en": "Synchronise all sensor values with Homey",
     "nl": "Synchroniseer alle sensor waarden met Homey",
-    "de": "Synchronisiere alle Sensorwerte mit Homey"
+    "de": "Synchronisiere alle Sensorwerte mit Homey",
+    "sv": "Synkronisera alla sensorers värden med Homey"
   }
 }

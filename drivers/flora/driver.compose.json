@@ -3,7 +3,8 @@
     "name": {
         "en": "Xiaomi mi flora sensor",
         "nl": "Xiaomi mi flora sensor",
-        "de": "Xiaomi mi flora sensor"
+        "de": "Xiaomi mi flora sensor",
+        "sv": "Xiaomi mi flora sensor"
     },
     "platforms": [
         "local"
@@ -45,7 +46,8 @@
             "label": {
                 "en": "Device info",
                 "nl": "Apparaat informatie",
-                "de": "Geräteinfo"
+                "de": "Geräteinfo",
+                "sv": "Enhetsinformation"
             },
             "children": [
                 {
@@ -54,7 +56,8 @@
                     "label": {
                         "en": "Firmware version",
                         "nl": "Firmware versie",
-                        "de": "Firmware-Version"
+                        "de": "Firmware-Version",
+                        "sv": "Version på mjukvara"
                     },
                     "value": ""
                 },
@@ -64,7 +67,8 @@
                     "label": {
                         "en": "Last updated",
                         "nl": "Laatste update",
-                        "de": "Letzte Aktualisierung"
+                        "de": "Letzte Aktualisierung",
+                        "sv": "Senast uppdaterad"
                     },
                     "value": ""
                 },
@@ -74,7 +78,8 @@
                     "label": {
                         "en": "Device uuid address",
                         "nl": "Apparaat uuid adres",
-                        "de": "Geräte uuid Adresse"
+                        "de": "Geräte uuid Adresse",
+                        "sv": "Enhetens uuid-adress"
                     },
                     "value": ""
                 }
@@ -85,7 +90,8 @@
             "label": {
                 "en": "Temperature (°C)",
                 "nl": "Temperatuur (°C)",
-                "de": "Temperatur (°C)"
+                "de": "Temperatur (°C)",
+                "sv": "Temperatur (°C)"
             },
             "children": [
                 {
@@ -97,12 +103,14 @@
                     "label": {
                         "en": "min",
                         "nl": "min",
-                        "de": "min"
+                        "de": "min",
+                        "sv": "min"
                     },
                     "hint": {
                         "en": "The minimal threshold value for temperature.",
                         "nl": "De minimale grenswaarde voor temperatuur.",
-                        "de": "Der minimale grenzwert für die Temperatur."
+                        "de": "Der minimale grenzwert für die Temperatur.",
+                        "sv": "Minsta värde för temperatur."
                     }
                 },
                 {
@@ -114,12 +122,14 @@
                     "label": {
                         "en": "max",
                         "nl": "max",
-                        "de": "max"
+                        "de": "max",
+                        "sv": "max"
                     },
                     "hint": {
                         "en": "The maximum threshold value for temperature.",
                         "nl": "De maximale grenswaarde voor temperatuur.",
-                        "de": "Der maximale grenzwert für die Temperatur."
+                        "de": "Der maximale grenzwert für die Temperatur.",
+                        "sv": "Högsta värde för temperatur."
                     }
                 }
             ]
@@ -129,7 +139,8 @@
             "label": {
                 "en": "Luminance (lux)",
                 "nl": "Lichtintensiteit (lux)",
-                "de": "Helligkeit (lux)"
+                "de": "Helligkeit (lux)",
+                "sv": "Luminans (lux)"
             },
             "children": [
                 {
@@ -141,12 +152,14 @@
                     "label": {
                         "en": "min",
                         "nl": "min",
-                        "de": "min"
+                        "de": "min",
+                        "sv": "min"
                     },
                     "hint": {
                         "en": "The minimal threshold value for luminance.",
                         "nl": "De minimale grenswaarde voor lichtintensiteit.",
-                        "de": "Der minimale grenzwert für die Helligkeit."
+                        "de": "Der minimale grenzwert für die Helligkeit.",
+                        "sv": "Minsta värdet för luminans."
                     }
                 },
                 {
@@ -158,12 +171,14 @@
                     "label": {
                         "en": "max",
                         "nl": "max",
-                        "de": "max"
+                        "de": "max",
+                        "sv": "max"
                     },
                     "hint": {
                         "en": "The maximum threshold value for luminance.",
                         "nl": "De maximale grenswaarde voor lichtintensiteit.",
-                        "de": "Der maximale grenzwert für die Helligkeit."
+                        "de": "Der maximale grenzwert für die Helligkeit.",
+                        "sv": "Högsta värde för luminans."
                     }
                 }
             ]
@@ -173,7 +188,8 @@
             "label": {
                 "en": "Nutrition (µS/cm)",
                 "nl": "Voeding (µS/cm)",
-                "de": "Dünger (µS/cm)"
+                "de": "Dünger (µS/cm)",
+                "sv": "Näring (µS/cm)"
             },
             "children": [
                 {
@@ -185,12 +201,14 @@
                     "label": {
                         "en": "min",
                         "nl": "min",
-                        "de": "min"
+                        "de": "min",
+                        "sv": "min"
                     },
                     "hint": {
                         "en": "The minimal threshold value for nutrition.",
                         "nl": "De minimale grenswaarde voor voeding.",
-                        "de": "Der minimale grenzwert für den Dünger."
+                        "de": "Der minimale grenzwert für den Dünger.",
+                        "sv": "Minsta värde för näring."
                     }
                 },
                 {
@@ -202,12 +220,14 @@
                     "label": {
                         "en": "max",
                         "nl": "max",
-                        "de": "max"
+                        "de": "max",
+                        "sv": "max"
                     },
                     "hint": {
                         "en": "The maximum threshold value for nutrition.",
                         "nl": "De maximale grenswaarde voor voeding.",
-                        "de": "Der maximale grenzwert für den Dünger."
+                        "de": "Der maximale grenzwert für den Dünger.",
+                        "sv": "Högsta värde för näring."
                     }
                 }
             ]
@@ -217,7 +237,8 @@
             "label": {
                 "en": "Moisture (%)",
                 "nl": "Vochtigheid (%)",
-                "de": "Feuchtigkeit (%)"
+                "de": "Feuchtigkeit (%)",
+                "sv": "Fuktighet (%)"
             },
             "children": [
                 {
@@ -229,12 +250,14 @@
                     "label": {
                         "en": "min",
                         "nl": "min",
-                        "de": "min"
+                        "de": "min",
+                        "sv": "min"
                     },
                     "hint": {
                         "en": "The minimal threshold value for moisture.",
                         "nl": "De minimale grenswaarde voor vochtigheid.",
-                        "de": "Der minimale grenzwert für die Feuchtigkeit."
+                        "de": "Der minimale grenzwert für die Feuchtigkeit.",
+                        "sv": "Minsta värde för fuktighet."
                     }
                 },
                 {
@@ -246,12 +269,14 @@
                     "label": {
                         "en": "max",
                         "nl": "max",
-                        "de": "max"
+                        "de": "max",
+                        "sv": "max"
                     },
                     "hint": {
                         "en": "The maximum threshold value for moisture.",
                         "nl": "De maximale grenswaarde voor vochtigheid.",
-                        "de": "Der maximale grenzwert für die Feuchtigkeit."
+                        "de": "Der maximale grenzwert für die Feuchtigkeit.",
+                        "sv": "Högsta värde för fuktighet."
                     }
                 }
             ]

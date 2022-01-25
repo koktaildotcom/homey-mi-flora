@@ -7,12 +7,14 @@
   "name": {
     "en": "Xiaomi Mi Flora",
     "nl": "Xiaomi Mi Flora",
-    "de": "Xiaomi Mi Flora"
+    "de": "Xiaomi Mi Flora",
+    "sv": "Xiaomi Mi Flora"
   },
   "description": {
     "en": "Track every need of your plants and flowers with Xiaomi mi flora products",
     "nl": "Volg de behoefte van uw planten en bloemen met Xiaomi mi flora producten",
-    "de": "Überwachen Sie den Bedarf Ihrer Pflanzen und Blumen mit Xiaomi Mi Flora Produkten"
+    "de": "Überwachen Sie den Bedarf Ihrer Pflanzen und Blumen mit Xiaomi Mi Flora Produkten",
+    "sv": "Spåra dina växters värden med Xiaomi Mi Flora-enheter"
   },
   "platforms": [
     "local"
@@ -73,6 +75,20 @@
       "helligkeit",
       "feuchtigkeit",
       "dünger"
+    ],
+    "sv": [
+      "xiaomi",
+      "mi",
+      "planta",
+      "blomma",
+      "växt",
+      "flora",
+      "plantering",
+      "sensor",
+      "temperatur",
+      "luminans",
+      "fuktighet",
+      "näring"
     ]
   },
   "images": {
@@ -93,6 +109,9 @@
     "translators": [
       {
         "name": "JackDaniel007"
+      },
+      {
+        "name": "🇸🇪 Magnus Claesson"
       }
     ]
   },

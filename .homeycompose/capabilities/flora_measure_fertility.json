@@ -3,7 +3,8 @@
   "title": {
     "en": "Nutrition",
     "nl": "Voeding",
-    "de": "Dünger"
+    "de": "Dünger",
+    "sv": "Näring"
   },
   "icon": "/assets/nutritions.svg",
   "getable": true,
@@ -11,7 +12,8 @@
   "units": {
     "en": "µS/cm",
     "nl": "µS/cm",
-    "de": "µS/cm"
+    "de": "µS/cm",
+    "sv": "µS/cm"
   },
   "min": 0,
   "max": 10000,
