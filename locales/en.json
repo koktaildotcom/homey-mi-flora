@@ -45,13 +45,13 @@
 	},
 	"measure_luminance": {
 	  "name": "sunlight",
-	  "suffix": " lux",
-	  "changed": "The sunlight is changed to: __value__ lux.",
-	  "device_changed": "The sunlight of `__plant__` is changed to: __value__ lux.",
-	  "device_updated": "The sunlight of `__plant__` is updated to: __value__ lux.",
+	  "suffix": " lx",
+	  "changed": "The sunlight is changed to: __value__ lx.",
+	  "device_changed": "The sunlight of `__plant__` is changed to: __value__ lx.",
+	  "device_updated": "The sunlight of `__plant__` is updated to: __value__ lx.",
 	  "threshold": {
-		"min": "The sunlight (__value__ lux) of `__plant__` is too low. This must be at least __min__ lux.",
-		"max": "The sunlight (__value__ lux) of `__plant__` is too high. This must be a maximum of __max__ lux."
+		"min": "The sunlight (__value__ lx) of `__plant__` is too low. This must be at least __min__ lx.",
+		"max": "The sunlight (__value__ lx) of `__plant__` is too high. This must be a maximum of __max__ lx."
 	  }
 	},
 	"measure_nutrition": {

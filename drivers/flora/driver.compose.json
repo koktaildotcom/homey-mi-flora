@@ -109,7 +109,7 @@
                     "hint": {
                         "en": "The minimal threshold value for temperature.",
                         "nl": "De minimale grenswaarde voor temperatuur.",
-                        "de": "Der minimale grenzwert für die Temperatur.",
+                        "de": "Der minimale Grenzwert für die Temperatur.",
                         "sv": "Minsta värde för temperatur."
                     }
                 },
@@ -128,7 +128,7 @@
                     "hint": {
                         "en": "The maximum threshold value for temperature.",
                         "nl": "De maximale grenswaarde voor temperatuur.",
-                        "de": "Der maximale grenzwert für die Temperatur.",
+                        "de": "Der maximale Grenzwert für die Temperatur.",
                         "sv": "Högsta värde för temperatur."
                     }
                 }
@@ -137,10 +137,10 @@
         {
             "type": "group",
             "label": {
-                "en": "Luminance (lux)",
-                "nl": "Lichtintensiteit (lux)",
-                "de": "Helligkeit (lux)",
-                "sv": "Luminans (lux)"
+                "en": "Luminance (lx)",
+                "nl": "Lichtintensiteit (lx)",
+                "de": "Helligkeit (lx)",
+                "sv": "Luminans (lx)"
             },
             "children": [
                 {
@@ -158,7 +158,7 @@
                     "hint": {
                         "en": "The minimal threshold value for luminance.",
                         "nl": "De minimale grenswaarde voor lichtintensiteit.",
-                        "de": "Der minimale grenzwert für die Helligkeit.",
+                        "de": "Der minimale Grenzwert für die Helligkeit.",
                         "sv": "Minsta värdet för luminans."
                     }
                 },
@@ -177,7 +177,7 @@
                     "hint": {
                         "en": "The maximum threshold value for luminance.",
                         "nl": "De maximale grenswaarde voor lichtintensiteit.",
-                        "de": "Der maximale grenzwert für die Helligkeit.",
+                        "de": "Der maximale Grenzwert für die Helligkeit.",
                         "sv": "Högsta värde för luminans."
                     }
                 }
@@ -207,7 +207,7 @@
                     "hint": {
                         "en": "The minimal threshold value for nutrition.",
                         "nl": "De minimale grenswaarde voor voeding.",
-                        "de": "Der minimale grenzwert für den Dünger.",
+                        "de": "Der minimale Grenzwert für den Dünger.",
                         "sv": "Minsta värde för näring."
                     }
                 },
@@ -226,7 +226,7 @@
                     "hint": {
                         "en": "The maximum threshold value for nutrition.",
                         "nl": "De maximale grenswaarde voor voeding.",
-                        "de": "Der maximale grenzwert für den Dünger.",
+                        "de": "Der maximale Grenzwert für den Dünger.",
                         "sv": "Högsta värde för näring."
                     }
                 }
@@ -256,7 +256,7 @@
                     "hint": {
                         "en": "The minimal threshold value for moisture.",
                         "nl": "De minimale grenswaarde voor vochtigheid.",
-                        "de": "Der minimale grenzwert für die Feuchtigkeit.",
+                        "de": "Der minimale Grenzwert für die Feuchtigkeit.",
                         "sv": "Minsta värde för fuktighet."
                     }
                 },
@@ -275,7 +275,7 @@
                     "hint": {
                         "en": "The maximum threshold value for moisture.",
                         "nl": "De maximale grenswaarde voor vochtigheid.",
-                        "de": "Der maximale grenzwert für die Feuchtigkeit.",
+                        "de": "Der maximale Grenzwert für die Feuchtigkeit.",
                         "sv": "Högsta värde för fuktighet."
                     }
                 }

@@ -45,13 +45,13 @@
 	},
 	"measure_luminance": {
 	  "name": "Helligkeit",
-	  "suffix": " lux",
-	  "changed": "Die Helligkeit hat sich auf __value__ lux geändert.",
-	  "device_changed": "Die Helligkeit von `__plant__` hat sich geändert auf: __value__ lux.",
-	  "device_updated": "Die Helligkeit von `__plant__` wurde aktualisiert auf: __value__ lux.",
+	  "suffix": " lx",
+	  "changed": "Die Helligkeit hat sich auf __value__ lx geändert.",
+	  "device_changed": "Die Helligkeit von `__plant__` hat sich geändert auf: __value__ lx.",
+	  "device_updated": "Die Helligkeit von `__plant__` wurde aktualisiert auf: __value__ lx.",
 	  "threshold": {
-		"min": "Die Helligkeit (__value__ lux) von `__plant__` ist zu niedrig. Diese muss mindestens __min__ lux betragen.",
-		"max": "Die Helligkeit (__value__ lux) von `__plant__` ist zu hoch. Diese darf maximal __max__ lux betragen."
+		"min": "Die Helligkeit (__value__ lx) von `__plant__` ist zu niedrig. Diese muss mindestens __min__ lx betragen.",
+		"max": "Die Helligkeit (__value__ lx) von `__plant__` ist zu hoch. Diese darf maximal __max__ lx betragen."
 	  }
 	},
 	"measure_nutrition": {
@@ -78,9 +78,9 @@
 	},
 	"measure_battery": {
 	  "name": "Batterie",
-	  "changed": "Die Batteriestärke hat sich auf __value__% geändert.",
-	  "device_changed": "Die Batteriestärke von `__plant__` hat sich geändert auf: __value__%.",
-	  "device_updated": "Die Batteriestärke von `__plant__` wurde aktualisiert auf: __value__%."
+	  "changed": "Die Batterieladung hat sich auf __value__% geändert.",
+	  "device_changed": "Die Batterieladung von `__plant__` hat sich geändert auf: __value__%.",
+	  "device_updated": "Die Batterieladung von `__plant__` wurde aktualisiert auf: __value__%."
 	}
   }
 }

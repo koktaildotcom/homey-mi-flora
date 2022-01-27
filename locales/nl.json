@@ -45,13 +45,13 @@
 	},
 	"measure_luminance": {
 	  "name": "lichtintensiteit",
-	  "suffix": " lux",
-	  "changed": "De lichtintensiteit is verandert naar: __value__ lux.",
-	  "device_changed": "De lichtintensiteit van `__plant__` is verandert naar: __value__ lux.",
-	  "device_updated": "De lichtintensiteit van `__plant__` is geupdate naar: __value__ lux.",
+	  "suffix": " lx",
+	  "changed": "De lichtintensiteit is verandert naar: __value__ lx.",
+	  "device_changed": "De lichtintensiteit van `__plant__` is verandert naar: __value__ lx.",
+	  "device_updated": "De lichtintensiteit van `__plant__` is geupdate naar: __value__ lx.",
 	  "threshold": {
-		"min": "De lichtintensiteit (__value__ lux) van `__plant__` is te laag. Deze moet minimaal __min__ lux zijn.",
-		"max": "De lichtintensiteit (__value__ lux) van `__plant__` is te hoog. Deze moet maximaal __max__ lux zijn."
+		"min": "De lichtintensiteit (__value__ lx) van `__plant__` is te laag. Deze moet minimaal __min__ lx zijn.",
+		"max": "De lichtintensiteit (__value__ lx) van `__plant__` is te hoog. Deze moet maximaal __max__ lx zijn."
 	  }
 	},
 	"measure_nutrition": {
