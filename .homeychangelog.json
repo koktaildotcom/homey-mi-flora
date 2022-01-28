@@ -22,5 +22,8 @@
   },
   "4.0.1": {
     "en": "add numeric value to flowcards & 🇩🇪"
+  },
+  "4.0.2": {
+    "en": "improve German translation"
   }
 }
