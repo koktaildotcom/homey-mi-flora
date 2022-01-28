@@ -247,5 +247,9 @@ You can configure the timeout between polls in the app's settings.
 ### v4.0.1 - 19-01-2020
   * add numeric value to flowcards: https://github.com/koktaildotcom/homey-mi-flora/issues/105
   * add german translations
+### v4.0.2 - 28-01-2020
+  * add german translations
+  * feedback Athom
+
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora

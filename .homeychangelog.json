@@ -12,7 +12,7 @@
     "en": "filter known devices when pairing"
   },
   "3.0.3": {
-    "en": "bugfix when sync is in progress in action card 'Synchronise all sensor values with Homey'"
+    "en": "bugfix when sync is in progress in action card 'Synchronise all sensor values'"
   },
   "3.0.4": {
     "en": "bugfix no results when pairing and sync is in progress"
