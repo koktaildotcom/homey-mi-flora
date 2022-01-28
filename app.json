@@ -8,12 +8,14 @@
   "name": {
     "en": "Xiaomi Mi Flora",
     "nl": "Xiaomi Mi Flora",
-    "de": "Xiaomi Mi Flora"
+    "de": "Xiaomi Mi Flora",
+    "sv": "Xiaomi Mi Flora"
   },
   "description": {
     "en": "Track every need of your plants and flowers with Xiaomi mi flora products",
     "nl": "Volg de behoefte van uw planten en bloemen met Xiaomi mi flora producten",
-    "de": "Überwachen Sie den Bedarf Ihrer Pflanzen und Blumen mit Xiaomi Mi Flora Produkten"
+    "de": "Überwachen Sie den Bedarf Ihrer Pflanzen und Blumen mit Xiaomi Mi Flora Produkten",
+    "sv": "Spåra dina växters värden med Xiaomi Mi Flora-enheter"
   },
   "platforms": [
     "local"
@@ -74,6 +76,20 @@
       "helligkeit",
       "feuchtigkeit",
       "dünger"
+    ],
+    "sv": [
+      "xiaomi",
+      "mi",
+      "planta",
+      "blomma",
+      "växt",
+      "flora",
+      "plantering",
+      "sensor",
+      "temperatur",
+      "luminans",
+      "fuktighet",
+      "näring"
     ]
   },
   "images": {
@@ -94,6 +110,9 @@
     "translators": [
       {
         "name": "JackDaniel007"
+      },
+      {
+        "name": "🇸🇪 Magnus Claesson"
       }
     ]
   },
@@ -111,7 +130,8 @@
         "title": {
           "en": "A sensor value is changed",
           "nl": "Een sensor waarde is veranderd",
-          "de": "Ein Sensorwert wurde geändert"
+          "de": "Ein Sensorwert wurde geändert",
+          "sv": "En sensors värde har ändrats"
         },
         "tokens": [
           {
@@ -119,12 +139,14 @@
             "title": {
               "en": "report",
               "nl": "rapport",
-              "de": "Bericht"
+              "de": "Bericht",
+              "sv": "rapportera"
             },
             "example": {
               "en": "The moisture (22%) is too low. This can be at least 30%.",
               "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
-              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen.",
+              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%."
             }
           },
           {
@@ -132,12 +154,14 @@
             "title": {
               "en": "value",
               "nl": "waarde",
-              "de": "Wert"
+              "de": "Wert",
+              "sv": "Värde"
             },
             "example": {
               "en": "22.5",
               "nl": "22.5",
-              "de": "22.5"
+              "de": "22.5",
+              "sv": "22,5"
             }
           },
           {
@@ -146,7 +170,8 @@
             "title": {
               "en": "value (numeric)",
               "nl": "waarde (numeriek)",
-              "de": "wert (nummeriek)"
+              "de": "wert (nummeriek)",
+              "sv": "värde (numeriskt)"
             },
             "example": 22.5
           },
@@ -155,12 +180,14 @@
             "title": {
               "en": "sensor",
               "nl": "sensor",
-              "de": "Sensor"
+              "de": "Sensor",
+              "sv": "sensor"
             },
             "example": {
               "en": "Moisture",
               "nl": "Vochtigheid",
-              "de": "Feuchtigkeit"
+              "de": "Feuchtigkeit",
+              "sv": "Fuktighet"
             }
           }
         ],
@@ -177,7 +204,8 @@
         "title": {
           "en": "Sensor value is outside the configured threshold",
           "nl": "Sensor waarde is buiten de gestelde drempel",
-          "de": "Der Sensorwert liegt außerhab der konfigurierten Grenzwerte"
+          "de": "Der Sensorwert liegt außerhab der konfigurierten grenzwerte",
+          "sv": "Sensorns värde är utanför den inställda nivån"
         },
         "tokens": [
           {
@@ -185,12 +213,14 @@
             "title": {
               "en": "report",
               "nl": "rapport",
-              "de": "Bericht"
+              "de": "Bericht",
+              "sv": "rapportera"
             },
             "example": {
               "en": "The moisture (22%) is too low. This can be at least 30%.",
               "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
-              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen.",
+              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%."
             }
           },
           {
@@ -198,12 +228,14 @@
             "title": {
               "en": "value",
               "nl": "waarde",
-              "de": "Wert"
+              "de": "Wert",
+              "sv": "värde"
             },
             "example": {
               "en": "22.5",
               "nl": "22.5",
-              "de": "22.5"
+              "de": "22.5",
+              "sv": "22,5"
             }
           },
           {
@@ -212,7 +244,8 @@
             "title": {
               "en": "value (numeric)",
               "nl": "waarde (numeriek)",
-              "de": "wert (nummeriek)"
+              "de": "wert (nummeriek)",
+              "sv": "värde (numeriskt)"
             },
             "example": 22.5
           },
@@ -221,12 +254,14 @@
             "title": {
               "en": "sensor",
               "nl": "sensor",
-              "de": "Sensor"
+              "de": "Sensor",
+              "sv": "sensor"
             },
             "example": {
               "en": "Moisture",
               "nl": "Vochtigheid",
-              "de": "Feuchtigkeit"
+              "de": "Feuchtigkeit",
+              "sv": "Fuktighet"
             }
           }
         ],
@@ -243,7 +278,8 @@
         "title": {
           "en": "Sensor value is above the configured threshold",
           "nl": "Sensor waarde is boven de gestelde drempel",
-          "de": "Der Sensorwert liegt über dem konfigurierten Grenzwert"
+          "de": "Der Sensorwert liegt über dem konfigurierten grenzwert",
+          "sv": "Sensorns värde är över det inställda tröskelvärdet"
         },
         "tokens": [
           {
@@ -251,12 +287,14 @@
             "title": {
               "en": "report",
               "nl": "rapport",
-              "de": "Bericht"
+              "de": "Bericht",
+              "sv": "rapportera"
             },
             "example": {
               "en": "The moisture (22%) is too low. This can be at least 30%.",
               "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
-              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen.",
+              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%."
             }
           },
           {
@@ -264,12 +302,14 @@
             "title": {
               "en": "value",
               "nl": "waarde",
-              "de": "Wert"
+              "de": "Wert",
+              "sv": "Värde"
             },
             "example": {
               "en": "22.5",
               "nl": "22.5",
-              "de": "22.5"
+              "de": "22.5",
+              "sv": "22,5"
             }
           },
           {
@@ -278,7 +318,8 @@
             "title": {
               "en": "value (numeric)",
               "nl": "waarde (numeriek)",
-              "de": "wert (nummeriek)"
+              "de": "wert (nummeriek)",
+              "sv": "värde (numeriskt)"
             },
             "example": 22.5
           },
@@ -287,12 +328,14 @@
             "title": {
               "en": "sensor",
               "nl": "sensor",
-              "de": "Sensor"
+              "de": "Sensor",
+              "sv": "Sensor"
             },
             "example": {
               "en": "Moisture",
               "nl": "Vochtigheid",
-              "de": "Feuchtigkeit"
+              "de": "Feuchtigkeit",
+              "sv": "Fuktighet"
             }
           }
         ],
@@ -309,7 +352,8 @@
         "title": {
           "en": "Sensor value is below the configured threshold",
           "nl": "Sensor waarde is beneden de gestelde drempel",
-          "de": "Der Sensorwert liegt unter dem konfigurierten Grenzwert"
+          "de": "Der Sensorwert liegt unter dem konfigurierten grenzwert",
+          "sv": "Sensorns värde är under det inställda tröskelvärdet"
         },
         "tokens": [
           {
@@ -317,12 +361,14 @@
             "title": {
               "en": "report",
               "nl": "rapport",
-              "de": "Bericht"
+              "de": "Bericht",
+              "sv": "rapportera"
             },
             "example": {
               "en": "The moisture (22%) is too low. This can be at least 30%.",
               "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
-              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen.",
+              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%."
             }
           },
           {
@@ -330,12 +376,14 @@
             "title": {
               "en": "value",
               "nl": "waarde",
-              "de": "Wert"
+              "de": "Wert",
+              "sv": "Värde"
             },
             "example": {
               "en": "22.5",
               "nl": "22.5",
-              "de": "22.5"
+              "de": "22.5",
+              "sv": "22,5"
             }
           },
           {
@@ -344,7 +392,8 @@
             "title": {
               "en": "value (numeric)",
               "nl": "waarde (numeriek)",
-              "de": "wert (nummeriek)"
+              "de": "wert (nummeriek)",
+              "sv": "värde (numeriskt)"
             },
             "example": 22.5
           },
@@ -353,12 +402,14 @@
             "title": {
               "en": "sensor",
               "nl": "sensor",
-              "de": "Sensor"
+              "de": "Sensor",
+              "sv": "Sensor"
             },
             "example": {
               "en": "Moisture",
               "nl": "Vochtigheid",
-              "de": "Feuchtigkeit"
+              "de": "Feuchtigkeit",
+              "sv": "Fuktighet"
             }
           }
         ],
@@ -375,7 +426,8 @@
         "title": {
           "en": "A sensor value is updated",
           "nl": "Een sensor waarde is geupdate",
-          "de": "Ein Sensorwert wird aktualisiert"
+          "de": "Ein Sensorwert wird aktualisiert",
+          "sv": "En sensors värde har uppdaterats"
         },
         "tokens": [
           {
@@ -383,12 +435,14 @@
             "title": {
               "en": "report",
               "nl": "rapport",
-              "de": "Bericht"
+              "de": "Bericht",
+              "sv": "rapportera"
             },
             "example": {
               "en": "The moisture (22%) is too low. This can be at least 30%.",
               "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
-              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen.",
+              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%."
             }
           },
           {
@@ -396,12 +450,14 @@
             "title": {
               "en": "value",
               "nl": "waarde",
-              "de": "Wert"
+              "de": "Wert",
+              "sv": "Värde"
             },
             "example": {
               "en": "22.5",
               "nl": "22.5",
-              "de": "22.5"
+              "de": "22.5",
+              "sv": "22,5"
             }
           },
           {
@@ -410,7 +466,8 @@
             "title": {
               "en": "value (numeric)",
               "nl": "waarde (numeriek)",
-              "de": "wert (nummeriek)"
+              "de": "wert (nummeriek)",
+              "sv": "värde (numeriskt)"
             },
             "example": 22.5
           },
@@ -419,12 +476,14 @@
             "title": {
               "en": "sensor",
               "nl": "sensor",
-              "de": "Sensor"
+              "de": "Sensor",
+              "sv": "Sensor"
             },
             "example": {
               "en": "Moisture",
               "nl": "Vochtigheid",
-              "de": "Feuchtigkeit"
+              "de": "Feuchtigkeit",
+              "sv": "Fuktighet"
             }
           }
         ],
@@ -441,7 +500,8 @@
         "title": {
           "en": "A sensor value is changed",
           "nl": "Een sensor waarde is veranderd",
-          "de": "Ein Sensorwert wurde geändert"
+          "de": "Ein Sensorwert wurde geändert",
+          "sv": "En sensors värde har ändrats"
         },
         "tokens": [
           {
@@ -449,12 +509,14 @@
             "title": {
               "en": "report",
               "nl": "rapport",
-              "de": "Bericht"
+              "de": "Bericht",
+              "sv": "rapportera"
             },
             "example": {
               "en": "The moisture (22%) is too low. This can be at least 30%.",
               "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
-              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen.",
+              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%."
             }
           },
           {
@@ -462,12 +524,14 @@
             "title": {
               "en": "value",
               "nl": "waarde",
-              "de": "Wert"
+              "de": "Wert",
+              "sv": "Värde"
             },
             "example": {
               "en": "22.5",
               "nl": "22.5",
-              "de": "22.5"
+              "de": "22.5",
+              "sv": "22,5"
             }
           },
           {
@@ -476,7 +540,8 @@
             "title": {
               "en": "value (numeric)",
               "nl": "waarde (numeriek)",
-              "de": "wert (nummeriek)"
+              "de": "wert (nummeriek)",
+              "sv": "värde (numeriskt)"
             },
             "example": 22.5
           },
@@ -485,12 +550,14 @@
             "title": {
               "en": "sensor",
               "nl": "sensor",
-              "de": "Sensor"
+              "de": "Sensor",
+              "sv": "sensor"
             },
             "example": {
               "en": "Moisture",
               "nl": "Vochtigheid",
-              "de": "Feuchtigkeit"
+              "de": "Feuchtigkeit",
+              "sv": "Fuktighet"
             }
           },
           {
@@ -498,7 +565,8 @@
             "title": {
               "en": "device",
               "nl": "apparaat",
-              "de": "Gerät"
+              "de": "Gerät",
+              "sv": "enhet"
             },
             "example": {
               "en": "Flowercare 1",
@@ -513,7 +581,8 @@
         "title": {
           "en": "Sensor value is outside the configured threshold",
           "nl": "Sensor waarde is buiten de gestelde drempel",
-          "de": "Der Sensorwert liegt außerhab der konfigurierten Grenzwerte"
+          "de": "Der Sensorwert liegt außerhab der konfigurierten grenzwerte",
+          "sv": "Sensorns värde är utanför det inställda tröskelvärdet"
         },
         "tokens": [
           {
@@ -521,12 +590,14 @@
             "title": {
               "en": "report",
               "nl": "rapport",
-              "de": "Bericht"
+              "de": "Bericht",
+              "sv": "rapportera"
             },
             "example": {
               "en": "The moisture (22%) is too low. This can be at least 30%.",
               "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
-              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen.",
+              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%."
             }
           },
           {
@@ -534,12 +605,14 @@
             "title": {
               "en": "value",
               "nl": "waarde",
-              "de": "Wert"
+              "de": "Wert",
+              "sv": "Värde"
             },
             "example": {
               "en": "22.5",
               "nl": "22.5",
-              "de": "22.5"
+              "de": "22.5",
+              "sv": "22,5"
             }
           },
           {
@@ -548,7 +621,8 @@
             "title": {
               "en": "value (numeric)",
               "nl": "waarde (numeriek)",
-              "de": "wert (nummeriek)"
+              "de": "wert (nummeriek)",
+              "sv": "värde (numeriskt)"
             },
             "example": 22.5
           },
@@ -557,12 +631,14 @@
             "title": {
               "en": "sensor",
               "nl": "sensor",
-              "de": "Sensor"
+              "de": "Sensor",
+              "sv": "Sensor"
             },
             "example": {
               "en": "Moisture",
               "nl": "Vochtigheid",
-              "de": "Feuchtigkeit"
+              "de": "Feuchtigkeit",
+              "sv": "Fuktighet"
             }
           },
           {
@@ -570,12 +646,14 @@
             "title": {
               "en": "device",
               "nl": "apparaat",
-              "de": "Gerät"
+              "de": "Gerät",
+              "sv": "Enhet"
             },
             "example": {
               "en": "Flowercare 1",
               "nl": "Flowercare 1",
-              "de": "Flowercare 1"
+              "de": "Flowercare 1",
+              "sv": "Flowercare 1"
             }
           }
         ]
@@ -585,7 +663,8 @@
         "title": {
           "en": "Sensor value is above the configured threshold",
           "nl": "Sensor waarde is boven de gestelde drempel",
-          "de": "Der Sensorwert liegt über dem konfigurierten Grenzwert"
+          "de": "Der Sensorwert liegt über dem konfigurierten grenzwert",
+          "sv": "Sensorns värde är över det inställda tröskelvärdet"
         },
         "tokens": [
           {
@@ -593,12 +672,14 @@
             "title": {
               "en": "report",
               "nl": "rapport",
-              "de": "Bericht"
+              "de": "Bericht",
+              "sv": "rapportera"
             },
             "example": {
               "en": "The moisture (22%) is too low. This can be at least 30%.",
               "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
-              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen.",
+              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%."
             }
           },
           {
@@ -606,12 +687,14 @@
             "title": {
               "en": "value",
               "nl": "waarde",
-              "de": "Wert"
+              "de": "Wert",
+              "sv": "Värde"
             },
             "example": {
               "en": "22.5",
               "nl": "22.5",
-              "de": "22.5"
+              "de": "22.5",
+              "sv": "22,5"
             }
           },
           {
@@ -620,7 +703,8 @@
             "title": {
               "en": "value (numeric)",
               "nl": "waarde (numeriek)",
-              "de": "wert (nummeriek)"
+              "de": "wert (nummeriek)",
+              "sv": "värde (numeriskt)"
             },
             "example": 22.5
           },
@@ -629,12 +713,14 @@
             "title": {
               "en": "sensor",
               "nl": "sensor",
-              "de": "Sensor"
+              "de": "Sensor",
+              "sv": "Sensor"
             },
             "example": {
               "en": "Moisture",
               "nl": "Vochtigheid",
-              "de": "Feuchtigkeit"
+              "de": "Feuchtigkeit",
+              "sv": "Fuktighet"
             }
           },
           {
@@ -642,12 +728,14 @@
             "title": {
               "en": "device",
               "nl": "apparaat",
-              "de": "Gerät"
+              "de": "Gerät",
+              "sv": "Enhet"
             },
             "example": {
               "en": "Flowercare 1",
               "nl": "Flowercare 1",
-              "de": "Flowercare 1"
+              "de": "Flowercare 1",
+              "sv": "Flowercare 1"
             }
           }
         ]
@@ -657,7 +745,8 @@
         "title": {
           "en": "Sensor value is below the configured threshold",
           "nl": "Sensor waarde is beneden de gestelde drempel",
-          "de": "Der Sensorwert liegt unter dem konfigurierten Grenzwert"
+          "de": "Der Sensorwert liegt unter dem konfigurierten grenzwert",
+          "sv": "Sensorns värde är över det inställda tröskelvärdet"
         },
         "tokens": [
           {
@@ -665,12 +754,14 @@
             "title": {
               "en": "report",
               "nl": "rapport",
-              "de": "Bericht"
+              "de": "Bericht",
+              "sv": "rapportera"
             },
             "example": {
               "en": "The moisture (22%) is too low. This can be at least 30%.",
               "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
-              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen.",
+              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%."
             }
           },
           {
@@ -678,12 +769,14 @@
             "title": {
               "en": "value",
               "nl": "waarde",
-              "de": "Wert"
+              "de": "Wert",
+              "sv": "Värde"
             },
             "example": {
               "en": "22.5",
               "nl": "22.5",
-              "de": "22.5"
+              "de": "22.5",
+              "sv": "22,5"
             }
           },
           {
@@ -692,7 +785,8 @@
             "title": {
               "en": "value (numeric)",
               "nl": "waarde (numeriek)",
-              "de": "wert (nummeriek)"
+              "de": "wert (nummeriek)",
+              "sv": "värde (numeriskt)"
             },
             "example": 22.5
           },
@@ -701,12 +795,14 @@
             "title": {
               "en": "sensor",
               "nl": "sensor",
-              "de": "Sensor"
+              "de": "Sensor",
+              "sv": "Sensor"
             },
             "example": {
               "en": "Moisture",
               "nl": "Vochtigheid",
-              "de": "Feuchtigkeit"
+              "de": "Feuchtigkeit",
+              "sv": "Fuktighet"
             }
           },
           {
@@ -714,12 +810,14 @@
             "title": {
               "en": "device",
               "nl": "apparaat",
-              "de": "Gerät"
+              "de": "Gerät",
+              "sv": "enhet"
             },
             "example": {
               "en": "Flowercare 1",
               "nl": "Flowercare 1",
-              "de": "Flowercare 1"
+              "de": "Flowercare 1",
+              "sv": "Flowercare 1"
             }
           }
         ]
@@ -729,7 +827,8 @@
         "title": {
           "en": "The sensor gives a timeout",
           "nl": "Een sensor geeft een timeout",
-          "de": "Der Sensor gibt eine Zeitüberschreitung aus"
+          "de": "Der Sensor gibt eine zeitüberschreitung aus",
+          "sv": "Sensorn ger en timeout"
         },
         "tokens": [
           {
@@ -737,12 +836,14 @@
             "title": {
               "en": "device",
               "nl": "apparaat",
-              "de": "Gerät"
+              "de": "Gerät",
+              "sv": "Enhet"
             },
             "example": {
               "en": "Flowercare 1",
               "nl": "Flowercare 1",
-              "de": "Flowercare 1"
+              "de": "Flowercare 1",
+              "sv": "Flowercare 1"
             }
           },
           {
@@ -750,12 +851,14 @@
             "title": {
               "en": "reason",
               "nl": "oorzaak",
-              "de": "Grund"
+              "de": "Grund",
+              "sv": "Orsak"
             },
             "example": {
               "en": "Not in range",
               "nl": "Niet binnen bereik",
-              "de": "Nicht in Reichweite"
+              "de": "Nicht in reichweite",
+              "sv": "Inte inom räckhåll"
             }
           }
         ]
@@ -765,7 +868,8 @@
         "title": {
           "en": "A sensor value is updated",
           "nl": "Een sensor waarde is geupdate",
-          "de": "Ein Sensorwert wird aktualisiert"
+          "de": "Ein Sensorwert wird aktualisiert",
+          "sv": "En sensors värde har uppdaterats"
         },
         "tokens": [
           {
@@ -773,12 +877,14 @@
             "title": {
               "en": "report",
               "nl": "rapport",
-              "de": "Bericht"
+              "de": "Bericht",
+              "sv": "rapportera"
             },
             "example": {
               "en": "The moisture (22%) is too low. This can be at least 30%.",
               "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
-              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen."
+              "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen.",
+              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%."
             }
           },
           {
@@ -786,12 +892,14 @@
             "title": {
               "en": "value",
               "nl": "waarde",
-              "de": "Wert"
+              "de": "Wert",
+              "sv": "Värde"
             },
             "example": {
               "en": "22.5",
               "nl": "22.5",
-              "de": "22.5"
+              "de": "22.5",
+              "sv": "22,5"
             }
           },
           {
@@ -800,7 +908,8 @@
             "title": {
               "en": "value (numeric)",
               "nl": "waarde (numeriek)",
-              "de": "wert (nummeriek)"
+              "de": "wert (nummeriek)",
+              "sv": "värde (numeriskt)"
             },
             "example": 22.5
           },
@@ -809,12 +918,14 @@
             "title": {
               "en": "sensor",
               "nl": "sensor",
-              "de": "Sensor"
+              "de": "Sensor",
+              "sv": "sensor"
             },
             "example": {
               "en": "Moisture",
               "nl": "Vochtigheid",
-              "de": "Feuchtigkeit"
+              "de": "Feuchtigkeit",
+              "sv": "Fuktighet"
             }
           },
           {
@@ -822,12 +933,14 @@
             "title": {
               "en": "device",
               "nl": "apparaat",
-              "de": "Gerät"
+              "de": "Gerät",
+              "sv": "enhet"
             },
             "example": {
               "en": "Flowercare 1",
               "nl": "Flowercare 1",
-              "de": "Flowercare 1"
+              "de": "Flowercare 1",
+              "sv": "Flowercare 1"
             }
           }
         ]
@@ -839,17 +952,20 @@
         "title": {
           "en": "The plant !{{has not|has}} correct amount of nutritions.",
           "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid voeding.",
-          "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Menge an Dünger."
+          "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Menge an Dünger.",
+          "sv": "Plantan !{{har inte|har}} tillräckligt med näring."
         },
         "titleFormatted": {
           "en": "The plant [[device]] !{{has not|has}} correct amount of nutritions.",
           "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste hoeveelheid voeding.",
-          "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Menge an Dünger."
+          "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Menge an Dünger.",
+          "sv": "Plantan [[device]] !{{har inte|har}} tillräckligt med näring."
         },
         "hint": {
           "en": "Use this card to determine if the plant has a correct amount of nutritions.",
           "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid voeding heeft.",
-          "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze genug Düngemittel hat."
+          "de": "Verwenden Sie diese Karte, um festzustellen, das die Pflanze genug Düngemittel hat.",
+          "sv": "Använd detta kort för att kontrollera om plantan har tillräckligt med näring."
         },
         "args": [
           {
@@ -865,17 +981,20 @@
         "title": {
           "en": "The plant !{{has not|has}} correct amount of moisture.",
           "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid vocht.",
-          "de": "Die Pflanze !{{hat nicht|hat}} korrekte Menge an Wasser."
+          "de": "Die Pflanze !{{hat nicht|hat}} korrekte Menge an Wasser.",
+          "sv": "Plantan !{{har inte|har}} tillräckligt med vatten."
         },
         "titleFormatted": {
           "en": "The plant [[device]] !{{has not|has}} correct amount of moisture.",
           "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste hoeveelheid vocht.",
-          "de": "Die Pflanze [[device]] !{{hat nicht|hat}} korrekte Menge an Wasser."
+          "de": "Die Pflanze [[device]] !{{hat nicht|hat}} korrekte Menge an Wasser.",
+          "sv": "Plantan [[device]] !{{har inte|har}} tillräckligt med vatten."
         },
         "hint": {
           "en": "Use this card to determine if the plant has a correct amount of moisture.",
           "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid vocht heeft.",
-          "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze genug Wasser hat."
+          "de": "Verwenden Sie diese Karte, um festzustellen, das die Pflanze genug Wasser hat.",
+          "sv": "Använd detta kort för att säkerställa att plantan har tillräckligt med vatten."
         },
         "args": [
           {
@@ -891,17 +1010,20 @@
         "title": {
           "en": "The plant !{{has not|has}} correct amount of sunlight.",
           "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid zonlicht.",
-          "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Menge an Licht."
+          "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Menge an Licht.",
+          "sv": "Plantan !{{har inte|har}} tillräcklig luminans."
         },
         "titleFormatted": {
           "en": "The plant [[device]] !{{has not|has}} correct amount of sunlight.",
           "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste hoeveelheid zonlicht.",
-          "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Menge an Licht."
+          "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Menge an Licht.",
+          "sv": "Plantan [[device]] !{{har inte|har}} tillräcklig luminans."
         },
         "hint": {
           "en": "Use this card to determine if the plant has a correct amount of sunlight.",
           "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid zonlicht heeft.",
-          "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze die richtige Menge Sonnenlicht hat."
+          "de": "Verwenden Sie diese Karte, um festzustellen, das die Pflanze die richtige Menge Sonnenlicht hat.",
+          "sv": "Använd detta kort för att säkerställa att plantan har tillräcklig luminans."
         },
         "args": [
           {
@@ -916,17 +1038,20 @@
         "title": {
           "en": "The plant !{{has not|has}} correct amount of moisture.",
           "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid vocht.",
-          "de": "Die Pflanze !{{hat nicht|hat}} korrekte Menge an Wasser."
+          "de": "Die Pflanze !{{hat nicht|hat}} korrekte Menge an Wasser.",
+          "sv": "Plantan !{{har inte|har}} tillräckligt med vatten."
         },
         "titleFormatted": {
           "en": "The plant [[device]] !{{has not|has}} correct amount of moisture.",
           "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste hoeveelheid vocht.",
-          "de": "Die Pflanze [[device]] !{{hat nicht|hat}} korrekte Menge an Wasser."
+          "de": "Die Pflanze [[device]] !{{hat nicht|hat}} korrekte Menge an Wasser.",
+          "sv": "Plantan [[device]] !{{har inte|har}} tillräckligt med vatten."
         },
         "hint": {
           "en": "Use this card to determine if the plant has a correct amount of moisture.",
           "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid vocht heeft.",
-          "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze genug Wasser hat."
+          "de": "Verwenden Sie diese Karte, um festzustellen, das die Pflanze genug Wasser hat.",
+          "sv": "Använd detta kort för att säkerställa att plantan tillräckligt med vatten."
         },
         "args": [
           {
@@ -941,17 +1066,20 @@
         "title": {
           "en": "The plant !{{has not|has}} correct amount of nutritions.",
           "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid voeding.",
-          "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Menge an Dünger."
+          "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Menge an Dünger.",
+          "sv": "Plantan !{{har inte|har}} tillräcklig näring."
         },
         "titleFormatted": {
           "en": "The plant [[device]] !{{has not|has}} correct amount of nutritions.",
           "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste hoeveelheid voeding.",
-          "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Menge an Dünger."
+          "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Menge an Dünger.",
+          "sv": "Plantan [[device]] !{{har inte|har}} tillräcklig näring."
         },
         "hint": {
           "en": "Use this card to determine if the plant has a correct amount of nutritions.",
           "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid voeding heeft.",
-          "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze genug Düngemittel hat."
+          "de": "Verwenden Sie diese Karte, um festzustellen, das die Pflanze genug Düngemittel hat.",
+          "sv": "Använd detta kort för att säkerställa att plantan har tillräckligt med näring."
         },
         "args": [
           {
@@ -966,17 +1094,20 @@
         "title": {
           "en": "De plant !{{has not|has}} a correct temperature.",
           "nl": "De plant !{{heeft niet|heeft}} de juiste temperatuur.",
-          "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Temperatur."
+          "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Temperatur.",
+          "sv": "Plantan !{{har inte|har}} rätt temperatur."
         },
         "titleFormatted": {
           "en": "De plant [[device]] !{{has not|has}} a correct temperature.",
           "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste temperatuur.",
-          "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Temperatur."
+          "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Temperatur.",
+          "sv": "Plantan [[device]] !{{har inte|har}} rätt temperatur."
         },
         "hint": {
           "en": "Use this card to determine if the plant has a correct temperature.",
           "nl": "Gebruik deze kaart om te bepalen of de plant de juiste temperatuur heeft.",
-          "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze eine korrekte Temperatur hat."
+          "de": "Verwenden Sie diese Karte, um festzustellen, das die Pflanze eine korrekte Temperatur hat.",
+          "sv": "Använd detta kort för att säkerställa att plantan har rätt temperatur."
         },
         "args": [
           {
@@ -993,7 +1124,8 @@
         "title": {
           "en": "Synchronise all sensor values with Homey",
           "nl": "Synchroniseer alle sensor waarden met Homey",
-          "de": "Synchronisiere alle Sensorwerte mit Homey"
+          "de": "Synchronisiere alle Sensorwerte mit Homey",
+          "sv": "Synkronisera alla sensorers värden med Homey"
         }
       }
     ]
@@ -1004,7 +1136,8 @@
       "name": {
         "en": "Xiaomi mi flora sensor",
         "nl": "Xiaomi mi flora sensor",
-        "de": "Xiaomi mi flora sensor"
+        "de": "Xiaomi mi flora sensor",
+        "sv": "Xiaomi mi flora sensor"
       },
       "platforms": [
         "local"
@@ -1046,7 +1179,8 @@
           "label": {
             "en": "Device info",
             "nl": "Apparaat informatie",
-            "de": "Geräteinfo"
+            "de": "Geräteinfo",
+            "sv": "Enhetsinformation"
           },
           "children": [
             {
@@ -1055,7 +1189,8 @@
               "label": {
                 "en": "Firmware version",
                 "nl": "Firmware versie",
-                "de": "Firmware-Version"
+                "de": "Firmware-Version",
+                "sv": "Version på mjukvara"
               },
               "value": ""
             },
@@ -1065,7 +1200,8 @@
               "label": {
                 "en": "Last updated",
                 "nl": "Laatste update",
-                "de": "Letzte Aktualisierung"
+                "de": "Letzte Aktualisierung",
+                "sv": "Senast uppdaterad"
               },
               "value": ""
             },
@@ -1075,7 +1211,8 @@
               "label": {
                 "en": "Device uuid address",
                 "nl": "Apparaat uuid adres",
-                "de": "Geräte uuid Adresse"
+                "de": "Geräte uuid Adresse",
+                "sv": "Enhetens uuid-adress"
               },
               "value": ""
             }
@@ -1086,7 +1223,8 @@
           "label": {
             "en": "Temperature (°C)",
             "nl": "Temperatuur (°C)",
-            "de": "Temperatur (°C)"
+            "de": "Temperatur (°C)",
+            "sv": "Temperatur (°C)"
           },
           "children": [
             {
@@ -1098,12 +1236,14 @@
               "label": {
                 "en": "min",
                 "nl": "min",
-                "de": "min"
+                "de": "min",
+                "sv": "min"
               },
               "hint": {
                 "en": "The minimal threshold value for temperature.",
                 "nl": "De minimale grenswaarde voor temperatuur.",
-                "de": "Der minimale Grenzwert für die Temperatur."
+                "de": "Der minimale grenzwert für die Temperatur.",
+                "sv": "Minsta värde för temperatur."
               }
             },
             {
@@ -1115,12 +1255,14 @@
               "label": {
                 "en": "max",
                 "nl": "max",
-                "de": "max"
+                "de": "max",
+                "sv": "max"
               },
               "hint": {
                 "en": "The maximum threshold value for temperature.",
                 "nl": "De maximale grenswaarde voor temperatuur.",
-                "de": "Der maximale Grenzwert für die Temperatur."
+                "de": "Der maximale grenzwert für die Temperatur.",
+                "sv": "Högsta värde för temperatur."
               }
             }
           ]
@@ -1128,9 +1270,10 @@
         {
           "type": "group",
           "label": {
-            "en": "Luminance (Lux)",
-            "nl": "Lichtintensiteit (Lux)",
-            "de": "Helligkeit (Lux)"
+            "en": "Luminance (lux)",
+            "nl": "Lichtintensiteit (lux)",
+            "de": "Helligkeit (lux)",
+            "sv": "Luminans (lux)"
           },
           "children": [
             {
@@ -1142,12 +1285,14 @@
               "label": {
                 "en": "min",
                 "nl": "min",
-                "de": "min"
+                "de": "min",
+                "sv": "min"
               },
               "hint": {
                 "en": "The minimal threshold value for luminance.",
                 "nl": "De minimale grenswaarde voor lichtintensiteit.",
-                "de": "Der minimale Grenzwert für die Helligkeit."
+                "de": "Der minimale grenzwert für die Helligkeit.",
+                "sv": "Minsta värdet för luminans."
               }
             },
             {
@@ -1159,12 +1304,14 @@
               "label": {
                 "en": "max",
                 "nl": "max",
-                "de": "max"
+                "de": "max",
+                "sv": "max"
               },
               "hint": {
                 "en": "The maximum threshold value for luminance.",
                 "nl": "De maximale grenswaarde voor lichtintensiteit.",
-                "de": "Der maximale Grenzwert für die Helligkeit."
+                "de": "Der maximale grenzwert für die Helligkeit.",
+                "sv": "Högsta värde för luminans."
               }
             }
           ]
@@ -1174,7 +1321,8 @@
           "label": {
             "en": "Nutrition (µS/cm)",
             "nl": "Voeding (µS/cm)",
-            "de": "Dünger (µS/cm)"
+            "de": "Dünger (µS/cm)",
+            "sv": "Näring (µS/cm)"
           },
           "children": [
             {
@@ -1186,12 +1334,14 @@
               "label": {
                 "en": "min",
                 "nl": "min",
-                "de": "min"
+                "de": "min",
+                "sv": "min"
               },
               "hint": {
                 "en": "The minimal threshold value for nutrition.",
                 "nl": "De minimale grenswaarde voor voeding.",
-                "de": "Der minimale Grenzwert für den Dünger."
+                "de": "Der minimale grenzwert für den Dünger.",
+                "sv": "Minsta värde för näring."
               }
             },
             {
@@ -1203,12 +1353,14 @@
               "label": {
                 "en": "max",
                 "nl": "max",
-                "de": "max"
+                "de": "max",
+                "sv": "max"
               },
               "hint": {
                 "en": "The maximum threshold value for nutrition.",
                 "nl": "De maximale grenswaarde voor voeding.",
-                "de": "Der maximale Grenzwert für den Dünger."
+                "de": "Der maximale grenzwert für den Dünger.",
+                "sv": "Högsta värde för näring."
               }
             }
           ]
@@ -1218,7 +1370,8 @@
           "label": {
             "en": "Moisture (%)",
             "nl": "Vochtigheid (%)",
-            "de": "Feuchtigkeit (%)"
+            "de": "Feuchtigkeit (%)",
+            "sv": "Fuktighet (%)"
           },
           "children": [
             {
@@ -1230,12 +1383,14 @@
               "label": {
                 "en": "min",
                 "nl": "min",
-                "de": "min"
+                "de": "min",
+                "sv": "min"
               },
               "hint": {
                 "en": "The minimal threshold value for moisture.",
                 "nl": "De minimale grenswaarde voor vochtigheid.",
-                "de": "Der minimale Grenzwert für die Feuchtigkeit."
+                "de": "Der minimale grenzwert für die Feuchtigkeit.",
+                "sv": "Minsta värde för fuktighet."
               }
             },
             {
@@ -1247,12 +1402,14 @@
               "label": {
                 "en": "max",
                 "nl": "max",
-                "de": "max"
+                "de": "max",
+                "sv": "max"
               },
               "hint": {
                 "en": "The maximum threshold value for moisture.",
                 "nl": "De maximale grenswaarde voor vochtigheid.",
-                "de": "Der maximale Grenzwert für die Feuchtigkeit."
+                "de": "Der maximale grenzwert für die Feuchtigkeit.",
+                "sv": "Högsta värde för fuktighet."
               }
             }
           ]
@@ -1299,7 +1456,8 @@
       "name": {
         "en": "Xiaomi mi flora pot",
         "nl": "Xiaomi mi flora pot",
-        "de": "Xiaomi mi flora blumentopf"
+        "de": "Xiaomi mi flora blumentopf",
+        "sv": "Xiaomi Mi Flora kruka"
       },
       "platforms": [
         "local"
@@ -1339,7 +1497,8 @@
           "label": {
             "en": "Device info",
             "nl": "Apparaat informatie",
-            "de": "Geräteinfo"
+            "de": "Geräteinfo",
+            "sv": "Enhetsinformation"
           },
           "children": [
             {
@@ -1348,7 +1507,8 @@
               "label": {
                 "en": "Firmware version",
                 "nl": "Firmware versie",
-                "de": "Firmware-Version"
+                "de": "Firmware-Version",
+                "sv": "Version på mjukvara"
               },
               "value": ""
             },
@@ -1358,7 +1518,8 @@
               "label": {
                 "en": "Last updated",
                 "nl": "Laatste update",
-                "de": "Letzte Aktualisierung"
+                "de": "Letzte aktualisierung",
+                "sv": "Senast uppdaterad"
               },
               "value": ""
             },
@@ -1368,7 +1529,8 @@
               "label": {
                 "en": "Device uuid address",
                 "nl": "Apparaat uuid adres",
-                "de": "Geräte uuid Adresse"
+                "de": "Geräte uuid adresse",
+                "sv": "Enhetens uuid-adress"
               },
               "value": ""
             }
@@ -1379,7 +1541,8 @@
           "label": {
             "en": "Temperature (°C)",
             "nl": "Temperatuur (°C)",
-            "de": "Temperatur (°C)"
+            "de": "Temperatur (°C)",
+            "sv": "Temperatur (°C)"
           },
           "children": [
             {
@@ -1391,7 +1554,8 @@
               "label": {
                 "en": "min",
                 "nl": "min",
-                "de": "min"
+                "de": "min",
+                "sv": "min"
               }
             },
             {
@@ -1403,7 +1567,8 @@
               "label": {
                 "en": "max",
                 "nl": "max",
-                "de": "max"
+                "de": "max",
+                "sv": "max"
               }
             }
           ]
@@ -1413,7 +1578,8 @@
           "label": {
             "en": "Nutrition (µS/cm)",
             "nl": "Voeding (µS/cm)",
-            "de": "Dünger (µS/cm)"
+            "de": "Dünger (µS/cm)",
+            "sv": "Näring (µS/cm)"
           },
           "children": [
             {
@@ -1425,7 +1591,8 @@
               "label": {
                 "en": "min",
                 "nl": "min",
-                "de": "min"
+                "de": "min",
+                "sv": "min"
               }
             },
             {
@@ -1437,7 +1604,8 @@
               "label": {
                 "en": "max",
                 "nl": "max",
-                "de": "max"
+                "de": "max",
+                "sv": "max"
               }
             }
           ]
@@ -1447,7 +1615,8 @@
           "label": {
             "en": "Moisture (%)",
             "nl": "Vochtigheid (%)",
-            "de": "Feuchtigkeit (%)"
+            "de": "Feuchtigkeit (%)",
+            "sv": "Fuktighet (%)"
           },
           "children": [
             {
@@ -1459,7 +1628,8 @@
               "label": {
                 "en": "min",
                 "nl": "min",
-                "de": "min"
+                "de": "min",
+                "sv": "min"
               }
             },
             {
@@ -1471,7 +1641,8 @@
               "label": {
                 "en": "max",
                 "nl": "max",
-                "de": "max"
+                "de": "max",
+                "sv": "max"
               }
             }
           ]
@@ -1507,7 +1678,8 @@
       "title": {
         "en": "Nutrition",
         "nl": "Voeding",
-        "de": "Dünger"
+        "de": "Dünger",
+        "sv": "Näring"
       },
       "icon": "/assets/nutritions.svg",
       "getable": true,
@@ -1515,7 +1687,8 @@
       "units": {
         "en": "µS/cm",
         "nl": "µS/cm",
-        "de": "µS/cm"
+        "de": "µS/cm",
+        "sv": "µS/cm"
       },
       "min": 0,
       "max": 10000,
@@ -1527,7 +1700,8 @@
       "title": {
         "en": "Moisture",
         "nl": "Vochtigheid",
-        "de": "Feuchtigkeit"
+        "de": "Feuchtigkeit",
+        "sv": "Fuktighet"
       },
       "icon": "/assets/moisture.svg",
       "getable": true,
@@ -1535,7 +1709,8 @@
       "units": {
         "en": "%",
         "nl": "%",
-        "de": "%"
+        "de": "%",
+        "sv": "%"
       },
       "min": 0,
       "max": 100,
@@ -1547,7 +1722,8 @@
       "title": {
         "en": "Moisture",
         "nl": "Vochtigheid",
-        "de": "Feuchtigkeit"
+        "de": "Feuchtigkeit",
+        "sv": "Fuktighet"
       },
       "icon": "/assets/moisture.svg",
       "getable": true,
@@ -1555,7 +1731,8 @@
       "units": {
         "en": "%",
         "nl": "%",
-        "de": "%"
+        "de": "%",
+        "sv": "%"
       },
       "min": 0,
       "max": 100,
@@ -1567,7 +1744,8 @@
       "title": {
         "en": "Nutrition",
         "nl": "Voeding",
-        "de": "Dünger"
+        "de": "Dünger",
+        "sv": "Näring"
       },
       "icon": "/assets/nutritions.svg",
       "getable": true,
@@ -1575,7 +1753,8 @@
       "units": {
         "en": "µS/cm",
         "nl": "µS/cm",
-        "de": "µS/cm"
+        "de": "µS/cm",
+        "sv": "µS/cm"
       },
       "min": 0,
       "max": 10000,
