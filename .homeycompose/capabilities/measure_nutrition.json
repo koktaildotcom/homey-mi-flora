@@ -9,12 +9,7 @@
   "icon": "/assets/nutritions.svg",
   "getable": true,
   "setable": false,
-  "units": {
-    "en": "µS/cm",
-    "nl": "µS/cm",
-    "de": "µS/cm",
-    "sv": "µS/cm"
-  },
+  "units": "µS/cm",
   "min": 0,
   "max": 10000,
   "step": 1,

@@ -4,17 +4,12 @@
   "compatibility": ">=5.0.0",
   "brandColor": "#02988c",
   "sdk": 3,
-  "name": {
-    "en": "Xiaomi Mi Flora",
-    "nl": "Xiaomi Mi Flora",
-    "de": "Xiaomi Mi Flora",
-    "sv": "Xiaomi Mi Flora"
-  },
+  "name": "Xiaomi Mi Flora",
   "description": {
-    "en": "Track every need of your plants and flowers with Xiaomi mi flora products",
-    "nl": "Volg de behoefte van uw planten en bloemen met Xiaomi mi flora producten",
-    "de": "Überwachen Sie den Bedarf Ihrer Pflanzen und Blumen mit Xiaomi Mi Flora Produkten",
-    "sv": "Spåra dina växters värden med Xiaomi Mi Flora-enheter"
+    "en": "Track every need of your plants and flowers",
+    "nl": "Volg de behoefte van uw planten en bloemen",
+    "de": "Überwachen Sie den Bedarf Ihrer Pflanzen und Blumen",
+    "sv": "Spåra dina växters värden"
   },
   "platforms": [
     "local"

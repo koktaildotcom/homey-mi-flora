@@ -30,12 +30,7 @@
         "de": "Wert",
         "sv": "Värde"
       },
-      "example": {
-        "en": "22.5",
-        "nl": "22.5",
-        "de": "22.5",
-        "sv": "22,5"
-      }
+      "example": "22.5"
     },
     {
       "name": "numeric",

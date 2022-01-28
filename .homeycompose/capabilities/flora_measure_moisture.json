@@ -9,12 +9,7 @@
   "icon": "/assets/moisture.svg",
   "getable": true,
   "setable": false,
-  "units": {
-    "en": "%",
-    "nl": "%",
-    "de": "%",
-    "sv": "%"
-  },
+  "units": "%",
   "min": 0,
   "max": 100,
   "step": 1,
