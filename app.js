@@ -506,8 +506,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
                 }
 
                 const mapping = this.homey.app.thresholdMapping[capability];
-                console.log(capability);
-                console.log(mapping);
+
                 capabilitySensors.push({
                     type: capability,
                     name: deviceLog.title,
@@ -516,11 +515,17 @@ module.exports = class HomeyMiFlora extends Homey.App {
                     history: logEntries.values,
                 });
 
-                if (mapping && mapping.min && mapping.max) {
+                if (mapping.min && mapping.max) {
+                    let min = 0;
+                    let max = 100;
+                    if (mapping) {
+                        min = await device.getSetting(mapping.min);
+                        max = await device.getSetting(mapping.max);
+                    }
                     capabilityRanges.push({
                         type: capability,
-                        min: await device.getSetting(mapping.min),
-                        max: await device.getSetting(mapping.max),
+                        min,
+                        max,
                         unit: logEntries.values.pop().t.unit,
                     });
                 }
