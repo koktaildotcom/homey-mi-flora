@@ -1,5 +1,7 @@
 # Xiaomi mi flora sensor
 
+![app image](assets/images/large.png)
+
 ## Introduction
 This app integrates the `Xiaomi mi flora sensor` and `Xiaomi mi flora ropot` into Homey.
 
