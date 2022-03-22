@@ -3,12 +3,20 @@
   "title": {
     "en": "The plant !{{has not|has}} correct amount of sunlight.",
     "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid zonlicht.",
-    "de": "Die Pflanze !{{hat nicht|hat}} genug Licht."
+    "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Menge an Licht.",
+    "sv": "Plantan !{{har inte|har}} tillräcklig luminans."
+  },
+  "titleFormatted": {
+    "en": "The plant [[device]] !{{has not|has}} correct amount of sunlight.",
+    "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste hoeveelheid zonlicht.",
+    "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Menge an Licht.",
+    "sv": "Plantan [[device]] !{{har inte|har}} tillräcklig luminans."
   },
   "hint": {
     "en": "Use this card to determine if the plant has a correct amount of sunlight.",
     "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid zonlicht heeft.",
-    "de": "Verwenden Sie diese Karte, um festzustellen, das die Pflanze die richtige Menge Sonnenlicht hat."
+    "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze die richtige Menge Sonnenlicht hat.",
+    "sv": "Använd detta kort för att säkerställa att plantan har tillräcklig luminans."
   },
   "args": [
     {

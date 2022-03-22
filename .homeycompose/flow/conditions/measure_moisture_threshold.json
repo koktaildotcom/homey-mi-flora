@@ -1,5 +1,5 @@
 {
-  "id": "flora_measure_moisture_threshold",
+  "id": "measure_moisture_threshold",
   "title": {
     "en": "The plant !{{has not|has}} correct amount of moisture.",
     "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid vocht.",
@@ -16,14 +16,13 @@
     "en": "Use this card to determine if the plant has a correct amount of moisture.",
     "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid vocht heeft.",
     "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze genug Wasser hat.",
-    "sv": "Använd detta kort för att säkerställa att plantan har tillräckligt med vatten."
+    "sv": "Använd detta kort för att säkerställa att plantan tillräckligt med vatten."
   },
   "args": [
     {
       "name": "device",
       "type": "device",
-      "filter": "capabilities=flora_measure_moisture"
+      "filter": "capabilities=measure_moisture"
     }
-  ],
-  "deprecated": true
+  ]
 }

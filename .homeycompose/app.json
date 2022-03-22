@@ -1,110 +1,121 @@
 {
   "id": "com.mi.flora",
-  "version": "3.0.4",
+  "version": "4.0.2",
   "compatibility": ">=5.0.0",
   "brandColor": "#02988c",
   "sdk": 3,
-  "name": {
-	"en": "Xiaomi Mi Flora",
-	"nl": "Xiaomi Mi Flora",
-	"de": "Xiaomi Mi Flora"
-  },
+  "name": "Xiaomi Mi Flora",
   "description": {
-	"en": "Track every need of your plants and flowers with Xiaomi mi flora products",
-	"nl": "Volg de behoefte van uw planten en bloemen met Xiaomi mi flora producten",
-	"de": "Verfolgen sie jeden bedarf ihrer pflanzen und blumen mit Xiaomi mi flora produkten"
+    "en": "Track every need of your plants and flowers",
+    "nl": "Volg de behoefte van uw planten en bloemen",
+    "de": "Überwachen Sie den Bedarf Ihrer Pflanzen und Blumen",
+    "sv": "Spåra dina växters värden"
   },
+  "platforms": [
+    "local"
+  ],
+  "support": "https://community.homey.app/t/xiaomi-mi-flora-sensor-ropot-app/45",
   "category": [
-	"appliances",
-	"tools",
-	"climate",
-	"appliances"
+    "appliances",
+    "tools",
+    "climate",
+    "appliances"
   ],
   "permissions": [
-	"homey:wireless:ble",
-	"homey:manager:api"
+    "homey:wireless:ble",
+    "homey:manager:api"
   ],
-  "api": {
-	"getDevices": {
-	  "method": "get",
-	  "path": "/devices",
-	  "public": true
-	}
-  },
   "athomForumDiscussionId": 5030,
   "homeyCommunityTopicId": 45,
   "tags": {
-	"en": [
-	  "xiaomi",
-	  "xiaomi",
-	  "xiaomi",
-	  "mi",
-	  "plant",
-	  "flower",
-	  "flora",
-	  "vegtrug",
-	  "sensor",
-	  "temperature",
-	  "luminance",
-	  "humidity",
-	  "nutrition"
-	],
-	"nl": [
-	  "xiaomi",
-	  "xiaomi",
-	  "mi",
-	  "plant",
-	  "flower",
-	  "flora",
-	  "vegtrug",
-	  "sensor",
-	  "temperatuur",
-	  "licht",
-	  "vochtigheid",
-	  "voeding"
-	],
-	"de": [
-	  "xiaomi",
-	  "xiaomi",
-	  "xiaomi",
-	  "mi",
-	  "pflanze",
-	  "blume",
-	  "flora",
-	  "vegtrug",
-	  "sensor",
-	  "temperatur",
-	  "helligkeit",
-	  "feuchtigkeit",
-	  "dünger"
-	]
+    "en": [
+      "xiaomi",
+      "xiaomi",
+      "xiaomi",
+      "mi",
+      "plant",
+      "flower",
+      "flora",
+      "vegtrug",
+      "sensor",
+      "temperature",
+      "luminance",
+      "humidity",
+      "nutrition"
+    ],
+    "nl": [
+      "xiaomi",
+      "xiaomi",
+      "mi",
+      "plant",
+      "flower",
+      "flora",
+      "vegtrug",
+      "sensor",
+      "temperatuur",
+      "licht",
+      "vochtigheid",
+      "voeding"
+    ],
+    "de": [
+      "xiaomi",
+      "xiaomi",
+      "xiaomi",
+      "mi",
+      "pflanze",
+      "blume",
+      "flora",
+      "vegtrug",
+      "sensor",
+      "temperatur",
+      "helligkeit",
+      "feuchtigkeit",
+      "dünger"
+    ],
+    "sv": [
+      "xiaomi",
+      "mi",
+      "planta",
+      "blomma",
+      "växt",
+      "flora",
+      "plantering",
+      "sensor",
+      "temperatur",
+      "luminans",
+      "fuktighet",
+      "näring"
+    ]
   },
   "images": {
-	"small": "/assets/images/small.png",
-	"large": "/assets/images/large.png"
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png"
   },
   "author": {
-	"name": "Leendert De Kok",
-	"email": "koktaildotcom@hotmail.com"
+    "name": "Leendert De Kok",
+    "email": "koktaildotcom@hotmail.com"
   },
   "contributors": {
-	"developers": [
-	  {
-		"name": "Leendert De Kok",
-		"email": "koktaildotcom@hotmail.com"
-	  }
-	],
-	"translators": [
-	  {
-		"name": "JackDaniel007"
-	  }
-	]
+    "developers": [
+      {
+        "name": "Leendert De Kok",
+        "email": "koktaildotcom@hotmail.com"
+      }
+    ],
+    "translators": [
+      {
+        "name": "JackDaniel007"
+      },
+      {
+        "name": "🇸🇪 Magnus Claesson"
+      }
+    ]
   },
   "contributing": {
-	"donate": {
-	  "paypal": {
-		"username": "koktaildotcom"
-	  }
-	}
+    "donate": {
+      "paypal": {
+        "username": "koktaildotcom"
+      }
+    }
   }
 }

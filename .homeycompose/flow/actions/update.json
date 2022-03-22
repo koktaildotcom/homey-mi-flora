@@ -1,7 +1,9 @@
 {
   "id": "update",
   "title": {
-    "en": "Synchronise all sensor values with Homey",
-    "nl": "Synchroniseer alle sensor waarden met Homey"
+    "en": "Synchronise all sensor values",
+    "nl": "Synchroniseer alle sensor waarden",
+    "de": "Synchronisiere alle Sensorwerte",
+    "sv": "Synkronisera alla sensorers värden"
   }
 }

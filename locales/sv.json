@@ -1,0 +1,86 @@
+{
+	"pair": {
+		"title": "Söker efter Xiaomi Mi Flora-enheter",
+		"info": {
+			"title": "Kom ihåg:",
+			"row1": "För en optimal signalstyrka, håll enheten i närheten av Homey.",
+			"row2": "Ladda hem Xiaomi Mi Flora-appen och lägg till enheten där. Detta uppdaterar automatiskt enhetens mjukvara till den senaste versionen."
+		},
+		"faq": {
+			"title": "Vanliga frågor:",
+			"question1": "Varför hittar Homey inte min enhet?",
+			"answer1": "Kontrollera att enheten inte är kopplad till någon annan bluetooth-enhet. Till exempel Xiaomi Mi Flora-appen"
+		},
+		"configure": "Sök efter enheter",
+		"error": {
+			"ble-unavailable": "BLE är inte tillgängligt: Synkning av enheter pågår."
+		}
+	},
+	"settings": {
+		"title": "Inställningar för Xiaomi Mi Flora",
+		"update": "Uppdatera inställningar",
+		"interval": {
+			"label": "Uppdateringsintervall",
+			"info": "Fördröjningen mellan avläsning av enhetsvärden i minuter. Det minsta intervallet är 5 minuter. Standardintervallet är 15 minuter."
+		},
+		"save": {
+			"label": "Spara"
+		},
+		"success": "Inställningarna har sparats",
+		"error": {
+			"threshold": "Minsta och högsta värdet för `__capability__` är inte giltigt."
+		}
+	},
+	"capability": {
+		"measure_temperature": {
+			"name": "temperatur",
+			"suffix": " °C",
+			"changed": "Temperaturen har ändrats till: __value__°C.",
+			"device_changed": "Temperaturen för `__plant__` har ändrats till: __value__°C.",
+			"device_updated": "Temperaturen för `__plant__` har uppdaterats till: __value__°C.",
+			"threshold": {
+				"min": "Temperaturen (__value__°C) för `__plant__` är för låg. Den bör vara minst __min__°C.",
+				"max": "Temperaturen (__value__°C) för `__plant__` är för hög. Den bör vara som högst __max__°C."
+			}
+		},
+		"measure_luminance": {
+			"name": "luminans",
+			"suffix": " lx",
+			"changed": "Luminansen har ändrats till: __value__ lx.",
+			"device_changed": "Luminansen för `__plant__` har ändrats till: __value__ lx.",
+			"device_updated": "Luminansen för `__plant__` har uppdaterats till: __value__ lx.",
+			"threshold": {
+				"min": "Luminansen (__value__ lx) för `__plant__` är för lågt. Det bör vara minst __min__ lx.",
+				"max": "Luminansen (__value__ lx) för `__plant__` är för högt. Det bör vara som mest __max__ lx."
+			}
+		},
+		"measure_nutrition": {
+			"name": "näring",
+			"suffix": " µS/cm",
+			"changed": "Näringsvärdet har ändrats till: __value__ µS/cm.",
+			"device_changed": "Näringsvärdet för `__plant__` har ändrats till: __value__ µS/cm.",
+			"device_updated": "Näringsvärdet för `__plant__` har uppdaterats till: __value__ µS/cm.",
+			"threshold": {
+				"min": "Näringsvärdet (__value__ µS/cm) för `__plant__` är för lågt. Det bör vara minst __min__ µS/cm.",
+				"max": "Näringsvärdet (__value__ µS/cm) för `__plant__` är för högt. Det bör vara som mest __max__ µS/cm."
+			}
+		},
+		"measure_moisture": {
+			"name": "fuktighet",
+			"suffix": " %",
+			"changed": "Fuktigheten har ändrats till: __value__%.",
+			"device_changed": "Fuktigheten för `__plant__` har ändrats till: __value__%.",
+			"device_updated": "Fuktigheten för `__plant__` har uppdaterats till: __value__%.",
+			"threshold": {
+				"min": "Fuktigheten (__value__%) för `__plant__` är för låg. Den bör vara minst __min__%.",
+				"max": "Fuktigheten (__value__%) för `__plant__` är för hög. Den bör vara som mest __max__%."
+			}
+		},
+		"measure_battery": {
+			"name": "batteri",
+			"changed": "Batteriet har ändrats till: __value__%.",
+			"device_changed": "Batteriet för `__plant__` har ändrats till: __value__%.",
+			"device_updated": "Batteriet för `__plant__` har uppdaterats till: __value__%."
+		}
+	}
+}

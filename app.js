@@ -48,8 +48,8 @@ module.exports = class HomeyMiFlora extends Homey.App {
         this._capabilityOptions = [
             'measure_temperature',
             'measure_luminance',
-            'flora_measure_fertility',
-            'flora_measure_moisture',
+            'measure_nutrition',
+            'measure_moisture',
             'measure_battery',
         ];
         this._conditionsMapping = {};
@@ -118,69 +118,6 @@ module.exports = class HomeyMiFlora extends Homey.App {
     }
 
     /**
-     * @returns {[]}
-     */
-    async getApiDevices() {
-        // @todo add cache layer
-        const apiDevices = [];
-
-        this.homeyAPI = await HomeyAPI.forCurrentHomey(this.homey);
-        const logs = await this.homeyAPI.insights.getLogs();
-
-        for (const device of this.devices) {
-            apiDevices.push(await this.toApiResponse(device, logs));
-        }
-
-        return apiDevices;
-    }
-
-    /**
-     * Result for the API
-     */
-    async toApiResponse(device, logs) {
-        const capabilities = [];
-        for (const capability of device.getCapabilities()) {
-            const deviceLog = logs.find(log => {
-                return log.uriObj.id === 'd9abc6ae-827f-41a2-b830-1542bb444031' && log.id === capability;
-            });
-
-            if (!deviceLog) {
-                continue;
-            }
-
-            const logEntries = await this.homeyAPI.insights.getLogEntries({
-                uri: deviceLog.uri,
-                id: deviceLog.id,
-            });
-
-            if (logEntries.values.length === 0) {
-                continue;
-            }
-
-            const mapping = this.homey.app.thresholdMapping[capability];
-            const capabilityItem = {
-                type: capability,
-                value: device.getCapabilityValue(capability),
-                lastUpdated: logEntries.values.pop().t,
-                history: logEntries.values,
-                name: deviceLog.title,
-            };
-            if (mapping && mapping.min && mapping.max) {
-                capabilityItem['min'] = device.getSetting(mapping.min);
-                capabilityItem['max'] = device.getSetting(mapping.max);
-                capabilityItem['unit'] = deviceLog.unit;
-            }
-            capabilities.push(capabilityItem);
-        }
-
-        return {
-            _id: await device.getDeviceData('id'),
-            name: device.getName(),
-            capabilities,
-        };
-    }
-
-    /**
      * connect to the sensor, update data and disconnect
      *
      * @param device MiFloraDevice
@@ -197,10 +134,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
             const updateDeviceTime = new Date();
 
             console.log('find');
-            // eslint-disable-next-line max-len
-            const advertisement = await this.homey.ble.find(device.getAddress(), 10000).then(current => {
-                return current;
-            });
+            const advertisement = await this.homey.ble.find(device.getAddress(), 10000);
 
             console.log(`distance = ${this.calculateDistance(advertisement.rssi)} meter`);
 
@@ -231,8 +165,9 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
             // get realtime
             console.log('realtime');
-            // eslint-disable-next-line max-len
-            const realtime = await characteristics.find(characteristic => characteristic.uuid === REALTIME_CHARACTERISTIC_UUID);
+            const realtime = await characteristics.find(
+                characteristic => characteristic.uuid === REALTIME_CHARACTERISTIC_UUID,
+            );
             if (!realtime) {
                 throw new Error('Missing realtime characteristic');
             }
@@ -240,8 +175,9 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
             // get data
             console.log('data');
-            // eslint-disable-next-line max-len
-            const data = await characteristics.find(characteristic => characteristic.uuid === DATA_CHARACTERISTIC_UUID);
+            const data = await characteristics.find(
+                characteristic => characteristic.uuid === DATA_CHARACTERISTIC_UUID,
+            );
             if (!data) {
                 throw new Error('Missing data characteristic');
             }
@@ -256,10 +192,9 @@ module.exports = class HomeyMiFlora extends Homey.App {
             const sensorValues = {
                 measure_temperature: temperature / 10,
                 measure_luminance: sensorData.readUInt32LE(3),
-                flora_measure_fertility: sensorData.readUInt16LE(8),
-                flora_measure_moisture: sensorData.readUInt16BE(6),
+                measure_nutrition: sensorData.readUInt16LE(8),
+                measure_moisture: sensorData.readUInt16BE(6),
             };
-            console.log(sensorValues);
 
             await asyncForEach(device.getCapabilities(), async characteristic => {
                 if (sensorValues.hasOwnProperty(characteristic)) {
@@ -268,8 +203,9 @@ module.exports = class HomeyMiFlora extends Homey.App {
             });
 
             // get firmware
-            // eslint-disable-next-line max-len
-            const firmware = characteristics.find(characteristic => characteristic.uuid === FIRMWARE_CHARACTERISTIC_UUID);
+            const firmware = characteristics.find(
+                characteristic => characteristic.uuid === FIRMWARE_CHARACTERISTIC_UUID
+            );
             if (!firmware) {
                 disconnectPeripheral();
                 throw new Error('Missing firmware characteristic');
@@ -331,7 +267,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
         console.log('-----------------------------------------------------------------');
         console.log('| New update sequence ');
         console.log('-----------------------------------------------------------------');
-        return devices.reduce((promise, device) => {
+        return await devices.reduce((promise, device) => {
             return promise
                 .then(() => {
                     console.log('reduce');
@@ -362,11 +298,11 @@ module.exports = class HomeyMiFlora extends Homey.App {
             device.retry = 0;
         }
 
-        return this.handleUpdateSequence(device)
+        return await this.handleUpdateSequence(device)
             .then(() => {
                 device.retry = 0;
-
                 this.syncDevice(device);
+
                 return device;
             })
             .catch(error => {
@@ -376,8 +312,8 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
                 if (device.retry < MAX_RETRIES) {
                     return this.updateDevice(device)
-                        .catch(e => {
-                            throw new Error(e);
+                        .catch(error => {
+                            throw new Error(error);
                         });
                 }
 
@@ -388,8 +324,8 @@ module.exports = class HomeyMiFlora extends Homey.App {
                     .then(() => {
                         console.log('sending device timeout trigger');
                     })
-                    .catch(e => {
-                        console.error('Cannot trigger flow card sensor_timeout device: %s.', e);
+                    .catch(error => {
+                        console.error('Cannot trigger flow card sensor_timeout device: %s.', error);
                     });
 
                 device.retry = 0;
@@ -570,8 +506,8 @@ module.exports = class HomeyMiFlora extends Homey.App {
                 }
 
                 const mapping = this.homey.app.thresholdMapping[capability];
-console.log(capability);
-console.log(mapping);
+                console.log(capability);
+                console.log(mapping);
                 capabilitySensors.push({
                     type: capability,
                     name: deviceLog.title,
@@ -685,5 +621,4 @@ console.log(mapping);
             console.log(e.toString());
         });
     }
-
 };

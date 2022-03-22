@@ -1,5 +1,7 @@
 # Xiaomi mi flora sensor
 
+![app image](assets/images/large.png)
+
 ## Introduction
 This app integrates the `Xiaomi mi flora sensor` and `Xiaomi mi flora ropot` into Homey.
 
@@ -241,6 +243,15 @@ You can configure the timeout between polls in the app's settings.
   * bugfix when sync is in progress in action card 'Synchronise all sensor values with Homey'
 ### v3.0.4 - 29.03.2021
   * bugfix no results when pairing and sync is in progress
+### v4.0.0 - 14.07.2021
+  * bugfix DE translation issue https://github.com/koktaildotcom/homey-mi-flora/issues/101
+  * migrate capabilities to correct homey syntax https://github.com/koktaildotcom/homey-mi-flora/issues/103
+### v4.0.1 - 19-01-2020
+  * add numeric value to flowcards: https://github.com/koktaildotcom/homey-mi-flora/issues/105
+  * add german translations
+### v4.0.2 - 28-01-2020
+  * add german translations
+  * feedback Athom
 
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora

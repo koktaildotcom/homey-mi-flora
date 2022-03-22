@@ -3,8 +3,15 @@
     "name": {
         "en": "Xiaomi mi flora pot",
         "nl": "Xiaomi mi flora pot",
-        "de": "Xiaomi mi flora blumentopf"
+        "de": "Xiaomi mi flora blumentopf",
+        "sv": "Xiaomi Mi Flora kruka"
     },
+    "platforms": [
+        "local"
+    ],
+    "connectivity": [
+        "ble"
+    ],
     "images": {
         "small": "drivers/ropot/assets/images/small.png",
         "large": "drivers/ropot/assets/images/large.png"
@@ -12,8 +19,8 @@
     "class": "sensor",
     "capabilities": [
         "measure_temperature",
-        "flora_measure_fertility",
-        "flora_measure_moisture"
+        "measure_nutrition",
+        "measure_moisture"
     ],
     "pair": [
         {
@@ -37,7 +44,8 @@
             "label": {
                 "en": "Device info",
                 "nl": "Apparaat informatie",
-                "de": "Geräteinfo"
+                "de": "Geräteinfo",
+                "sv": "Enhetsinformation"
             },
             "children": [
                 {
@@ -46,7 +54,8 @@
                     "label": {
                         "en": "Firmware version",
                         "nl": "Firmware versie",
-                        "de": "Firmware-Version"
+                        "de": "Firmware-Version",
+                        "sv": "Version på mjukvara"
                     },
                     "value": ""
                 },
@@ -56,7 +65,8 @@
                     "label": {
                         "en": "Last updated",
                         "nl": "Laatste update",
-                        "de": "Letzte aktualisierung"
+                        "de": "Letzte Aktualisierung",
+                        "sv": "Senast uppdaterad"
                     },
                     "value": ""
                 },
@@ -66,7 +76,8 @@
                     "label": {
                         "en": "Device uuid address",
                         "nl": "Apparaat uuid adres",
-                        "de": "Geräte uuid adresse"
+                        "de": "Geräte uuid Adresse",
+                        "sv": "Enhetens uuid-adress"
                     },
                     "value": ""
                 }
@@ -77,7 +88,8 @@
             "label": {
                 "en": "Temperature (°C)",
                 "nl": "Temperatuur (°C)",
-                "de": "Temperatur (°C)"
+                "de": "Temperatur (°C)",
+                "sv": "Temperatur (°C)"
             },
             "children": [
                 {
@@ -89,7 +101,8 @@
                     "label": {
                         "en": "min",
                         "nl": "min",
-                        "de": "min"
+                        "de": "min",
+                        "sv": "min"
                     }
                 },
                 {
@@ -101,7 +114,8 @@
                     "label": {
                         "en": "max",
                         "nl": "max",
-                        "de": "max"
+                        "de": "max",
+                        "sv": "max"
                     }
                 }
             ]
@@ -111,11 +125,12 @@
             "label": {
                 "en": "Nutrition (µS/cm)",
                 "nl": "Voeding (µS/cm)",
-                "de": "Dünger (µS/cm)"
+                "de": "Dünger (µS/cm)",
+                "sv": "Näring (µS/cm)"
             },
             "children": [
                 {
-                    "id": "flora_measure_fertility_min",
+                    "id": "measure_fertility_min",
                     "type": "number",
                     "value": 0,
                     "min": 0,
@@ -123,11 +138,12 @@
                     "label": {
                         "en": "min",
                         "nl": "min",
-                        "de": "min"
+                        "de": "min",
+                        "sv": "min"
                     }
                 },
                 {
-                    "id": "flora_measure_fertility_max",
+                    "id": "measure_fertility_max",
                     "type": "number",
                     "value": 0,
                     "min": 0,
@@ -135,7 +151,8 @@
                     "label": {
                         "en": "max",
                         "nl": "max",
-                        "de": "max"
+                        "de": "max",
+                        "sv": "max"
                     }
                 }
             ]
@@ -145,11 +162,12 @@
             "label": {
                 "en": "Moisture (%)",
                 "nl": "Vochtigheid (%)",
-                "de": "Feuchtigkeit (%)"
+                "de": "Feuchtigkeit (%)",
+                "sv": "Fuktighet (%)"
             },
             "children": [
                 {
-                    "id": "flora_measure_moisture_min",
+                    "id": "measure_moisture_min",
                     "type": "number",
                     "value": 0,
                     "min": 0,
@@ -157,11 +175,12 @@
                     "label": {
                         "en": "min",
                         "nl": "min",
-                        "de": "min"
+                        "de": "min",
+                        "sv": "min"
                     }
                 },
                 {
-                    "id": "flora_measure_moisture_max",
+                    "id": "measure_moisture_max",
                     "type": "number",
                     "value": 0,
                     "min": 0,
@@ -169,7 +188,8 @@
                     "label": {
                         "en": "max",
                         "nl": "max",
-                        "de": "max"
+                        "de": "max",
+                        "sv": "max"
                     }
                 }
             ]
@@ -184,14 +204,14 @@
                 "id": "sensor",
                 "capabilities": [
                     "measure_temperature",
-                    "flora_measure_fertility",
-                    "flora_measure_moisture"
+                    "measure_nutrition",
+                    "measure_moisture"
                 ],
                 "options": {
                     "icons": {
                         "measure_temperature": "./drivers/ropot/assets/temperature.svg",
-                        "flora_measure_fertility": "./drivers/ropot/assets/nutritions.svg",
-                        "flora_measure_moisture": "./drivers/ropot/assets/moisture.svg"
+                        "measure_nutrition": "./drivers/ropot/assets/nutritions.svg",
+                        "measure_moisture": "./drivers/ropot/assets/moisture.svg"
                     }
                 }
             }

@@ -3,18 +3,27 @@
     "en": "Update device after pair"
   },
   "3.0.0": {
-    "en" : "add support for SDK 3"
+    "en": "add support for SDK 3"
   },
   "3.0.1": {
-    "en" : "display negative temperature correctly, add todo for next release, change brand color and translations"
+    "en": "display negative temperature correctly, add todo for next release, change brand color and translations"
   },
   "3.0.2": {
-    "en" : "filter known devices when pairing"
+    "en": "filter known devices when pairing"
   },
   "3.0.3": {
-    "en" : "bugfix when sync is in progress in action card 'Synchronise all sensor values with Homey'"
+    "en": "bugfix when sync is in progress in action card 'Synchronise all sensor values'"
   },
   "3.0.4": {
     "en": "bugfix no results when pairing and sync is in progress"
+  },
+  "4.0.0": {
+    "en": "Removed and migrated capabilities to correct homey syntax"
+  },
+  "4.0.1": {
+    "en": "add numeric value to flowcards & 🇩🇪"
+  },
+  "4.0.2": {
+    "en": "improve German translation"
   }
 }

@@ -3,12 +3,20 @@
   "title": {
     "en": "De plant !{{has not|has}} a correct temperature.",
     "nl": "De plant !{{heeft niet|heeft}} de juiste temperatuur.",
-    "de": "Die Pflanze !{{hat nicht|hat}} die richtige Temperatur."
+    "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Temperatur.",
+    "sv": "Plantan !{{har inte|har}} rätt temperatur."
+  },
+  "titleFormatted": {
+    "en": "De plant [[device]] !{{has not|has}} a correct temperature.",
+    "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste temperatuur.",
+    "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Temperatur.",
+    "sv": "Plantan [[device]] !{{har inte|har}} rätt temperatur."
   },
   "hint": {
     "en": "Use this card to determine if the plant has a correct temperature.",
     "nl": "Gebruik deze kaart om te bepalen of de plant de juiste temperatuur heeft.",
-    "de": "Verwenden Sie diese Karte, um festzustellen, das die Pflanze eine korrekte Temperatur hat."
+    "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze eine korrekte Temperatur hat.",
+    "sv": "Använd detta kort för att säkerställa att plantan har rätt temperatur."
   },
   "args": [
     {
