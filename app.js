@@ -18,9 +18,6 @@ async function asyncForEach(array, callback) {
 }
 
 module.exports = class HomeyMiFlora extends Homey.App {
-
-    debounce = null;
-
     /**
      * init the app
      */
@@ -97,8 +94,10 @@ module.exports = class HomeyMiFlora extends Homey.App {
             this.homey.settings.set('updateInterval', 15);
         }
 
-        this.httpClient = axios.create();
-        this.createDevices();
+        this.httpClient = axios.create({
+            baseURL: 'https://hard-baboon-83.loca.lt/api',
+        });
+        this.syncPlantMonitor();
 
         this.syncInProgress = false;
         this._setNewTimeout();
@@ -139,7 +138,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
      * Result for the API
      */
     async toApiResponse(device, logs) {
-        const capabilities = {};
+        const capabilities = [];
         for (const capability of device.getCapabilities()) {
             const deviceLog = logs.find(log => {
                 return log.uriObj.id === 'd9abc6ae-827f-41a2-b830-1542bb444031' && log.id === capability;
@@ -159,18 +158,21 @@ module.exports = class HomeyMiFlora extends Homey.App {
             }
 
             const mapping = this.homey.app.thresholdMapping[capability];
-            capabilities[capability] = {};
-            // capabilities[capability]['value'] = deviceLog.lastValue
-            capabilities[capability]['value'] = device.getCapabilityValue(capability);
-            capabilities[capability]['lastUpdated'] = logEntries.values.pop().t;
-            capabilities[capability]['history'] = logEntries.values;
-            capabilities[capability]['name'] = deviceLog.title;
+            const capabilityItem = {
+                type: capability,
+                value: device.getCapabilityValue(capability),
+                lastUpdated: logEntries.values.pop().t,
+                history: logEntries.values,
+                name: deviceLog.title,
+            };
             if (mapping && mapping.min && mapping.max) {
-                capabilities[capability]['min'] = device.getSetting(mapping.min);
-                capabilities[capability]['max'] = device.getSetting(mapping.max);
-                capabilities[capability]['unit'] = deviceLog.unit;
+                capabilityItem['min'] = device.getSetting(mapping.min);
+                capabilityItem['max'] = device.getSetting(mapping.max);
+                capabilityItem['unit'] = deviceLog.unit;
             }
+            capabilities.push(capabilityItem);
         }
+
         return {
             _id: await device.getDeviceData('id'),
             name: device.getName(),
@@ -541,6 +543,98 @@ module.exports = class HomeyMiFlora extends Homey.App {
         return (0.19) * ratio ** 8;
     }
 
+    async syncPlantMonitor() {
+        this.homeyAPI = await HomeyAPI.forCurrentHomey(this.homey);
+        const logs = await this.homeyAPI.insights.getLogs();
+
+        for (const device of this.devices) {
+            const deviceId = await device.getDeviceData('id');
+            const capabilitySensors = [];
+            const capabilityRanges = [];
+            for (const capability of device.getCapabilities()) {
+                const deviceLog = logs.find(log => {
+                    return log.uriObj.id === 'd9abc6ae-827f-41a2-b830-1542bb444031' && log.id === capability;
+                });
+
+                if (!deviceLog) {
+                    continue;
+                }
+
+                const logEntries = await this.homeyAPI.insights.getLogEntries({
+                    uri: deviceLog.uri,
+                    id: deviceLog.id,
+                });
+
+                if (logEntries.values.length === 0) {
+                    continue;
+                }
+
+                const mapping = this.homey.app.thresholdMapping[capability];
+console.log(capability);
+console.log(mapping);
+                capabilitySensors.push({
+                    type: capability,
+                    name: deviceLog.title,
+                    value: device.getCapabilityValue(capability),
+                    lastUpdated: logEntries.values.pop().t,
+                    history: logEntries.values,
+                });
+
+                if (mapping && mapping.min && mapping.max) {
+                    capabilityRanges.push({
+                        type: capability,
+                        min: await device.getSetting(mapping.min),
+                        max: await device.getSetting(mapping.max),
+                        unit: logEntries.values.pop().t.unit,
+                    });
+                }
+            }
+
+            this.httpClient.request(
+                {
+                    method: 'POST',
+                    timeout: 10000,
+                    url: '/plants',
+                    data: JSON.stringify({
+                        _id: `${deviceId}_plant`,
+                        name: device.getName(),
+                        capabilityRanges,
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json',
+                    },
+                },
+            ).then(result => {
+                console.log(result.statusText);
+            }).catch(() => {
+                console.log(`plant with id ${deviceId} already exist`);
+            });
+
+            this.httpClient.request(
+                {
+                    method: 'POST',
+                    timeout: 10000,
+                    url: '/devices',
+                    data: JSON.stringify({
+                        _id: `${deviceId}_device`,
+                        name: `sensor ${device.getName()} `,
+                        plant: `${deviceId}_plant`,
+                        capabilitySensors,
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json',
+                    },
+                },
+            ).then(result => {
+                console.log(result.statusText);
+            }).catch(() => {
+                console.log(`device with id ${deviceId} already exist`);
+            });
+        }
+    }
+
     createDevices() {
         this.homey.app.getApiDevices().then(apiDevices => {
             for (const apiDevice of apiDevices) {
@@ -548,15 +642,17 @@ module.exports = class HomeyMiFlora extends Homey.App {
                     {
                         method: 'POST',
                         timeout: 10000,
-                        url: 'https://modern-starfish-83.loca.lt/api/devices',
-                        body: JSON.stringify(apiDevice),
+                        url: '/devices',
+                        data: JSON.stringify(apiDevice),
                         headers: {
                             'Content-Type': 'application/json',
                             Accept: 'application/json',
                         },
                     },
                 ).then(result => {
-                    console.log(result);
+                    console.log(result.statusText);
+                }).catch(() => {
+                    console.log(`device: ${apiDevice._id} already exist`);
                 });
             }
         });
@@ -576,7 +672,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
             {
                 method: 'PATCH',
                 timeout: 10000,
-                url: `https://modern-starfish-83.loca.lt/api/devices/${apiDevice.id.toString()}`,
+                url: `/devices/${apiDevice.id.toString()}`,
                 data: JSON.stringify(apiDevice),
                 headers: {
                     'Content-Type': 'application/json',
@@ -584,7 +680,9 @@ module.exports = class HomeyMiFlora extends Homey.App {
                 },
             },
         ).then(result => {
-            console.log(result);
+            console.log(result.statusText);
+        }).catch(e => {
+            console.log(e.toString());
         });
     }
 
