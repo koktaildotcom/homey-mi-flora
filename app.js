@@ -515,20 +515,18 @@ module.exports = class HomeyMiFlora extends Homey.App {
                     history: logEntries.values,
                 });
 
-                if (mapping.min && mapping.max) {
-                    let min = 0;
-                    let max = 100;
-                    if (mapping) {
-                        min = await device.getSetting(mapping.min);
-                        max = await device.getSetting(mapping.max);
-                    }
-                    capabilityRanges.push({
-                        type: capability,
-                        min,
-                        max,
-                        unit: logEntries.values.pop().t.unit,
-                    });
+                let min = 0;
+                let max = 100;
+                if (mapping) {
+                    min = await device.getSetting(mapping.min);
+                    max = await device.getSetting(mapping.max);
                 }
+                capabilityRanges.push({
+                    type: capability,
+                    min,
+                    max,
+                    unit: 'todo',
+                });
             }
 
             this.httpClient.request(
