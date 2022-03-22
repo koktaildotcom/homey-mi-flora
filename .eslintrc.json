@@ -1,6 +1,12 @@
 {
   "extends": "athom",
   "rules": {
-    "no-console": "off"
+    "no-console": "off",
+    "node/no-unsupported-features/es-syntax": "off",
+    "no-prototype-builtins": "off",
+    "indent": [
+      "error",
+      4
+    ]
   }
 }

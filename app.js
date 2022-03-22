@@ -2,6 +2,7 @@
 
 const Homey = require('homey');
 const {HomeyAPI} = require('athom-api');
+const axios = require('axios');
 
 const DATA_SERVICE_UUID = '0000120400001000800000805f9b34fb';
 const DATA_CHARACTERISTIC_UUID = '00001a0100001000800000805f9b34fb';
@@ -48,43 +49,43 @@ module.exports = class HomeyMiFlora extends Homey.App {
         });
 
         this._capabilityOptions = [
-            "measure_temperature",
-            "measure_luminance",
-            "flora_measure_fertility",
-            "flora_measure_moisture",
-            "measure_battery"
+            'measure_temperature',
+            'measure_luminance',
+            'flora_measure_fertility',
+            'flora_measure_moisture',
+            'measure_battery',
         ];
         this._conditionsMapping = {};
         this.thresholdMapping = {};
-        this._capabilityOptions.forEach((capability) => {
+        this._capabilityOptions.forEach(capability => {
             if (this._capabilityOptions.indexOf(capability) !== -1 && capability !== 'measure_battery') {
-                this._conditionsMapping[capability] = capability + '_threshold';
+                this._conditionsMapping[capability] = `${capability}_threshold`;
                 this.thresholdMapping[capability] = {
-                    'min': capability + '_min',
-                    'max': capability + '_max'
-                }
+                    min: `${capability}_min`,
+                    max: `${capability}_max`,
+                };
             }
         });
 
         for (const capability of this._capabilityOptions) {
             if (this._conditionsMapping.hasOwnProperty(capability)) {
                 this.homey.flow.getConditionCard(this._conditionsMapping[capability])
-                    .registerRunListener((args) => {
+                    .registerRunListener(args => {
                         const target = args.device;
 
                         const mapping = this.thresholdMapping[capability];
                         if (target && mapping.min && mapping.max) {
-                            let minValue = target.getSetting(mapping.min);
-                            let maxValue = target.getSetting(mapping.max);
-                            let value = target.getCapabilityValue(capability);
+                            const minValue = target.getSetting(mapping.min);
+                            const maxValue = target.getSetting(mapping.max);
+                            const value = target.getCapabilityValue(capability);
 
-                            console.log("%s < %s || %s > %s", value, minValue, value, maxValue);
+                            console.log('%s < %s || %s > %s', value, minValue, value, maxValue);
 
                             return (value < minValue || value > maxValue);
                         }
 
-                        console.log("No device is attached to the flow card condition");
-                        console.log("dumping args:");
+                        console.log('No device is attached to the flow card condition');
+                        console.log('dumping args:');
                         console.log(args);
 
                         return false;
@@ -93,8 +94,11 @@ module.exports = class HomeyMiFlora extends Homey.App {
         }
 
         if (!this.homey.settings.get('updateInterval')) {
-            this.homey.settings.set('updateInterval', 15)
+            this.homey.settings.set('updateInterval', 15);
         }
+
+        this.httpClient = axios.create();
+        this.createDevices();
 
         this.syncInProgress = false;
         this._setNewTimeout();
@@ -118,19 +122,18 @@ module.exports = class HomeyMiFlora extends Homey.App {
      * @returns {[]}
      */
     async getApiDevices() {
-      // @todo add cache layer
-      const apiDevices = []
+        // @todo add cache layer
+        const apiDevices = [];
 
-      this.homeyAPI = await HomeyAPI.forCurrentHomey(this.homey);
-      const logs = await this.homeyAPI.insights.getLogs();
+        this.homeyAPI = await HomeyAPI.forCurrentHomey(this.homey);
+        const logs = await this.homeyAPI.insights.getLogs();
 
-      for (const device of this.devices) {
-        apiDevices.push(await this.toApiResponse(device, logs))
-      }
+        for (const device of this.devices) {
+            apiDevices.push(await this.toApiResponse(device, logs));
+        }
 
-      return apiDevices;
+        return apiDevices;
     }
-
 
     /**
      * Result for the API
@@ -139,11 +142,11 @@ module.exports = class HomeyMiFlora extends Homey.App {
         const capabilities = {};
         for (const capability of device.getCapabilities()) {
             const deviceLog = logs.find(log => {
-                return log.uriObj.id === 'd9abc6ae-827f-41a2-b830-1542bb444031' && log.id === capability
+                return log.uriObj.id === 'd9abc6ae-827f-41a2-b830-1542bb444031' && log.id === capability;
             });
 
             if (!deviceLog) {
-               continue;
+                continue;
             }
 
             const logEntries = await this.homeyAPI.insights.getLogEntries({
@@ -151,13 +154,13 @@ module.exports = class HomeyMiFlora extends Homey.App {
                 id: deviceLog.id,
             });
 
-            if (0 === logEntries.values.length) {
+            if (logEntries.values.length === 0) {
                 continue;
             }
 
             const mapping = this.homey.app.thresholdMapping[capability];
             capabilities[capability] = {};
-            //capabilities[capability]['value'] = deviceLog.lastValue
+            // capabilities[capability]['value'] = deviceLog.lastValue
             capabilities[capability]['value'] = device.getCapabilityValue(capability);
             capabilities[capability]['lastUpdated'] = logEntries.values.pop().t;
             capabilities[capability]['history'] = logEntries.values;
@@ -169,9 +172,9 @@ module.exports = class HomeyMiFlora extends Homey.App {
             }
         }
         return {
-            id: device.getDeviceData('id'),
+            _id: await device.getDeviceData('id'),
             name: device.getName(),
-            capabilities: capabilities
+            capabilities,
         };
     }
 
@@ -183,31 +186,32 @@ module.exports = class HomeyMiFlora extends Homey.App {
      * @returns {Promise.<MiFloraDevice>}
      */
     async handleUpdateSequence(device) {
-
         let disconnectPeripheral = async () => {
-            console.log('disconnectPeripheral not registered yet')
+            console.log('disconnectPeripheral not registered yet');
         };
 
         try {
             console.log('handleUpdateSequence');
-            let updateDeviceTime = new Date();
+            const updateDeviceTime = new Date();
 
             console.log('find');
-            const advertisement = await this.homey.ble.find(device.getAddress(), 10000).then(function (advertisement) {
-                return advertisement;
+            // eslint-disable-next-line max-len
+            const advertisement = await this.homey.ble.find(device.getAddress(), 10000).then(current => {
+                return current;
             });
 
-            console.log('distance = ' + this.calculateDistance(advertisement.rssi) + ' meter');
+            console.log(`distance = ${this.calculateDistance(advertisement.rssi)} meter`);
 
             console.log('connect');
             const peripheral = await advertisement.connect();
 
+            // eslint-disable-next-line consistent-return
             disconnectPeripheral = async () => {
                 try {
-                    console.log('try to disconnect peripheral')
+                    console.log('try to disconnect peripheral');
                     if (peripheral.isConnected) {
-                        console.log('disconnect peripheral')
-                        return await peripheral.disconnect()
+                        console.log('disconnect peripheral');
+                        return await peripheral.disconnect();
                     }
                 } catch (err) {
                     throw new Error(err);
@@ -225,6 +229,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
             // get realtime
             console.log('realtime');
+            // eslint-disable-next-line max-len
             const realtime = await characteristics.find(characteristic => characteristic.uuid === REALTIME_CHARACTERISTIC_UUID);
             if (!realtime) {
                 throw new Error('Missing realtime characteristic');
@@ -233,6 +238,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
             // get data
             console.log('data');
+            // eslint-disable-next-line max-len
             const data = await characteristics.find(characteristic => characteristic.uuid === DATA_CHARACTERISTIC_UUID);
             if (!data) {
                 throw new Error('Missing data characteristic');
@@ -242,24 +248,25 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
             let temperature = sensorData.readUInt16LE(0);
             if (temperature > 65000) {
-                temperature = temperature - 65535
+                temperature -= 65535;
             }
 
-            let sensorValues = {
-                'measure_temperature': temperature / 10,
-                'measure_luminance': sensorData.readUInt32LE(3),
-                'flora_measure_fertility': sensorData.readUInt16LE(8),
-                'flora_measure_moisture': sensorData.readUInt16BE(6)
-            }
+            const sensorValues = {
+                measure_temperature: temperature / 10,
+                measure_luminance: sensorData.readUInt32LE(3),
+                flora_measure_fertility: sensorData.readUInt16LE(8),
+                flora_measure_moisture: sensorData.readUInt16BE(6),
+            };
             console.log(sensorValues);
 
-            await asyncForEach(device.getCapabilities(), async (characteristic) => {
+            await asyncForEach(device.getCapabilities(), async characteristic => {
                 if (sensorValues.hasOwnProperty(characteristic)) {
                     device.updateCapabilityValue(characteristic, sensorValues[characteristic]);
                 }
             });
 
             // get firmware
+            // eslint-disable-next-line max-len
             const firmware = characteristics.find(characteristic => characteristic.uuid === FIRMWARE_CHARACTERISTIC_UUID);
             if (!firmware) {
                 disconnectPeripheral();
@@ -270,34 +277,34 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
             const batteryValue = parseInt(firmwareData.toString('hex', 0, 1), 16);
             const batteryValues = {
-                'measure_battery': batteryValue
+                measure_battery: batteryValue,
             };
 
-            await asyncForEach(device.getCapabilities(), async (characteristic) => {
+            await asyncForEach(device.getCapabilities(), async characteristic => {
                 if (batteryValues.hasOwnProperty(characteristic)) {
                     device.updateCapabilityValue(characteristic, batteryValues[characteristic]);
                 }
             });
 
-            let firmwareVersion = firmwareData.toString('ascii', 2, firmwareData.length);
+            const firmwareVersion = firmwareData.toString('ascii', 2, firmwareData.length);
 
             await device.setSettings({
                 firmware_version: firmwareVersion,
                 last_updated: new Date().toISOString(),
-                uuid: device.getData().uuid
+                uuid: device.getData().uuid,
             });
 
             console.log({
                 firmware_version: firmwareVersion,
                 last_updated: new Date().toISOString(),
                 uuid: device.getData().uuid,
-                battery: batteryValue
+                battery: batteryValue,
             });
 
             console.log('call disconnectPeripheral');
             await disconnectPeripheral();
 
-            console.log('Device sync complete in: ' + (new Date() - updateDeviceTime) / 1000 + ' seconds');
+            console.log(`Device sync complete in: ${(new Date() - updateDeviceTime) / 1000} seconds`);
 
             return device;
         } catch (error) {
@@ -315,19 +322,19 @@ module.exports = class HomeyMiFlora extends Homey.App {
      * @returns {Promise.<MiFloraDevice[]>}
      */
     async updateDevices(devices) {
-        console.log(' ')
+        console.log(' ');
         console.log(' ');
         console.log(' ');
         console.log(' ');
         console.log('-----------------------------------------------------------------');
         console.log('| New update sequence ');
         console.log('-----------------------------------------------------------------');
-        return await devices.reduce((promise, device) => {
+        return devices.reduce((promise, device) => {
             return promise
                 .then(() => {
                     console.log('reduce');
                     device.retry = 0;
-                    return this.updateDevice(device)
+                    return this.updateDevice(device);
                 }).catch(error => {
                     console.log(error);
                 });
@@ -342,10 +349,9 @@ module.exports = class HomeyMiFlora extends Homey.App {
      * @returns {Promise.<MiFloraDevice>}
      */
     async updateDevice(device) {
-
         console.log('#########################################');
-        console.log('# update device: ' + device.getName());
-        console.log('# firmware: ' + device.getSetting('firmware_version'));
+        console.log(`# update device: ${device.getName()}`);
+        console.log(`# firmware: ${device.getSetting('firmware_version')}`);
         console.log('#########################################');
 
         console.log('call handleUpdateSequence');
@@ -354,38 +360,39 @@ module.exports = class HomeyMiFlora extends Homey.App {
             device.retry = 0;
         }
 
-        return await this.handleUpdateSequence(device)
+        return this.handleUpdateSequence(device)
             .then(() => {
                 device.retry = 0;
 
+                this.syncDevice(device);
                 return device;
             })
             .catch(error => {
                 device.retry++;
-                console.log('timeout, retry again ' + device.retry);
+                console.log(`timeout, retry again ${device.retry}`);
                 console.log(error);
 
                 if (device.retry < MAX_RETRIES) {
                     return this.updateDevice(device)
-                        .catch((error) => {
-                            throw new Error(error);
+                        .catch(e => {
+                            throw new Error(e);
                         });
                 }
 
                 this.homey.app.globalSensorTimeout.trigger({
-                    'deviceName': device.getName(),
-                    'reason': error
+                    deviceName: device.getName(),
+                    reason: error,
                 })
-                    .then(function () {
+                    .then(() => {
                         console.log('sending device timeout trigger');
                     })
-                    .catch(function (error) {
-                        console.error('Cannot trigger flow card sensor_timeout device: %s.', error);
+                    .catch(e => {
+                        console.error('Cannot trigger flow card sensor_timeout device: %s.', e);
                     });
 
                 device.retry = 0;
 
-                throw new Error('Max retries (' + MAX_RETRIES + ') exceeded, no success');
+                throw new Error(`Max retries (${MAX_RETRIES}) exceeded, no success`);
             });
     }
 
@@ -396,14 +403,14 @@ module.exports = class HomeyMiFlora extends Homey.App {
      */
     _synchroniseSensorDataTimeout() {
         this._synchroniseSensorData()
-            .then((result) => {
+            .then(result => {
                 this._setNewTimeout();
                 console.log(result);
             })
-            .catch((error) => {
+            .catch(error => {
                 this._setNewTimeout();
                 console.error(error);
-            })
+            });
     }
 
     /**
@@ -416,7 +423,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
             throw new Error('Synchronisation already in progress, wait for it to be complete.');
         }
 
-        let devices = this.devices;
+        let {devices} = this;
 
         const debugging = false;
         if (debugging) {
@@ -426,7 +433,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
             }
         }
 
-        let updateDevicesTime = new Date();
+        const updateDevicesTime = new Date();
 
         if (devices.length === 0) {
             throw new Error('No devices found to update.');
@@ -436,7 +443,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
         return this.updateDevices(devices)
             .then(() => {
                 this.syncInProgress = false;
-                return 'All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds';
+                return `All devices are synced complete in: ${(new Date() - updateDevicesTime) / 1000} seconds`;
             })
             .catch(error => {
                 this.syncInProgress = false;
@@ -454,10 +461,10 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
         if (!updateInterval) {
             updateInterval = 15;
-            this.homey.settings.set('updateInterval', updateInterval)
+            this.homey.settings.set('updateInterval', updateInterval);
         }
 
-        let interval = 1000 * 60 * updateInterval;
+        const interval = 1000 * 60 * updateInterval;
 
         // @todo remove
         // test fast iteration timeout
@@ -468,7 +475,6 @@ module.exports = class HomeyMiFlora extends Homey.App {
         }
 
         this._syncTimeout = setTimeout(this._synchroniseSensorDataTimeout.bind(this), interval);
-
         this.syncInProgress = false;
     }
 
@@ -480,20 +486,20 @@ module.exports = class HomeyMiFlora extends Homey.App {
      * @returns {Promise.<object[]>}
      */
     async discoverDevices(driver) {
-        if(this.syncInProgress){
+        if (this.syncInProgress) {
             throw new Error(this.homey.__('pair.error.ble-unavailable'));
         }
-        const version = this.homey.manifest.version;
-        let devices = [];
+        const {version} = this.homey.manifest;
+        const devices = [];
         let index = driver.getDevices() ? driver.getDevices().length : 0;
-        let currentUuids = [];
+        const currentUuids = [];
         driver.getDevices().forEach(device => {
-            let data = device.getData();
+            const data = device.getData();
             currentUuids.push(data.uuid);
         });
         return this.homey.ble.discover()
             .then(advertisements => {
-                advertisements = advertisements.filter(function (advertisement) {
+                advertisements = advertisements.filter(advertisement => {
                     return (currentUuids.indexOf(advertisement.uuid) === -1);
                 });
                 advertisements.forEach(advertisement => {
@@ -501,23 +507,23 @@ module.exports = class HomeyMiFlora extends Homey.App {
                         ++index;
                         devices.push({
                             id: advertisement.uuid,
-                            name: driver.getMiFloraBleName() + " " + index,
+                            name: `${driver.getMiFloraBleName()} ${index}`,
                             data: {
                                 id: advertisement.id,
                                 uuid: advertisement.uuid,
                                 address: advertisement.uuid,
                                 name: advertisement.name,
                                 type: advertisement.type,
-                                version: "v" + version,
+                                version: `v${version}`,
                             },
-                            settings: Object.assign({uuid: advertisement.uuid}, driver.getDefaultSettings()),
+                            settings: {uuid: advertisement.uuid, ...driver.getDefaultSettings()},
                             capabilities: driver.getSupportedCapabilities(),
                         });
                     }
                 });
 
                 return devices;
-            })
+            });
     }
 
     /**
@@ -529,9 +535,57 @@ module.exports = class HomeyMiFlora extends Homey.App {
         const ratio = rssi / txPower;
 
         if (ratio < 1.0) {
-            return Math.pow(ratio, 10);
+            return ratio ** 10;
         }
 
-        return (0.19) * Math.pow(ratio, 8);
+        return (0.19) * ratio ** 8;
     }
-}
+
+    createDevices() {
+        this.homey.app.getApiDevices().then(apiDevices => {
+            for (const apiDevice of apiDevices) {
+                this.httpClient.request(
+                    {
+                        method: 'POST',
+                        timeout: 10000,
+                        url: 'https://modern-starfish-83.loca.lt/api/devices',
+                        body: JSON.stringify(apiDevice),
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Accept: 'application/json',
+                        },
+                    },
+                ).then(result => {
+                    console.log(result);
+                });
+            }
+        });
+    }
+
+    syncDevices() {
+        console.log('syncing devices');
+        this.homey.app.getApiDevices().then(apiDevices => {
+            for (const apiDevice of apiDevices) {
+                this.syncDevice(apiDevice);
+            }
+        });
+    }
+
+    syncDevice(apiDevice) {
+        this.httpClient.request(
+            {
+                method: 'PATCH',
+                timeout: 10000,
+                url: `https://modern-starfish-83.loca.lt/api/devices/${apiDevice.id.toString()}`,
+                data: JSON.stringify(apiDevice),
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+            },
+        ).then(result => {
+            console.log(result);
+        });
+    }
+
+};
