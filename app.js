@@ -18,6 +18,7 @@ async function asyncForEach(array, callback) {
 }
 
 module.exports = class HomeyMiFlora extends Homey.App {
+
     /**
      * init the app
      */
@@ -95,7 +96,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
         }
 
         this.httpClient = axios.create({
-            baseURL: 'https://hard-baboon-83.loca.lt/api',
+            baseURL: 'http://213.108.108.186:9000',
         });
         this.syncPlantMonitor();
 
@@ -204,7 +205,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
             // get firmware
             const firmware = characteristics.find(
-                characteristic => characteristic.uuid === FIRMWARE_CHARACTERISTIC_UUID
+                characteristic => characteristic.uuid === FIRMWARE_CHARACTERISTIC_UUID,
             );
             if (!firmware) {
                 disconnectPeripheral();
@@ -298,10 +299,9 @@ module.exports = class HomeyMiFlora extends Homey.App {
             device.retry = 0;
         }
 
-        return await this.handleUpdateSequence(device)
+        return this.handleUpdateSequence(device)
             .then(() => {
                 device.retry = 0;
-                this.syncDevice(device);
 
                 return device;
             })
@@ -312,8 +312,8 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
                 if (device.retry < MAX_RETRIES) {
                     return this.updateDevice(device)
-                        .catch(error => {
-                            throw new Error(error);
+                        .catch(e => {
+                            throw new Error(e);
                         });
                 }
 
@@ -379,6 +379,9 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
         this.syncInProgress = true;
         return this.updateDevices(devices)
+            .then(() => {
+                return this.syncPlantMonitor();
+            })
             .then(() => {
                 this.syncInProgress = false;
                 return `All devices are synced complete in: ${(new Date() - updateDevicesTime) / 1000} seconds`;
@@ -480,6 +483,42 @@ module.exports = class HomeyMiFlora extends Homey.App {
     }
 
     async syncPlantMonitor() {
+        const unitMapping = {
+            measure_temperature: '°C',
+            measure_luminance: 'lux',
+            measure_nutrition: 'µS/cm',
+            measure_moisture: '%',
+            measure_battery: '%',
+        };
+
+        const devices = await this.httpClient.request(
+            {
+                method: 'GET',
+                timeout: 10000,
+                url: '/api/devices',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+            },
+        ).then(result => {
+            return result.data;
+        });
+
+        const plants = await this.httpClient.request(
+            {
+                method: 'GET',
+                timeout: 10000,
+                url: '/api/plants',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+            },
+        ).then(result => {
+            return result.data;
+        });
+
         this.homeyAPI = await HomeyAPI.forCurrentHomey(this.homey);
         const logs = await this.homeyAPI.insights.getLogs();
 
@@ -508,11 +547,12 @@ module.exports = class HomeyMiFlora extends Homey.App {
                 const mapping = this.homey.app.thresholdMapping[capability];
 
                 capabilitySensors.push({
-                    type: capability,
+                    type: capability.replace('measure_', ''),
                     name: deviceLog.title,
                     value: device.getCapabilityValue(capability),
                     lastUpdated: logEntries.values.pop().t,
                     history: logEntries.values,
+                    unit: unitMapping[capability],
                 });
 
                 let min = 0;
@@ -522,106 +562,169 @@ module.exports = class HomeyMiFlora extends Homey.App {
                     max = await device.getSetting(mapping.max);
                 }
                 capabilityRanges.push({
-                    type: capability,
+                    type: capability.replace('measure_', ''),
                     min,
                     max,
-                    unit: 'todo',
+                    unit: unitMapping[capability],
                 });
             }
 
-            this.httpClient.request(
-                {
-                    method: 'POST',
-                    timeout: 10000,
-                    url: '/plants',
-                    data: JSON.stringify({
-                        _id: `${deviceId}_plant`,
-                        name: device.getName(),
-                        capabilityRanges,
-                    }),
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                    },
-                },
-            ).then(result => {
-                console.log(result.statusText);
-            }).catch(() => {
-                console.log(`plant with id ${deviceId} already exist`);
-            });
+            const plantKey = `${deviceId}_plant`;
+            const deviceKey = `${deviceId}_device`;
 
-            this.httpClient.request(
-                {
-                    method: 'POST',
-                    timeout: 10000,
-                    url: '/devices',
-                    data: JSON.stringify({
-                        _id: `${deviceId}_device`,
-                        name: `sensor ${device.getName()} `,
-                        plant: `${deviceId}_plant`,
-                        capabilitySensors,
-                    }),
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                    },
-                },
-            ).then(result => {
-                console.log(result.statusText);
-            }).catch(() => {
-                console.log(`device with id ${deviceId} already exist`);
-            });
+            // update device
+            if (!devices.find(target => target._id === deviceKey)) {
+                await this.addDeviceEntity(plantKey, JSON.stringify({
+                    _id: deviceKey,
+                    name: `sensor ${device.getName()} `,
+                    plant: plantKey,
+                    capabilitySensors,
+                }));
+            } else {
+                await this.updateDeviceEntity(
+                    deviceKey,
+                    capabilitySensors,
+                    plantKey,
+                    device.getName(),
+                );
+            }
+
+            // update plant
+            if (!plants.find(target => target._id === plantKey)) {
+                await this.addPlantEntity(deviceKey, JSON.stringify({
+                    _id: plantKey,
+                    name: device.getName(),
+                    capabilityRanges,
+                }));
+            } else {
+                await this.updatePlantEntity(
+                    plantKey,
+                    capabilityRanges,
+                    device.getName(),
+                );
+            }
         }
     }
 
-    createDevices() {
-        this.homey.app.getApiDevices().then(apiDevices => {
-            for (const apiDevice of apiDevices) {
-                this.httpClient.request(
-                    {
-                        method: 'POST',
-                        timeout: 10000,
-                        url: '/devices',
-                        data: JSON.stringify(apiDevice),
-                        headers: {
-                            'Content-Type': 'application/json',
-                            Accept: 'application/json',
-                        },
-                    },
-                ).then(result => {
-                    console.log(result.statusText);
-                }).catch(() => {
-                    console.log(`device: ${apiDevice._id} already exist`);
-                });
-            }
-        });
-    }
-
-    syncDevices() {
-        console.log('syncing devices');
-        this.homey.app.getApiDevices().then(apiDevices => {
-            for (const apiDevice of apiDevices) {
-                this.syncDevice(apiDevice);
-            }
-        });
-    }
-
-    syncDevice(apiDevice) {
-        this.httpClient.request(
+    async addDeviceEntity(deviceKey, data) {
+        await this.httpClient.request(
             {
-                method: 'PATCH',
+                method: 'POST',
                 timeout: 10000,
-                url: `/devices/${apiDevice.id.toString()}`,
-                data: JSON.stringify(apiDevice),
+                url: '/api/devices',
+                data,
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json',
                 },
             },
-        ).then(result => {
-            console.log(result.statusText);
-        }).catch(e => {
-            console.log(e.toString());
+        )
+            .then(response => response.data)
+            .catch(e => {
+                console.log(`POST /api/devices ${e.response.status} ${e.response.statusText}`);
+                throw new Error('break');
+            });
+    }
+
+    async updateDeviceEntity(deviceKey, capabilitySensors, plantId, deviceName) {
+        const device = await this.httpClient.request(
+            {
+                method: 'GET',
+                timeout: 10000,
+                url: `/api/devices/${deviceKey}`,
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+            },
+        )
+            .then(response => response.data)
+            .catch(e => {
+                console.log(`GET /api/devices/${deviceKey} ${e.response.status} ${e.response.statusText}`);
+                throw new Error('break');
+            });
+
+        console.log(device);
+
+        device.name = deviceName;
+        device.capabilitySensors = capabilitySensors;
+        device.plant = plantId;
+
+        await this.httpClient.request(
+            {
+                method: 'PATCH',
+                timeout: 10000,
+                url: `/api/devices/${deviceKey}`,
+                data: JSON.stringify(device),
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+            },
+        ).catch(e => {
+            console.log(`PATCH /api/devices/${deviceKey} ${e.response.status} ${e.response.statusText}`);
+            throw new Error('break');
         });
     }
+
+    async addPlantEntity(plantKey, data) {
+        await this.httpClient.request(
+            {
+                method: 'POST',
+                timeout: 10000,
+                url: '/api/plants',
+                data,
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+            },
+        )
+            .then(response => response.data)
+            .catch(e => {
+                console.log(`POST /api/plants ${e.response.status} ${e.response.statusText}`);
+                throw new Error('break');
+            });
+    }
+
+    async updatePlantEntity(plantKey, capabilityRanges, plantName) {
+        const plant = await this.httpClient.request(
+            {
+                method: 'GET',
+                timeout: 10000,
+                url: `/api/plants/${plantKey}`,
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+            },
+        )
+            .then(response => response.data)
+            .catch(e => {
+                console.log(`GET /api/plants/${plantKey} ${e.response.status} ${e.response.statusText}`);
+                throw new Error('break');
+            });
+
+        console.log(plant);
+
+        plant.capabilityRanges = capabilityRanges;
+        plant.name = plantName;
+
+        await this.httpClient.request(
+            {
+                method: 'PATCH',
+                timeout: 10000,
+                url: `/api/plants/${plantKey}`,
+                data: JSON.stringify(plant),
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+            },
+        ).catch(e => {
+            console.log(`PATCH /api/plants/${plantKey} ${e.response.status} ${e.response.statusText}`);
+            throw new Error('break');
+        });
+    }
+
 };
