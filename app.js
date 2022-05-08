@@ -96,7 +96,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
         }
 
         this.httpClient = axios.create({
-            baseURL: 'http://213.108.108.186:9000',
+            baseURL: 'http://213.108.108.186',
         });
         this.syncPlantMonitor();
 
@@ -324,8 +324,8 @@ module.exports = class HomeyMiFlora extends Homey.App {
                     .then(() => {
                         console.log('sending device timeout trigger');
                     })
-                    .catch(error => {
-                        console.error('Cannot trigger flow card sensor_timeout device: %s.', error);
+                    .catch(e => {
+                        console.error('Cannot trigger flow card sensor_timeout device: %s.', e);
                     });
 
                 device.retry = 0;
@@ -524,11 +524,15 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
         for (const device of this.devices) {
             const deviceId = await device.getDeviceData('id');
+            const homeyDeviceId = await this.findHomeyDeviceId(device);
+            if (!homeyDeviceId) {
+                return;
+            }
             const capabilitySensors = [];
             const capabilityRanges = [];
             for (const capability of device.getCapabilities()) {
                 const deviceLog = logs.find(log => {
-                    return log.uriObj.id === 'd9abc6ae-827f-41a2-b830-1542bb444031' && log.id === capability;
+                    return log.uriObj.id === homeyDeviceId && log.id === capability;
                 });
 
                 if (!deviceLog) {
@@ -549,10 +553,13 @@ module.exports = class HomeyMiFlora extends Homey.App {
                 capabilitySensors.push({
                     type: capability.replace('measure_', ''),
                     name: deviceLog.title,
-                    value: device.getCapabilityValue(capability),
-                    lastUpdated: logEntries.values.pop().t,
-                    history: logEntries.values,
                     unit: unitMapping[capability],
+                    history: logEntries.values.map(log => {
+                        return {
+                            value: log.v,
+                            lastUpdated: log.t,
+                        };
+                    }),
                 });
 
                 let min = 0;
@@ -606,6 +613,24 @@ module.exports = class HomeyMiFlora extends Homey.App {
         }
     }
 
+    async findHomeyDeviceId(device) {
+        const deviceId = await device.getDeviceData('id');
+        if (!deviceId) {
+            return null;
+        }
+        const sym = Object.getOwnPropertySymbols(device.driver).find(symbol => {
+            return String(symbol) === 'Symbol(devicesById)';
+        });
+        const mapping = device.driver[sym];
+        for (const homeyId in mapping) {
+            if (mapping[homeyId].id === deviceId) {
+                return homeyId;
+            }
+        }
+
+        return null;
+    }
+
     async addDeviceEntity(deviceKey, data) {
         await this.httpClient.request(
             {
@@ -643,8 +668,6 @@ module.exports = class HomeyMiFlora extends Homey.App {
                 console.log(`GET /api/devices/${deviceKey} ${e.response.status} ${e.response.statusText}`);
                 throw new Error('break');
             });
-
-        console.log(device);
 
         device.name = deviceName;
         device.capabilitySensors = capabilitySensors;
@@ -704,8 +727,6 @@ module.exports = class HomeyMiFlora extends Homey.App {
                 console.log(`GET /api/plants/${plantKey} ${e.response.status} ${e.response.statusText}`);
                 throw new Error('break');
             });
-
-        console.log(plant);
 
         plant.capabilityRanges = capabilityRanges;
         plant.name = plantName;
