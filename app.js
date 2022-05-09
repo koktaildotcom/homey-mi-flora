@@ -96,7 +96,8 @@ module.exports = class HomeyMiFlora extends Homey.App {
         }
 
         this.httpClient = axios.create({
-            baseURL: 'https://lemon-schools-lose-204-168-151-138.loca.lt',
+            // baseURL: 'http://213.108.108.186',
+            baseURL: 'https://violet-donkeys-try-204-168-151-138.loca.lt',
         });
         this.syncPlantMonitor();
 
@@ -583,7 +584,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
             if (!devices.find(target => target._id === deviceKey)) {
                 await this.addDeviceEntity(plantKey, JSON.stringify({
                     _id: deviceKey,
-                    uuid: device.getData().uuid,
+                    uuid: device.getData().uuid.split(/(.{2})/).filter(O=>O).map(string => string.toUpperCase()).join(':'),
                     name: `sensor ${device.getName()} `,
                     plant: plantKey,
                     capabilitySensors,
