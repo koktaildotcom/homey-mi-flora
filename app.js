@@ -96,8 +96,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
         }
 
         this.httpClient = axios.create({
-            // baseURL: 'http://213.108.108.186',
-            baseURL: 'https://violet-donkeys-try-204-168-151-138.loca.lt',
+            baseURL: 'http://213.108.108.186',
         });
         this.syncPlantMonitor();
 
@@ -550,17 +549,21 @@ module.exports = class HomeyMiFlora extends Homey.App {
                 }
 
                 const mapping = this.homey.app.thresholdMapping[capability];
+                const history = logEntries.values.map(log => {
+                    if (!log || !log.v) {
+                        return false;
+                    }
+                    return {
+                        value: log.v,
+                        lastUpdated: log.t,
+                    };
+                });
 
                 capabilitySensors.push({
                     type: capability.replace('measure_', ''),
                     name: deviceLog.title,
                     unit: unitMapping[capability],
-                    history: logEntries.values.map(log => {
-                        return {
-                            value: log.v,
-                            lastUpdated: log.t,
-                        };
-                    }),
+                    history: history.slice(0, 100),
                 });
 
                 let min = 0;
@@ -584,7 +587,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
             if (!devices.find(target => target._id === deviceKey)) {
                 await this.addDeviceEntity(plantKey, JSON.stringify({
                     _id: deviceKey,
-                    uuid: device.getData().uuid.split(/(.{2})/).filter(O=>O).map(string => string.toUpperCase()).join(':'),
+                    uuid: device.getData().uuid.split(/(.{2})/).filter(O => O).map(string => string.toUpperCase()).join(':'),
                     name: `sensor ${device.getName()} `,
                     plant: plantKey,
                     capabilitySensors,
