@@ -588,16 +588,33 @@ module.exports = class HomeyMiFlora extends Homey.App {
                     _id: deviceKey,
                     uuid: device.getData().uuid.split(/(.{2})/).filter(O => O).map(string => string.toUpperCase()).join(':'),
                     name: `sensor ${device.getName()} `,
+                    lastUpdatedAt: device.getSetting('last_updated'),
                     plant: plantKey,
                     capabilitySensors,
                 }));
             } else {
-                await this.updateDeviceEntity(
-                    deviceKey,
-                    capabilitySensors,
-                    plantKey,
-                    device.getName(),
-                );
+                const currentDevice = await this.httpClient.request(
+                    {
+                        method: 'GET',
+                        timeout: 10000,
+                        url: `/api/devices/${deviceKey}`,
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Accept: 'application/json',
+                        },
+                    },
+                )
+                    .then(response => response.data)
+                    .catch(e => {
+                        console.log(`GET /api/devices/${deviceKey} ${e.response.status} ${e.response.statusText}`);
+                        throw new Error('break');
+                    });
+
+                currentDevice.lastUpdatedAt = device.getSetting('last_updated');
+                // @todo merge
+                currentDevice.capabilitySensors = capabilitySensors;
+
+                await this.updateDeviceEntity(currentDevice);
             }
 
             // update plant
@@ -655,34 +672,12 @@ module.exports = class HomeyMiFlora extends Homey.App {
             });
     }
 
-    async updateDeviceEntity(deviceKey, capabilitySensors, plantId, deviceName) {
-        const device = await this.httpClient.request(
-            {
-                method: 'GET',
-                timeout: 10000,
-                url: `/api/devices/${deviceKey}`,
-                headers: {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
-                },
-            },
-        )
-            .then(response => response.data)
-            .catch(e => {
-                console.log(`GET /api/devices/${deviceKey} ${e.response.status} ${e.response.statusText}`);
-                throw new Error('break');
-            });
-
-        device.name = deviceName;
-        // @todo merge
-        device.capabilitySensors = capabilitySensors;
-        device.plant = plantId;
-
+    async updateDeviceEntity(device) {
         await this.httpClient.request(
             {
                 method: 'PATCH',
                 timeout: 10000,
-                url: `/api/devices/${deviceKey}`,
+                url: `/api/devices/${device._id}`,
                 data: JSON.stringify(device),
                 headers: {
                     'Content-Type': 'application/json',
@@ -690,7 +685,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
                 },
             },
         ).catch(e => {
-            console.log(`PATCH /api/devices/${deviceKey} ${e.response.status} ${e.response.statusText}`);
+            console.log(`PATCH /api/devices/${device._id} ${e.response.status} ${e.response.statusText}`);
             throw new Error('break');
         });
     }
