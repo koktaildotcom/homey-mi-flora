@@ -550,7 +550,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
                 const mapping = this.homey.app.thresholdMapping[capability];
                 const history = logEntries.values
-                    .filter(log => !log || !log.v)
+                    .filter(log => log && log.v)
                     .map(log => {
                         return {
                             value: log.v,
@@ -674,6 +674,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
             });
 
         device.name = deviceName;
+        // @todo merge
         device.capabilitySensors = capabilitySensors;
         device.plant = plantId;
 
