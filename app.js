@@ -549,15 +549,14 @@ module.exports = class HomeyMiFlora extends Homey.App {
                 }
 
                 const mapping = this.homey.app.thresholdMapping[capability];
-                const history = logEntries.values.map(log => {
-                    if (!log || !log.v) {
-                        return false;
-                    }
-                    return {
-                        value: log.v,
-                        lastUpdated: log.t,
-                    };
-                });
+                const history = logEntries.values
+                    .filter(log => !log || !log.v)
+                    .map(log => {
+                        return {
+                            value: log.v,
+                            lastUpdated: log.t,
+                        };
+                    });
 
                 capabilitySensors.push({
                     type: capability.replace('measure_', ''),
