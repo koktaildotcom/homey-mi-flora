@@ -2,14 +2,14 @@
 
 const MiFloraDriver = require('../../lib/MiFloraDriver.js');
 
-module.exports = class MiFloraRopotDriver extends MiFloraDriver {
+module.exports = class MiFloraSensorDriver extends MiFloraDriver {
 
   getMiFloraBleIdentification() {
-    return 'ropot';
+    return 'Grow care garden';
   }
 
   getMiFloraBleName() {
-    return 'Mi flora ropot';
+    return 'Mi flora garden care max';
   }
 
   getDefaultSettings() {
@@ -20,14 +20,18 @@ module.exports = class MiFloraRopotDriver extends MiFloraDriver {
       measure_nutrition_max: 1000,
       measure_moisture_min: 15,
       measure_moisture_max: 30,
+      measure_luminance_min: 1000,
+      measure_luminance_max: 2000,
     };
   }
 
   getSupportedCapabilities() {
     return [
       'measure_temperature',
+      'measure_luminance',
       'measure_nutrition',
       'measure_moisture',
+      'measure_battery',
     ];
   }
 

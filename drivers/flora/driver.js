@@ -9,7 +9,7 @@ module.exports = class MiFloraSensorDriver extends MiFloraDriver {
   }
 
   getMiFloraBleName() {
-    return 'Mi Flora Sensor';
+    return 'Mi flora flower care';
   }
 
   getDefaultSettings() {

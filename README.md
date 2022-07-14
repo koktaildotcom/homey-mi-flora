@@ -252,6 +252,9 @@ You can configure the timeout between polls in the app's settings.
 ### v4.0.2 - 28-01-2020
   * add german translations
   * feedback Athom
+### v4.0.3 - 14-06-2022
+  * add support for Xiaomi mi flora care max
+  * add update device action
 
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
