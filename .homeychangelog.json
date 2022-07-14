@@ -28,5 +28,8 @@
   },
   "4.0.3": {
     "en": "Add support for Xiaomi mi flora care max & add update device action"
+  },
+  "4.0.4": {
+    "en": "Bugfix resolved paths for new driver"
   }
 }
