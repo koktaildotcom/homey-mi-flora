@@ -20,6 +20,7 @@
   },
   "args": [
     {
+      "title": "device",
       "name": "device",
       "type": "device",
       "filter": "capabilities=flora_measure_moisture"

@@ -1,10 +1,10 @@
 {
-    "id": "flora",
+    "id": "flora-max",
     "name": {
-        "en": "Xiaomi mi flora sensor",
-        "nl": "Xiaomi mi flora sensor",
-        "de": "Xiaomi Mi Flora Sensor",
-        "sv": "Xiaomi mi flora sensor"
+        "en": "Xiaomi mi flora care max",
+        "nl": "Xiaomi mi flora care max",
+        "de": "Xiaomi mi flora care max",
+        "sv": "Xiaomi mi flora care max"
     },
     "platforms": [
         "local"

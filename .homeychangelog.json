@@ -25,5 +25,8 @@
   },
   "4.0.2": {
     "en": "improve German translation"
+  },
+  "4.0.3": {
+    "en": "Add support for Xiaomi mi flora care max & add update device action"
   }
 }

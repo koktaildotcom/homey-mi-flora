@@ -1,5 +1,6 @@
 {
   "id": "device_sensor_changed",
+  "type": "string",
   "title": {
     "en": "A sensor value is changed",
     "nl": "Een sensor waarde is veranderd",
@@ -9,6 +10,7 @@
   "tokens": [
     {
       "name": "report",
+      "type": "string",
       "title": {
         "en": "report",
         "nl": "rapport",
@@ -24,6 +26,7 @@
     },
     {
       "name": "value",
+      "type": "string",
       "title": {
         "en": "value",
         "nl": "waarde",
@@ -45,6 +48,7 @@
     },
     {
       "name": "sensor",
+      "type": "string",
       "title": {
         "en": "sensor",
         "nl": "sensor",
@@ -63,7 +67,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "driver_id=flora|ropot"
+      "filter": "driver_id=flora|flora-max|ropot"
     }
   ]
 }

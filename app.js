@@ -19,24 +19,25 @@ async function asyncForEach(array, callback) {
 
 module.exports = class HomeyMiFlora extends Homey.App {
 
-    /**
-     * init the app
-     */
-    onInit() {
-        console.log('Successfully init HomeyMiFlora version: %s', this.homey.manifest.version);
-        this.devices = [];
-        this.deviceSensorUpdated = this.homey.flow.getDeviceTriggerCard('device_sensor_updated');
-        this.globalSensorUpdated = this.homey.flow.getTriggerCard('sensor_updated');
-        this.deviceSensorChanged = this.homey.flow.getDeviceTriggerCard('device_sensor_changed');
-        this.globalSensorChanged = this.homey.flow.getTriggerCard('sensor_changed');
-        this.globalSensorTimeout = this.homey.flow.getTriggerCard('sensor_timeout');
-        this.globalSensorThresholdMinExceeds = this.homey.flow.getTriggerCard('sensor_threshold_min_exceeds');
-        this.deviceSensorThresholdMinExceeds = this.homey.flow.getDeviceTriggerCard('device_sensor_threshold_min_exceeds');
-        this.globalSensorThresholdMaxExceeds = this.homey.flow.getTriggerCard('sensor_threshold_max_exceeds');
-        this.deviceSensorThresholdMaxExceeds = this.homey.flow.getDeviceTriggerCard('device_sensor_threshold_max_exceeds');
-        this.globalSensorOutsideThreshold = this.homey.flow.getTriggerCard('sensor_outside_threshold');
-        this.deviceSensorOutsideThreshold = this.homey.flow.getDeviceTriggerCard('device_sensor_outside_threshold');
-        this.update = this.homey.flow.getActionCard('update');
+  /**
+   * init the app
+   */
+  onInit() {
+    console.log('Successfully init HomeyMiFlora version: %s', this.homey.manifest.version);
+    this.devices = [];
+    this.deviceSensorUpdated = this.homey.flow.getDeviceTriggerCard('device_sensor_updated');
+    this.globalSensorUpdated = this.homey.flow.getTriggerCard('sensor_updated');
+    this.deviceSensorChanged = this.homey.flow.getDeviceTriggerCard('device_sensor_changed');
+    this.globalSensorChanged = this.homey.flow.getTriggerCard('sensor_changed');
+    this.globalSensorTimeout = this.homey.flow.getTriggerCard('sensor_timeout');
+    this.globalSensorThresholdMinExceeds = this.homey.flow.getTriggerCard('sensor_threshold_min_exceeds');
+    this.deviceSensorThresholdMinExceeds = this.homey.flow.getDeviceTriggerCard('device_sensor_threshold_min_exceeds');
+    this.globalSensorThresholdMaxExceeds = this.homey.flow.getTriggerCard('sensor_threshold_max_exceeds');
+    this.deviceSensorThresholdMaxExceeds = this.homey.flow.getDeviceTriggerCard('device_sensor_threshold_max_exceeds');
+    this.globalSensorOutsideThreshold = this.homey.flow.getTriggerCard('sensor_outside_threshold');
+    this.deviceSensorOutsideThreshold = this.homey.flow.getDeviceTriggerCard('device_sensor_outside_threshold');
+    this.updateDeviceAction = this.homey.flow.getActionCard('update_device');
+    this.update = this.homey.flow.getActionCard('update');
 
         this.update.registerRunListener(async () => {
             try {
@@ -91,8 +92,33 @@ module.exports = class HomeyMiFlora extends Homey.App {
             }
         }
 
+        this.updateDeviceAction
+          .registerArgumentAutocompleteListener('sensor', async query => {
+            const sensors = this.devices
+              .map(device => {
+                return {
+                  name: device.getName(),
+                  id: device.id,
+                };
+              });
+            // @ts-ignore typescript gets confused on the mapping
+            return sensors.filter(sensor => {
+              return sensor.name.toLowerCase()
+                .includes(query.toLowerCase());
+            });
+          })
+          .registerRunListener(async data => {
+            if (data.sensor !== null) {
+              const target = this.devices.find(device => device.id === data.sensor.id);
+              if (!target) {
+                throw new Error(`Could not find device with id: ${data.sensor.id}`);
+              }
+              await this.updateDevice(target);
+            }
+          });
+
         if (!this.homey.settings.get('updateInterval')) {
-            this.homey.settings.set('updateInterval', 15);
+          this.homey.settings.set('updateInterval', 15);
         }
 
         this.httpClient = axios.create({
@@ -310,23 +336,23 @@ module.exports = class HomeyMiFlora extends Homey.App {
                 console.log(`timeout, retry again ${device.retry}`);
                 console.log(error);
 
-                if (device.retry < MAX_RETRIES) {
-                    return this.updateDevice(device)
-                        .catch(e => {
-                            throw new Error(e);
-                        });
-                }
+        if (device.retry < MAX_RETRIES) {
+          return this.updateDevice(device)
+            .catch(e => {
+              throw new Error(e);
+            });
+        }
 
-                this.homey.app.globalSensorTimeout.trigger({
-                    deviceName: device.getName(),
-                    reason: error,
-                })
-                    .then(() => {
-                        console.log('sending device timeout trigger');
-                    })
-                    .catch(e => {
-                        console.error('Cannot trigger flow card sensor_timeout device: %s.', e);
-                    });
+        this.homey.app.globalSensorTimeout.trigger({
+          deviceName: device.getName(),
+          reason: error.message,
+        })
+          .then(() => {
+            console.log('sending device timeout trigger');
+          })
+          .catch(error => {
+            console.error('Cannot trigger flow card sensor_timeout device: %s.', error);
+          });
 
                 device.retry = 0;
 

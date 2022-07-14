@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.mi.flora",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "compatibility": ">=5.0.0",
   "brandColor": "#02988c",
   "sdk": 3,
@@ -123,6 +123,7 @@
     "triggers": [
       {
         "id": "device_sensor_changed",
+        "type": "string",
         "title": {
           "en": "A sensor value is changed",
           "nl": "Een sensor waarde is veranderd",
@@ -132,6 +133,7 @@
         "tokens": [
           {
             "name": "report",
+            "type": "string",
             "title": {
               "en": "report",
               "nl": "rapport",
@@ -147,6 +149,7 @@
           },
           {
             "name": "value",
+            "type": "string",
             "title": {
               "en": "value",
               "nl": "waarde",
@@ -168,6 +171,7 @@
           },
           {
             "name": "sensor",
+            "type": "string",
             "title": {
               "en": "sensor",
               "nl": "sensor",
@@ -186,7 +190,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=flora|ropot"
+            "filter": "driver_id=flora|flora-max|ropot"
           }
         ]
       },
@@ -201,6 +205,7 @@
         "tokens": [
           {
             "name": "report",
+            "type": "string",
             "title": {
               "en": "report",
               "nl": "rapport",
@@ -216,6 +221,7 @@
           },
           {
             "name": "value",
+            "type": "string",
             "title": {
               "en": "value",
               "nl": "waarde",
@@ -237,6 +243,7 @@
           },
           {
             "name": "sensor",
+            "type": "string",
             "title": {
               "en": "sensor",
               "nl": "sensor",
@@ -255,7 +262,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=flora|ropot"
+            "filter": "driver_id=flora|flora-max|ropot"
           }
         ]
       },
@@ -270,6 +277,7 @@
         "tokens": [
           {
             "name": "report",
+            "type": "string",
             "title": {
               "en": "report",
               "nl": "rapport",
@@ -285,6 +293,7 @@
           },
           {
             "name": "value",
+            "type": "string",
             "title": {
               "en": "value",
               "nl": "waarde",
@@ -306,6 +315,7 @@
           },
           {
             "name": "sensor",
+            "type": "string",
             "title": {
               "en": "sensor",
               "nl": "sensor",
@@ -324,7 +334,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=flora|ropot"
+            "filter": "driver_id=flora|flora-max|ropot"
           }
         ]
       },
@@ -339,6 +349,7 @@
         "tokens": [
           {
             "name": "report",
+            "type": "string",
             "title": {
               "en": "report",
               "nl": "rapport",
@@ -354,6 +365,7 @@
           },
           {
             "name": "value",
+            "type": "string",
             "title": {
               "en": "value",
               "nl": "waarde",
@@ -375,6 +387,7 @@
           },
           {
             "name": "sensor",
+            "type": "string",
             "title": {
               "en": "sensor",
               "nl": "sensor",
@@ -393,7 +406,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=flora|ropot"
+            "filter": "driver_id=flora|flora-max|ropot"
           }
         ]
       },
@@ -408,6 +421,7 @@
         "tokens": [
           {
             "name": "report",
+            "type": "string",
             "title": {
               "en": "report",
               "nl": "rapport",
@@ -423,6 +437,7 @@
           },
           {
             "name": "value",
+            "type": "string",
             "title": {
               "en": "value",
               "nl": "waarde",
@@ -444,6 +459,7 @@
           },
           {
             "name": "sensor",
+            "type": "string",
             "title": {
               "en": "sensor",
               "nl": "sensor",
@@ -462,7 +478,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=flora|ropot"
+            "filter": "driver_id=flora|flora-max|ropot"
           }
         ]
       },
@@ -477,6 +493,7 @@
         "tokens": [
           {
             "name": "report",
+            "type": "string",
             "title": {
               "en": "report",
               "nl": "rapport",
@@ -492,6 +509,7 @@
           },
           {
             "name": "value",
+            "type": "string",
             "title": {
               "en": "value",
               "nl": "waarde",
@@ -513,6 +531,7 @@
           },
           {
             "name": "sensor",
+            "type": "string",
             "title": {
               "en": "sensor",
               "nl": "sensor",
@@ -528,6 +547,7 @@
           },
           {
             "name": "deviceName",
+            "type": "string",
             "title": {
               "en": "device",
               "nl": "apparaat",
@@ -553,6 +573,7 @@
         "tokens": [
           {
             "name": "report",
+            "type": "string",
             "title": {
               "en": "report",
               "nl": "rapport",
@@ -568,6 +589,7 @@
           },
           {
             "name": "value",
+            "type": "string",
             "title": {
               "en": "value",
               "nl": "waarde",
@@ -589,6 +611,7 @@
           },
           {
             "name": "sensor",
+            "type": "string",
             "title": {
               "en": "sensor",
               "nl": "sensor",
@@ -604,6 +627,7 @@
           },
           {
             "name": "deviceName",
+            "type": "string",
             "title": {
               "en": "device",
               "nl": "apparaat",
@@ -630,6 +654,7 @@
         "tokens": [
           {
             "name": "report",
+            "type": "string",
             "title": {
               "en": "report",
               "nl": "rapport",
@@ -645,6 +670,7 @@
           },
           {
             "name": "value",
+            "type": "string",
             "title": {
               "en": "value",
               "nl": "waarde",
@@ -666,6 +692,7 @@
           },
           {
             "name": "sensor",
+            "type": "string",
             "title": {
               "en": "sensor",
               "nl": "sensor",
@@ -681,6 +708,7 @@
           },
           {
             "name": "deviceName",
+            "type": "string",
             "title": {
               "en": "device",
               "nl": "apparaat",
@@ -707,6 +735,7 @@
         "tokens": [
           {
             "name": "report",
+            "type": "string",
             "title": {
               "en": "report",
               "nl": "rapport",
@@ -722,6 +751,7 @@
           },
           {
             "name": "value",
+            "type": "string",
             "title": {
               "en": "value",
               "nl": "waarde",
@@ -743,6 +773,7 @@
           },
           {
             "name": "sensor",
+            "type": "string",
             "title": {
               "en": "sensor",
               "nl": "sensor",
@@ -758,6 +789,7 @@
           },
           {
             "name": "deviceName",
+            "type": "string",
             "title": {
               "en": "device",
               "nl": "apparaat",
@@ -784,6 +816,7 @@
         "tokens": [
           {
             "name": "deviceName",
+            "type": "string",
             "title": {
               "en": "device",
               "nl": "apparaat",
@@ -799,6 +832,7 @@
           },
           {
             "name": "reason",
+            "type": "string",
             "title": {
               "en": "reason",
               "nl": "oorzaak",
@@ -825,6 +859,7 @@
         "tokens": [
           {
             "name": "report",
+            "type": "string",
             "title": {
               "en": "report",
               "nl": "rapport",
@@ -840,6 +875,7 @@
           },
           {
             "name": "value",
+            "type": "string",
             "title": {
               "en": "value",
               "nl": "waarde",
@@ -861,6 +897,7 @@
           },
           {
             "name": "sensor",
+            "type": "string",
             "title": {
               "en": "sensor",
               "nl": "sensor",
@@ -876,6 +913,7 @@
           },
           {
             "name": "deviceName",
+            "type": "string",
             "title": {
               "en": "device",
               "nl": "apparaat",
@@ -915,6 +953,7 @@
         },
         "args": [
           {
+            "title": "device",
             "name": "device",
             "type": "device",
             "filter": "capabilities=flora_measure_fertility"
@@ -944,6 +983,7 @@
         },
         "args": [
           {
+            "title": "device",
             "name": "device",
             "type": "device",
             "filter": "capabilities=flora_measure_moisture"
@@ -973,6 +1013,7 @@
         },
         "args": [
           {
+            "title": "device",
             "name": "device",
             "type": "device",
             "filter": "capabilities=measure_luminance"
@@ -1001,6 +1042,7 @@
         },
         "args": [
           {
+            "title": "device",
             "name": "device",
             "type": "device",
             "filter": "capabilities=measure_moisture"
@@ -1029,6 +1071,7 @@
         },
         "args": [
           {
+            "title": "device",
             "name": "device",
             "type": "device",
             "filter": "capabilities=measure_nutrition"
@@ -1057,6 +1100,7 @@
         },
         "args": [
           {
+            "title": "device",
             "name": "device",
             "type": "device",
             "filter": "capabilities=measure_temperature"
@@ -1073,6 +1117,39 @@
           "de": "Synchronisiere alle Sensorwerte",
           "sv": "Synkronisera alla sensorers värden"
         }
+      },
+      {
+        "id": "update_device",
+        "title": {
+          "en": "Synchronize sensor values of device",
+          "nl": "Synchroniseer sensorwaarden van apparaat",
+          "de": "Sensorwerte vom Gerät synchronisieren",
+          "sv": "Synkronisera sensorns värde för enheten"
+        },
+        "titleFormatted": {
+          "en": "Synchronize sensor values of device [[sensor]]",
+          "nl": "Synchroniseer sensorwaarden van apparaat [[sensor]]",
+          "de": "Sensorwerte vom Gerät [[sensor]] synchronisieren",
+          "sv": "Synkronisera sensorvärden från enhet [[sensor]]"
+        },
+        "args": [
+          {
+            "type": "autocomplete",
+            "name": "sensor",
+            "title": {
+              "en": "sensor",
+              "nl": "sensor",
+              "de": "sensor",
+              "sv": "sensor"
+            },
+            "placeholder": {
+              "en": "Select a device",
+              "nl": "Selecteer een apparaat",
+              "de": "Gerät auswählen",
+              "sv": "Välj en enhet"
+            }
+          }
+        ]
       }
     ]
   },
@@ -1082,8 +1159,328 @@
       "name": {
         "en": "Xiaomi mi flora sensor",
         "nl": "Xiaomi mi flora sensor",
-        "de": "Xiaomi mi flora sensor",
+        "de": "Xiaomi Mi Flora Sensor",
         "sv": "Xiaomi mi flora sensor"
+      },
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "ble"
+      ],
+      "images": {
+        "small": "drivers/flora/assets/images/small.png",
+        "large": "drivers/flora/assets/images/large.png"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_temperature",
+        "measure_luminance",
+        "measure_nutrition",
+        "measure_moisture",
+        "measure_battery"
+      ],
+      "pair": [
+        {
+          "id": "start"
+        },
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Device info",
+            "nl": "Apparaat informatie",
+            "de": "Geräteinfo",
+            "sv": "Enhetsinformation"
+          },
+          "children": [
+            {
+              "id": "firmware_version",
+              "type": "label",
+              "label": {
+                "en": "Firmware version",
+                "nl": "Firmware versie",
+                "de": "Firmware-Version",
+                "sv": "Version på mjukvara"
+              },
+              "value": ""
+            },
+            {
+              "id": "last_updated",
+              "type": "label",
+              "label": {
+                "en": "Last updated",
+                "nl": "Laatste update",
+                "de": "Letzte Aktualisierung",
+                "sv": "Senast uppdaterad"
+              },
+              "value": ""
+            },
+            {
+              "id": "uuid",
+              "type": "label",
+              "label": {
+                "en": "Device uuid address",
+                "nl": "Apparaat uuid adres",
+                "de": "Geräte uuid Adresse",
+                "sv": "Enhetens uuid-adress"
+              },
+              "value": ""
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Temperature (°C)",
+            "nl": "Temperatuur (°C)",
+            "de": "Temperatur (°C)",
+            "sv": "Temperatur (°C)"
+          },
+          "children": [
+            {
+              "id": "measure_temperature_min",
+              "type": "number",
+              "value": 0,
+              "min": 0,
+              "max": 40,
+              "label": {
+                "en": "min",
+                "nl": "min",
+                "de": "min",
+                "sv": "min"
+              },
+              "hint": {
+                "en": "The minimal threshold value for temperature.",
+                "nl": "De minimale grenswaarde voor temperatuur.",
+                "de": "Der minimale Grenzwert für die Temperatur.",
+                "sv": "Minsta värde för temperatur."
+              }
+            },
+            {
+              "id": "measure_temperature_max",
+              "type": "number",
+              "value": 0,
+              "min": 0,
+              "max": 40,
+              "label": {
+                "en": "max",
+                "nl": "max",
+                "de": "max",
+                "sv": "max"
+              },
+              "hint": {
+                "en": "The maximum threshold value for temperature.",
+                "nl": "De maximale grenswaarde voor temperatuur.",
+                "de": "Der maximale Grenzwert für die Temperatur.",
+                "sv": "Högsta värde för temperatur."
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Luminance (lx)",
+            "nl": "Lichtintensiteit (lx)",
+            "de": "Helligkeit (lx)",
+            "sv": "Luminans (lx)"
+          },
+          "children": [
+            {
+              "id": "measure_luminance_min",
+              "type": "number",
+              "value": 0,
+              "min": 0,
+              "max": 50000,
+              "label": {
+                "en": "min",
+                "nl": "min",
+                "de": "min",
+                "sv": "min"
+              },
+              "hint": {
+                "en": "The minimal threshold value for luminance.",
+                "nl": "De minimale grenswaarde voor lichtintensiteit.",
+                "de": "Der minimale Grenzwert für die Helligkeit.",
+                "sv": "Minsta värdet för luminans."
+              }
+            },
+            {
+              "id": "measure_luminance_max",
+              "type": "number",
+              "value": 0,
+              "min": 0,
+              "max": 50000,
+              "label": {
+                "en": "max",
+                "nl": "max",
+                "de": "max",
+                "sv": "max"
+              },
+              "hint": {
+                "en": "The maximum threshold value for luminance.",
+                "nl": "De maximale grenswaarde voor lichtintensiteit.",
+                "de": "Der maximale Grenzwert für die Helligkeit.",
+                "sv": "Högsta värde för luminans."
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Nutrition (µS/cm)",
+            "nl": "Voeding (µS/cm)",
+            "de": "Dünger (µS/cm)",
+            "sv": "Näring (µS/cm)"
+          },
+          "children": [
+            {
+              "id": "measure_nutrition_min",
+              "type": "number",
+              "value": 0,
+              "min": 0,
+              "max": 10000,
+              "label": {
+                "en": "min",
+                "nl": "min",
+                "de": "min",
+                "sv": "min"
+              },
+              "hint": {
+                "en": "The minimal threshold value for nutrition.",
+                "nl": "De minimale grenswaarde voor voeding.",
+                "de": "Der minimale Grenzwert für den Dünger.",
+                "sv": "Minsta värde för näring."
+              }
+            },
+            {
+              "id": "measure_nutrition_max",
+              "type": "number",
+              "value": 0,
+              "min": 0,
+              "max": 10000,
+              "label": {
+                "en": "max",
+                "nl": "max",
+                "de": "max",
+                "sv": "max"
+              },
+              "hint": {
+                "en": "The maximum threshold value for nutrition.",
+                "nl": "De maximale grenswaarde voor voeding.",
+                "de": "Der maximale Grenzwert für den Dünger.",
+                "sv": "Högsta värde för näring."
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Moisture (%)",
+            "nl": "Vochtigheid (%)",
+            "de": "Feuchtigkeit (%)",
+            "sv": "Fuktighet (%)"
+          },
+          "children": [
+            {
+              "id": "measure_moisture_min",
+              "type": "number",
+              "value": 0,
+              "min": 0,
+              "max": 100,
+              "label": {
+                "en": "min",
+                "nl": "min",
+                "de": "min",
+                "sv": "min"
+              },
+              "hint": {
+                "en": "The minimal threshold value for moisture.",
+                "nl": "De minimale grenswaarde voor vochtigheid.",
+                "de": "Der minimale Grenzwert für die Feuchtigkeit.",
+                "sv": "Minsta värde för fuktighet."
+              }
+            },
+            {
+              "id": "measure_moisture_max",
+              "type": "number",
+              "value": 0,
+              "min": 0,
+              "max": 100,
+              "label": {
+                "en": "max",
+                "nl": "max",
+                "de": "max",
+                "sv": "max"
+              },
+              "hint": {
+                "en": "The maximum threshold value for moisture.",
+                "nl": "De maximale grenswaarde voor vochtigheid.",
+                "de": "Der maximale Grenzwert für die Feuchtigkeit.",
+                "sv": "Högsta värde för fuktighet."
+              }
+            }
+          ]
+        }
+      ],
+      "mobile": {
+        "components": [
+          {
+            "id": "icon"
+          },
+          {
+            "id": "battery",
+            "capabilities": [
+              "measure_battery"
+            ]
+          },
+          {
+            "id": "sensor",
+            "capabilities": [
+              "measure_temperature",
+              "measure_luminance",
+              "measure_nutrition",
+              "measure_moisture"
+            ],
+            "options": {
+              "icons": {
+                "measure_temperature": "/assets/temperature.svg",
+                "measure_luminance": "/assets/luminance.svg",
+                "measure_nutrition": "/assets/nutritions.svg",
+                "measure_moisture": "/assets/moisture.svg"
+              }
+            }
+          }
+        ]
+      },
+      "energy": {
+        "batteries": [
+          "CR2032"
+        ]
+      }
+    },
+    {
+      "id": "flora-max",
+      "name": {
+        "en": "Xiaomi mi flora care max",
+        "nl": "Xiaomi mi flora care max",
+        "de": "Xiaomi mi flora care max",
+        "sv": "Xiaomi mi flora care max"
       },
       "platforms": [
         "local"
@@ -1402,7 +1799,7 @@
       "name": {
         "en": "Xiaomi mi flora pot",
         "nl": "Xiaomi mi flora pot",
-        "de": "Xiaomi mi flora blumentopf",
+        "de": "Xiaomi Mi Flora Blumentopf",
         "sv": "Xiaomi Mi Flora kruka"
       },
       "platforms": [
