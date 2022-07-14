@@ -9,6 +9,7 @@
   "tokens": [
     {
       "name": "deviceName",
+      "type": "string",
       "title": {
         "en": "device",
         "nl": "apparaat",
@@ -24,6 +25,7 @@
     },
     {
       "name": "reason",
+      "type": "string",
       "title": {
         "en": "reason",
         "nl": "oorzaak",
