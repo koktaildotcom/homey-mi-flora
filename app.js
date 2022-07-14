@@ -175,8 +175,6 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
       const services = await peripheral.discoverServices();
 
-      console.log(services);
-
       console.log('dataService');
       const dataService = await services.find(service => service.uuid === DATA_SERVICE_UUID);
       if (!dataService) {
