@@ -1,0 +1,33 @@
+{
+  "id": "update_device",
+  "title": {
+    "en": "Synchronise sensor values",
+    "nl": "Synchroniseer sensor waarden",
+    "de": "Synchronisiere Sensorwerte",
+    "sv": "Synkronisera sensorers värden"
+  },
+  "titleFormatted": {
+    "en": "Synchronise sensor values of [[sensor]]",
+    "nl": "Synchroniseer sensor waarden van [[sensor]]",
+    "de": "Synchronisiere Sensorwerte des [[sensor]]",
+    "sv": "Synkronisera sensorers värden of [[sensor]]"
+  },
+  "args": [
+    {
+      "type": "autocomplete",
+      "name": "sensor",
+      "title": {
+        "en": "sensor",
+        "nl": "sensor",
+        "de": "sensor",
+        "sv": "sensor"
+      },
+      "placeholder": {
+        "en": "Select a sensor",
+        "nl": "Selecteer een sensor",
+        "de": "Wählen Sie einen Sensor aus",
+        "sv": "Välj en sensor"
+      }
+    }
+  ]
+}

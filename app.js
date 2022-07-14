@@ -34,6 +34,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
     this.deviceSensorThresholdMaxExceeds = this.homey.flow.getDeviceTriggerCard('device_sensor_threshold_max_exceeds');
     this.globalSensorOutsideThreshold = this.homey.flow.getTriggerCard('sensor_outside_threshold');
     this.deviceSensorOutsideThreshold = this.homey.flow.getDeviceTriggerCard('device_sensor_outside_threshold');
+    this.updateDeviceAction = this.homey.flow.getActionCard('update_device');
     this.update = this.homey.flow.getActionCard('update');
 
     this.update.registerRunListener(async () => {
@@ -88,6 +89,31 @@ module.exports = class HomeyMiFlora extends Homey.App {
           });
       }
     }
+
+    this.updateDeviceAction
+      .registerArgumentAutocompleteListener('sensor', async query => {
+        const sensors = this.devices
+          .map(device => {
+            return {
+              name: device.getName(),
+              id: device.id,
+            };
+          });
+        // @ts-ignore typescript gets confused on the mapping
+        return sensors.filter(sensor => {
+          return sensor.name.toLowerCase()
+            .includes(query.toLowerCase());
+        });
+      })
+      .registerRunListener(async data => {
+        if (data.sensor !== null) {
+          const target = this.devices.find(device => device.id === data.sensor.id);
+          if (!target) {
+            throw new Error(`Could not find device with id: ${data.sensor.id}`);
+          }
+          await this.updateDevice(target);
+        }
+      });
 
     if (!this.homey.settings.get('updateInterval')) {
       this.homey.settings.set('updateInterval', 15);
@@ -148,6 +174,8 @@ module.exports = class HomeyMiFlora extends Homey.App {
       };
 
       const services = await peripheral.discoverServices();
+
+      console.log(services);
 
       console.log('dataService');
       const dataService = await services.find(service => service.uuid === DATA_SERVICE_UUID);
@@ -304,14 +332,14 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
         if (device.retry < MAX_RETRIES) {
           return this.updateDevice(device)
-            .catch(error => {
-              throw new Error(error);
+            .catch(e => {
+              throw new Error(e);
             });
         }
 
         this.homey.app.globalSensorTimeout.trigger({
           deviceName: device.getName(),
-          reason: error,
+          reason: error.message,
         })
           .then(() => {
             console.log('sending device timeout trigger');
