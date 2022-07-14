@@ -13,8 +13,8 @@
         "ble"
     ],
     "images": {
-        "small": "drivers/flora/assets/images/small.png",
-        "large": "drivers/flora/assets/images/large.png"
+        "small": "drivers/flora-max/assets/images/small.png",
+        "large": "drivers/flora-max/assets/images/large.png"
     },
     "class": "sensor",
     "capabilities": [
