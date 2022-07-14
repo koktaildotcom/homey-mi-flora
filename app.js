@@ -96,7 +96,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
         }
 
         this.httpClient = axios.create({
-            baseURL: 'http://213.108.108.186',
+            baseURL: 'http://213.108.108.187',
         });
         this.syncPlantMonitor();
 
