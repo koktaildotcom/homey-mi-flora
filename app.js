@@ -20,8 +20,8 @@ async function asyncForEach(array, callback) {
 module.exports = class HomeyMiFlora extends Homey.App {
 
     /**
-   * init the app
-   */
+     * init the app
+     */
     onInit() {
         console.log('Successfully init HomeyMiFlora version: %s', this.homey.manifest.version);
         this.devices = [];
@@ -612,6 +612,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
             if (!devices.find(target => target._id === deviceKey)) {
                 await this.addDeviceEntity(plantKey, JSON.stringify({
                     _id: deviceKey,
+                    uid: 'YvacSs8u07Xzi6nNyuIvKClryQT2',
                     uuid: device.getData().uuid.split(/(.{2})/).filter(O => O).map(string => string.toUpperCase()).join(':'),
                     name: `sensor ${device.getName()} `,
                     lastUpdatedAt: device.getSetting('last_updated'),
@@ -647,6 +648,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
             if (!plants.find(target => target._id === plantKey)) {
                 await this.addPlantEntity(deviceKey, JSON.stringify({
                     _id: plantKey,
+                    uid: 'YvacSs8u07Xzi6nNyuIvKClryQT2',
                     name: device.getName(),
                     capabilityRanges,
                 }));
@@ -699,6 +701,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
     }
 
     async updateDeviceEntity(device) {
+        device.uid = 'YvacSs8u07Xzi6nNyuIvKClryQT2';
         await this.httpClient.request(
             {
                 method: 'PATCH',
@@ -756,6 +759,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
         plant.capabilityRanges = capabilityRanges;
         plant.name = plantName;
+        plant.uid = 'YvacSs8u07Xzi6nNyuIvKClryQT2';
 
         await this.httpClient.request(
             {
