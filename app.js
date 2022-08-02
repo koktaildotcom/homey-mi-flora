@@ -588,7 +588,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
                     type: capability.replace('measure_', ''),
                     name: deviceLog.title,
                     unit: unitMapping[capability],
-                    history: history.slice(1, 100),
+                    history: history.slice(-100),
                 });
 
                 let min = 0;
