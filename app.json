@@ -19,8 +19,7 @@
   "category": [
     "appliances",
     "tools",
-    "climate",
-    "appliances"
+    "climate"
   ],
   "permissions": [
     "homey:wireless:ble",

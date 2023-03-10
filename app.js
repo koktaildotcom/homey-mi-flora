@@ -223,6 +223,8 @@ module.exports = class HomeyMiFlora extends Homey.App {
                 measure_moisture: sensorData.readUInt16BE(6),
             };
 
+            console.log(sensorValues);
+
             await asyncForEach(device.getCapabilities(), async characteristic => {
                 if (sensorValues.hasOwnProperty(characteristic)) {
                     device.updateCapabilityValue(characteristic, sensorValues[characteristic]);
@@ -279,32 +281,32 @@ module.exports = class HomeyMiFlora extends Homey.App {
         }
     }
 
-    /**
-     * update the devices one by one
-     *
-     * @param devices MiFloraDevice[]
-     *
-     * @returns {Promise.<MiFloraDevice[]>}
-     */
-    async updateDevices(devices) {
-        console.log(' ');
-        console.log(' ');
-        console.log(' ');
-        console.log(' ');
-        console.log('-----------------------------------------------------------------');
-        console.log('| New update sequence ');
-        console.log('-----------------------------------------------------------------');
-        return await devices.reduce((promise, device) => {
-            return promise
-                .then(() => {
-                    console.log('reduce');
-                    device.retry = 0;
-                    return this.updateDevice(device);
-                }).catch(error => {
-                    console.log(error);
-                });
-        }, Promise.resolve());
-    }
+  /**
+   * update the devices one by one
+   *
+   * @param devices MiFloraDevice[]
+   *
+   * @returns {Promise.<MiFloraDevice[]>}
+   */
+  async updateDevices(devices) {
+    console.log(' ');
+    console.log(' ');
+    console.log(' ');
+    console.log(' ');
+    console.log('-----------------------------------------------------------------');
+    console.log('| New update sequence ');
+    console.log('-----------------------------------------------------------------');
+    return devices.reduce((promise, device) => {
+      return promise
+        .then(() => {
+          console.log('reduce');
+          device.retry = 0;
+          return this.updateDevice(device);
+        }).catch(error => {
+          console.log(error);
+        });
+    }, Promise.resolve());
+  }
 
     /**
      * update the devices one by one
@@ -343,16 +345,16 @@ module.exports = class HomeyMiFlora extends Homey.App {
                         });
                 }
 
-                this.homey.app.globalSensorTimeout.trigger({
-                    deviceName: device.getName(),
-                    reason: error.message,
-                })
-                    .then(() => {
-                        console.log('sending device timeout trigger');
-                    })
-                    .catch(error => {
-                        console.error('Cannot trigger flow card sensor_timeout device: %s.', error);
-                    });
+        this.homey.app.globalSensorTimeout.trigger({
+          deviceName: device.getName() ?? device.id,
+          reason: error.message ?? 'Unknown error',
+        })
+          .then(() => {
+            console.log('sending device timeout trigger');
+          })
+          .catch(e => {
+            console.error('Cannot trigger flow card sensor_timeout device: %s.', e);
+          });
 
                 device.retry = 0;
 
