@@ -122,7 +122,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
         }
 
         this.httpClient = axios.create({
-            baseURL: 'http://213.108.108.187',
+            baseURL: 'https://plantmonitor-6c496.ew.r.appspot.com',
         });
         this.syncPlantMonitor();
 
@@ -281,32 +281,32 @@ module.exports = class HomeyMiFlora extends Homey.App {
         }
     }
 
-  /**
+    /**
    * update the devices one by one
    *
    * @param devices MiFloraDevice[]
    *
    * @returns {Promise.<MiFloraDevice[]>}
    */
-  async updateDevices(devices) {
-    console.log(' ');
-    console.log(' ');
-    console.log(' ');
-    console.log(' ');
-    console.log('-----------------------------------------------------------------');
-    console.log('| New update sequence ');
-    console.log('-----------------------------------------------------------------');
-    return devices.reduce((promise, device) => {
-      return promise
-        .then(() => {
-          console.log('reduce');
-          device.retry = 0;
-          return this.updateDevice(device);
-        }).catch(error => {
-          console.log(error);
-        });
-    }, Promise.resolve());
-  }
+    async updateDevices(devices) {
+        console.log(' ');
+        console.log(' ');
+        console.log(' ');
+        console.log(' ');
+        console.log('-----------------------------------------------------------------');
+        console.log('| New update sequence ');
+        console.log('-----------------------------------------------------------------');
+        return devices.reduce((promise, device) => {
+            return promise
+                .then(() => {
+                    console.log('reduce');
+                    device.retry = 0;
+                    return this.updateDevice(device);
+                }).catch(error => {
+                    console.log(error);
+                });
+        }, Promise.resolve());
+    }
 
     /**
      * update the devices one by one
@@ -345,16 +345,16 @@ module.exports = class HomeyMiFlora extends Homey.App {
                         });
                 }
 
-        this.homey.app.globalSensorTimeout.trigger({
-          deviceName: device.getName() ?? device.id,
-          reason: error.message ?? 'Unknown error',
-        })
-          .then(() => {
-            console.log('sending device timeout trigger');
-          })
-          .catch(e => {
-            console.error('Cannot trigger flow card sensor_timeout device: %s.', e);
-          });
+                this.homey.app.globalSensorTimeout.trigger({
+                    deviceName: device.getName() ?? device.id,
+                    reason: error.message ?? 'Unknown error',
+                })
+                    .then(() => {
+                        console.log('sending device timeout trigger');
+                    })
+                    .catch(e => {
+                        console.error('Cannot trigger flow card sensor_timeout device: %s.', e);
+                    });
 
                 device.retry = 0;
 
@@ -437,12 +437,12 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
         // @todo remove
         // test fast iteration timeout
-        // interval = 1000 * 5;
+        // const interval = 1000 * 3;
 
         if (this._syncTimeout) {
             clearTimeout(this._syncTimeout);
         }
-
+        this.syncPlantMonitor();
         this._syncTimeout = setTimeout(this._synchroniseSensorDataTimeout.bind(this), interval);
         this.syncInProgress = false;
     }
@@ -611,9 +611,9 @@ module.exports = class HomeyMiFlora extends Homey.App {
             const deviceKey = `${deviceId}_device`;
 
             // update device
-            if (!devices.find(target => target._id === deviceKey)) {
+            if (!devices.find(target => target.id === deviceKey)) {
                 await this.addDeviceEntity(plantKey, JSON.stringify({
-                    _id: deviceKey,
+                    id: deviceKey,
                     uid: 'YvacSs8u07Xzi6nNyuIvKClryQT2',
                     uuid: device.getData().uuid.split(/(.{2})/).filter(O => O).map(string => string.toUpperCase()).join(':'),
                     name: `sensor ${device.getName()} `,
@@ -636,7 +636,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
                     .then(response => response.data)
                     .catch(e => {
                         console.log(`GET /api/devices/${deviceKey} ${e.response.status} ${e.response.statusText}`);
-                        throw new Error('break');
+                        throw new Error(e);
                     });
 
                 currentDevice.lastUpdatedAt = device.getSetting('last_updated');
@@ -647,9 +647,9 @@ module.exports = class HomeyMiFlora extends Homey.App {
             }
 
             // update plant
-            if (!plants.find(target => target._id === plantKey)) {
+            if (!plants.find(target => target.id === plantKey)) {
                 await this.addPlantEntity(deviceKey, JSON.stringify({
-                    _id: plantKey,
+                    id: plantKey,
                     uid: 'YvacSs8u07Xzi6nNyuIvKClryQT2',
                     name: device.getName(),
                     capabilityRanges,
@@ -698,7 +698,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
             .then(response => response.data)
             .catch(e => {
                 console.log(`POST /api/devices ${e.response.status} ${e.response.statusText}`);
-                throw new Error('break');
+                throw new Error(e);
             });
     }
 
@@ -706,9 +706,9 @@ module.exports = class HomeyMiFlora extends Homey.App {
         device.uid = 'YvacSs8u07Xzi6nNyuIvKClryQT2';
         await this.httpClient.request(
             {
-                method: 'PATCH',
+                method: 'PUT',
                 timeout: 10000,
-                url: `/api/devices/${device._id}`,
+                url: `/api/devices/${device.id}`,
                 data: JSON.stringify(device),
                 headers: {
                     'Content-Type': 'application/json',
@@ -716,8 +716,8 @@ module.exports = class HomeyMiFlora extends Homey.App {
                 },
             },
         ).catch(e => {
-            console.log(`PATCH /api/devices/${device._id} ${e.response.status} ${e.response.statusText}`);
-            throw new Error('break');
+            console.log(`PUT /api/devices/${device.id} ${e.response.status} ${e.response.statusText}`);
+            throw new Error(e);
         });
     }
 
@@ -737,7 +737,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
             .then(response => response.data)
             .catch(e => {
                 console.log(`POST /api/plants ${e.response.status} ${e.response.statusText}`);
-                throw new Error('break');
+                throw new Error(e);
             });
     }
 
@@ -756,7 +756,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
             .then(response => response.data)
             .catch(e => {
                 console.log(`GET /api/plants/${plantKey} ${e.response.status} ${e.response.statusText}`);
-                throw new Error('break');
+                throw new Error(e);
             });
 
         plant.capabilityRanges = capabilityRanges;
@@ -765,7 +765,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
         await this.httpClient.request(
             {
-                method: 'PATCH',
+                method: 'PUT',
                 timeout: 10000,
                 url: `/api/plants/${plantKey}`,
                 data: JSON.stringify(plant),
@@ -775,8 +775,8 @@ module.exports = class HomeyMiFlora extends Homey.App {
                 },
             },
         ).catch(e => {
-            console.log(`PATCH /api/plants/${plantKey} ${e.response.status} ${e.response.statusText}`);
-            throw new Error('break');
+            console.log(`PUT /api/plants/${plantKey} ${e.response.status} ${e.response.statusText}`);
+            throw new Error(e);
         });
     }
 
