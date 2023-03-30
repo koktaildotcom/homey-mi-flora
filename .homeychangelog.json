@@ -31,5 +31,14 @@
   },
   "4.0.4": {
     "en": "Bugfix resolved paths for new driver"
+  },
+  "4.0.5": {
+    "en": "Add debug information"
+  },
+  "4.0.6": {
+    "en": "Block zero values from flora max"
+  },
+  "4.0.7": {
+    "en": "Add changes for Homey 2023"
   }
 }

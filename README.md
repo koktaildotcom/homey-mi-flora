@@ -256,7 +256,13 @@ You can configure the timeout between polls in the app's settings.
  * add support for Xiaomi mi flora care max
  * add update device action
 ### v4.0.4 - 14-06-2022
-  * resolved path for driver
+ * resolved path for driver
+### v4.0.5 - 14-06-2022
+ * add debug information
+### v4.0.6 - 14-06-2022
+ * block zero values from flora max
+### v4.0.7 - 30-03-2023
+ * add changes for Homey 2023
 
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
