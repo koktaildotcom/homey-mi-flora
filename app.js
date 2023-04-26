@@ -570,6 +570,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
                 const logEntries = await this.homeyAPI.insights.getLogEntries({
                     uri: deviceLog.uri,
                     id: deviceLog.id,
+                    resolution: 'last7Days',
                 });
 
                 if (logEntries.values.length === 0) {
@@ -584,13 +585,14 @@ module.exports = class HomeyMiFlora extends Homey.App {
                             value: log.v,
                             lastUpdated: log.t,
                         };
-                    });
+                    })
+                    .sort((a, b) => new Date(a.date) - new Date(b.date));
 
                 capabilitySensors.push({
                     type: capability.replace('measure_', ''),
                     name: deviceLog.title,
                     unit: unitMapping[capability],
-                    history: history.slice(-100),
+                    history,
                 });
 
                 let min = 0;
@@ -640,7 +642,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
                     });
 
                 currentDevice.lastUpdatedAt = device.getSetting('last_updated');
-                // @todo merge
+                // @todo patch only the sensor values
                 currentDevice.capabilitySensors = capabilitySensors;
 
                 await this.updateDeviceEntity(currentDevice);
