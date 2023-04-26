@@ -586,7 +586,8 @@ module.exports = class HomeyMiFlora extends Homey.App {
                             lastUpdated: log.t,
                         };
                     })
-                    .sort((a, b) => new Date(a.date) - new Date(b.date));
+                    .sort((a, b) => new Date(a.date) - new Date(b.date))
+                    .reverse();
 
                 capabilitySensors.push({
                     type: capability.replace('measure_', ''),
