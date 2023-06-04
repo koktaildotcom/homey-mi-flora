@@ -40,5 +40,8 @@
   },
   "4.0.7": {
     "en": "Add changes for Homey 2023"
+  },
+  "4.0.8": {
+    "en": "Changes for supporting HP23"
   }
 }
