@@ -1,6 +1,6 @@
 {
   "name": "homey-mi-flora",
-  "version": "4.0.0",
+  "version": "4.0.8",
   "description": "This app integrates the `Xiaomi mi flora sensor` and `Xiaomi mi flora ropot` into Homey.",
   "main": "app.js",
   "directories": {

@@ -262,7 +262,9 @@ You can configure the timeout between polls in the app's settings.
 ### v4.0.6 - 14-06-2022
  * block zero values from flora max
 ### v4.0.7 - 30-03-2023
- * add changes for Homey 2023
+* add changes for Homey 2023
+### v4.0.8 - 30-03-2023
+* bump version
 
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
