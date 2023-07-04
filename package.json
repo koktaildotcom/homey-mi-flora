@@ -9,7 +9,7 @@
   "devDependencies": {
     "eslint": "^7.8.1",
     "eslint-config-athom": "^2.1.0",
-    "homey": "^2.9.1"
+    "homey": "^2.34.0"
   },
   "repository": {
     "type": "git",
