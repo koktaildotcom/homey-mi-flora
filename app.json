@@ -728,7 +728,7 @@
           "en": "Sensor value is below the configured threshold",
           "nl": "Sensor waarde is beneden de gestelde drempel",
           "de": "Der Sensorwert liegt unter dem konfigurierten Grenzwert",
-          "sv": "Sensorns värde är över det inställda tröskelvärdet"
+          "sv": "Sensorns värde är under det inställda tröskelvärdet"
         },
         "tokens": [
           {
