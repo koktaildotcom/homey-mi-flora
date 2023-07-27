@@ -1,9 +1,23 @@
 'use strict';
 
+const { signInWithEmailAndPassword } = require('@firebase/auth');
+
 module.exports = class Sync {
 
-    constructor(httpClient) {
+    constructor(httpClient, firebaseAuth, username, password) {
         this.httpClient = httpClient;
+        this.firebaseAuth = firebaseAuth;
+        this.username = username;
+        this.password = password;
+    }
+
+    async getToken() {
+        const userCredential = await signInWithEmailAndPassword(
+            this.firebaseAuth,
+            this.username,
+            this.password,
+        );
+        return userCredential.user.getIdToken();
     }
 
     async getDevices() {
@@ -13,6 +27,11 @@ module.exports = class Sync {
                 method: 'GET',
                 timeout: 10000,
                 url: '/api/devices',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${await this.getToken()}`,
+                },
             },
         )
             .then(result => {
@@ -27,6 +46,11 @@ module.exports = class Sync {
                 method: 'GET',
                 timeout: 10000,
                 url: '/api/plants',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${await this.getToken()}`,
+                },
             },
         )
             .then(result => {
@@ -42,6 +66,11 @@ module.exports = class Sync {
                 timeout: 10000,
                 url: `/api/devices/${deviceKey}/metrics`,
                 data: JSON.stringify(metric),
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${await this.getToken()}`,
+                },
             },
         )
             .catch(e => {
@@ -57,6 +86,11 @@ module.exports = class Sync {
                 timeout: 10000,
                 url: '/api/devices',
                 data,
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${await this.getToken()}`,
+                },
             },
         )
             .then(response => response.data)
@@ -72,6 +106,11 @@ module.exports = class Sync {
                 method: 'GET',
                 timeout: 10000,
                 url: `/api/devices/${deviceId}`,
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${await this.getToken()}`,
+                },
             },
         )
             .then(response => response.data)
@@ -90,6 +129,11 @@ module.exports = class Sync {
                 timeout: 10000,
                 url: `/api/devices/${deviceId}`,
                 data: JSON.stringify(currentDevice),
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${await this.getToken()}`,
+                },
             },
         )
             .catch(e => {
@@ -105,6 +149,11 @@ module.exports = class Sync {
                 timeout: 10000,
                 url: '/api/plants',
                 data,
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${await this.getToken()}`,
+                },
             },
         )
             .then(response => response.data)
@@ -120,6 +169,11 @@ module.exports = class Sync {
                 method: 'GET',
                 timeout: 10000,
                 url: `/api/plants/${plantKey}`,
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${await this.getToken()}`,
+                },
             },
         )
             .then(response => response.data)
@@ -137,6 +191,11 @@ module.exports = class Sync {
                 timeout: 10000,
                 url: `/api/plants/${plantKey}`,
                 data: JSON.stringify(plant),
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${await this.getToken()}`,
+                },
             },
         )
             .catch(e => {

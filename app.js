@@ -147,25 +147,17 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
         const firebaseApp = initializeApp(firebaseConfig);
         const firebaseAuth = getAuth(firebaseApp);
-        const userCredential = await signInWithEmailAndPassword(
-            firebaseAuth,
-            Homey.env.PLANT_AUTH_USERNAME,
-            Homey.env.PLANT_AUTH_PASSWORD,
-        );
 
-        const token = await userCredential.user.getIdToken();
         const httpClient = axios.create({
             baseURL: plantMonitorConfig.authUrl,
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json',
-                Authorization: `Bearer ${token}`,
-            },
         });
-
         const client = await HomeyAPI.forCurrentHomey(this.homey);
+
         this.sync = new Sync(
             httpClient,
+            firebaseAuth,
+            Homey.env.PLANT_AUTH_USERNAME,
+            Homey.env.PLANT_AUTH_PASSWORD
         );
 
         this.converter = new HomeyToPlantMonitorConverter(
