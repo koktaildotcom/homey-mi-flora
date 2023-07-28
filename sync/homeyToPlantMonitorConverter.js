@@ -84,12 +84,12 @@ module.exports = class HomeyToPlantMonitorConverter {
                     capabilitySensors,
                 }));
             } else {
-                console.log(`update sensor ${deviceKey}`);
-                await this.sync.updateDeviceEntity(
-                    deviceKey,
-                    device.getName(),
-                    capabilitySensors,
-                );
+                // console.log(`update sensor ${deviceKey}`);
+                // await this.sync.updateDeviceEntity(
+                //     deviceKey,
+                //     device.getName(),
+                //     capabilitySensors,
+                // );
             }
 
             // update plant
@@ -101,12 +101,12 @@ module.exports = class HomeyToPlantMonitorConverter {
                     capabilityRanges,
                 }));
             } else {
-                console.log(`update plant ${plantKey}`);
-                await this.sync.updatePlantEntity(
-                    plantKey,
-                    capabilityRanges,
-                    device.getName(),
-                );
+                // console.log(`update plant ${plantKey}`);
+                // await this.sync.updatePlantEntity(
+                //     plantKey,
+                //     capabilityRanges,
+                //     device.getName(),
+                // );
             }
         }
     }
