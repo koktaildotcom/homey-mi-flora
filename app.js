@@ -491,7 +491,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
             this.homey.settings.set('updateInterval', updateInterval);
         }
 
-        const testing = true;
+        const testing = false;
         const interval = testing ? (1000 * 3) : (1000 * 60 * updateInterval);
 
         if (this._syncTimeout) {
