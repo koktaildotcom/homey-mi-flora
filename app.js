@@ -274,17 +274,16 @@ module.exports = class HomeyMiFlora extends Homey.App {
                     device.updateCapabilityValue(characteristic, sensorValues[characteristic]);
 
                     const deviceId = await device.getDeviceData('id');
+                    const bleAddress = device.getAddress();
                     const deviceKey = `${deviceId}_device`;
-                    console.log('PUT', {
+                    const plantKey = `${deviceId}_plant`;
+                    await this.sync.addDeviceMetrics(deviceKey, {
+                        bleAddress,
+                        deviceId: deviceKey,
+                        plantId: plantKey,
+                        type: characteristic.replace('measure_', ''),
                         lastUpdated: new Date(),
                         value: sensorValues[characteristic],
-                    });
-                    await this.sync.addDeviceMetrics(deviceKey, {
-                        type: characteristic.replace('measure_', ''),
-                        metric: {
-                            lastUpdated: new Date(),
-                            value: sensorValues[characteristic],
-                        },
                     });
                 }
             });
@@ -492,7 +491,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
             this.homey.settings.set('updateInterval', updateInterval);
         }
 
-        const testing = false;
+        const testing = true;
         const interval = testing ? (1000 * 3) : (1000 * 60 * updateInterval);
 
         if (this._syncTimeout) {

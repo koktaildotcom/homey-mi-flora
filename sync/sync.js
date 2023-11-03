@@ -59,10 +59,10 @@ module.exports = class Sync {
     }
 
     async addDeviceMetrics(deviceKey, metric) {
-        console.log(`PUT /api/devices/${deviceKey}/metrics`);
+        console.log(`POST /api/devices/${deviceKey}/metrics`);
         await this.httpClient.request(
             {
-                method: 'PUT',
+                method: 'POST',
                 timeout: 10000,
                 url: `/api/devices/${deviceKey}/metrics`,
                 data: JSON.stringify(metric),
