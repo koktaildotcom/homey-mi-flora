@@ -1,0 +1,7 @@
+node_modules/*
+settings-src/*
+project/*
+scripts/*
+docs/*
+.git
+.idea
