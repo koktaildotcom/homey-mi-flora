@@ -16,7 +16,7 @@ const DATA_CHARACTERISTIC_UUID = '00001a0100001000800000805f9b34fb';
 const FIRMWARE_CHARACTERISTIC_UUID = '00001a0200001000800000805f9b34fb';
 const REALTIME_CHARACTERISTIC_UUID = '00001a0000001000800000805f9b34fb';
 
-const MAX_RETRIES = 3;
+const MAX_RETRIES = 10;
 
 async function asyncForEach(array, callback) {
     for (let index = 0; index < array.length; index++) {
@@ -404,22 +404,22 @@ module.exports = class HomeyMiFlora extends Homey.App {
                         .catch(e => {
                             throw new Error(e);
                         });
-                }
-
-                this.homey.app.globalSensorTimeout.trigger({
-                    deviceName: device.getName() ?? device.id,
-                    reason: error.message ?? 'Unknown error',
-                })
-                    .then(() => {
-                        console.log('sending device timeout trigger');
+                } else {
+                    this.homey.app.globalSensorTimeout.trigger({
+                        deviceName: device.getName() ?? device.id,
+                        reason: error.message ?? 'Unknown error',
                     })
-                    .catch(e => {
-                        console.error('Cannot trigger flow card sensor_timeout device: %s.', e);
-                    });
+                        .then(() => {
+                            console.log('sending device timeout trigger');
+                        })
+                        .catch(e => {
+                            console.error('Cannot trigger flow card sensor_timeout device: %s.', e);
+                        });
 
-                device.retry = 0;
+                    device.retry = 0;
 
-                console.log(`Max retries (${MAX_RETRIES}) exceeded, no success`);
+                    console.log(`Max retries (${MAX_RETRIES}) exceeded, no success`);
+                }
             });
     }
 

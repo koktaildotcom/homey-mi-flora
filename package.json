@@ -7,10 +7,10 @@
     "lib": "lib"
   },
   "dependencies": {
-    "@firebase/app": "^0.9.15",
-    "@firebase/auth": "^1.1.0",
-    "athom-api": "^3.8.4",
-    "axios": "^1.4.0"
+    "@firebase/app": "^0.9.26",
+    "@firebase/auth": "^1.5.1",
+    "athom-api": "^3.9.0",
+    "axios": "^1.6.7"
   },
   "devDependencies": {
     "eslint": "^7.8.1",
