@@ -5,7 +5,6 @@ const { HomeyAPI } = require('athom-api');
 const axios = require('axios');
 const { initializeApp } = require('@firebase/app');
 const {
-    signInWithEmailAndPassword,
     getAuth,
 } = require('@firebase/auth');
 
@@ -196,9 +195,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
      * @returns {Promise.<MiFloraDevice>}
      */
     async handleUpdateSequence(device) {
-        let disconnectPeripheral = async () => {
-            console.log('disconnectPeripheral not registered yet');
-        };
+        let disconnectPeripheral = null;
 
         try {
             console.log('handleUpdateSequence');
@@ -269,25 +266,6 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
             console.log(sensorValues);
 
-            await asyncForEach(device.getCapabilities(), async characteristic => {
-                if (sensorValues.hasOwnProperty(characteristic)) {
-                    device.updateCapabilityValue(characteristic, sensorValues[characteristic]);
-
-                    const deviceId = await device.getDeviceData('id');
-                    const bleAddress = device.getAddress();
-                    const deviceKey = `${deviceId}_device`;
-                    const plantKey = `${deviceId}_plant`;
-                    await this.sync.addDeviceMetrics(deviceKey, {
-                        bleAddress,
-                        deviceId: deviceKey,
-                        plantId: plantKey,
-                        type: characteristic.replace('measure_', ''),
-                        lastUpdated: new Date(),
-                        value: sensorValues[characteristic],
-                    });
-                }
-            });
-
             // get firmware
             const firmware = characteristics.find(
                 characteristic => characteristic.uuid === FIRMWARE_CHARACTERISTIC_UUID,
@@ -300,13 +278,29 @@ module.exports = class HomeyMiFlora extends Homey.App {
             const firmwareData = await firmware.read();
 
             const batteryValue = parseInt(firmwareData.toString('hex', 0, 1), 16);
-            const batteryValues = {
+
+            const allValues = {
+                ...sensorValues,
                 measure_battery: batteryValue,
             };
 
             await asyncForEach(device.getCapabilities(), async characteristic => {
-                if (batteryValues.hasOwnProperty(characteristic)) {
-                    device.updateCapabilityValue(characteristic, batteryValues[characteristic]);
+                if (allValues.hasOwnProperty(characteristic)) {
+                    device.updateCapabilityValue(characteristic, allValues[characteristic]);
+
+                    const deviceId = await device.getDeviceData('id');
+                    const bleAddress = this.formatMACAddress(await device.getDeviceData('id'));
+                    console.log(bleAddress);
+                    const deviceKey = `${deviceId}_device`;
+                    const plantKey = `${deviceId}_plant`;
+                    await this.sync.addDeviceMetrics(deviceKey, {
+                        bleAddress,
+                        deviceId: deviceKey,
+                        plantId: plantKey,
+                        type: characteristic.replace('measure_', ''),
+                        lastUpdated: new Date(),
+                        value: allValues[characteristic],
+                    });
                 }
             });
 
@@ -332,10 +326,19 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
             return device;
         } catch (error) {
-            await disconnectPeripheral();
+            if (disconnectPeripheral) {
+                await disconnectPeripheral();
+            }
             console.log(error);
             throw error;
         }
+    }
+
+    formatMACAddress(address) {
+        return address
+            .toUpperCase()
+            .match(/.{1,2}/g)
+            .join(':');
     }
 
     /**
@@ -397,7 +400,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
                 console.log(error);
 
                 if (device.retry < MAX_RETRIES) {
-                    return this.updateDevice(device)
+                    this.updateDevice(device)
                         .catch(e => {
                             throw new Error(e);
                         });

@@ -12,12 +12,19 @@ module.exports = class Sync {
     }
 
     async getToken() {
-        const userCredential = await signInWithEmailAndPassword(
-            this.firebaseAuth,
-            this.username,
-            this.password,
-        );
-        return userCredential.user.getIdToken();
+        try {
+            if (!this.token) {
+                const userCredential = await signInWithEmailAndPassword(
+                    this.firebaseAuth,
+                    this.username,
+                    this.password,
+                );
+                this.token = userCredential.user.getIdToken();
+            }
+        } catch (e) {
+            console.log(e);
+        }
+        return this.token;
     }
 
     async getDevices() {
@@ -74,7 +81,7 @@ module.exports = class Sync {
             },
         )
             .catch(e => {
-                throw new Error(e);
+                console.error(e);
             });
     }
 
@@ -95,7 +102,7 @@ module.exports = class Sync {
         )
             .then(response => response.data)
             .catch(e => {
-                throw new Error(e);
+                console.error(e);
             });
     }
 
@@ -115,7 +122,7 @@ module.exports = class Sync {
         )
             .then(response => response.data)
             .catch(e => {
-                throw new Error(e);
+                console.error(e);
             });
 
         currentDevice.name = `sensor ${name} `;
@@ -137,7 +144,7 @@ module.exports = class Sync {
             },
         )
             .catch(e => {
-                throw new Error(e);
+                console.error(e);
             });
     }
 
@@ -158,7 +165,7 @@ module.exports = class Sync {
         )
             .then(response => response.data)
             .catch(e => {
-                throw new Error(e);
+                console.error(e);
             });
     }
 
@@ -178,7 +185,7 @@ module.exports = class Sync {
         )
             .then(response => response.data)
             .catch(e => {
-                throw new Error(e);
+                console.error(e);
             });
 
         plant.capabilityRanges = capabilityRanges;
@@ -199,7 +206,8 @@ module.exports = class Sync {
             },
         )
             .catch(e => {
-                throw new Error(e);
+                console.error(e);
             });
     }
+
 };
