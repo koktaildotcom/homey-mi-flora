@@ -43,5 +43,8 @@
   },
   "4.0.8": {
     "en": "Changes for supporting HP23"
+  },
+  "4.1.0": {
+    "en": "Introducing capability alarms"
   }
 }
