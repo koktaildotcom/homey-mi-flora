@@ -265,6 +265,8 @@ You can configure the timeout between polls in the app's settings.
 * add changes for Homey 2023
 ### v4.0.8 - 30-03-2023
 * bump version
-
+### v4.1.2 - 15-05-2024
+* add alarm capabilities
+* 
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora
