@@ -1,0 +1,12 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Alarm temperature",
+    "nl": "Alarm temperatuur",
+    "de": "Alarm temperatur",
+    "sv": "Larm temperatur"
+  },
+  "uiComponent": null,
+  "getable": true,
+  "setable": false
+}

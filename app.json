@@ -1176,7 +1176,11 @@
         "measure_luminance",
         "measure_nutrition",
         "measure_moisture",
-        "measure_battery"
+        "measure_battery",
+        "alarm_temperature",
+        "alarm_luminance",
+        "alarm_nutrition",
+        "alarm_moisture"
       ],
       "pair": [
         {
@@ -1496,7 +1500,11 @@
         "measure_luminance",
         "measure_nutrition",
         "measure_moisture",
-        "measure_battery"
+        "measure_battery",
+        "alarm_temperature",
+        "alarm_luminance",
+        "alarm_nutrition",
+        "alarm_moisture"
       ],
       "pair": [
         {
@@ -1814,7 +1822,10 @@
       "capabilities": [
         "measure_temperature",
         "measure_nutrition",
-        "measure_moisture"
+        "measure_moisture",
+        "alarm_temperature",
+        "alarm_nutrition",
+        "alarm_moisture"
       ],
       "pair": [
         {
@@ -2014,6 +2025,54 @@
     }
   ],
   "capabilities": {
+    "alarm_luminance": {
+      "type": "boolean",
+      "title": {
+        "en": "Alarm luminance",
+        "nl": "Alarm lichtsterkte",
+        "de": "Alarm Helligkeit",
+        "sv": "Larm ljusstyrka"
+      },
+      "uiComponent": null,
+      "getable": true,
+      "setable": false
+    },
+    "alarm_moisture": {
+      "type": "boolean",
+      "title": {
+        "en": "Alarm moisture",
+        "nl": "Alarm vochtigheid",
+        "de": "Alarm Feuchtigkeit",
+        "sv": "Larm fuktighet"
+      },
+      "uiComponent": null,
+      "getable": true,
+      "setable": false
+    },
+    "alarm_nutrition": {
+      "type": "boolean",
+      "title": {
+        "en": "Alarm nutrition",
+        "nl": "Alarm voeding",
+        "de": "Alarm Ernährung",
+        "sv": "Larm näring"
+      },
+      "uiComponent": null,
+      "getable": true,
+      "setable": false
+    },
+    "alarm_temperature": {
+      "type": "boolean",
+      "title": {
+        "en": "Alarm temperature",
+        "nl": "Alarm temperatuur",
+        "de": "Alarm temperatur",
+        "sv": "Larm temperatur"
+      },
+      "uiComponent": null,
+      "getable": true,
+      "setable": false
+    },
     "flora_measure_fertility": {
       "type": "number",
       "title": {
@@ -2049,6 +2108,7 @@
       "insights": true
     },
     "measure_moisture": {
+      "uiComponent": "sensor",
       "type": "number",
       "title": {
         "en": "Moisture",
@@ -2066,6 +2126,7 @@
       "insights": true
     },
     "measure_nutrition": {
+      "uiComponent": "sensor",
       "type": "number",
       "title": {
         "en": "Nutrition",

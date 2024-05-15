@@ -20,7 +20,10 @@
     "capabilities": [
         "measure_temperature",
         "measure_nutrition",
-        "measure_moisture"
+        "measure_moisture",
+        "alarm_temperature",
+        "alarm_nutrition",
+        "alarm_moisture"
     ],
     "pair": [
         {

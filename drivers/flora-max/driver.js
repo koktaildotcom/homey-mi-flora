@@ -32,6 +32,10 @@ module.exports = class MiFloraSensorDriver extends MiFloraDriver {
       'measure_nutrition',
       'measure_moisture',
       'measure_battery',
+      'alarm_temperature',
+      'alarm_luminance',
+      'alarm_nutrition',
+      'alarm_moisture',
     ];
   }
 

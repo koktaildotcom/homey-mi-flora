@@ -22,7 +22,11 @@
         "measure_luminance",
         "measure_nutrition",
         "measure_moisture",
-        "measure_battery"
+        "measure_battery",
+        "alarm_temperature",
+        "alarm_luminance",
+        "alarm_nutrition",
+        "alarm_moisture"
     ],
     "pair": [
         {

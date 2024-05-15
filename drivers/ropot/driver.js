@@ -28,6 +28,9 @@ module.exports = class MiFloraRopotDriver extends MiFloraDriver {
       'measure_temperature',
       'measure_nutrition',
       'measure_moisture',
+      'alarm_temperature',
+      'alarm_nutrition',
+      'alarm_moisture',
     ];
   }
 

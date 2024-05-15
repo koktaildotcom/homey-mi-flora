@@ -1,0 +1,12 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Alarm moisture",
+    "nl": "Alarm vochtigheid",
+    "de": "Alarm Feuchtigkeit",
+    "sv": "Larm fuktighet"
+  },
+  "uiComponent": null,
+  "getable": true,
+  "setable": false
+}

@@ -1,0 +1,12 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Alarm nutrition",
+    "nl": "Alarm voeding",
+    "de": "Alarm Ernährung",
+    "sv": "Larm näring"
+  },
+  "uiComponent": null,
+  "getable": true,
+  "setable": false
+}

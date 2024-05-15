@@ -1,4 +1,5 @@
 {
+  "uiComponent": "sensor",
   "type": "number",
   "title": {
     "en": "Nutrition",

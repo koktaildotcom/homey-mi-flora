@@ -1,0 +1,12 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Alarm luminance",
+    "nl": "Alarm lichtsterkte",
+    "de": "Alarm Helligkeit",
+    "sv": "Larm ljusstyrka"
+  },
+  "uiComponent": null,
+  "getable": true,
+  "setable": false
+}
