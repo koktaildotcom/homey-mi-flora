@@ -10,7 +10,7 @@ const REALTIME_CHARACTERISTIC_UUID = '00001a0000001000800000805f9b34fb';
 
 const MAX_RETRIES = 3;
 
-async function asyncForEach(array, callback) {
+async function asyncForEach(array: string[], callback: (value: any, index: number, array: string[]) => Promise<void>) {
   for (let index = 0; index < array.length; index++) {
     await callback(array[index], index, array);
   }
@@ -168,7 +168,7 @@ export default class HomeyMiFloraApp extends Homey.App {
    *
    * @returns {Promise.<MiFloraDevice>}
    */
-  async handleUpdateSequence(device: MiFloraDevice) {
+  async handleUpdateSequence(device: MiFloraDevice): Promise<MiFloraDevice | Error> {
     let disconnectPeripheral = async () => {
       console.log('disconnectPeripheral not registered yet');
     };
@@ -200,29 +200,29 @@ export default class HomeyMiFloraApp extends Homey.App {
       const services = await peripheral.discoverServices();
 
       console.log('dataService');
-      const dataService = await services.find(service => service.uuid === DATA_SERVICE_UUID);
+      const dataService = services.find(service => service.uuid === DATA_SERVICE_UUID);
       if (!dataService) {
-        throw new Error('Missing data service');
+        return new Error('Missing data service');
       }
       const characteristics = await dataService.discoverCharacteristics();
 
       // get realtime
       console.log('realtime');
-      const realtime = await characteristics.find(
+      const realtime = characteristics.find(
         characteristic => characteristic.uuid === REALTIME_CHARACTERISTIC_UUID,
       );
       if (!realtime) {
-        throw new Error('Missing realtime characteristic');
+        return new Error('Missing realtime characteristic');
       }
       await realtime.write(Buffer.from([0xA0, 0x1F]));
 
       // get data
       console.log('data');
-      const data = await characteristics.find(
+      const data = characteristics.find(
         characteristic => characteristic.uuid === DATA_CHARACTERISTIC_UUID,
       );
       if (!data) {
-        throw new Error('Missing data characteristic');
+        return new Error('Missing data characteristic');
       }
       console.log('DATA_CHARACTERISTIC_UUID::read');
       const sensorData = await data.read();
@@ -252,8 +252,8 @@ export default class HomeyMiFloraApp extends Homey.App {
         characteristic => characteristic.uuid === FIRMWARE_CHARACTERISTIC_UUID
       );
       if (!firmware) {
-        disconnectPeripheral();
-        throw new Error('Missing firmware characteristic');
+        await disconnectPeripheral();
+        return new Error('Missing firmware characteristic');
       }
       console.log('FIRMWARE_CHARACTERISTIC_UUID::read');
       const firmwareData = await firmware.read();
@@ -304,7 +304,7 @@ export default class HomeyMiFloraApp extends Homey.App {
    *
    * @returns {Promise.<MiFloraDevice[]>}
    */
-  async updateDevices(devices: MiFloraDevice[]) {
+  async updateDevices(devices: MiFloraDevice[]): Promise<MiFloraDevice | void> {
     console.log(' ');
     console.log(' ');
     console.log(' ');
@@ -312,22 +312,22 @@ export default class HomeyMiFloraApp extends Homey.App {
     console.log('-----------------------------------------------------------------');
     console.log('| New update sequence ');
     console.log('-----------------------------------------------------------------');
-    return devices.reduce((promise, device) => {
-      return promise
-        .then(() => {
-          console.log('reduce');
-          device.retry = 0;
-          return this.updateDevice(device);
-        }).catch(error => {
-          console.log(error);
-        });
+    return devices.reduce(async (promise: Promise<MiFloraDevice>, device: MiFloraDevice) => {
+      try {
+        await promise;
+        console.log('reduce');
+        device.retry = 0;
+        return await this.updateDevice(device);
+      } catch (error) {
+        console.log(error);
+      }
     }, Promise.resolve());
   }
 
   /**
    * update the _devices one by one
    */
-  async updateDevice(device: MiFloraDevice): Promise<MiFloraDevice> {
+  async updateDevice(device: MiFloraDevice): Promise<MiFloraDevice | void> {
     console.log('#########################################');
     console.log(`# update device: ${device.getName()}`);
     console.log(`# firmware: ${device.getSetting('firmware_version')}`);
@@ -345,16 +345,17 @@ export default class HomeyMiFloraApp extends Homey.App {
 
         return device;
       })
-      .catch(error => {
+      .catch(async error => {
         device.retry++;
-        console.log(`timeout, retry again ${device.retry}`);
+        console.log(`timeout, retry again ${ device.retry }`);
         console.log(error);
 
         if (device.retry < MAX_RETRIES) {
-          return this.updateDevice(device)
-            .catch(e => {
-              throw new Error(e);
-            });
+          try {
+            return await this.updateDevice(device);
+          } catch (e) {
+            throw new Error(e);
+          }
         }
 
         this.globalSensorTimeout.trigger({
