@@ -1,8 +1,10 @@
-'use strict';
+import Homey from 'homey';
+import HomeyMiFloraApp from '../app';
+import { MiFloraDriver } from './MiFloraDriver';
 
-const Homey = require('homey');
-
-module.exports = class MiFloraDevice extends Homey.Device {
+export class MiFloraDevice extends Homey.Device {
+  private _id: string;
+  private _retry: number;
 
   /**
    * on init the device
@@ -41,7 +43,7 @@ module.exports = class MiFloraDevice extends Homey.Device {
       await this.setSettings({ app_version: '4.0.0' });
     }
 
-    this.id = await this.getDeviceData('id');
+    this._id = await this.getDeviceData('id');
 
     const defaultSettings = {
       measure_temperature: {
@@ -62,10 +64,10 @@ module.exports = class MiFloraDevice extends Homey.Device {
       },
     };
 
-    if (this.homey.app.thresholdMapping) {
-      for (const capability in this.homey.app.thresholdMapping) {
-        if (this.homey.app.thresholdMapping.hasOwnProperty(capability) && defaultSettings.hasOwnProperty(capability)) {
-          const mapping = this.homey.app.thresholdMapping[capability];
+    if (this.getApp().thresholdMapping) {
+      for (const capability in this.getApp().thresholdMapping) {
+        if (this.getApp().thresholdMapping.hasOwnProperty(capability) && defaultSettings.hasOwnProperty(capability)) {
+          const mapping = this.getApp().thresholdMapping[capability];
           const defaults = defaultSettings[capability];
           if (this.getSetting(mapping.min) === '0') {
             const object = {};
@@ -81,18 +83,18 @@ module.exports = class MiFloraDevice extends Homey.Device {
       }
     }
 
-    this.homey.app.registerDevice(this);
+    this.getApp().registerDevice(this);
 
-    if (this.driver.getSupportedCapabilities().includes('alarm_temperature') && !this.hasCapability('alarm_temperature')) {
+    if (this.getDriver().getSupportedCapabilities().includes('alarm_temperature') && !this.hasCapability('alarm_temperature')) {
       await this.addCapability('alarm_temperature');
     }
-    if (this.driver.getSupportedCapabilities().includes('alarm_luminance') && !this.hasCapability('alarm_luminance')) {
+    if (this.getDriver().getSupportedCapabilities().includes('alarm_luminance') && !this.hasCapability('alarm_luminance')) {
       await this.addCapability('alarm_luminance');
     }
-    if (this.driver.getSupportedCapabilities().includes('alarm_nutrition') && !this.hasCapability('alarm_nutrition')) {
+    if (this.getDriver().getSupportedCapabilities().includes('alarm_nutrition') && !this.hasCapability('alarm_nutrition')) {
       await this.addCapability('alarm_nutrition');
     }
-    if (this.driver.getSupportedCapabilities().includes('alarm_moisture') && !this.hasCapability('alarm_moisture')) {
+    if (this.getDriver().getSupportedCapabilities().includes('alarm_moisture') && !this.hasCapability('alarm_moisture')) {
       await this.addCapability('alarm_moisture');
     }
 
@@ -108,14 +110,14 @@ module.exports = class MiFloraDevice extends Homey.Device {
   updateCapabilityValue(capability, value) {
     const currentValue = this.getCapabilityValue(capability);
 
-    this.homey.app.globalSensorUpdated.trigger({
+    this.getApp().globalSensorUpdated.trigger({
       deviceName: this.getName(),
-      sensor: this.homey.__(`capability.${capability}.name`),
-      report: this.homey.__(`capability.${capability}.device_updated`, {
+      sensor: this.homey.__(`capability.${ capability }.name`),
+      report: this.homey.__(`capability.${ capability }.device_updated`, {
         value,
         plant: this.getName(),
       }),
-      value: `${value}`,
+      value: `${ value }`,
       numeric: parseFloat(value),
     })
       .then(() => {
@@ -125,14 +127,14 @@ module.exports = class MiFloraDevice extends Homey.Device {
         console.log('Cannot trigger flow card globalSensorUpdated global: %s.', error);
       });
 
-    this.homey.app.globalSensorChanged.trigger({
+    this.getApp().globalSensorChanged.trigger({
       deviceName: this.getName(),
-      sensor: this.homey.__(`capability.${capability}.name`),
-      report: this.homey.__(`capability.${capability}.device_changed`, {
+      sensor: this.homey.__(`capability.${ capability }.name`),
+      report: this.homey.__(`capability.${ capability }.device_changed`, {
         value,
         plant: this.getName(),
       }),
-      value: `${value}`,
+      value: `${ value }`,
       numeric: parseFloat(value),
     })
       .then(() => {
@@ -147,13 +149,13 @@ module.exports = class MiFloraDevice extends Homey.Device {
     if (currentValue !== value) {
       this.setCapabilityValue(capability, value).catch(console.error);
 
-      this.homey.app.deviceSensorUpdated.trigger(this, {
-        sensor: this.homey.__(`capability.${capability}.name`),
-        report: this.homey.__(`capability.${capability}.device_updated`, {
+      this.getApp().deviceSensorUpdated.trigger(this, {
+        sensor: this.homey.__(`capability.${ capability }.name`),
+        report: this.homey.__(`capability.${ capability }.device_updated`, {
           value,
           plant: this.getName(),
         }),
-        value: `${value}`,
+        value: `${ value }`,
         numeric: parseFloat(value),
       })
         .then(() => {
@@ -163,13 +165,13 @@ module.exports = class MiFloraDevice extends Homey.Device {
           console.error('Cannot trigger flow card deviceSensorUpdated device: %s.', error);
         });
 
-      this.homey.app.deviceSensorChanged.trigger(this, {
-        sensor: this.homey.__(`capability.${capability}.name`),
-        report: this.homey.__(`capability.${capability}.device_changed`, {
+      this.getApp().deviceSensorChanged.trigger(this, {
+        sensor: this.homey.__(`capability.${ capability }.name`),
+        report: this.homey.__(`capability.${ capability }.device_changed`, {
           value,
           plant: this.getName(),
         }),
-        value: `${value}`,
+        value: `${ value }`,
         numeric: parseFloat(value),
       })
         .then(() => {
@@ -200,15 +202,15 @@ module.exports = class MiFloraDevice extends Homey.Device {
    * on settings change
    */
   async onSettings({ oldSettings, newSettings, changedKeys }) {
-    if (this.homey.app.thresholdMapping) {
-      for (const capability in this.homey.app.thresholdMapping) {
-        if (this.homey.app.thresholdMapping.hasOwnProperty(capability)) {
-          const mapping = this.homey.app.thresholdMapping[capability];
+    if (this.getApp().thresholdMapping) {
+      for (const capability in this.getApp().thresholdMapping) {
+        if (this.getApp().thresholdMapping.hasOwnProperty(capability)) {
+          const mapping = this.getApp().thresholdMapping[capability];
           if (newSettings.hasOwnProperty(mapping.min) && newSettings.hasOwnProperty(mapping.max)) {
             const minValue = newSettings[mapping.min];
             const maxValue = newSettings[mapping.max];
             if (minValue >= maxValue) {
-              return this.homey.__('settings.error.threshold', { capability: this.homey.__(`capability.${capability}.name`) });
+              return this.homey.__('settings.error.threshold', { capability: this.homey.__(`capability.${ capability }.name`) });
             }
           }
         }
@@ -227,26 +229,26 @@ module.exports = class MiFloraDevice extends Homey.Device {
    * @param value
    */
   _checkThresholdTrigger(capability, value) {
-    if (this.homey.app.thresholdMapping && this.homey.app.thresholdMapping.hasOwnProperty(capability)) {
-      const minValue = this.getSetting(this.homey.app.thresholdMapping[capability].min);
-      const maxValue = this.getSetting(this.homey.app.thresholdMapping[capability].max);
+    if (this.getApp().thresholdMapping && this.getApp().thresholdMapping.hasOwnProperty(capability)) {
+      const minValue = this.getSetting(this.getApp().thresholdMapping[capability].min);
+      const maxValue = this.getSetting(this.getApp().thresholdMapping[capability].max);
 
       if (value < minValue) {
-        if(this.hasCapability(capability.replace('measure_', 'alarm_'))){
+        if (this.hasCapability(capability.replace('measure_', 'alarm_'))) {
           this.setCapabilityValue(capability.replace('measure_', 'alarm_'), true);
         }
 
-        const report = this.homey.__(`capability.${capability}.threshold.min`, {
+        const report = this.homey.__(`capability.${ capability }.threshold.min`, {
           value,
           min: minValue,
           plant: this.getName(),
         });
 
-        this.homey.app.globalSensorOutsideThreshold.trigger({
+        this.getApp().globalSensorOutsideThreshold.trigger({
           deviceName: this.getName(),
-          sensor: this.homey.__(`capability.${capability}.name`),
+          sensor: this.homey.__(`capability.${ capability }.name`),
           report,
-          value: `${value}`,
+          value: `${ value }`,
           numeric: parseFloat(value),
         })
           .then(() => {
@@ -256,10 +258,10 @@ module.exports = class MiFloraDevice extends Homey.Device {
             console.error('Cannot trigger flow card globalSensorOutsideThreshold: %s.', error);
           });
 
-        this.homey.app.deviceSensorOutsideThreshold.trigger(this, {
-          sensor: this.homey.__(`capability.${capability}.name`),
+        this.getApp().deviceSensorOutsideThreshold.trigger(this, {
+          sensor: this.homey.__(`capability.${ capability }.name`),
           report,
-          value: `${value}`,
+          value: `${ value }`,
           numeric: parseFloat(value),
         })
           .then(() => {
@@ -269,11 +271,11 @@ module.exports = class MiFloraDevice extends Homey.Device {
             console.error('Cannot trigger flow card deviceSensorOutsideThreshold: %s.', error);
           });
 
-        this.homey.app.globalSensorThresholdMinExceeds.trigger({
+        this.getApp().globalSensorThresholdMinExceeds.trigger({
           deviceName: this.getName(),
-          sensor: this.homey.__(`capability.${capability}.name`),
+          sensor: this.homey.__(`capability.${ capability }.name`),
           report,
-          value: `${value}`,
+          value: `${ value }`,
           numeric: parseFloat(value),
         })
           .then(() => {
@@ -283,10 +285,10 @@ module.exports = class MiFloraDevice extends Homey.Device {
             console.error('Cannot trigger flow card globalSensorThresholdMinExceeds: %s.', error);
           });
 
-        this.homey.app.deviceSensorThresholdMinExceeds.trigger(this, {
-          sensor: this.homey.__(`capability.${capability}.name`),
+        this.getApp().deviceSensorThresholdMinExceeds.trigger(this, {
+          sensor: this.homey.__(`capability.${ capability }.name`),
           report,
-          value: `${value}`,
+          value: `${ value }`,
           numeric: parseFloat(value),
         })
           .then(() => {
@@ -297,20 +299,20 @@ module.exports = class MiFloraDevice extends Homey.Device {
           });
       }
       if (value > maxValue) {
-        if(this.hasCapability(capability.replace('measure_', 'alarm_'))){
+        if (this.hasCapability(capability.replace('measure_', 'alarm_'))) {
           this.setCapabilityValue(capability.replace('measure_', 'alarm_'), true);
         }
-        const report = this.homey.__(`capability.${capability}.threshold.max`, {
+        const report = this.homey.__(`capability.${ capability }.threshold.max`, {
           value,
           max: maxValue,
           plant: this.getName(),
         });
 
-        this.homey.app.globalSensorOutsideThreshold.trigger({
+        this.getApp().globalSensorOutsideThreshold.trigger({
           deviceName: this.getName(),
           report,
-          sensor: this.homey.__(`capability.${capability}.name`),
-          value: `${value}`,
+          sensor: this.homey.__(`capability.${ capability }.name`),
+          value: `${ value }`,
           numeric: parseFloat(value),
         })
           .then(() => {
@@ -320,10 +322,10 @@ module.exports = class MiFloraDevice extends Homey.Device {
             console.error('Cannot trigger flow card globalSensorOutsideThreshold: %s.', error);
           });
 
-        this.homey.app.deviceSensorOutsideThreshold.trigger(this, {
-          sensor: this.homey.__(`capability.${capability}.name`),
+        this.getApp().deviceSensorOutsideThreshold.trigger(this, {
+          sensor: this.homey.__(`capability.${ capability }.name`),
           report,
-          value: `${value}`,
+          value: `${ value }`,
           numeric: parseFloat(value),
         })
           .then(() => {
@@ -333,11 +335,11 @@ module.exports = class MiFloraDevice extends Homey.Device {
             console.error('Cannot trigger flow card deviceSensorOutsideThreshold: %s.', error);
           });
 
-        this.homey.app.globalSensorThresholdMaxExceeds.trigger({
+        this.getApp().globalSensorThresholdMaxExceeds.trigger({
           deviceName: this.getName(),
-          sensor: this.homey.__(`capability.${capability}.name`),
+          sensor: this.homey.__(`capability.${ capability }.name`),
           report,
-          value: `${value}`,
+          value: `${ value }`,
           numeric: parseFloat(value),
         })
           .then(() => {
@@ -347,10 +349,10 @@ module.exports = class MiFloraDevice extends Homey.Device {
             console.error('Cannot trigger flow card globalSensorThresholdMaxExceeds: %s.', error);
           });
 
-        this.homey.app.deviceSensorThresholdMaxExceeds.trigger(this, {
-          sensor: this.homey.__(`capability.${capability}.name`),
+        this.getApp().deviceSensorThresholdMaxExceeds.trigger(this, {
+          sensor: this.homey.__(`capability.${ capability }.name`),
           report,
-          value: `${value}`,
+          value: `${ value }`,
           numeric: parseFloat(value),
         })
           .then(() => {
@@ -360,9 +362,9 @@ module.exports = class MiFloraDevice extends Homey.Device {
             console.error('Cannot trigger flow card deviceSensorThresholdMaxExceeds: %s.', error);
           });
       }
-      if(value >= minValue && value <= maxValue) {
+      if (value >= minValue && value <= maxValue) {
         if (this.hasCapability(capability.replace('measure_', 'alarm_'))) {
-            this.setCapabilityValue(capability.replace('measure_', 'alarm_'), false);
+          this.setCapabilityValue(capability.replace('measure_', 'alarm_'), false);
         }
       }
     }
@@ -372,15 +374,15 @@ module.exports = class MiFloraDevice extends Homey.Device {
    * Update the device on add
    */
   onAdded() {
-    this.homey.app.registerDevice(this);
-    this.homey.app.updateDevice(this);
+    this.getApp().registerDevice(this);
+    this.getApp().updateDevice(this);
   }
 
   /**
    * Unregister device
    */
   onDeleted() {
-    this.homey.app.unregisterDevice(this);
+    this.getApp().unregisterDevice(this);
   }
 
   /**
@@ -388,12 +390,32 @@ module.exports = class MiFloraDevice extends Homey.Device {
    *
    * @returns {Promise.<*>}
    */
-  async getDeviceData(property) {
+  async getDeviceData(property: string): Promise<string> {
     const deviceData = await this.getData();
     if (Object.prototype.hasOwnProperty.call(deviceData, property)) {
       return deviceData[property];
     }
-
-    return Promise.resolve();
   }
-};
+
+  get id(): string {
+    return this._id;
+  }
+
+  get retry(): number {
+    return this._retry;
+  }
+
+  set retry(value: number) {
+    this._retry = value;
+  }
+
+  getApp(): HomeyMiFloraApp {
+    return this.homey.app as HomeyMiFloraApp;
+  }
+
+  getDriver(): MiFloraDriver {
+    return this.driver as MiFloraDriver;
+  }
+}
+
+module.exports = MiFloraDevice;

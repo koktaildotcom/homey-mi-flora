@@ -13,7 +13,8 @@
     "sv": "Spåra dina växters värden"
   },
   "platforms": [
-    "local"
+    "local",
+    "cloud"
   ],
   "support": "https://community.homey.app/t/xiaomi-mi-flora-sensor-ropot-app/45",
   "category": [

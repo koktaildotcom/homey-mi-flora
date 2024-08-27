@@ -1,8 +1,10 @@
-'use strict';
+import { MiFloraDriver } from '../../lib/MiFloraDriver';
 
-const MiFloraDriver = require('../../lib/MiFloraDriver.js');
-
-module.exports = class MiFloraRopotDriver extends MiFloraDriver {
+export class MiFloraRopotDriver extends MiFloraDriver {
+  onInit(): Promise<void> {
+    console.log('MiFloraRopotDriver.onInit');
+    return super.onInit();
+  }
 
   getMiFloraBleIdentification() {
     return 'ropot';
@@ -34,4 +36,6 @@ module.exports = class MiFloraRopotDriver extends MiFloraDriver {
     ];
   }
 
-};
+}
+
+module.exports = MiFloraRopotDriver;

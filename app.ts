@@ -1,6 +1,7 @@
-'use strict';
-
-const Homey = require('homey');
+import Homey = require('homey');
+import { FlowCardAction, FlowCardTrigger, FlowCardTriggerDevice } from 'homey';
+import { MiFloraDevice } from './lib/MiFloraDevice';
+import { MiFloraDriver } from './lib/MiFloraDriver';
 
 const DATA_SERVICE_UUID = '0000120400001000800000805f9b34fb';
 const DATA_CHARACTERISTIC_UUID = '00001a0100001000800000805f9b34fb';
@@ -15,14 +16,34 @@ async function asyncForEach(array, callback) {
   }
 }
 
-module.exports = class HomeyMiFlora extends Homey.App {
+export default class HomeyMiFloraApp extends Homey.App {
+  private _devices: MiFloraDevice[];
+  private _capabilityOptions: string[];
+  private _conditionsMapping: {};
+  private _syncTimeout: number;
+
+  public thresholdMapping: {};
+  public syncInProgress: boolean;
+  public updateDeviceAction: FlowCardAction;
+  public update: FlowCardAction;
+  public deviceSensorUpdated: FlowCardTriggerDevice;
+  public globalSensorUpdated: FlowCardTrigger;
+  public deviceSensorChanged: FlowCardTriggerDevice;
+  public globalSensorChanged: FlowCardTrigger;
+  public globalSensorTimeout: FlowCardTrigger;
+  public globalSensorThresholdMinExceeds: FlowCardTrigger;
+  public deviceSensorThresholdMinExceeds: FlowCardTriggerDevice;
+  public globalSensorThresholdMaxExceeds: FlowCardTrigger;
+  public deviceSensorThresholdMaxExceeds: FlowCardTriggerDevice;
+  public globalSensorOutsideThreshold: FlowCardTrigger;
+  public deviceSensorOutsideThreshold: FlowCardTriggerDevice;
 
   /**
    * init the app
    */
-  onInit() {
+  onInit(): Promise<void> {
     console.log('Successfully init HomeyMiFlora version: %s', this.homey.manifest.version);
-    this.devices = [];
+    this._devices = [];
     this.deviceSensorUpdated = this.homey.flow.getDeviceTriggerCard('device_sensor_updated');
     this.globalSensorUpdated = this.homey.flow.getTriggerCard('sensor_updated');
     this.deviceSensorChanged = this.homey.flow.getDeviceTriggerCard('device_sensor_changed');
@@ -39,7 +60,8 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
     this.update.registerRunListener(async () => {
       try {
-        return Promise.resolve(await this._synchroniseSensorData());
+        await this._synchroniseSensorData();
+        return Promise.resolve();
       } catch (error) {
         return Promise.reject(error);
       }
@@ -85,14 +107,14 @@ module.exports = class HomeyMiFlora extends Homey.App {
             console.log('dumping args:');
             console.log(args);
 
-            return false;
+            return;
           });
       }
     }
 
     this.updateDeviceAction
       .registerArgumentAutocompleteListener('sensor', async query => {
-        const sensors = this.devices
+        const sensors = this._devices
           .map(device => {
             return {
               name: device.getName(),
@@ -107,7 +129,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
       })
       .registerRunListener(async data => {
         if (data.sensor !== null) {
-          const target = this.devices.find(device => device.id === data.sensor.id);
+          const target = this._devices.find(device => device.id === data.sensor.id);
           if (!target) {
             throw new Error(`Could not find device with id: ${data.sensor.id}`);
           }
@@ -121,20 +143,22 @@ module.exports = class HomeyMiFlora extends Homey.App {
 
     this.syncInProgress = false;
     this._setNewTimeout();
+
+    return;
   }
 
   /**
    * @param device MiFloraDevice
    */
-  registerDevice(device) {
-    this.devices.push(device);
+  registerDevice(device: MiFloraDevice) {
+    this._devices.push(device);
   }
 
   /**
    * @param device MiFloraDevice
    */
-  unregisterDevice(device) {
-    this.devices = this.devices.filter(current => current.id !== device.id);
+  unregisterDevice(device: MiFloraDevice) {
+    this._devices = this._devices.filter(current => current.id !== device.id);
   }
 
   /**
@@ -144,7 +168,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
    *
    * @returns {Promise.<MiFloraDevice>}
    */
-  async handleUpdateSequence(device) {
+  async handleUpdateSequence(device: MiFloraDevice) {
     let disconnectPeripheral = async () => {
       console.log('disconnectPeripheral not registered yet');
     };
@@ -263,7 +287,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
       console.log('call disconnectPeripheral');
       await disconnectPeripheral();
 
-      console.log(`Device sync complete in: ${(new Date() - updateDeviceTime) / 1000} seconds`);
+      console.log(`Device sync complete in: ${((new Date()).getTime() - updateDeviceTime.getTime()) / 1000} seconds`);
 
       return device;
     } catch (error) {
@@ -274,13 +298,13 @@ module.exports = class HomeyMiFlora extends Homey.App {
   }
 
   /**
-   * update the devices one by one
+   * update the _devices one by one
    *
    * @param devices MiFloraDevice[]
    *
    * @returns {Promise.<MiFloraDevice[]>}
    */
-  async updateDevices(devices) {
+  async updateDevices(devices: MiFloraDevice[]) {
     console.log(' ');
     console.log(' ');
     console.log(' ');
@@ -301,13 +325,9 @@ module.exports = class HomeyMiFlora extends Homey.App {
   }
 
   /**
-   * update the devices one by one
-   *
-   * @param device MiFloraDevice
-   *
-   * @returns {Promise.<MiFloraDevice>}
+   * update the _devices one by one
    */
-  async updateDevice(device) {
+  async updateDevice(device: MiFloraDevice): Promise<MiFloraDevice> {
     console.log('#########################################');
     console.log(`# update device: ${device.getName()}`);
     console.log(`# firmware: ${device.getSetting('firmware_version')}`);
@@ -337,7 +357,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
             });
         }
 
-        this.homey.app.globalSensorTimeout.trigger({
+        this.globalSensorTimeout.trigger({
           deviceName: device.getName() ?? device.id,
           reason: error.message ?? 'Unknown error',
         })
@@ -381,27 +401,27 @@ module.exports = class HomeyMiFlora extends Homey.App {
       throw new Error('Synchronisation already in progress, wait for it to be complete.');
     }
 
-    let { devices } = this;
+    let { _devices } = this;
 
     const debugging = false;
     if (debugging) {
-      if (this.devices.length !== 0) {
-        devices = [];
-        devices.push(this.devices[0], this.devices[1]);
+      if (this._devices.length !== 0) {
+        _devices = [];
+        _devices.push(this._devices[0], this._devices[1]);
       }
     }
 
     const updateDevicesTime = new Date();
 
-    if (devices.length === 0) {
-      throw new Error('No devices found to update.');
+    if (_devices.length === 0) {
+      throw new Error('No _devices found to update.');
     }
 
     this.syncInProgress = true;
-    return this.updateDevices(devices)
+    return this.updateDevices(_devices)
       .then(() => {
         this.syncInProgress = false;
-        return `All devices are synced complete in: ${(new Date() - updateDevicesTime) / 1000} seconds`;
+        return `All devices are synced complete in: ${(new Date().getTime() - updateDevicesTime.getTime()) / 1000} seconds`;
       })
       .catch(error => {
         this.syncInProgress = false;
@@ -432,7 +452,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
       clearTimeout(this._syncTimeout);
     }
 
-    this._syncTimeout = setTimeout(this._synchroniseSensorDataTimeout.bind(this), interval);
+    this._syncTimeout = setTimeout(this._synchroniseSensorDataTimeout.bind(this), interval) as unknown as number;
 
     this.syncInProgress = false;
   }
@@ -444,7 +464,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
    *
    * @returns {Promise.<object[]>}
    */
-  async discoverDevices(driver) {
+  async discoverDevices(driver: MiFloraDriver): Promise<any[]> {
     if (this.syncInProgress) {
       throw new Error(this.homey.__('pair.error.ble-unavailable'));
     }
@@ -471,8 +491,8 @@ module.exports = class HomeyMiFlora extends Homey.App {
                 id: advertisement.id,
                 uuid: advertisement.uuid,
                 address: advertisement.uuid,
-                name: advertisement.name,
-                type: advertisement.type,
+                // name: advertisement.name,
+                // type: advertisement.type,
                 version: `v${version}`,
               },
               settings: { uuid: advertisement.uuid, ...driver.getDefaultSettings() },
@@ -489,7 +509,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
    * @param rssi
    * @return {number}
    */
-  calculateDistance(rssi) {
+  calculateDistance(rssi: number): number {
     const txPower = -59;
     const ratio = rssi / txPower;
 

@@ -1,15 +1,17 @@
-'use strict';
+import { MiFloraDriver } from '../../lib/MiFloraDriver';
 
-const MiFloraDriver = require('../../lib/MiFloraDriver.js');
-
-module.exports = class MiFloraSensorDriver extends MiFloraDriver {
+export class MiFloraSensorDriver extends MiFloraDriver {
+  onInit(): Promise<void> {
+    console.log('MiFloraSensorDriver.onInit');
+    return super.onInit();
+  }
 
   getMiFloraBleIdentification() {
-    return 'Grow care garden';
+    return 'Flower care';
   }
 
   getMiFloraBleName() {
-    return 'Mi flora garden care max';
+    return 'Mi flora flower care';
   }
 
   getDefaultSettings() {
@@ -40,3 +42,5 @@ module.exports = class MiFloraSensorDriver extends MiFloraDriver {
   }
 
 };
+
+module.exports = MiFloraSensorDriver;

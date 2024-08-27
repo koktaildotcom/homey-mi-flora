@@ -1,15 +1,15 @@
-"use strict";
+import Homey from 'homey';
+import PairSession from 'homey/lib/PairSession';
+import HomeyMiFloraApp from '../app';
 
-const Homey = require('homey');
-
-module.exports = class MiFloraDriver extends Homey.Driver {
+export class MiFloraDriver extends Homey.Driver {
 
     /**
      * @abstract
      *
      * the name of the BLE for identification
      */
-    getMiFloraBleIdentification() {
+    getMiFloraBleIdentification(): string {
         throw new Error('todo: Implement getMiFloraBleIdentification into child class');
     }
 
@@ -18,7 +18,7 @@ module.exports = class MiFloraDriver extends Homey.Driver {
      *
      * the human readable name of the BLE
      */
-    getMiFloraBleName() {
+    getMiFloraBleName(): string {
         throw new Error('todo: Implement getMiFloraBleName into child class');
     }
 
@@ -27,7 +27,7 @@ module.exports = class MiFloraDriver extends Homey.Driver {
      *
      * the supported capabilities
      */
-    getSupportedCapabilities() {
+    getSupportedCapabilities(): string[] {
         throw new Error('todo: Implement getSupportedCapabilities into child class');
     }
 
@@ -36,16 +36,22 @@ module.exports = class MiFloraDriver extends Homey.Driver {
      *
      * get the default settings
      */
-    getDefaultSettings() {
+    getDefaultSettings(): object {
         throw new Error('todo: Implement getDefaultSettings into child class');
     }
 
     /**
      * render a list of devices for pairing to homey
      */
-    async onPair(session) {
+    async onPair(session: PairSession) {
         session.setHandler('list_devices', async () => {
-            return await this.homey.app.discoverDevices(this);
+            return await this.getApp().discoverDevices(this);
         });
     }
+
+    getApp(): HomeyMiFloraApp {
+        return this.homey.app as HomeyMiFloraApp;
+    }
 }
+
+module.exports = MiFloraDriver;
