@@ -1,0 +1,28 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  main:
+    name: Translate App
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Translate Homey App
+        uses: athombv/github-action-homey-app-translate@v1
+        with:
+          openai_api_key: ${{ secrets.OPENAI_API_KEY }}
+
+      - name: Commit, Push & Create Pull Request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config --local user.email "leendert@koktail.nl"
+          git config --local user.name "Leendert de Kok"
+          
+          git checkout -b feature/openai-translations
+          
+          git add -A
+          git commit -m "Automatic translations with OpenAI"
+          git push --set-upstream origin feature/openai-translations
+          
+          gh pr create --fill

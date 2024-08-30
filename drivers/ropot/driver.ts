@@ -1,10 +1,6 @@
-import { MiFloraDriver } from '../../lib/MiFloraDriver';
+import MiFloraDriver from '../../lib/MiFloraDriver';
 
-export class MiFloraRopotDriver extends MiFloraDriver {
-  onInit(): Promise<void> {
-    console.log('MiFloraRopotDriver.onInit');
-    return super.onInit();
-  }
+class MiFloraRopotDriver extends MiFloraDriver {
 
   getMiFloraBleIdentification() {
     return 'ropot';

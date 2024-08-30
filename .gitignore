@@ -2,6 +2,7 @@ node_modules/
 env.json
 .idea
 
+env.json.dist
 
 # Added by Homey CLI
 /.homeybuild/

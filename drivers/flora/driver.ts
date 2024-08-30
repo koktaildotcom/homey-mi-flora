@@ -1,10 +1,6 @@
-import { MiFloraDriver } from '../../lib/MiFloraDriver';
+import MiFloraDriver from '../../lib/MiFloraDriver';
 
-export class MiFloraSensorDriver extends MiFloraDriver {
-  onInit(): Promise<void> {
-    console.log('MiFloraSensorDriver.onInit');
-    return super.onInit();
-  }
+class MiFloraSensorDriver extends MiFloraDriver {
 
   getMiFloraBleIdentification() {
     return 'Flower care';
@@ -41,6 +37,6 @@ export class MiFloraSensorDriver extends MiFloraDriver {
     ];
   }
 
-};
+}
 
 module.exports = MiFloraSensorDriver;

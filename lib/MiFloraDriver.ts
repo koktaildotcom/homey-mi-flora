@@ -2,7 +2,7 @@ import Homey from 'homey';
 import PairSession from 'homey/lib/PairSession';
 import HomeyMiFloraApp from '../app';
 
-export class MiFloraDriver extends Homey.Driver {
+export default class MiFloraDriver extends Homey.Driver {
 
     /**
      * @abstract

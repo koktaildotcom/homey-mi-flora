@@ -1,10 +1,6 @@
-import { MiFloraDriver } from '../../lib/MiFloraDriver';
+import MiFloraDriver from '../../lib/MiFloraDriver';
 
-export class MiFloraMaxSensorDriver extends MiFloraDriver {
-  onInit(): Promise<void> {
-    console.log('MiFloraMaxSensorDriver.onInit');
-    return super.onInit();
-  }
+class MiFloraMaxSensorDriver extends MiFloraDriver {
 
   getMiFloraBleIdentification() {
     return 'Grow care garden';

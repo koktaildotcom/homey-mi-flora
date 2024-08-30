@@ -1,6 +1,6 @@
-import { MiFloraDevice } from '../../lib/MiFloraDevice';
+import MiFloraDevice from '../../lib/MiFloraDevice';
 
-export class MiFloraSensor extends MiFloraDevice {
+class MiFloraSensor extends MiFloraDevice {
 }
 
 module.exports = MiFloraSensor;

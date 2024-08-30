@@ -1,7 +1,12 @@
-import Homey = require('homey');
-import { FlowCardAction, FlowCardTrigger, FlowCardTriggerDevice } from 'homey';
-import { MiFloraDevice } from './lib/MiFloraDevice';
-import { MiFloraDriver } from './lib/MiFloraDriver';
+import { App, FlowCardAction, FlowCardTrigger, FlowCardTriggerDevice } from 'homey';
+import MiFloraDevice from './lib/MiFloraDevice';
+import MiFloraDriver from './lib/MiFloraDriver';
+import { DeviceInfo } from './types/DeviceInfo';
+import { MeasureDeviceCapability } from './types/MeasureDeviceCapabilityEnum';
+import {
+  MeasureCapabilityValuesMap,
+  ThresholdMapping
+} from './types/MeasureCapabilityMap';
 
 const DATA_SERVICE_UUID = '0000120400001000800000805f9b34fb';
 const DATA_CHARACTERISTIC_UUID = '00001a0100001000800000805f9b34fb';
@@ -10,38 +15,49 @@ const REALTIME_CHARACTERISTIC_UUID = '00001a0000001000800000805f9b34fb';
 
 const MAX_RETRIES = 3;
 
-async function asyncForEach(array: string[], callback: (value: any, index: number, array: string[]) => Promise<void>) {
-  for (let index = 0; index < array.length; index++) {
-    await callback(array[index], index, array);
-  }
-}
+export default class HomeyMiFloraApp extends App {
+  private _devices: MiFloraDevice[] = [];
+  private _capabilityOptions: string[] = [];
+  private _conditionsMapping: Record<string, string> = {};
+  private _syncTimeout: number | undefined;
 
-export default class HomeyMiFloraApp extends Homey.App {
-  private _devices: MiFloraDevice[];
-  private _capabilityOptions: string[];
-  private _conditionsMapping: {};
-  private _syncTimeout: number;
-
-  public thresholdMapping: {};
-  public syncInProgress: boolean;
-  public updateDeviceAction: FlowCardAction;
-  public update: FlowCardAction;
-  public deviceSensorUpdated: FlowCardTriggerDevice;
-  public globalSensorUpdated: FlowCardTrigger;
-  public deviceSensorChanged: FlowCardTriggerDevice;
-  public globalSensorChanged: FlowCardTrigger;
-  public globalSensorTimeout: FlowCardTrigger;
-  public globalSensorThresholdMinExceeds: FlowCardTrigger;
-  public deviceSensorThresholdMinExceeds: FlowCardTriggerDevice;
-  public globalSensorThresholdMaxExceeds: FlowCardTrigger;
-  public deviceSensorThresholdMaxExceeds: FlowCardTriggerDevice;
-  public globalSensorOutsideThreshold: FlowCardTrigger;
-  public deviceSensorOutsideThreshold: FlowCardTriggerDevice;
+  public thresholdMapping: ThresholdMapping = {
+    [MeasureDeviceCapability.MeasureTemperature]: {
+      min: 'measure_temperature_min',
+      max: 'measure_temperature_max',
+    },
+    [MeasureDeviceCapability.MeasureLuminance]: {
+      min: 'measure_luminance_min',
+      max: 'measure_luminance_max',
+    },
+    [MeasureDeviceCapability.MeasureNutrition]: {
+      min: 'measure_nutrition_min',
+      max: 'measure_nutrition_max',
+    },
+    [MeasureDeviceCapability.MeasureMoisture]: {
+      min: 'measure_moisture_min',
+      max: 'measure_moisture_max',
+    },
+  };
+  public syncInProgress: boolean | undefined;
+  public updateDeviceAction: FlowCardAction | undefined;
+  public update: FlowCardAction | undefined;
+  public deviceSensorUpdated: FlowCardTriggerDevice | undefined;
+  public globalSensorUpdated: FlowCardTrigger | undefined;
+  public deviceSensorChanged: FlowCardTriggerDevice | undefined;
+  public globalSensorChanged: FlowCardTrigger | undefined;
+  public globalSensorTimeout: FlowCardTrigger | undefined;
+  public globalSensorThresholdMinExceeds: FlowCardTrigger | undefined;
+  public deviceSensorThresholdMinExceeds: FlowCardTriggerDevice | undefined;
+  public globalSensorThresholdMaxExceeds: FlowCardTrigger | undefined;
+  public deviceSensorThresholdMaxExceeds: FlowCardTriggerDevice | undefined;
+  public globalSensorOutsideThreshold: FlowCardTrigger | undefined;
+  public deviceSensorOutsideThreshold: FlowCardTriggerDevice | undefined;
 
   /**
    * init the app
    */
-  onInit(): Promise<void> {
+  async onInit(): Promise<void> {
     console.log('Successfully init HomeyMiFlora version: %s', this.homey.manifest.version);
     this._devices = [];
     this.deviceSensorUpdated = this.homey.flow.getDeviceTriggerCard('device_sensor_updated');
@@ -74,14 +90,14 @@ export default class HomeyMiFloraApp extends Homey.App {
       'measure_moisture',
       'measure_battery',
     ];
-    this._conditionsMapping = {};
-    this.thresholdMapping = {};
+
     this._capabilityOptions.forEach(capability => {
       if (this._capabilityOptions.indexOf(capability) !== -1 && capability !== 'measure_battery') {
-        this._conditionsMapping[capability] = `${capability}_threshold`;
+        this._conditionsMapping[capability] = `${ capability }_threshold`;
+        // @ts-ignore -- @todo fix later on
         this.thresholdMapping[capability] = {
-          min: `${capability}_min`,
-          max: `${capability}_max`,
+          min: `${ capability }_min`,
+          max: `${ capability }_max`,
         };
       }
     });
@@ -92,6 +108,7 @@ export default class HomeyMiFloraApp extends Homey.App {
           .registerRunListener(args => {
             const target = args.device;
 
+            // @ts-ignore -- @todo fix later on
             const mapping = this.thresholdMapping[capability];
             if (target && mapping.min && mapping.max) {
               const minValue = target.getSetting(mapping.min);
@@ -131,7 +148,7 @@ export default class HomeyMiFloraApp extends Homey.App {
         if (data.sensor !== null) {
           const target = this._devices.find(device => device.id === data.sensor.id);
           if (!target) {
-            throw new Error(`Could not find device with id: ${data.sensor.id}`);
+            throw new Error(`Could not find device with id: ${ data.sensor.id }`);
           }
           await this.updateDevice(target);
         }
@@ -143,8 +160,6 @@ export default class HomeyMiFloraApp extends Homey.App {
 
     this.syncInProgress = false;
     this._setNewTimeout();
-
-    return;
   }
 
   /**
@@ -180,20 +195,16 @@ export default class HomeyMiFloraApp extends Homey.App {
       console.log('find');
       const advertisement = await this.homey.ble.find(device.getAddress(), 10000);
 
-      console.log(`distance = ${this.calculateDistance(advertisement.rssi)} meter`);
+      console.log(`distance = ${ this.calculateDistance(advertisement.rssi) } meter`);
 
       console.log('connect');
       const peripheral = await advertisement.connect();
 
       disconnectPeripheral = async () => {
-        try {
-          console.log('try to disconnect peripheral');
-          if (peripheral.isConnected) {
-            console.log('disconnect peripheral');
-            return await peripheral.disconnect();
-          }
-        } catch (err) {
-          throw new Error(err);
+        console.log('try to disconnect peripheral');
+        if (peripheral.isConnected) {
+          console.log('disconnect peripheral');
+          return await peripheral.disconnect();
         }
       };
 
@@ -232,17 +243,18 @@ export default class HomeyMiFloraApp extends Homey.App {
         temperature -= 65535;
       }
 
-      const sensorValues = {
-        measure_temperature: temperature / 10,
-        measure_luminance: sensorData.readUInt32LE(3),
-        measure_nutrition: sensorData.readUInt16LE(8),
-        measure_moisture: sensorData.readUInt16BE(6),
+      const sensorValues: MeasureCapabilityValuesMap = {
+        [MeasureDeviceCapability.MeasureTemperature]: temperature / 10,
+        [MeasureDeviceCapability.MeasureLuminance]: sensorData.readUInt32LE(3),
+        [MeasureDeviceCapability.MeasureNutrition]: sensorData.readUInt16LE(8),
+        [MeasureDeviceCapability.MeasureMoisture]: sensorData.readUInt16BE(6),
       };
 
       console.log(sensorValues);
 
-      await asyncForEach(device.getCapabilities(), async characteristic => {
+      await this.asyncForEach(device.getCapabilities(), async characteristic => {
         if (sensorValues.hasOwnProperty(characteristic)) {
+          // @ts-ignore -- improve later
           device.updateCapabilityValue(characteristic, sensorValues[characteristic]);
         }
       });
@@ -263,8 +275,9 @@ export default class HomeyMiFloraApp extends Homey.App {
         measure_battery: batteryValue,
       };
 
-      await asyncForEach(device.getCapabilities(), async characteristic => {
+      await this.asyncForEach(device.getCapabilities(), async characteristic => {
         if (batteryValues.hasOwnProperty(characteristic)) {
+          // @ts-ignore -- improve later
           device.updateCapabilityValue(characteristic, batteryValues[characteristic]);
         }
       });
@@ -287,7 +300,7 @@ export default class HomeyMiFloraApp extends Homey.App {
       console.log('call disconnectPeripheral');
       await disconnectPeripheral();
 
-      console.log(`Device sync complete in: ${((new Date()).getTime() - updateDeviceTime.getTime()) / 1000} seconds`);
+      console.log(`Device sync complete in: ${ ((new Date()).getTime() - updateDeviceTime.getTime()) / 1000 } seconds`);
 
       return device;
     } catch (error) {
@@ -304,7 +317,7 @@ export default class HomeyMiFloraApp extends Homey.App {
    *
    * @returns {Promise.<MiFloraDevice[]>}
    */
-  async updateDevices(devices: MiFloraDevice[]): Promise<MiFloraDevice | void> {
+  async updateDevices(devices: MiFloraDevice[]): Promise<MiFloraDevice[]> {
     console.log(' ');
     console.log(' ');
     console.log(' ');
@@ -312,16 +325,25 @@ export default class HomeyMiFloraApp extends Homey.App {
     console.log('-----------------------------------------------------------------');
     console.log('| New update sequence ');
     console.log('-----------------------------------------------------------------');
-    return devices.reduce(async (promise: Promise<MiFloraDevice>, device: MiFloraDevice) => {
+
+    const results: MiFloraDevice[] = [];
+
+    await devices.reduce(async (promise: Promise<void>, device: MiFloraDevice) => {
+      await promise;
       try {
-        await promise;
         console.log('reduce');
         device.retry = 0;
-        return await this.updateDevice(device);
+        const updatedDevice = await this.updateDevice(device);
+        if (updatedDevice) {
+          results.push(updatedDevice);
+        }
       } catch (error) {
         console.log(error);
+        throw error;
       }
     }, Promise.resolve());
+
+    return results;
   }
 
   /**
@@ -329,8 +351,8 @@ export default class HomeyMiFloraApp extends Homey.App {
    */
   async updateDevice(device: MiFloraDevice): Promise<MiFloraDevice | void> {
     console.log('#########################################');
-    console.log(`# update device: ${device.getName()}`);
-    console.log(`# firmware: ${device.getSetting('firmware_version')}`);
+    console.log(`# update device: ${ device.getName() }`);
+    console.log(`# firmware: ${ device.getSetting('firmware_version') }`);
     console.log('#########################################');
 
     console.log('call handleUpdateSequence');
@@ -351,14 +373,10 @@ export default class HomeyMiFloraApp extends Homey.App {
         console.log(error);
 
         if (device.retry < MAX_RETRIES) {
-          try {
-            return await this.updateDevice(device);
-          } catch (e) {
-            throw new Error(e);
-          }
+          return await this.updateDevice(device);
         }
 
-        this.globalSensorTimeout.trigger({
+        this.globalSensorTimeout?.trigger({
           deviceName: device.getName() ?? device.id,
           reason: error.message ?? 'Unknown error',
         })
@@ -371,7 +389,7 @@ export default class HomeyMiFloraApp extends Homey.App {
 
         device.retry = 0;
 
-        throw new Error(`Max retries (${MAX_RETRIES}) exceeded, no success`);
+        throw new Error(`Max retries (${ MAX_RETRIES }) exceeded, no success`);
       });
   }
 
@@ -422,7 +440,7 @@ export default class HomeyMiFloraApp extends Homey.App {
     return this.updateDevices(_devices)
       .then(() => {
         this.syncInProgress = false;
-        return `All devices are synced complete in: ${(new Date().getTime() - updateDevicesTime.getTime()) / 1000} seconds`;
+        return `All devices are synced complete in: ${ (new Date().getTime() - updateDevicesTime.getTime()) / 1000 } seconds`;
       })
       .catch(error => {
         this.syncInProgress = false;
@@ -453,26 +471,19 @@ export default class HomeyMiFloraApp extends Homey.App {
       clearTimeout(this._syncTimeout);
     }
 
-    this._syncTimeout = setTimeout(this._synchroniseSensorDataTimeout.bind(this), interval) as unknown as number;
+    this._syncTimeout = this.homey.setTimeout(this._synchroniseSensorDataTimeout.bind(this), interval) as unknown as number;
 
     this.syncInProgress = false;
   }
 
-  /**
-   * disconnect from peripheral
-   *
-   * @param driver MiFloraDriver
-   *
-   * @returns {Promise.<object[]>}
-   */
-  async discoverDevices(driver: MiFloraDriver): Promise<any[]> {
+  async discoverDevices(driver: MiFloraDriver): Promise<DeviceInfo[]> {
     if (this.syncInProgress) {
       throw new Error(this.homey.__('pair.error.ble-unavailable'));
     }
     const { version } = this.homey.manifest;
-    const devices = [];
+    const devices: DeviceInfo[] = [];
     let index = driver.getDevices() ? driver.getDevices().length : 0;
-    const currentUuids = [];
+    const currentUuids: string[] = [];
     driver.getDevices().forEach(device => {
       const data = device.getData();
       currentUuids.push(data.uuid);
@@ -487,14 +498,14 @@ export default class HomeyMiFloraApp extends Homey.App {
             ++index;
             devices.push({
               id: advertisement.uuid,
-              name: `${driver.getMiFloraBleName()} ${index}`,
+              name: `${ driver.getMiFloraBleName() } ${ index }`,
               data: {
                 id: advertisement.id,
                 uuid: advertisement.uuid,
                 address: advertisement.uuid,
                 // name: advertisement.name,
                 // type: advertisement.type,
-                version: `v${version}`,
+                version: `v${ version }`,
               },
               settings: { uuid: advertisement.uuid, ...driver.getDefaultSettings() },
               capabilities: driver.getSupportedCapabilities(),
@@ -521,4 +532,12 @@ export default class HomeyMiFloraApp extends Homey.App {
     return (0.19) * Math.pow(ratio, 8);
   }
 
-};
+
+  async asyncForEach(array: string[], callback: (value: any, index: number, array: string[]) => Promise<void>): Promise<void> {
+    for (let index = 0; index < array.length; index++) {
+      await callback(array[index], index, array);
+    }
+  }
+}
+
+module.exports = HomeyMiFloraApp;

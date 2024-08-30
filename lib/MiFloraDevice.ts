@@ -1,10 +1,11 @@
 import Homey from 'homey';
+import { DefaultSettings } from '../types/MeasureCapabilityMap';
 import HomeyMiFloraApp from '../app';
-import { MiFloraDriver } from './MiFloraDriver';
+import MiFloraDriver from './MiFloraDriver';
 
-export class MiFloraDevice extends Homey.Device {
-  private _id: string;
-  private _retry: number;
+export default class MiFloraDevice extends Homey.Device {
+  private _id: string = '';
+  private _retry: number = 0;
 
   /**
    * on init the device
@@ -14,7 +15,7 @@ export class MiFloraDevice extends Homey.Device {
     const version = settings['app_version'];
 
     if (!version) {
-      if (this.hasCapability('measure_moisture') === false) {
+      if (!this.hasCapability('measure_moisture')) {
         await this.addCapability('measure_moisture');
         const min = settings['flora_measure_moisture_min'];
         const max = settings['flora_measure_moisture_max'];
@@ -23,7 +24,7 @@ export class MiFloraDevice extends Homey.Device {
           measure_moisture_max: max,
         });
       }
-      if (this.hasCapability('measure_nutrition') === false) {
+      if (!this.hasCapability('measure_nutrition')) {
         await this.addCapability('measure_nutrition');
         const min = settings['flora_measure_fertility_min'];
         const max = settings['flora_measure_fertility_max'];
@@ -45,7 +46,7 @@ export class MiFloraDevice extends Homey.Device {
 
     this._id = await this.getDeviceData('id');
 
-    const defaultSettings = {
+    const defaultSettings: DefaultSettings = {
       measure_temperature: {
         min: 10,
         max: 30,
@@ -66,16 +67,21 @@ export class MiFloraDevice extends Homey.Device {
 
     if (this.getApp().thresholdMapping) {
       for (const capability in this.getApp().thresholdMapping) {
+        // @ts-ignore -- @todo: fix this
         if (this.getApp().thresholdMapping.hasOwnProperty(capability) && defaultSettings.hasOwnProperty(capability)) {
+          // @ts-ignore -- @todo: fix this
           const mapping = this.getApp().thresholdMapping[capability];
+          // @ts-ignore -- @todo: fix this
           const defaults = defaultSettings[capability];
           if (this.getSetting(mapping.min) === '0') {
             const object = {};
+            // @ts-ignore -- @todo: fix this
             object[mapping.min] = defaults.min;
             this.setSettings(object);
           }
           if (this.getSetting(mapping.max) === '0') {
             const object = {};
+            // @ts-ignore -- @todo: fix this
             object[mapping.max] = defaults.max;
             this.setSettings(object);
           }
@@ -107,9 +113,11 @@ export class MiFloraDevice extends Homey.Device {
    * @param capability
    * @param value
    */
+  // @ts-ignore -- @todo: fix this
   updateCapabilityValue(capability, value) {
     const currentValue = this.getCapabilityValue(capability);
 
+    // @ts-ignore -- @todo: fix this
     this.getApp().globalSensorUpdated.trigger({
       deviceName: this.getName(),
       sensor: this.homey.__(`capability.${ capability }.name`),
@@ -123,10 +131,12 @@ export class MiFloraDevice extends Homey.Device {
       .then(() => {
         // console.log('Successful triggered flow card globalSensorUpdated global.');
       })
+      // @ts-ignore -- @todo: fix this
       .catch(error => {
         console.log('Cannot trigger flow card globalSensorUpdated global: %s.', error);
       });
 
+    // @ts-ignore -- @todo: fix this
     this.getApp().globalSensorChanged.trigger({
       deviceName: this.getName(),
       sensor: this.homey.__(`capability.${ capability }.name`),
@@ -140,6 +150,7 @@ export class MiFloraDevice extends Homey.Device {
       .then(() => {
         // console.log('Successful triggered flow card globalSensorChanged.');
       })
+      // @ts-ignore -- @todo: fix this
       .catch(error => {
         console.error('Cannot trigger flow card globalSensorChanged device: %s.', error);
       });
@@ -149,6 +160,7 @@ export class MiFloraDevice extends Homey.Device {
     if (currentValue !== value) {
       this.setCapabilityValue(capability, value).catch(console.error);
 
+      // @ts-ignore -- @todo: fix this
       this.getApp().deviceSensorUpdated.trigger(this, {
         sensor: this.homey.__(`capability.${ capability }.name`),
         report: this.homey.__(`capability.${ capability }.device_updated`, {
@@ -161,10 +173,12 @@ export class MiFloraDevice extends Homey.Device {
         .then(() => {
           // console.log('Successful triggered flow deviceSensorUpdated sensor_changed.');
         })
+        // @ts-ignore -- @todo: fix this
         .catch(error => {
           console.error('Cannot trigger flow card deviceSensorUpdated device: %s.', error);
         });
 
+      // @ts-ignore -- @todo: fix this
       this.getApp().deviceSensorChanged.trigger(this, {
         sensor: this.homey.__(`capability.${ capability }.name`),
         report: this.homey.__(`capability.${ capability }.device_changed`, {
@@ -177,6 +191,7 @@ export class MiFloraDevice extends Homey.Device {
         .then(() => {
           // console.log('Successful triggered flow card deviceSensorChanged global.');
         })
+        // @ts-ignore -- @todo: fix this
         .catch(error => {
           console.error('Cannot trigger flow card deviceSensorChanged global: %s.', error);
         });
@@ -201,10 +216,13 @@ export class MiFloraDevice extends Homey.Device {
   /**
    * on settings change
    */
+  // @ts-ignore -- @todo: fix this
   async onSettings({ oldSettings, newSettings, changedKeys }) {
     if (this.getApp().thresholdMapping) {
       for (const capability in this.getApp().thresholdMapping) {
+        // @ts-ignore -- @todo: fix this
         if (this.getApp().thresholdMapping.hasOwnProperty(capability)) {
+          // @ts-ignore -- @todo: fix this
           const mapping = this.getApp().thresholdMapping[capability];
           if (newSettings.hasOwnProperty(mapping.min) && newSettings.hasOwnProperty(mapping.max)) {
             const minValue = newSettings[mapping.min];
@@ -228,9 +246,13 @@ export class MiFloraDevice extends Homey.Device {
    * @param capability
    * @param value
    */
+  // @ts-ignore -- @todo: fix this
   _checkThresholdTrigger(capability, value) {
+    // @ts-ignore -- @todo: fix this
     if (this.getApp().thresholdMapping && this.getApp().thresholdMapping.hasOwnProperty(capability)) {
+      // @ts-ignore -- @todo: fix this
       const minValue = this.getSetting(this.getApp().thresholdMapping[capability].min);
+      // @ts-ignore -- @todo: fix this
       const maxValue = this.getSetting(this.getApp().thresholdMapping[capability].max);
 
       if (value < minValue) {
@@ -244,6 +266,7 @@ export class MiFloraDevice extends Homey.Device {
           plant: this.getName(),
         });
 
+        // @ts-ignore -- @todo: fix this
         this.getApp().globalSensorOutsideThreshold.trigger({
           deviceName: this.getName(),
           sensor: this.homey.__(`capability.${ capability }.name`),
@@ -254,10 +277,12 @@ export class MiFloraDevice extends Homey.Device {
           .then(() => {
             // console.log('Successful triggered flow card globalSensorOutsideThreshold.');
           })
+          // @ts-ignore -- @todo: fix this
           .catch(error => {
             console.error('Cannot trigger flow card globalSensorOutsideThreshold: %s.', error);
           });
 
+        // @ts-ignore -- @todo: fix this
         this.getApp().deviceSensorOutsideThreshold.trigger(this, {
           sensor: this.homey.__(`capability.${ capability }.name`),
           report,
@@ -267,10 +292,12 @@ export class MiFloraDevice extends Homey.Device {
           .then(() => {
             // console.log('Successful triggered flow card deviceSensorOutsideThreshold.');
           })
+          // @ts-ignore -- @todo: fix this
           .catch(error => {
             console.error('Cannot trigger flow card deviceSensorOutsideThreshold: %s.', error);
           });
 
+        // @ts-ignore -- @todo: fix this
         this.getApp().globalSensorThresholdMinExceeds.trigger({
           deviceName: this.getName(),
           sensor: this.homey.__(`capability.${ capability }.name`),
@@ -281,10 +308,12 @@ export class MiFloraDevice extends Homey.Device {
           .then(() => {
             // console.log('Successful triggered flow card globalSensorThresholdMinExceeds.');
           })
+          // @ts-ignore -- @todo: fix this
           .catch(error => {
             console.error('Cannot trigger flow card globalSensorThresholdMinExceeds: %s.', error);
           });
 
+        // @ts-ignore -- @todo: fix this
         this.getApp().deviceSensorThresholdMinExceeds.trigger(this, {
           sensor: this.homey.__(`capability.${ capability }.name`),
           report,
@@ -294,6 +323,7 @@ export class MiFloraDevice extends Homey.Device {
           .then(() => {
             // console.log('Successful triggered flow card deviceSensorThresholdMinExceeds.');
           })
+          // @ts-ignore -- @todo: fix this
           .catch(error => {
             console.error('Cannot trigger flow card deviceSensorThresholdMinExceeds: %s.', error);
           });
@@ -308,6 +338,7 @@ export class MiFloraDevice extends Homey.Device {
           plant: this.getName(),
         });
 
+        // @ts-ignore -- @todo: fix this
         this.getApp().globalSensorOutsideThreshold.trigger({
           deviceName: this.getName(),
           report,
@@ -318,10 +349,12 @@ export class MiFloraDevice extends Homey.Device {
           .then(() => {
             // console.log('Successful triggered flow card globalSensorOutsideThreshold.');
           })
+          // @ts-ignore -- @todo: fix this
           .catch(error => {
             console.error('Cannot trigger flow card globalSensorOutsideThreshold: %s.', error);
           });
 
+        // @ts-ignore -- @todo: fix this
         this.getApp().deviceSensorOutsideThreshold.trigger(this, {
           sensor: this.homey.__(`capability.${ capability }.name`),
           report,
@@ -331,10 +364,12 @@ export class MiFloraDevice extends Homey.Device {
           .then(() => {
             // console.log('Successful triggered flow card deviceSensorOutsideThreshold.');
           })
+          // @ts-ignore -- @todo: fix this
           .catch(error => {
             console.error('Cannot trigger flow card deviceSensorOutsideThreshold: %s.', error);
           });
 
+        // @ts-ignore -- @todo: fix this
         this.getApp().globalSensorThresholdMaxExceeds.trigger({
           deviceName: this.getName(),
           sensor: this.homey.__(`capability.${ capability }.name`),
@@ -345,10 +380,12 @@ export class MiFloraDevice extends Homey.Device {
           .then(() => {
             // console.log('Successful triggered flow card globalSensorThresholdMaxExceeds.');
           })
+          // @ts-ignore -- @todo: fix this
           .catch(error => {
             console.error('Cannot trigger flow card globalSensorThresholdMaxExceeds: %s.', error);
           });
 
+        // @ts-ignore -- @todo: fix this
         this.getApp().deviceSensorThresholdMaxExceeds.trigger(this, {
           sensor: this.homey.__(`capability.${ capability }.name`),
           report,
@@ -358,6 +395,7 @@ export class MiFloraDevice extends Homey.Device {
           .then(() => {
             // console.log('Successful triggered flow card deviceSensorThresholdMaxExceeds.');
           })
+          // @ts-ignore -- @todo: fix this
           .catch(error => {
             console.error('Cannot trigger flow card deviceSensorThresholdMaxExceeds: %s.', error);
           });
@@ -390,6 +428,7 @@ export class MiFloraDevice extends Homey.Device {
    *
    * @returns {Promise.<*>}
    */
+  // @ts-ignore -- @todo: fix this
   async getDeviceData(property: string): Promise<string> {
     const deviceData = await this.getData();
     if (Object.prototype.hasOwnProperty.call(deviceData, property)) {

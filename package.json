@@ -2,18 +2,21 @@
   "name": "homey-mi-flora",
   "version": "4.0.8",
   "description": "This app integrates the `Xiaomi mi flora sensor` and `Xiaomi mi flora ropot` into Homey.",
-  "main": "app.js",
+  "main": "app.ts",
   "directories": {
     "lib": "lib"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "eslint --ext .js,.ts --ignore-path .gitignore ."
   },
   "devDependencies": {
+    "@tsconfig/node16": "^16.1.1",
     "@types/homey": "npm:homey-apps-sdk-v3-types@^0.3.7",
     "eslint": "^9.2.0",
     "eslint-config-athom": "^3.1.3",
-    "homey": "^3.2.4"
+    "homey": "^3.2.4",
+    "typescript": "^5.5.4"
   },
   "repository": {
     "type": "git",
