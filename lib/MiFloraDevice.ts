@@ -112,7 +112,7 @@ export default class MiFloraDevice extends Homey.Device {
   /**
    * update the detected sensor values and emit the triggers
    */
-  updateCapabilityValue(capability: string, value: number | string) {
+  async updateCapabilityValue(capability: string, value: number | string) {
     const currentValue = this.getCapabilityValue(capability);
 
     this.getApp()?.globalSensorUpdated?.trigger({
@@ -149,7 +149,7 @@ export default class MiFloraDevice extends Homey.Device {
         console.error('Cannot trigger flow card globalSensorChanged device: %s.', error);
       });
 
-    this._checkThresholdTrigger(capability, value);
+    await this._checkThresholdTrigger(capability, value);
 
     if (currentValue !== value) {
       this.setCapabilityValue(capability, value).catch(console.error);
@@ -229,19 +229,19 @@ export default class MiFloraDevice extends Homey.Device {
   /**
    * emit the registered triggers
    */
-  _checkThresholdTrigger(capability: string, value: string | number) {
+  async _checkThresholdTrigger(capability: string, value: string | number) {
     const capabilityAlias = capability as CombinedCapabilities;
     const minValue = this.getSetting(this.getApp().thresholdMapping[capabilityAlias].min);
     const maxValue = this.getSetting(this.getApp().thresholdMapping[capabilityAlias].max);
+
+    let hasError = false;
 
     if (!value || !minValue || !maxValue) {
       return;
     }
 
     if (value < minValue) {
-      if (this.hasCapability(capability.replace('measure_', 'alarm_'))) {
-        this.setCapabilityValue(capability.replace('measure_', 'alarm_'), true);
-      }
+      hasError = true;
 
       const report = this.homey.__(`capability.${ capability }.threshold.min`, {
         value,
@@ -304,9 +304,8 @@ export default class MiFloraDevice extends Homey.Device {
         });
     }
     if (value > maxValue) {
-      if (this.hasCapability(capability.replace('measure_', 'alarm_'))) {
-        this.setCapabilityValue(capability.replace('measure_', 'alarm_'), true);
-      }
+      hasError = true;
+
       const report = this.homey.__(`capability.${ capability }.threshold.max`, {
         value,
         max: maxValue,
@@ -367,12 +366,10 @@ export default class MiFloraDevice extends Homey.Device {
           console.error('Cannot trigger flow card deviceSensorThresholdMaxExceeds: %s.', error);
         });
     }
-    if (value >= minValue && value <= maxValue) {
-      if (this.hasCapability(capability.replace('measure_', 'alarm_'))) {
-        this.setCapabilityValue(capability.replace('measure_', 'alarm_'), false);
-      }
-    }
 
+    if (this.hasCapability(capability.replace('measure_', 'alarm_'))) {
+      await this.setCapabilityValue(capability.replace('measure_', 'alarm_'), hasError);
+    }
   }
 
   /**

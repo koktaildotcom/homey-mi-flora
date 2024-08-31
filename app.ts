@@ -269,7 +269,7 @@ export default class HomeyMiFloraApp extends App {
       await this.asyncForEach(device.getCapabilities(), async characteristic => {
         if (sensorValues.hasOwnProperty(characteristic)) {
           const characteristicAlias = characteristic as DeviceCapabilities;
-          device.updateCapabilityValue(characteristic, sensorValues[characteristicAlias]);
+          await device.updateCapabilityValue(characteristic, sensorValues[characteristicAlias]);
         }
       });
 
@@ -291,7 +291,7 @@ export default class HomeyMiFloraApp extends App {
       await this.asyncForEach(device.getCapabilities(), async characteristic => {
         if (batteryValues.hasOwnProperty(characteristic)) {
           const characteristicAlias = characteristic as FirmwareCapabilities;
-          device.updateCapabilityValue(characteristic, batteryValues[characteristicAlias]);
+          await device.updateCapabilityValue(characteristic, batteryValues[characteristicAlias]);
         }
       });
 
