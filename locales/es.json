@@ -1,0 +1,90 @@
+{
+  "pair": {
+    "title": "Buscando dispositivos Xiaomi Mi Flora",
+    "info": {
+      "title": "Ten en cuenta:",
+      "row1": "Para una señal óptima, mantén el sensor a una distancia cercana de Homey.",
+      "row2": "Siempre descarga la app original `Xiaomi Mi Flora` y añade los dispositivos a la app. Esto actualizará automáticamente el firmware del sensor a la última versión."
+    },
+    "faq": {
+      "title": "Preguntas frecuentes:",
+      "question1": "¿Por qué Homey no encuentra el sensor?",
+      "answer1": "Verifica si el sensor no está conectado a otro dispositivo bluetooth. Por ejemplo, la app `Xiaomi Mi Flora`."
+    },
+    "configure": "Buscar dispositivos",
+    "error": {
+      "ble-unavailable": "Ble no está disponible: una sincronización de dispositivos está en progreso."
+    }
+  },
+  "settings": {
+    "title": "Configuración Xiaomi Mi Flora",
+    "update": "Actualizar configuración",
+    "interval": {
+      "label": "El intervalo entre actualizaciones en minutos",
+      "info": "El retraso entre las lecturas de valores del sensor en minutos. El intervalo mínimo es de 5 minutos. El intervalo predeterminado es de 15 minutos."
+    },
+    "save": {
+      "label": "Guardar"
+    },
+    "success": "La configuración se ha guardado",
+    "error": {
+      "threshold": "El umbral mínimo y máximo para `__capability__` no es válido."
+    }
+  },
+  "capability": {
+    "measure_temperature": {
+      "name": "temperatura",
+      "suffix": " °C",
+      "changed": "La temperatura ha cambiado a: __value__°C.",
+      "device_changed": "La temperatura de `__plant__` ha cambiado a: __value__°C.",
+      "device_updated": "La temperatura de `__plant__` se ha actualizado a: __value__°C.",
+      "threshold": {
+        "min": "La temperatura (__value__°C) de `__plant__` es demasiado baja. Debe ser al menos __min__°C.",
+        "max": "La temperatura (__value__°C) de `__plant__` es demasiado alta. Debe ser como máximo __max__°C."
+      }
+    },
+    "measure_luminance": {
+      "name": "luz solar",
+      "suffix": " lx",
+      "changed": "La luz solar ha cambiado a: __value__ lx.",
+      "device_changed": "La luz solar de `__plant__` ha cambiado a: __value__ lx.",
+      "device_updated": "La luz solar de `__plant__` se ha actualizado a: __value__ lx.",
+      "threshold": {
+        "min": "La luz solar (__value__ lx) de `__plant__` es demasiado baja. Debe ser al menos __min__ lx.",
+        "max": "La luz solar (__value__ lx) de `__plant__` es demasiado alta. Debe ser como máximo __max__ lx."
+      }
+    },
+    "measure_nutrition": {
+      "name": "nutrición",
+      "suffix": " µS/cm",
+      "changed": "La nutrición ha cambiado a: __value__ µS/cm.",
+      "device_changed": "La nutrición de `__plant__` ha cambiado a: __value__ µS/cm.",
+      "device_updated": "La nutrición de `__plant__` se ha actualizado a: __value__ µS/cm.",
+      "threshold": {
+        "min": "La nutrición (__value__ µS/cm) de `__plant__` es demasiado baja. Debe ser al menos __min__ µS/cm.",
+        "max": "La nutrición (__value__ µS/cm) de `__plant__` es demasiado alta. Debe ser como máximo __max__ µS/cm."
+      }
+    },
+    "measure_moisture": {
+      "name": "humedad",
+      "suffix": " %",
+      "changed": "La humedad ha cambiado a: __value__%.",
+      "device_changed": "La humedad de `__plant__` ha cambiado a: __value__%.",
+      "device_updated": "La humedad de `__plant__` se ha actualizado a: __value__%.",
+      "threshold": {
+        "min": "La humedad (__value__%) de `__plant__` es demasiado baja. Debe ser al menos __min__%.",
+        "max": "La humedad (__value__%) de `__plant__` es demasiado alta. Debe ser como máximo __max__%."
+      }
+    },
+    "measure_battery": {
+      "name": "batería",
+      "changed": "La batería ha cambiado a: __value__%.",
+      "device_changed": "La batería de `__plant__` ha cambiado a: __value__%.",
+      "device_updated": "La batería de `__plant__` se ha actualizado a: __value__%.",
+      "threshold": {
+        "min": "La batería (__value__%) de `__plant__` es demasiado baja. Debe ser al menos __min__%.",
+        "max": "La batería (__value__%) de `__plant__` es demasiado alta. Debe ser como máximo __max__%."
+      }
+    }
+  }
+}

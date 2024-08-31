@@ -4,6 +4,14 @@
     "en": "Synchronise all sensor values",
     "nl": "Synchroniseer alle sensor waarden",
     "de": "Synchronisiere alle Sensorwerte",
-    "sv": "Synkronisera alla sensorers värden"
+    "sv": "Synkronisera alla sensorers värden",
+    "da": "Synkroniser alle sensorværdier",
+    "es": "Sincronizar todos los valores de los sensores",
+    "fr": "Synchroniser toutes les valeurs des capteurs",
+    "it": "Sincronizza tutti i valori dei sensori",
+    "no": "Synkroniser alle sensorverdier",
+    "pl": "Zsynchronizuj wszystkie wartości czujników",
+    "ru": "Синхронизировать все значения датчиков",
+    "ko": "모든 센서 값을 동기화"
   }
 }

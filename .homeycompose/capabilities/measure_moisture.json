@@ -5,7 +5,15 @@
     "en": "Moisture",
     "nl": "Vochtigheid",
     "de": "Feuchtigkeit",
-    "sv": "Fuktighet"
+    "sv": "Fuktighet",
+    "da": "Fugtighed",
+    "es": "Humedad",
+    "fr": "Humidité",
+    "it": "Umidità",
+    "no": "Fuktighet",
+    "pl": "Wilgotność",
+    "ru": "Влажность",
+    "ko": "습도"
   },
   "icon": "/assets/moisture.svg",
   "getable": true,

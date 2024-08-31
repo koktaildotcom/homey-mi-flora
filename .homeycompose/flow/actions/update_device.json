@@ -4,13 +4,29 @@
     "en": "Synchronize sensor values of device",
     "nl": "Synchroniseer sensorwaarden van apparaat",
     "de": "Sensorwerte vom Gerät synchronisieren",
-    "sv": "Synkronisera sensorns värde för enheten"
+    "sv": "Synkronisera sensorns värde för enheten",
+    "da": "Synkroniser sensorværdier for enhed",
+    "es": "Sincronizar valores del sensor del dispositivo",
+    "fr": "Synchroniser les valeurs des capteurs de l'appareil",
+    "it": "Sincronizza i valori dei sensori del dispositivo",
+    "no": "Synkroniser sensorverdier for enhet",
+    "pl": "Synchronizuj wartości czujników urządzenia",
+    "ru": "Синхронизировать значения датчиков устройства",
+    "ko": "장치의 센서 값을 동기화"
   },
   "titleFormatted": {
     "en": "Synchronize sensor values of device [[sensor]]",
     "nl": "Synchroniseer sensorwaarden van apparaat [[sensor]]",
     "de": "Sensorwerte vom Gerät [[sensor]] synchronisieren",
-    "sv": "Synkronisera sensorvärden från enhet [[sensor]]"
+    "sv": "Synkronisera sensorvärden från enhet [[sensor]]",
+    "da": "Synkroniser sensorværdier for enhed [[sensor]]",
+    "es": "Sincronizar valores del sensor del dispositivo [[sensor]]",
+    "fr": "Synchroniser les valeurs des capteurs de l'appareil [[sensor]]",
+    "it": "Sincronizza i valori dei sensori del dispositivo [[sensor]]",
+    "no": "Synkroniser sensorverdier for enhet [[sensor]]",
+    "pl": "Synchronizuj wartości czujników urządzenia [[sensor]]",
+    "ru": "Синхронизировать значения датчиков устройства [[sensor]]",
+    "ko": "장치 [[sensor]]의 센서 값을 동기화"
   },
   "args": [
     {
@@ -26,7 +42,15 @@
         "en": "Select a device",
         "nl": "Selecteer een apparaat",
         "de": "Gerät auswählen",
-        "sv": "Välj en enhet"
+        "sv": "Välj en enhet",
+        "da": "Vælg en enhed",
+        "es": "Seleccione un dispositivo",
+        "fr": "Sélectionnez un appareil",
+        "it": "Seleziona un dispositivo",
+        "no": "Velg en enhet",
+        "pl": "Wybierz urządzenie",
+        "ru": "Выберите устройство",
+        "ko": "장치를 선택하세요"
       }
     }
   ]

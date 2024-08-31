@@ -4,7 +4,15 @@
     "en": "Alarm moisture",
     "nl": "Alarm vochtigheid",
     "de": "Alarm Feuchtigkeit",
-    "sv": "Larm fuktighet"
+    "sv": "Larm fuktighet",
+    "da": "Alarm fugtighed",
+    "es": "Alarma humedad",
+    "fr": "Alarme humidité",
+    "it": "Allarme umidità",
+    "no": "Alarm fuktighet",
+    "pl": "Alarm wilgotności",
+    "ru": "Сигнализация влажности",
+    "ko": "습도 경보"
   },
   "uiComponent": null,
   "getable": true,

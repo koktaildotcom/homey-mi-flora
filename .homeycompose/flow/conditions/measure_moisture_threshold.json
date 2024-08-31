@@ -4,19 +4,43 @@
     "en": "The plant !{{has not|has}} correct amount of moisture.",
     "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid vocht.",
     "de": "Die Pflanze !{{hat nicht|hat}} korrekte Menge an Wasser.",
-    "sv": "Plantan !{{har inte|har}} tillräckligt med vatten."
+    "sv": "Plantan !{{har inte|har}} tillräckligt med vatten.",
+    "da": "Planten !{{har ikke|har}} korrekt mængde fugt.",
+    "es": "La planta !{{no tiene|tiene}} la cantidad correcta de humedad.",
+    "fr": "La plante !{{n'a pas|a}} la bonne quantité d'humidité.",
+    "it": "La pianta !{{non ha|ha}} la quantità corretta di umidità.",
+    "no": "Planten !{{har ikke|har}} riktig mengde fuktighet.",
+    "pl": "Roślina !{{nie ma|ma}} odpowiednią ilość wilgoci.",
+    "ru": "Растение !{{не имеет|имеет}} правильное количество влаги.",
+    "ko": "식물은 !{{적절하지 않|적절한}} 수분량을 가지고 있습니다."
   },
   "titleFormatted": {
     "en": "The plant [[device]] !{{has not|has}} correct amount of moisture.",
     "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste hoeveelheid vocht.",
     "de": "Die Pflanze [[device]] !{{hat nicht|hat}} korrekte Menge an Wasser.",
-    "sv": "Plantan [[device]] !{{har inte|har}} tillräckligt med vatten."
+    "sv": "Plantan [[device]] !{{har inte|har}} tillräckligt med vatten.",
+    "da": "Planten [[device]] !{{har ikke|har}} korrekt mængde fugt.",
+    "es": "La planta [[device]] !{{no tiene|tiene}} la cantidad correcta de humedad.",
+    "fr": "La plante [[device]] !{{n'a pas|a}} la bonne quantité d'humidité.",
+    "it": "La pianta [[device]] !{{non ha|ha}} la quantità corretta di umidità.",
+    "no": "Planten [[device]] !{{har ikke|har}} riktig mengde fuktighet.",
+    "pl": "Roślina [[device]] !{{nie ma|ma}} odpowiednią ilość wilgoci.",
+    "ru": "Растение [[device]] !{{не имеет|имеет}} правильное количество влаги.",
+    "ko": "식물은 [[device]] !{{적절하지 않|적절한}} 수분량을 가지고 있습니다."
   },
   "hint": {
     "en": "Use this card to determine if the plant has a correct amount of moisture.",
     "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid vocht heeft.",
     "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze genug Wasser hat.",
-    "sv": "Använd detta kort för att säkerställa att plantan tillräckligt med vatten."
+    "sv": "Använd detta kort för att säkerställa att plantan tillräckligt med vatten.",
+    "da": "Brug dette kort til at afgøre, om planten har korrekt mængde fugt.",
+    "es": "Utiliza esta tarjeta para determinar si la planta tiene la cantidad correcta de humedad.",
+    "fr": "Utilisez cette carte pour déterminer si la plante a la bonne quantité d'humidité.",
+    "it": "Usa questa carta per determinare se la pianta ha la quantità corretta di umidità.",
+    "no": "Bruk dette kortet for å bestemme om planten har riktig mengde fuktighet.",
+    "pl": "Użyj tej karty, aby sprawdzić, czy roślina ma odpowiednią ilość wilgoci.",
+    "ru": "Используйте эту карту, чтобы определить, имеет ли растение правильное количество влаги.",
+    "ko": "이 카드를 사용하여 식물이 적절한 수분량을 가지고 있는지 확인하세요."
   },
   "args": [
     {

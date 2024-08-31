@@ -4,7 +4,15 @@
     "en": "Nutrition",
     "nl": "Voeding",
     "de": "Dünger",
-    "sv": "Näring"
+    "sv": "Näring",
+    "da": "Ernæring",
+    "es": "Nutrición",
+    "fr": "Nutrition",
+    "it": "Nutrizione",
+    "no": "Ernæring",
+    "pl": "Odżywianie",
+    "ru": "Питание",
+    "ko": "영양"
   },
   "icon": "/assets/nutritions.svg",
   "getable": true,
