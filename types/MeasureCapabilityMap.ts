@@ -1,18 +1,18 @@
-import { MeasureDeviceCapability } from './MeasureDeviceCapabilityEnum';
-import { ThresholdMappingSetting, ThresholdMappingTranslation } from './ThresholdMapping';
+import { CombinedCapabilities, DeviceCapabilities, FirmwareCapabilities } from './Capabilities';
+import { Threshold, ThresholdTranslation } from './ThresholdMapping';
 
-export type MeasureCapabilityTranslationMap = {
-  [key in MeasureDeviceCapability]: string;
+export type CapabilityValuesMap = {
+  [key in DeviceCapabilities]: number;
 }
 
-export type MeasureCapabilityValuesMap = {
-  [key in MeasureDeviceCapability]: number;
+export type FirmwareValuesMap = {
+  [key in FirmwareCapabilities]: number;
 }
 
-export type ThresholdMapping = {
-  [key in MeasureDeviceCapability]: ThresholdMappingTranslation;
+export type ThresholdTranslationMapping = {
+  [key in CombinedCapabilities]: ThresholdTranslation;
 }
 
-export type DefaultSettings = {
-  [key in MeasureDeviceCapability]: ThresholdMappingSetting;
+export type ThresholdMap = {
+  [key in CombinedCapabilities]: Threshold;
 }

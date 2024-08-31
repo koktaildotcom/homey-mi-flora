@@ -80,7 +80,11 @@
 	  "name": "Batterie",
 	  "changed": "Die Batterieladung hat sich auf __value__% geändert.",
 	  "device_changed": "Die Batterieladung von `__plant__` hat sich geändert auf: __value__%.",
-	  "device_updated": "Die Batterieladung von `__plant__` wurde aktualisiert auf: __value__%."
+	  "device_updated": "Die Batterieladung von `__plant__` wurde aktualisiert auf: __value__%.",
+		"threshold": {
+			"min": "Die Batterieladung (__value__%) von `__plant__` ist zu niedrig. Diese muss mindestens __min__% betragen.",
+			"max": "Die Batterieladung (__value__%) von `__plant__` ist zu hoch. Diese darf maximal __max__% betragen."
+		}
 	}
   }
 }

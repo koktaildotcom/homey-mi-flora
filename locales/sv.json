@@ -81,6 +81,10 @@
 			"changed": "Batteriet har ändrats till: __value__%.",
 			"device_changed": "Batteriet för `__plant__` har ändrats till: __value__%.",
 			"device_updated": "Batteriet för `__plant__` har uppdaterats till: __value__%."
+		},
+		"threshold": {
+			"min": "Batteriet (__value__%) för `__plant__` är för låg. Den bör vara minst __min__%.",
+			"max": "Batteriet (__value__%) för `__plant__` är för hög. Den bör vara som mest __max__%."
 		}
 	}
 }

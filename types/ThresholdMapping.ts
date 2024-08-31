@@ -1,9 +1,9 @@
-export type ThresholdMappingTranslation = {
+export type ThresholdTranslation = {
   min: string;
   max: string;
 }
 
-export type ThresholdMappingSetting = {
+export type Threshold = {
   min: number;
   max: number;
 }

@@ -1,7 +1,8 @@
-import Homey from 'homey';
-import { DefaultSettings } from '../types/MeasureCapabilityMap';
+import Homey, { Device } from 'homey';
+import { ThresholdMap } from '../types/MeasureCapabilityMap';
 import HomeyMiFloraApp from '../app';
 import MiFloraDriver from './MiFloraDriver';
+import { CombinedCapabilities } from '../types/Capabilities';
 
 export default class MiFloraDevice extends Homey.Device {
   private _id: string = '';
@@ -46,7 +47,7 @@ export default class MiFloraDevice extends Homey.Device {
 
     this._id = await this.getDeviceData('id');
 
-    const defaultSettings: DefaultSettings = {
+    const defaultSettings: ThresholdMap = {
       measure_temperature: {
         min: 10,
         max: 30,
@@ -63,33 +64,34 @@ export default class MiFloraDevice extends Homey.Device {
         min: 15,
         max: 30,
       },
+      measure_battery: {
+        min: 20,
+        max: 100,
+      },
     };
 
-    if (this.getApp().thresholdMapping) {
-      for (const capability in this.getApp().thresholdMapping) {
-        // @ts-ignore -- @todo: fix this
-        if (this.getApp().thresholdMapping.hasOwnProperty(capability) && defaultSettings.hasOwnProperty(capability)) {
-          // @ts-ignore -- @todo: fix this
-          const mapping = this.getApp().thresholdMapping[capability];
-          // @ts-ignore -- @todo: fix this
-          const defaults = defaultSettings[capability];
+    const app = this.getApp();
+    if (app && app.thresholdMapping) {
+      for (const capability in app.thresholdMapping) {
+        if (app.thresholdMapping.hasOwnProperty(capability) && defaultSettings.hasOwnProperty(capability)) {
+          const capabilityAlias = capability as keyof ThresholdMap;
+          const mapping = app.thresholdMapping[capabilityAlias];
+          const defaults = defaultSettings[capabilityAlias];
           if (this.getSetting(mapping.min) === '0') {
-            const object = {};
-            // @ts-ignore -- @todo: fix this
-            object[mapping.min] = defaults.min;
-            this.setSettings(object);
+            await this.setSettings({
+              [mapping.min]: defaults.min,
+            });
           }
           if (this.getSetting(mapping.max) === '0') {
-            const object = {};
-            // @ts-ignore -- @todo: fix this
-            object[mapping.max] = defaults.max;
-            this.setSettings(object);
+            await this.setSettings({
+              [mapping.max]: defaults.max,
+            });
           }
         }
       }
     }
 
-    this.getApp().registerDevice(this);
+    app.registerDevice(this);
 
     if (this.getDriver().getSupportedCapabilities().includes('alarm_temperature') && !this.hasCapability('alarm_temperature')) {
       await this.addCapability('alarm_temperature');
@@ -109,16 +111,11 @@ export default class MiFloraDevice extends Homey.Device {
 
   /**
    * update the detected sensor values and emit the triggers
-   *
-   * @param capability
-   * @param value
    */
-  // @ts-ignore -- @todo: fix this
-  updateCapabilityValue(capability, value) {
+  updateCapabilityValue(capability: string, value: number | string) {
     const currentValue = this.getCapabilityValue(capability);
 
-    // @ts-ignore -- @todo: fix this
-    this.getApp().globalSensorUpdated.trigger({
+    this.getApp()?.globalSensorUpdated?.trigger({
       deviceName: this.getName(),
       sensor: this.homey.__(`capability.${ capability }.name`),
       report: this.homey.__(`capability.${ capability }.device_updated`, {
@@ -126,18 +123,16 @@ export default class MiFloraDevice extends Homey.Device {
         plant: this.getName(),
       }),
       value: `${ value }`,
-      numeric: parseFloat(value),
+      numeric: value,
     })
       .then(() => {
         // console.log('Successful triggered flow card globalSensorUpdated global.');
       })
-      // @ts-ignore -- @todo: fix this
       .catch(error => {
         console.log('Cannot trigger flow card globalSensorUpdated global: %s.', error);
       });
 
-    // @ts-ignore -- @todo: fix this
-    this.getApp().globalSensorChanged.trigger({
+    this.getApp()?.globalSensorChanged?.trigger({
       deviceName: this.getName(),
       sensor: this.homey.__(`capability.${ capability }.name`),
       report: this.homey.__(`capability.${ capability }.device_changed`, {
@@ -145,12 +140,11 @@ export default class MiFloraDevice extends Homey.Device {
         plant: this.getName(),
       }),
       value: `${ value }`,
-      numeric: parseFloat(value),
+      numeric: value,
     })
       .then(() => {
         // console.log('Successful triggered flow card globalSensorChanged.');
       })
-      // @ts-ignore -- @todo: fix this
       .catch(error => {
         console.error('Cannot trigger flow card globalSensorChanged device: %s.', error);
       });
@@ -160,38 +154,34 @@ export default class MiFloraDevice extends Homey.Device {
     if (currentValue !== value) {
       this.setCapabilityValue(capability, value).catch(console.error);
 
-      // @ts-ignore -- @todo: fix this
-      this.getApp().deviceSensorUpdated.trigger(this, {
+      this.getApp().deviceSensorUpdated?.trigger(this as Device, {
         sensor: this.homey.__(`capability.${ capability }.name`),
         report: this.homey.__(`capability.${ capability }.device_updated`, {
           value,
           plant: this.getName(),
         }),
         value: `${ value }`,
-        numeric: parseFloat(value),
+        numeric: value,
       })
         .then(() => {
           // console.log('Successful triggered flow deviceSensorUpdated sensor_changed.');
         })
-        // @ts-ignore -- @todo: fix this
         .catch(error => {
           console.error('Cannot trigger flow card deviceSensorUpdated device: %s.', error);
         });
 
-      // @ts-ignore -- @todo: fix this
-      this.getApp().deviceSensorChanged.trigger(this, {
+      this.getApp().deviceSensorChanged?.trigger(this as Device, {
         sensor: this.homey.__(`capability.${ capability }.name`),
         report: this.homey.__(`capability.${ capability }.device_changed`, {
           value,
           plant: this.getName(),
         }),
         value: `${ value }`,
-        numeric: parseFloat(value),
+        numeric: value,
       })
         .then(() => {
           // console.log('Successful triggered flow card deviceSensorChanged global.');
         })
-        // @ts-ignore -- @todo: fix this
         .catch(error => {
           console.error('Cannot trigger flow card deviceSensorChanged global: %s.', error);
         });
@@ -200,8 +190,6 @@ export default class MiFloraDevice extends Homey.Device {
 
   /**
    * wrapper for make the app backwards compatible
-   *
-   * @return string
    */
   getAddress() {
     const data = this.getData();
@@ -216,196 +204,172 @@ export default class MiFloraDevice extends Homey.Device {
   /**
    * on settings change
    */
-  // @ts-ignore -- @todo: fix this
-  async onSettings({ oldSettings, newSettings, changedKeys }) {
-    if (this.getApp().thresholdMapping) {
-      for (const capability in this.getApp().thresholdMapping) {
-        // @ts-ignore -- @todo: fix this
-        if (this.getApp().thresholdMapping.hasOwnProperty(capability)) {
-          // @ts-ignore -- @todo: fix this
-          const mapping = this.getApp().thresholdMapping[capability];
-          if (newSettings.hasOwnProperty(mapping.min) && newSettings.hasOwnProperty(mapping.max)) {
-            const minValue = newSettings[mapping.min];
-            const maxValue = newSettings[mapping.max];
-            if (minValue >= maxValue) {
-              return this.homey.__('settings.error.threshold', { capability: this.homey.__(`capability.${ capability }.name`) });
-            }
+  async onSettings({ newSettings }: {
+    oldSettings: { [key: string]: boolean | string | number | undefined | null };
+    newSettings: { [key: string]: boolean | string | number | undefined | null };
+    changedKeys: string[];
+  }): Promise<string | void> {
+    for (const capability in this.getApp().thresholdMapping) {
+      if (this.getApp().thresholdMapping.hasOwnProperty(capability)) {
+        const capabilityAlias = capability as keyof ThresholdMap;
+        const mapping = this.getApp().thresholdMapping[capabilityAlias];
+        if (newSettings.hasOwnProperty(mapping.min) && newSettings.hasOwnProperty(mapping.max)) {
+          const minValue = newSettings[mapping.min];
+          const maxValue = newSettings[mapping.max];
+          if (minValue && maxValue && minValue >= maxValue) {
+            return this.homey.__('settings.error.threshold', { capability: this.homey.__(`capability.${ capability }.name`) });
           }
         }
       }
     }
 
-    return null;
+    return;
   }
 
   /**
-   * @private
-   *
    * emit the registered triggers
-   *
-   * @param capability
-   * @param value
    */
-  // @ts-ignore -- @todo: fix this
-  _checkThresholdTrigger(capability, value) {
-    // @ts-ignore -- @todo: fix this
-    if (this.getApp().thresholdMapping && this.getApp().thresholdMapping.hasOwnProperty(capability)) {
-      // @ts-ignore -- @todo: fix this
-      const minValue = this.getSetting(this.getApp().thresholdMapping[capability].min);
-      // @ts-ignore -- @todo: fix this
-      const maxValue = this.getSetting(this.getApp().thresholdMapping[capability].max);
+  _checkThresholdTrigger(capability: string, value: string | number) {
+    const capabilityAlias = capability as CombinedCapabilities;
+    console.log(this.getApp()?.thresholdMapping[capabilityAlias] ?? `No mapping found for ${capabilityAlias}`);
+    const minValue = this.getSetting(this.getApp().thresholdMapping[capabilityAlias].min);
+    const maxValue = this.getSetting(this.getApp().thresholdMapping[capabilityAlias].max);
 
-      if (value < minValue) {
-        if (this.hasCapability(capability.replace('measure_', 'alarm_'))) {
-          this.setCapabilityValue(capability.replace('measure_', 'alarm_'), true);
-        }
+    if (value < minValue) {
+      if (this.hasCapability(capability.replace('measure_', 'alarm_'))) {
+        this.setCapabilityValue(capability.replace('measure_', 'alarm_'), true);
+      }
 
-        const report = this.homey.__(`capability.${ capability }.threshold.min`, {
-          value,
-          min: minValue,
-          plant: this.getName(),
+      const report = this.homey.__(`capability.${ capability }.threshold.min`, {
+        value,
+        min: minValue,
+        plant: this.getName(),
+      });
+
+      this.getApp()?.globalSensorOutsideThreshold?.trigger({
+        deviceName: this.getName(),
+        sensor: this.homey.__(`capability.${ capability }.name`),
+        report,
+        value: `${ value }`,
+        numeric: value,
+      })
+        .then(() => {
+          // console.log('Successful triggered flow card globalSensorOutsideThreshold.');
+        })
+        .catch(error => {
+          console.error('Cannot trigger flow card globalSensorOutsideThreshold: %s.', error);
         });
 
-        // @ts-ignore -- @todo: fix this
-        this.getApp().globalSensorOutsideThreshold.trigger({
-          deviceName: this.getName(),
-          sensor: this.homey.__(`capability.${ capability }.name`),
-          report,
-          value: `${ value }`,
-          numeric: parseFloat(value),
+      this.getApp().deviceSensorOutsideThreshold?.trigger(this, {
+        sensor: this.homey.__(`capability.${ capability }.name`),
+        report,
+        value: `${ value }`,
+        numeric: value,
+      })
+        .then(() => {
+          // console.log('Successful triggered flow card deviceSensorOutsideThreshold.');
         })
-          .then(() => {
-            // console.log('Successful triggered flow card globalSensorOutsideThreshold.');
-          })
-          // @ts-ignore -- @todo: fix this
-          .catch(error => {
-            console.error('Cannot trigger flow card globalSensorOutsideThreshold: %s.', error);
-          });
-
-        // @ts-ignore -- @todo: fix this
-        this.getApp().deviceSensorOutsideThreshold.trigger(this, {
-          sensor: this.homey.__(`capability.${ capability }.name`),
-          report,
-          value: `${ value }`,
-          numeric: parseFloat(value),
-        })
-          .then(() => {
-            // console.log('Successful triggered flow card deviceSensorOutsideThreshold.');
-          })
-          // @ts-ignore -- @todo: fix this
-          .catch(error => {
-            console.error('Cannot trigger flow card deviceSensorOutsideThreshold: %s.', error);
-          });
-
-        // @ts-ignore -- @todo: fix this
-        this.getApp().globalSensorThresholdMinExceeds.trigger({
-          deviceName: this.getName(),
-          sensor: this.homey.__(`capability.${ capability }.name`),
-          report,
-          value: `${ value }`,
-          numeric: parseFloat(value),
-        })
-          .then(() => {
-            // console.log('Successful triggered flow card globalSensorThresholdMinExceeds.');
-          })
-          // @ts-ignore -- @todo: fix this
-          .catch(error => {
-            console.error('Cannot trigger flow card globalSensorThresholdMinExceeds: %s.', error);
-          });
-
-        // @ts-ignore -- @todo: fix this
-        this.getApp().deviceSensorThresholdMinExceeds.trigger(this, {
-          sensor: this.homey.__(`capability.${ capability }.name`),
-          report,
-          value: `${ value }`,
-          numeric: parseFloat(value),
-        })
-          .then(() => {
-            // console.log('Successful triggered flow card deviceSensorThresholdMinExceeds.');
-          })
-          // @ts-ignore -- @todo: fix this
-          .catch(error => {
-            console.error('Cannot trigger flow card deviceSensorThresholdMinExceeds: %s.', error);
-          });
-      }
-      if (value > maxValue) {
-        if (this.hasCapability(capability.replace('measure_', 'alarm_'))) {
-          this.setCapabilityValue(capability.replace('measure_', 'alarm_'), true);
-        }
-        const report = this.homey.__(`capability.${ capability }.threshold.max`, {
-          value,
-          max: maxValue,
-          plant: this.getName(),
+        .catch(error => {
+          console.error('Cannot trigger flow card deviceSensorOutsideThreshold: %s.', error);
         });
 
-        // @ts-ignore -- @todo: fix this
-        this.getApp().globalSensorOutsideThreshold.trigger({
-          deviceName: this.getName(),
-          report,
-          sensor: this.homey.__(`capability.${ capability }.name`),
-          value: `${ value }`,
-          numeric: parseFloat(value),
+      this.getApp()?.globalSensorThresholdMinExceeds?.trigger({
+        deviceName: this.getName(),
+        sensor: this.homey.__(`capability.${ capability }.name`),
+        report,
+        value: `${ value }`,
+        numeric: value,
+      })
+        .then(() => {
+          // console.log('Successful triggered flow card globalSensorThresholdMinExceeds.');
         })
-          .then(() => {
-            // console.log('Successful triggered flow card globalSensorOutsideThreshold.');
-          })
-          // @ts-ignore -- @todo: fix this
-          .catch(error => {
-            console.error('Cannot trigger flow card globalSensorOutsideThreshold: %s.', error);
-          });
+        .catch(error => {
+          console.error('Cannot trigger flow card globalSensorThresholdMinExceeds: %s.', error);
+        });
 
-        // @ts-ignore -- @todo: fix this
-        this.getApp().deviceSensorOutsideThreshold.trigger(this, {
-          sensor: this.homey.__(`capability.${ capability }.name`),
-          report,
-          value: `${ value }`,
-          numeric: parseFloat(value),
+      this.getApp().deviceSensorThresholdMinExceeds?.trigger(this, {
+        sensor: this.homey.__(`capability.${ capability }.name`),
+        report,
+        value: `${ value }`,
+        numeric: value,
+      })
+        .then(() => {
+          // console.log('Successful triggered flow card deviceSensorThresholdMinExceeds.');
         })
-          .then(() => {
-            // console.log('Successful triggered flow card deviceSensorOutsideThreshold.');
-          })
-          // @ts-ignore -- @todo: fix this
-          .catch(error => {
-            console.error('Cannot trigger flow card deviceSensorOutsideThreshold: %s.', error);
-          });
-
-        // @ts-ignore -- @todo: fix this
-        this.getApp().globalSensorThresholdMaxExceeds.trigger({
-          deviceName: this.getName(),
-          sensor: this.homey.__(`capability.${ capability }.name`),
-          report,
-          value: `${ value }`,
-          numeric: parseFloat(value),
-        })
-          .then(() => {
-            // console.log('Successful triggered flow card globalSensorThresholdMaxExceeds.');
-          })
-          // @ts-ignore -- @todo: fix this
-          .catch(error => {
-            console.error('Cannot trigger flow card globalSensorThresholdMaxExceeds: %s.', error);
-          });
-
-        // @ts-ignore -- @todo: fix this
-        this.getApp().deviceSensorThresholdMaxExceeds.trigger(this, {
-          sensor: this.homey.__(`capability.${ capability }.name`),
-          report,
-          value: `${ value }`,
-          numeric: parseFloat(value),
-        })
-          .then(() => {
-            // console.log('Successful triggered flow card deviceSensorThresholdMaxExceeds.');
-          })
-          // @ts-ignore -- @todo: fix this
-          .catch(error => {
-            console.error('Cannot trigger flow card deviceSensorThresholdMaxExceeds: %s.', error);
-          });
+        .catch(error => {
+          console.error('Cannot trigger flow card deviceSensorThresholdMinExceeds: %s.', error);
+        });
+    }
+    if (value > maxValue) {
+      if (this.hasCapability(capability.replace('measure_', 'alarm_'))) {
+        this.setCapabilityValue(capability.replace('measure_', 'alarm_'), true);
       }
-      if (value >= minValue && value <= maxValue) {
-        if (this.hasCapability(capability.replace('measure_', 'alarm_'))) {
-          this.setCapabilityValue(capability.replace('measure_', 'alarm_'), false);
-        }
+      const report = this.homey.__(`capability.${ capability }.threshold.max`, {
+        value,
+        max: maxValue,
+        plant: this.getName(),
+      });
+
+      this.getApp()?.globalSensorOutsideThreshold?.trigger({
+        deviceName: this.getName(),
+        report,
+        sensor: this.homey.__(`capability.${ capability }.name`),
+        value: `${ value }`,
+        numeric: value,
+      })
+        .then(() => {
+          // console.log('Successful triggered flow card globalSensorOutsideThreshold.');
+        })
+        .catch(error => {
+          console.error('Cannot trigger flow card globalSensorOutsideThreshold: %s.', error);
+        });
+
+      this.getApp().deviceSensorOutsideThreshold?.trigger(this, {
+        sensor: this.homey.__(`capability.${ capability }.name`),
+        report,
+        value: `${ value }`,
+        numeric: value,
+      })
+        .then(() => {
+          // console.log('Successful triggered flow card deviceSensorOutsideThreshold.');
+        })
+        .catch(error => {
+          console.error('Cannot trigger flow card deviceSensorOutsideThreshold: %s.', error);
+        });
+
+      this.getApp()?.globalSensorThresholdMaxExceeds?.trigger({
+        deviceName: this.getName(),
+        sensor: this.homey.__(`capability.${ capability }.name`),
+        report,
+        value: `${ value }`,
+        numeric: value,
+      })
+        .then(() => {
+          // console.log('Successful triggered flow card globalSensorThresholdMaxExceeds.');
+        })
+        .catch(error => {
+          console.error('Cannot trigger flow card globalSensorThresholdMaxExceeds: %s.', error);
+        });
+
+      this.getApp().deviceSensorThresholdMaxExceeds?.trigger(this, {
+        sensor: this.homey.__(`capability.${ capability }.name`),
+        report,
+        value: `${ value }`,
+        numeric: value,
+      })
+        .then(() => {
+          // console.log('Successful triggered flow card deviceSensorThresholdMaxExceeds.');
+        })
+        .catch(error => {
+          console.error('Cannot trigger flow card deviceSensorThresholdMaxExceeds: %s.', error);
+        });
+    }
+    if (value >= minValue && value <= maxValue) {
+      if (this.hasCapability(capability.replace('measure_', 'alarm_'))) {
+        this.setCapabilityValue(capability.replace('measure_', 'alarm_'), false);
       }
     }
+
   }
 
   /**
@@ -423,13 +387,7 @@ export default class MiFloraDevice extends Homey.Device {
     this.getApp().unregisterDevice(this);
   }
 
-  /**
-   * @param property
-   *
-   * @returns {Promise.<*>}
-   */
-  // @ts-ignore -- @todo: fix this
-  async getDeviceData(property: string): Promise<string> {
+  async getDeviceData(property: string): Promise<any> {
     const deviceData = await this.getData();
     if (Object.prototype.hasOwnProperty.call(deviceData, property)) {
       return deviceData[property];
