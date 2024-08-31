@@ -1,0 +1,90 @@
+{
+  "pair": {
+    "title": "Søker etter Xiaomi Mi Flora-enheter",
+    "info": {
+      "title": "Husk på:",
+      "row1": "For optimal signalstyrke, hold sensoren nær Homey.",
+      "row2": "Last alltid ned den originale `Xiaomi Mi Flora`-appen og legg til enhetene i appen. Dette oppdaterer automatisk sensorens firmware til nyeste versjon."
+    },
+    "faq": {
+      "title": "Ofte stilte spørsmål:",
+      "question1": "Hvorfor kan ikke Homey finne sensoren?",
+      "answer1": "Sjekk om sensoren ikke er koblet til en annen Bluetooth-enhet. For eksempel `Xiaomi Mi Flora`-appen"
+    },
+    "configure": "Søk enheter",
+    "error": {
+      "ble-unavailable": "BLE er ikke tilgjengelig: en synkronisering av enheter pågår."
+    }
+  },
+  "settings": {
+    "title": "Innstillinger Xiaomi Mi Flora",
+    "update": "Oppdater innstillinger",
+    "interval": {
+      "label": "Intervall mellom oppdateringer i minutter",
+      "info": "Forsinkelsen mellom avlesning av sensorverdier i minutter. Minimum intervall er 5 minutter. Standard intervall er 15 minutter."
+    },
+    "save": {
+      "label": "Lagre"
+    },
+    "success": "Innstillingene har blitt lagret",
+    "error": {
+      "threshold": "Minste og maksimale terskel for `__capability__` er ikke gyldig."
+    }
+  },
+  "capability": {
+    "measure_temperature": {
+      "name": "temperatur",
+      "suffix": " °C",
+      "changed": "Temperaturen er endret til: __value__°C.",
+      "device_changed": "Temperaturen til `__plant__` er endret til: __value__°C.",
+      "device_updated": "Temperaturen til `__plant__` er oppdatert til: __value__°C.",
+      "threshold": {
+        "min": "Temperaturen (__value__°C) til `__plant__` er for lav. Den må være minst __min__°C.",
+        "max": "Temperaturen (__value__°C) til `__plant__` er for høy. Den må være maksimalt __max__°C."
+      }
+    },
+    "measure_luminance": {
+      "name": "sollys",
+      "suffix": " lx",
+      "changed": "Sollyset er endret til: __value__ lx.",
+      "device_changed": "Sollyset til `__plant__` er endret til: __value__ lx.",
+      "device_updated": "Sollyset til `__plant__` er oppdatert til: __value__ lx.",
+      "threshold": {
+        "min": "Sollyset (__value__ lx) til `__plant__` er for lavt. Det må være minst __min__ lx.",
+        "max": "Sollyset (__value__ lx) til `__plant__` er for høyt. Det må være maksimalt __max__ lx."
+      }
+    },
+    "measure_nutrition": {
+      "name": "næring",
+      "suffix": " µS/cm",
+      "changed": "Næringen er endret til: __value__ µS/cm.",
+      "device_changed": "Næringen til `__plant__` er endret til: __value__ µS/cm.",
+      "device_updated": "Næringen til `__plant__` er oppdatert til: __value__ µS/cm.",
+      "threshold": {
+        "min": "Næringen (__value__ µS/cm) til `__plant__` er for lav. Den må være minst __min__ µS/cm.",
+        "max": "Næringen (__value__ µS/cm) til `__plant__` er for høy. Den må være maksimalt __max__ µS/cm."
+      }
+    },
+    "measure_moisture": {
+      "name": "fuktighet",
+      "suffix": " %",
+      "changed": "Fuktigheten er endret til: __value__%.",
+      "device_changed": "Fuktigheten til `__plant__` er endret til: __value__%.",
+      "device_updated": "Fuktigheten til `__plant__` er oppdatert til: __value__%.",
+      "threshold": {
+        "min": "Fuktigheten (__value__%) til `__plant__` er for lav. Den må være minst __min__%.",
+        "max": "Fuktigheten (__value__%) til `__plant__` er for høy. Den må være maksimalt __max__%."
+      }
+    },
+    "measure_battery": {
+      "name": "batteri",
+      "changed": "Batteriet er endret til: __value__%.",
+      "device_changed": "Batteriet til `__plant__` er endret til: __value__%.",
+      "device_updated": "Batteriet til `__plant__` er oppdatert til: __value__%.",
+      "threshold": {
+        "min": "Batteriet (__value__%) til `__plant__` er for lavt. Det må være minst __min__%.",
+        "max": "Batteriet (__value__%) til `__plant__` er for høyt. Det må være maksimalt __max__%."
+      }
+    }
+  }
+}

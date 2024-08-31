@@ -4,19 +4,43 @@
     "en": "The plant !{{has not|has}} correct amount of sunlight.",
     "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid zonlicht.",
     "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Menge an Licht.",
-    "sv": "Plantan !{{har inte|har}} tillräcklig luminans."
+    "sv": "Plantan !{{har inte|har}} tillräcklig luminans.",
+    "da": "Planten !{{har ikke|har}} den rigtige mængde sollys.",
+    "es": "La planta !{{no tiene|tiene}} la cantidad correcta de luz solar.",
+    "fr": "La plante !{{n'a pas|a}} la bonne quantité de lumière du soleil.",
+    "it": "La pianta !{{non ha|ha}} la giusta quantità di luce solare.",
+    "no": "Planten !{{har ikke|har}} riktig mengde sollys.",
+    "pl": "Roślina !{{nie ma|ma}} odpowiednią ilość światła słonecznego.",
+    "ru": "Растение !{{не получает|получает}} правильное количество солнечного света.",
+    "ko": "식물이 !{{적절하지 않은|적절한}} 양의 햇빛을 받고 있습니다."
   },
   "titleFormatted": {
     "en": "The plant [[device]] !{{has not|has}} correct amount of sunlight.",
     "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste hoeveelheid zonlicht.",
     "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Menge an Licht.",
-    "sv": "Plantan [[device]] !{{har inte|har}} tillräcklig luminans."
+    "sv": "Plantan [[device]] !{{har inte|har}} tillräcklig luminans.",
+    "da": "Planten [[device]] !{{har ikke|har}} den rigtige mængde sollys.",
+    "es": "La planta [[device]] !{{no tiene|tiene}} la cantidad correcta de luz solar.",
+    "fr": "La plante [[device]] !{{n'a pas|a}} la bonne quantité de lumière du soleil.",
+    "it": "La pianta [[device]] !{{non ha|ha}} la giusta quantità di luce solare.",
+    "no": "Planten [[device]] !{{har ikke|har}} riktig mengde sollys.",
+    "pl": "Roślina [[device]] !{{nie ma|ma}} odpowiednią ilość światła słonecznego.",
+    "ru": "Растение [[device]] !{{не получает|получает}} правильное количество солнечного света.",
+    "ko": "식물이 [[device]] !{{적절하지 않은|적절한}} 양의 햇빛을 받고 있습니다."
   },
   "hint": {
     "en": "Use this card to determine if the plant has a correct amount of sunlight.",
     "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid zonlicht heeft.",
     "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze die richtige Menge Sonnenlicht hat.",
-    "sv": "Använd detta kort för att säkerställa att plantan har tillräcklig luminans."
+    "sv": "Använd detta kort för att säkerställa att plantan har tillräcklig luminans.",
+    "da": "Brug dette kort til at afgøre, om planten får den rigtige mængde sollys.",
+    "es": "Usa esta tarjeta para determinar si la planta recibe la cantidad correcta de luz solar.",
+    "fr": "Utilisez cette carte pour déterminer si la plante reçoit la bonne quantité de lumière du soleil.",
+    "it": "Usa questa scheda per determinare se la pianta riceve la giusta quantità di luce solare.",
+    "no": "Bruk dette kortet for å avgjøre om planten får riktig mengde sollys.",
+    "pl": "Użyj tej karty, aby sprawdzić, czy roślina ma odpowiednią ilość światła słonecznego.",
+    "ru": "Используйте эту карту, чтобы определить, получает ли растение правильное количество солнечного света.",
+    "ko": "이 카드를 사용하여 식물이 적절한 양의 햇빛을 받고 있는지 확인하세요."
   },
   "args": [
     {

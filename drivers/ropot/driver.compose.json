@@ -1,224 +1,336 @@
 {
-    "id": "ropot",
-    "name": {
-        "en": "Xiaomi mi flora pot",
-        "nl": "Xiaomi mi flora pot",
-        "de": "Xiaomi Mi Flora Blumentopf",
-        "sv": "Xiaomi Mi Flora kruka"
+  "id": "ropot",
+  "name": {
+    "en": "Xiaomi mi flora pot",
+    "nl": "Xiaomi mi flora pot",
+    "de": "Xiaomi Mi Flora Blumentopf",
+    "sv": "Xiaomi Mi Flora kruka",
+    "da": "Xiaomi mi flora pot",
+    "es": "Xiaomi mi flora maceta",
+    "fr": "Pot Xiaomi mi flora",
+    "it": "Vaso Xiaomi mi flora",
+    "no": "Xiaomi mi flora pot",
+    "pl": "Xiaomi mi flora doniczka",
+    "ru": "Горшок Xiaomi mi flora",
+    "ko": "샤오미 미 플로라 화분"
+  },
+  "platforms": [
+    "local",
+    "cloud"
+  ],
+  "connectivity": [
+    "ble"
+  ],
+  "images": {
+    "small": "drivers/ropot/assets/images/small.png",
+    "large": "drivers/ropot/assets/images/large.png"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "measure_temperature",
+    "measure_nutrition",
+    "measure_moisture",
+    "alarm_temperature",
+    "alarm_nutrition",
+    "alarm_moisture"
+  ],
+  "pair": [
+    {
+      "id": "start"
     },
-    "platforms": [
-        "local",
-        "cloud"
-    ],
-    "connectivity": [
-        "ble"
-    ],
-    "images": {
-        "small": "drivers/ropot/assets/images/small.png",
-        "large": "drivers/ropot/assets/images/large.png"
+    {
+      "id": "list_my_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_my_devices"
+      }
     },
-    "class": "sensor",
-    "capabilities": [
-        "measure_temperature",
-        "measure_nutrition",
-        "measure_moisture",
-        "alarm_temperature",
-        "alarm_nutrition",
-        "alarm_moisture"
-    ],
-    "pair": [
-        {
-            "id": "start"
-        },
-        {
-            "id": "list_my_devices",
-            "template": "list_devices",
-            "navigation": {
-                "next": "add_my_devices"
-            }
-        },
-        {
-            "id": "add_my_devices",
-            "template": "add_devices"
-        }
-    ],
-    "settings": [
-        {
-            "type": "group",
-            "label": {
-                "en": "Device info",
-                "nl": "Apparaat informatie",
-                "de": "Geräteinfo",
-                "sv": "Enhetsinformation"
-            },
-            "children": [
-                {
-                    "id": "firmware_version",
-                    "type": "label",
-                    "label": {
-                        "en": "Firmware version",
-                        "nl": "Firmware versie",
-                        "de": "Firmware-Version",
-                        "sv": "Version på mjukvara"
-                    },
-                    "value": ""
-                },
-                {
-                    "id": "last_updated",
-                    "type": "label",
-                    "label": {
-                        "en": "Last updated",
-                        "nl": "Laatste update",
-                        "de": "Letzte Aktualisierung",
-                        "sv": "Senast uppdaterad"
-                    },
-                    "value": ""
-                },
-                {
-                    "id": "uuid",
-                    "type": "label",
-                    "label": {
-                        "en": "Device uuid address",
-                        "nl": "Apparaat uuid adres",
-                        "de": "Geräte uuid Adresse",
-                        "sv": "Enhetens uuid-adress"
-                    },
-                    "value": ""
-                }
-            ]
-        },
-        {
-            "type": "group",
-            "label": {
-                "en": "Temperature (°C)",
-                "nl": "Temperatuur (°C)",
-                "de": "Temperatur (°C)",
-                "sv": "Temperatur (°C)"
-            },
-            "children": [
-                {
-                    "id": "measure_temperature_min",
-                    "type": "number",
-                    "value": 0,
-                    "min": 0,
-                    "max": 40,
-                    "label": {
-                        "en": "min",
-                        "nl": "min",
-                        "de": "min",
-                        "sv": "min"
-                    }
-                },
-                {
-                    "id": "measure_temperature_max",
-                    "type": "number",
-                    "value": 0,
-                    "min": 0,
-                    "max": 40,
-                    "label": {
-                        "en": "max",
-                        "nl": "max",
-                        "de": "max",
-                        "sv": "max"
-                    }
-                }
-            ]
-        },
-        {
-            "type": "group",
-            "label": {
-                "en": "Nutrition (µS/cm)",
-                "nl": "Voeding (µS/cm)",
-                "de": "Dünger (µS/cm)",
-                "sv": "Näring (µS/cm)"
-            },
-            "children": [
-                {
-                    "id": "measure_fertility_min",
-                    "type": "number",
-                    "value": 0,
-                    "min": 0,
-                    "max": 10000,
-                    "label": {
-                        "en": "min",
-                        "nl": "min",
-                        "de": "min",
-                        "sv": "min"
-                    }
-                },
-                {
-                    "id": "measure_fertility_max",
-                    "type": "number",
-                    "value": 0,
-                    "min": 0,
-                    "max": 10000,
-                    "label": {
-                        "en": "max",
-                        "nl": "max",
-                        "de": "max",
-                        "sv": "max"
-                    }
-                }
-            ]
-        },
-        {
-            "type": "group",
-            "label": {
-                "en": "Moisture (%)",
-                "nl": "Vochtigheid (%)",
-                "de": "Feuchtigkeit (%)",
-                "sv": "Fuktighet (%)"
-            },
-            "children": [
-                {
-                    "id": "measure_moisture_min",
-                    "type": "number",
-                    "value": 0,
-                    "min": 0,
-                    "max": 100,
-                    "label": {
-                        "en": "min",
-                        "nl": "min",
-                        "de": "min",
-                        "sv": "min"
-                    }
-                },
-                {
-                    "id": "measure_moisture_max",
-                    "type": "number",
-                    "value": 0,
-                    "min": 0,
-                    "max": 100,
-                    "label": {
-                        "en": "max",
-                        "nl": "max",
-                        "de": "max",
-                        "sv": "max"
-                    }
-                }
-            ]
-        }
-    ],
-    "mobile": {
-        "components": [
-            {
-                "id": "icon"
-            },
-            {
-                "id": "sensor",
-                "capabilities": [
-                    "measure_temperature",
-                    "measure_nutrition",
-                    "measure_moisture"
-                ],
-                "options": {
-                    "icons": {
-                        "measure_temperature": "./drivers/ropot/assets/temperature.svg",
-                        "measure_nutrition": "./drivers/ropot/assets/nutritions.svg",
-                        "measure_moisture": "./drivers/ropot/assets/moisture.svg"
-                    }
-                }
-            }
-        ]
+    {
+      "id": "add_my_devices",
+      "template": "add_devices"
     }
+  ],
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "Device info",
+        "nl": "Apparaat informatie",
+        "de": "Geräteinfo",
+        "sv": "Enhetsinformation",
+        "da": "Enhedsoplysninger",
+        "es": "Información del dispositivo",
+        "fr": "Informations sur l'appareil",
+        "it": "Informazioni sul dispositivo",
+        "no": "Enhetsinfo",
+        "pl": "Informacje o urządzeniu",
+        "ru": "Информация об устройстве",
+        "ko": "장치 정보"
+      },
+      "children": [
+        {
+          "id": "firmware_version",
+          "type": "label",
+          "label": {
+            "en": "Firmware version",
+            "nl": "Firmware versie",
+            "de": "Firmware-Version",
+            "sv": "Version på mjukvara",
+            "da": "Firmware version",
+            "es": "Versión de firmware",
+            "fr": "Version du firmware",
+            "it": "Versione del firmware",
+            "no": "Firmware-versjon",
+            "pl": "Wersja oprogramowania",
+            "ru": "Версия прошивки",
+            "ko": "펌웨어 버전"
+          },
+          "value": ""
+        },
+        {
+          "id": "last_updated",
+          "type": "label",
+          "label": {
+            "en": "Last updated",
+            "nl": "Laatste update",
+            "de": "Letzte Aktualisierung",
+            "sv": "Senast uppdaterad",
+            "da": "Sidst opdateret",
+            "es": "Última actualización",
+            "fr": "Dernière mise à jour",
+            "it": "Ultimo aggiornamento",
+            "no": "Sist oppdatert",
+            "pl": "Ostatnia aktualizacja",
+            "ru": "Последнее обновление",
+            "ko": "마지막 업데이트"
+          },
+          "value": ""
+        },
+        {
+          "id": "uuid",
+          "type": "label",
+          "label": {
+            "en": "Device uuid address",
+            "nl": "Apparaat uuid adres",
+            "de": "Geräte uuid Adresse",
+            "sv": "Enhetens uuid-adress",
+            "da": "Enhedens uuid-adresse",
+            "es": "Dirección uuid del dispositivo",
+            "fr": "Adresse uuid de l'appareil",
+            "it": "Indirizzo uuid del dispositivo",
+            "no": "Enhetens uuid-adresse",
+            "pl": "Adres uuid urządzenia",
+            "ru": "Адрес uuid устройства",
+            "ko": "장치 uuid 주소"
+          },
+          "value": ""
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "label": {
+        "en": "Temperature (°C)",
+        "nl": "Temperatuur (°C)",
+        "de": "Temperatur (°C)",
+        "sv": "Temperatur (°C)",
+        "da": "Temperatur (°C)",
+        "es": "Temperatura (°C)",
+        "fr": "Température (°C)",
+        "it": "Temperatura (°C)",
+        "no": "Temperatur (°C)",
+        "pl": "Temperatura (°C)",
+        "ru": "Температура (°C)",
+        "ko": "온도 (°C)"
+      },
+      "children": [
+        {
+          "id": "measure_temperature_min",
+          "type": "number",
+          "value": 0,
+          "min": 0,
+          "max": 40,
+          "label": {
+            "en": "min",
+            "nl": "min",
+            "de": "min",
+            "sv": "min",
+            "da": "min",
+            "es": "min",
+            "fr": "min",
+            "it": "min",
+            "no": "min",
+            "pl": "min",
+            "ru": "min",
+            "ko": "min"
+          }
+        },
+        {
+          "id": "measure_temperature_max",
+          "type": "number",
+          "value": 0,
+          "min": 0,
+          "max": 40,
+          "label": {
+            "en": "max",
+            "nl": "max",
+            "de": "max",
+            "sv": "max",
+            "da": "max",
+            "es": "max",
+            "fr": "max",
+            "it": "max",
+            "no": "max",
+            "pl": "max",
+            "ru": "max",
+            "ko": "max"
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "label": {
+        "en": "Nutrition (µS/cm)",
+        "nl": "Voeding (µS/cm)",
+        "de": "Dünger (µS/cm)",
+        "sv": "Näring (µS/cm)",
+        "da": "Ernæring (µS/cm)",
+        "es": "Nutrición (µS/cm)",
+        "fr": "Nutrition (µS/cm)",
+        "it": "Nutrizione (µS/cm)",
+        "no": "Næringsstoffer (µS/cm)",
+        "pl": "Odżywianie (µS/cm)",
+        "ru": "Питание (µS/cm)",
+        "ko": "영양 (µS/cm)"
+      },
+      "children": [
+        {
+          "id": "measure_fertility_min",
+          "type": "number",
+          "value": 0,
+          "min": 0,
+          "max": 10000,
+          "label": {
+            "en": "min",
+            "nl": "min",
+            "de": "min",
+            "sv": "min",
+            "da": "min",
+            "es": "min",
+            "fr": "min",
+            "it": "min",
+            "no": "min",
+            "pl": "min",
+            "ru": "min",
+            "ko": "min"
+          }
+        },
+        {
+          "id": "measure_fertility_max",
+          "type": "number",
+          "value": 0,
+          "min": 0,
+          "max": 10000,
+          "label": {
+            "en": "max",
+            "nl": "max",
+            "de": "max",
+            "sv": "max",
+            "da": "max",
+            "es": "max",
+            "fr": "max",
+            "it": "max",
+            "no": "max",
+            "pl": "max",
+            "ru": "max",
+            "ko": "max"
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "label": {
+        "en": "Moisture (%)",
+        "nl": "Vochtigheid (%)",
+        "de": "Feuchtigkeit (%)",
+        "sv": "Fuktighet (%)",
+        "da": "Fugtighed (%)",
+        "es": "Humedad (%)",
+        "fr": "Humidité (%)",
+        "it": "Umidità (%)",
+        "no": "Fuktighet (%)",
+        "pl": "Wilgotność (%)",
+        "ru": "Влажность (%)",
+        "ko": "수분 (%)"
+      },
+      "children": [
+        {
+          "id": "measure_moisture_min",
+          "type": "number",
+          "value": 0,
+          "min": 0,
+          "max": 100,
+          "label": {
+            "en": "min",
+            "nl": "min",
+            "de": "min",
+            "sv": "min",
+            "da": "min",
+            "es": "min",
+            "fr": "min",
+            "it": "min",
+            "no": "min",
+            "pl": "min",
+            "ru": "min",
+            "ko": "min"
+          }
+        },
+        {
+          "id": "measure_moisture_max",
+          "type": "number",
+          "value": 0,
+          "min": 0,
+          "max": 100,
+          "label": {
+            "en": "max",
+            "nl": "max",
+            "de": "max",
+            "sv": "max",
+            "da": "max",
+            "es": "max",
+            "fr": "max",
+            "it": "max",
+            "no": "max",
+            "pl": "max",
+            "ru": "max",
+            "ko": "max"
+          }
+        }
+      ]
+    }
+  ],
+  "mobile": {
+    "components": [
+      {
+        "id": "icon"
+      },
+      {
+        "id": "sensor",
+        "capabilities": [
+          "measure_temperature",
+          "measure_nutrition",
+          "measure_moisture"
+        ],
+        "options": {
+          "icons": {
+            "measure_temperature": "./drivers/ropot/assets/temperature.svg",
+            "measure_nutrition": "./drivers/ropot/assets/nutritions.svg",
+            "measure_moisture": "./drivers/ropot/assets/moisture.svg"
+          }
+        }
+      }
+    ]
+  }
 }

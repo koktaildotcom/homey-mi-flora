@@ -10,7 +10,15 @@
     "en": "Track every need of your plants and flowers",
     "nl": "Volg de behoefte van uw planten en bloemen",
     "de": "Überwachen Sie den Bedarf Ihrer Pflanzen und Blumen",
-    "sv": "Spåra dina växters värden"
+    "sv": "Spåra dina växters värden",
+    "da": "Spor alle dine planters behov",
+    "es": "Sigue cada necesidad de tus plantas y flores",
+    "fr": "Suivez tous les besoins de vos plantes et fleurs",
+    "it": "Monitora ogni esigenza delle tue piante e fiori",
+    "no": "Spor hver eneste behov for plantene dine",
+    "pl": "Śledź wszystkie potrzeby twoich roślin i kwiatów",
+    "ru": "Отслеживайте все потребности ваших растений и цветов",
+    "ko": "식물과 꽃의 모든 필요를 추적하세요"
   },
   "platforms": [
     "local",
@@ -85,6 +93,123 @@
       "luminans",
       "fuktighet",
       "näring"
+    ],
+    "da": [
+      "xiaomi",
+      "xiaomi",
+      "mi",
+      "plante",
+      "blomst",
+      "flora",
+      "vegtrug",
+      "sensor",
+      "temperatur",
+      "lys",
+      "fugtighed",
+      "ernæring"
+    ],
+    "es": [
+      "xiaomi",
+      "xiaomi",
+      "xiaomi",
+      "mi",
+      "planta",
+      "flor",
+      "flora",
+      "vegtrug",
+      "sensor",
+      "temperatura",
+      "iluminación",
+      "humedad",
+      "nutrición"
+    ],
+    "fr": [
+      "xiaomi",
+      "xiaomi",
+      "xiaomi",
+      "mi",
+      "plante",
+      "fleur",
+      "flora",
+      "vegtrug",
+      "capteur",
+      "température",
+      "luminosité",
+      "humidité",
+      "nutrition"
+    ],
+    "it": [
+      "xiaomi",
+      "xiaomi",
+      "mi",
+      "pianta",
+      "fiore",
+      "flora",
+      "vegtrug",
+      "sensore",
+      "temperatura",
+      "luminosità",
+      "umidità",
+      "nutrizione"
+    ],
+    "no": [
+      "xiaomi",
+      "xiaomi",
+      "mi",
+      "plante",
+      "blomst",
+      "flora",
+      "vegtrug",
+      "sensor",
+      "temperatur",
+      "belysning",
+      "fuktighet",
+      "næring"
+    ],
+    "pl": [
+      "xiaomi",
+      "xiaomi",
+      "xiaomi",
+      "mi",
+      "roślina",
+      "kwiat",
+      "flora",
+      "vegtrug",
+      "czujnik",
+      "temperatura",
+      "światło",
+      "wilgotność",
+      "odżywianie"
+    ],
+    "ru": [
+      "xiaomi",
+      "xiaomi",
+      "xiaomi",
+      "mi",
+      "растение",
+      "цветок",
+      "флора",
+      "vegtrug",
+      "датчик",
+      "температура",
+      "освещенность",
+      "влажность",
+      "питание"
+    ],
+    "ko": [
+      "xiaomi",
+      "xiaomi",
+      "xiaomi",
+      "mi",
+      "식물",
+      "꽃",
+      "식물다양성",
+      "vegtrug",
+      "센서",
+      "온도",
+      "조도",
+      "습도",
+      "영양소"
     ]
   },
   "images": {
@@ -127,7 +252,15 @@
           "en": "A sensor value is changed",
           "nl": "Een sensor waarde is veranderd",
           "de": "Ein Sensorwert wurde geändert",
-          "sv": "En sensors värde har ändrats"
+          "sv": "En sensors värde har ändrats",
+          "da": "En sensorværdi er ændret",
+          "es": "Se ha cambiado un valor del sensor",
+          "fr": "Une valeur de capteur a changé",
+          "it": "Un valore del sensore è cambiato",
+          "no": "En sensorverdi er endret",
+          "pl": "Zmieniono wartość sensora",
+          "ru": "Значение датчика изменено",
+          "ko": "센서 값이 변경되었습니다"
         },
         "tokens": [
           {
@@ -137,13 +270,29 @@
               "en": "report",
               "nl": "rapport",
               "de": "Bericht",
-              "sv": "rapportera"
+              "sv": "rapportera",
+              "da": "rapport",
+              "es": "informe",
+              "fr": "rapport",
+              "it": "rapporto",
+              "no": "rapport",
+              "pl": "raport",
+              "ru": "отчет",
+              "ko": "보고서"
             },
             "example": {
               "en": "The moisture (22%) is too low. This can be at least 30%.",
               "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
               "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen.",
-              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%."
+              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%.",
+              "da": "Fugtigheden (22%) er for lav. Den kan være mindst 30%.",
+              "es": "La humedad (22%) es demasiado baja. Puede ser al menos 30%.",
+              "fr": "L'humidité (22%) est trop basse. Elle peut être d'au moins 30%.",
+              "it": "L'umidità (22%) è troppo bassa. Può essere almeno il 30%.",
+              "no": "Fuktigheten (22%) er for lav. Den kan være minst 30%.",
+              "pl": "Wilgotność (22%) jest zbyt niska. Może wynosić co najmniej 30%.",
+              "ru": "Влажность (22%) слишком низкая. Она может быть не менее 30%.",
+              "ko": "수분 (22%)이 너무 낮습니다. 최소 30%일 수 있습니다."
             }
           },
           {
@@ -153,7 +302,15 @@
               "en": "value",
               "nl": "waarde",
               "de": "Wert",
-              "sv": "Värde"
+              "sv": "Värde",
+              "da": "værdi",
+              "es": "valor",
+              "fr": "valeur",
+              "it": "valore",
+              "no": "verdi",
+              "pl": "wartość",
+              "ru": "значение",
+              "ko": "값"
             },
             "example": "22.5"
           },
@@ -164,7 +321,15 @@
               "en": "value (numeric)",
               "nl": "waarde (numeriek)",
               "de": "wert (nummeriek)",
-              "sv": "värde (numeriskt)"
+              "sv": "värde (numeriskt)",
+              "da": "værdi (numerisk)",
+              "es": "valor (numérico)",
+              "fr": "valeur (numérique)",
+              "it": "valore (numerico)",
+              "no": "verdi (numerisk)",
+              "pl": "wartość (numeryczna)",
+              "ru": "значение (числовое)",
+              "ko": "값 (숫자)"
             },
             "example": 22.5
           },
@@ -175,13 +340,29 @@
               "en": "sensor",
               "nl": "sensor",
               "de": "Sensor",
-              "sv": "sensor"
+              "sv": "sensor",
+              "da": "sensor",
+              "es": "sensor",
+              "fr": "capteur",
+              "it": "sensore",
+              "no": "sensor",
+              "pl": "czujnik",
+              "ru": "датчик",
+              "ko": "센서"
             },
             "example": {
               "en": "Moisture",
               "nl": "Vochtigheid",
               "de": "Feuchtigkeit",
-              "sv": "Fuktighet"
+              "sv": "Fuktighet",
+              "da": "Fugtighed",
+              "es": "Humedad",
+              "fr": "Humidité",
+              "it": "Umidità",
+              "no": "Fuktighet",
+              "pl": "Wilgotność",
+              "ru": "Влажность",
+              "ko": "수분"
             }
           }
         ],
@@ -199,7 +380,15 @@
           "en": "Sensor value is outside the configured threshold",
           "nl": "Sensor waarde is buiten de gestelde drempel",
           "de": "Der Sensorwert liegt außerhab der konfigurierten Grenzwerte",
-          "sv": "Sensorns värde är utanför den inställda nivån"
+          "sv": "Sensorns värde är utanför den inställda nivån",
+          "da": "Sensorværdien er uden for den konfigurerede grænse",
+          "es": "El valor del sensor está fuera del umbral configurado",
+          "fr": "La valeur du capteur est hors des limites configurées",
+          "it": "Il valore del sensore è fuori dalla soglia configurata",
+          "no": "Sensorverdien er utenfor det konfigurerte området",
+          "pl": "Wartość czujnika jest poza skonfigurowanym zakresem",
+          "ru": "Значение датчика вне настроенного диапазона",
+          "ko": "센서 값이 설정된 임계값을 벗어났습니다"
         },
         "tokens": [
           {
@@ -209,13 +398,29 @@
               "en": "report",
               "nl": "rapport",
               "de": "Bericht",
-              "sv": "rapportera"
+              "sv": "rapportera",
+              "da": "rapport",
+              "es": "informe",
+              "fr": "rapport",
+              "it": "rapporto",
+              "no": "rapport",
+              "pl": "raport",
+              "ru": "отчет",
+              "ko": "보고서"
             },
             "example": {
               "en": "The moisture (22%) is too low. This can be at least 30%.",
               "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
               "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen.",
-              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%."
+              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%.",
+              "da": "Fugtigheden (22%) er for lav. Den skal være mindst 30%.",
+              "es": "La humedad (22%) es demasiado baja. Debe ser al menos del 30%.",
+              "fr": "L'humidité (22%) est trop basse. Elle doit être d'au moins 30%.",
+              "it": "L'umidità (22%) è troppo bassa. Deve essere almeno il 30%.",
+              "no": "Fuktigheten (22%) er for lav. Den bør være minst 30%.",
+              "pl": "Wilgotność (22%) jest zbyt niska. Powinna wynosić co najmniej 30%.",
+              "ru": "Влажность (22%) слишком низкая. Должна быть минимум 30%.",
+              "ko": "습도 (22%)가 너무 낮습니다. 최소 30% 이상이어야 합니다."
             }
           },
           {
@@ -225,7 +430,15 @@
               "en": "value",
               "nl": "waarde",
               "de": "Wert",
-              "sv": "värde"
+              "sv": "värde",
+              "da": "værdi",
+              "es": "valor",
+              "fr": "valeur",
+              "it": "valore",
+              "no": "verdi",
+              "pl": "wartość",
+              "ru": "значение",
+              "ko": "값"
             },
             "example": "22.5"
           },
@@ -236,7 +449,15 @@
               "en": "value (numeric)",
               "nl": "waarde (numeriek)",
               "de": "wert (nummeriek)",
-              "sv": "värde (numeriskt)"
+              "sv": "värde (numeriskt)",
+              "da": "værdi (numerisk)",
+              "es": "valor (numérico)",
+              "fr": "valeur (numérique)",
+              "it": "valore (numerico)",
+              "no": "verdi (numerisk)",
+              "pl": "wartość (numeryczna)",
+              "ru": "значение (числовое)",
+              "ko": "값 (숫자)"
             },
             "example": 22.5
           },
@@ -247,13 +468,29 @@
               "en": "sensor",
               "nl": "sensor",
               "de": "Sensor",
-              "sv": "sensor"
+              "sv": "sensor",
+              "da": "sensor",
+              "es": "sensor",
+              "fr": "capteur",
+              "it": "sensore",
+              "no": "sensor",
+              "pl": "czujnik",
+              "ru": "датчик",
+              "ko": "센서"
             },
             "example": {
               "en": "Moisture",
               "nl": "Vochtigheid",
               "de": "Feuchtigkeit",
-              "sv": "Fuktighet"
+              "sv": "Fuktighet",
+              "da": "Fugtighed",
+              "es": "Humedad",
+              "fr": "Humidité",
+              "it": "Umidità",
+              "no": "Fuktighet",
+              "pl": "Wilgotność",
+              "ru": "Влажность",
+              "ko": "습기"
             }
           }
         ],
@@ -271,7 +508,15 @@
           "en": "Sensor value is above the configured threshold",
           "nl": "Sensor waarde is boven de gestelde drempel",
           "de": "Der Sensorwert liegt über dem konfigurierten Grenzwert",
-          "sv": "Sensorns värde är över det inställda tröskelvärdet"
+          "sv": "Sensorns värde är över det inställda tröskelvärdet",
+          "da": "Sensorværdien er over den konfigurerede tærskelværdi",
+          "es": "El valor del sensor está por encima del umbral configurado",
+          "fr": "La valeur du capteur est au-dessus du seuil configuré",
+          "it": "Il valore del sensore è sopra la soglia configurata",
+          "no": "Sensorverdien er over den konfigurerte terskelen",
+          "pl": "Wartość czujnika jest powyżej skonfigurowanego progu",
+          "ru": "Значение датчика выше установленного порога",
+          "ko": "센서 값이 설정된 임계값을 초과했습니다"
         },
         "tokens": [
           {
@@ -281,13 +526,29 @@
               "en": "report",
               "nl": "rapport",
               "de": "Bericht",
-              "sv": "rapportera"
+              "sv": "rapportera",
+              "da": "rapport",
+              "es": "informe",
+              "fr": "rapport",
+              "it": "rapporto",
+              "no": "rapport",
+              "pl": "raport",
+              "ru": "отчет",
+              "ko": "보고서"
             },
             "example": {
               "en": "The moisture (22%) is too low. This can be at least 30%.",
               "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
               "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen.",
-              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%."
+              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%.",
+              "da": "Fugtigheden (22%) er for lav. Den skal være mindst 30%.",
+              "es": "La humedad (22%) es demasiado baja. Debe ser al menos 30%.",
+              "fr": "L'humidité (22 %) est trop basse. Elle doit être d'au moins 30 %.",
+              "it": "L'umidità (22%) è troppo bassa. Deve essere almeno del 30%.",
+              "no": "Fuktigheten (22%) er for lav. Den bør være minst 30%.",
+              "pl": "Wilgotność (22%) jest zbyt niska. Powinna wynosić co najmniej 30%.",
+              "ru": "Влажность (22%) слишком низкая. Она должна быть как минимум 30%.",
+              "ko": "습도(22%)가 너무 낮습니다. 최소 30%가 되어야 합니다."
             }
           },
           {
@@ -297,7 +558,15 @@
               "en": "value",
               "nl": "waarde",
               "de": "Wert",
-              "sv": "Värde"
+              "sv": "Värde",
+              "da": "værdi",
+              "es": "valor",
+              "fr": "valeur",
+              "it": "valore",
+              "no": "verdi",
+              "pl": "wartość",
+              "ru": "значение",
+              "ko": "값"
             },
             "example": "22.5"
           },
@@ -308,7 +577,15 @@
               "en": "value (numeric)",
               "nl": "waarde (numeriek)",
               "de": "wert (nummeriek)",
-              "sv": "värde (numeriskt)"
+              "sv": "värde (numeriskt)",
+              "da": "værdi (numerisk)",
+              "es": "valor (numérico)",
+              "fr": "valeur (numérique)",
+              "it": "valore (numerico)",
+              "no": "verdi (numerisk)",
+              "pl": "wartość (numeryczna)",
+              "ru": "значение (числовое)",
+              "ko": "값 (숫자)"
             },
             "example": 22.5
           },
@@ -319,13 +596,29 @@
               "en": "sensor",
               "nl": "sensor",
               "de": "Sensor",
-              "sv": "Sensor"
+              "sv": "Sensor",
+              "da": "sensor",
+              "es": "sensor",
+              "fr": "capteur",
+              "it": "sensore",
+              "no": "sensor",
+              "pl": "czujnik",
+              "ru": "датчик",
+              "ko": "센서"
             },
             "example": {
               "en": "Moisture",
               "nl": "Vochtigheid",
               "de": "Feuchtigkeit",
-              "sv": "Fuktighet"
+              "sv": "Fuktighet",
+              "da": "Fugtighed",
+              "es": "Humedad",
+              "fr": "Humidité",
+              "it": "Umidità",
+              "no": "Fuktighet",
+              "pl": "Wilgotność",
+              "ru": "Влажность",
+              "ko": "습도"
             }
           }
         ],
@@ -343,7 +636,15 @@
           "en": "Sensor value is below the configured threshold",
           "nl": "Sensor waarde is beneden de gestelde drempel",
           "de": "Der Sensorwert liegt unter dem konfigurierten Grenzwert",
-          "sv": "Sensorns värde är under det inställda tröskelvärdet"
+          "sv": "Sensorns värde är under det inställda tröskelvärdet",
+          "da": "Sensorværdien er under den konfigurerede grænse",
+          "es": "El valor del sensor está por debajo del umbral configurado",
+          "fr": "La valeur du capteur est en dessous du seuil configuré",
+          "it": "Il valore del sensore è al di sotto della soglia configurata",
+          "no": "Sensorverdien er under den konfigurerte terskelen",
+          "pl": "Wartość czujnika jest poniżej skonfigurowanego progu",
+          "ru": "Значение датчика ниже настроенного порога",
+          "ko": "센서 값이 설정된 임계값보다 낮습니다"
         },
         "tokens": [
           {
@@ -353,13 +654,29 @@
               "en": "report",
               "nl": "rapport",
               "de": "Bericht",
-              "sv": "rapportera"
+              "sv": "rapportera",
+              "da": "rapport",
+              "es": "informe",
+              "fr": "rapport",
+              "it": "report",
+              "no": "rapport",
+              "pl": "raport",
+              "ru": "отчет",
+              "ko": "보고서"
             },
             "example": {
               "en": "The moisture (22%) is too low. This can be at least 30%.",
               "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
               "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen.",
-              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%."
+              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%.",
+              "da": "Fugtigheden (22%) er for lav. Den bør være mindst 30%.",
+              "es": "La humedad (22%) es demasiado baja. Debería ser al menos del 30%.",
+              "fr": "L'humidité (22%) est trop basse. Elle doit être d'au moins 30%.",
+              "it": "L'umidità (22%) è troppo bassa. Dovrebbe essere almeno 30%.",
+              "no": "Fuktigheten (22%) er for lav. Den bør være minst 30%.",
+              "pl": "Wilgotność (22%) jest za niska. Powinna wynosić co najmniej 30%.",
+              "ru": "Влажность (22%) слишком низкая. Должна быть не менее 30%.",
+              "ko": "습도 (22%)가 너무 낮습니다. 최소 30%여야 합니다."
             }
           },
           {
@@ -369,7 +686,15 @@
               "en": "value",
               "nl": "waarde",
               "de": "Wert",
-              "sv": "Värde"
+              "sv": "Värde",
+              "da": "værdi",
+              "es": "valor",
+              "fr": "valeur",
+              "it": "valore",
+              "no": "verdi",
+              "pl": "wartość",
+              "ru": "значение",
+              "ko": "값"
             },
             "example": "22.5"
           },
@@ -380,7 +705,15 @@
               "en": "value (numeric)",
               "nl": "waarde (numeriek)",
               "de": "wert (nummeriek)",
-              "sv": "värde (numeriskt)"
+              "sv": "värde (numeriskt)",
+              "da": "værdi (numerisk)",
+              "es": "valor (numérico)",
+              "fr": "valeur (numérique)",
+              "it": "valore (numeric)",
+              "no": "verdi (numerisk)",
+              "pl": "wartość (numeryczna)",
+              "ru": "значение (числовое)",
+              "ko": "값 (숫자)"
             },
             "example": 22.5
           },
@@ -391,13 +724,29 @@
               "en": "sensor",
               "nl": "sensor",
               "de": "Sensor",
-              "sv": "Sensor"
+              "sv": "Sensor",
+              "da": "sensor",
+              "es": "sensor",
+              "fr": "capteur",
+              "it": "sensore",
+              "no": "sensor",
+              "pl": "czujnik",
+              "ru": "датчик",
+              "ko": "센서"
             },
             "example": {
               "en": "Moisture",
               "nl": "Vochtigheid",
               "de": "Feuchtigkeit",
-              "sv": "Fuktighet"
+              "sv": "Fuktighet",
+              "da": "Fugtighed",
+              "es": "Humedad",
+              "fr": "Humidité",
+              "it": "Umidità",
+              "no": "Fuktighet",
+              "pl": "Wilgotność",
+              "ru": "Влажность",
+              "ko": "습도"
             }
           }
         ],
@@ -415,7 +764,15 @@
           "en": "A sensor value is updated",
           "nl": "Een sensor waarde is geupdate",
           "de": "Ein Sensorwert wird aktualisiert",
-          "sv": "En sensors värde har uppdaterats"
+          "sv": "En sensors värde har uppdaterats",
+          "da": "En sensorværdi er opdateret",
+          "es": "Se ha actualizado un valor del sensor",
+          "fr": "Une valeur de capteur est mise à jour",
+          "it": "Un valore del sensore è aggiornato",
+          "no": "En sensorverdi er oppdatert",
+          "pl": "Wartość czujnika została zaktualizowana",
+          "ru": "Обновлено значение датчика",
+          "ko": "센서 값이 업데이트되었습니다"
         },
         "tokens": [
           {
@@ -425,13 +782,29 @@
               "en": "report",
               "nl": "rapport",
               "de": "Bericht",
-              "sv": "rapportera"
+              "sv": "rapportera",
+              "da": "rapport",
+              "es": "informe",
+              "fr": "rapport",
+              "it": "rapporto",
+              "no": "rapport",
+              "pl": "raport",
+              "ru": "отчет",
+              "ko": "보고서"
             },
             "example": {
               "en": "The moisture (22%) is too low. This can be at least 30%.",
               "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
               "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen.",
-              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%."
+              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%.",
+              "da": "Fugtigheden (22%) er for lav. Den skal være mindst 30%.",
+              "es": "La humedad (22%) es demasiado baja. Debería ser al menos del 30%.",
+              "fr": "L'humidité (22%) est trop basse. Elle doit être d'au moins 30%.",
+              "it": "L'umidità (22%) è troppo bassa. Dovrebbe essere almeno del 30%.",
+              "no": "Fuktigheten (22%) er for lav. Den bør være minst 30%.",
+              "pl": "Wilgotność (22%) jest zbyt niska. Powinna wynosić co najmniej 30%.",
+              "ru": "Влажность (22%) слишком низкая. Она должна быть не менее 30%.",
+              "ko": "습도(22%)가 너무 낮습니다. 최소 30%는 되어야 합니다."
             }
           },
           {
@@ -441,7 +814,15 @@
               "en": "value",
               "nl": "waarde",
               "de": "Wert",
-              "sv": "Värde"
+              "sv": "Värde",
+              "da": "værdi",
+              "es": "valor",
+              "fr": "valeur",
+              "it": "valore",
+              "no": "verdi",
+              "pl": "wartość",
+              "ru": "значение",
+              "ko": "값"
             },
             "example": "22.5"
           },
@@ -452,7 +833,15 @@
               "en": "value (numeric)",
               "nl": "waarde (numeriek)",
               "de": "wert (nummeriek)",
-              "sv": "värde (numeriskt)"
+              "sv": "värde (numeriskt)",
+              "da": "værdi (numerisk)",
+              "es": "valor (numérico)",
+              "fr": "valeur (numérique)",
+              "it": "valore (numerico)",
+              "no": "verdi (numerisk)",
+              "pl": "wartość (numeryczna)",
+              "ru": "значение (числовое)",
+              "ko": "값 (숫자)"
             },
             "example": 22.5
           },
@@ -463,13 +852,29 @@
               "en": "sensor",
               "nl": "sensor",
               "de": "Sensor",
-              "sv": "Sensor"
+              "sv": "Sensor",
+              "da": "sensor",
+              "es": "sensor",
+              "fr": "capteur",
+              "it": "sensore",
+              "no": "sensor",
+              "pl": "czujnik",
+              "ru": "датчик",
+              "ko": "센서"
             },
             "example": {
               "en": "Moisture",
               "nl": "Vochtigheid",
               "de": "Feuchtigkeit",
-              "sv": "Fuktighet"
+              "sv": "Fuktighet",
+              "da": "Fugtighed",
+              "es": "Humedad",
+              "fr": "Humidité",
+              "it": "Umidità",
+              "no": "Fuktighet",
+              "pl": "Wilgotność",
+              "ru": "Влажность",
+              "ko": "습기"
             }
           }
         ],
@@ -487,7 +892,15 @@
           "en": "A sensor value is changed",
           "nl": "Een sensor waarde is veranderd",
           "de": "Ein Sensorwert wurde geändert",
-          "sv": "En sensors värde har ändrats"
+          "sv": "En sensors värde har ändrats",
+          "da": "En sensors værdi er ændret",
+          "es": "Se ha cambiado el valor de un sensor",
+          "fr": "Une valeur de capteur a changé",
+          "it": "È cambiato un valore del sensore",
+          "no": "En sensors verdi er endret",
+          "pl": "Wartość czujnika uległa zmianie",
+          "ru": "Значение датчика изменено",
+          "ko": "센서 값이 변경되었습니다"
         },
         "tokens": [
           {
@@ -497,13 +910,29 @@
               "en": "report",
               "nl": "rapport",
               "de": "Bericht",
-              "sv": "rapportera"
+              "sv": "rapportera",
+              "da": "rapport",
+              "es": "informe",
+              "fr": "rapport",
+              "it": "rapporto",
+              "no": "rapport",
+              "pl": "raport",
+              "ru": "отчет",
+              "ko": "보고서"
             },
             "example": {
               "en": "The moisture (22%) is too low. This can be at least 30%.",
               "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
               "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen.",
-              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%."
+              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%.",
+              "da": "Fugtigheden (22%) er for lav. Den bør være mindst 30%.",
+              "es": "La humedad (22%) es demasiado baja. Debe ser al menos 30%.",
+              "fr": "L'humidité (22%) est trop basse. Elle doit être d'au moins 30%.",
+              "it": "L'umidità (22%) è troppo bassa. Dovrebbe essere almeno il 30%.",
+              "no": "Fuktigheten (22%) er for lav. Den bør være minst 30%.",
+              "pl": "Wilgotność (22%) jest zbyt niska. Powinna wynosić co najmniej 30%.",
+              "ru": "Влажность (22%) слишком низкая. Она должна быть не менее 30%.",
+              "ko": "습도 (22%)가 너무 낮습니다. 최소한 30%이어야 합니다."
             }
           },
           {
@@ -513,7 +942,15 @@
               "en": "value",
               "nl": "waarde",
               "de": "Wert",
-              "sv": "Värde"
+              "sv": "Värde",
+              "da": "værdi",
+              "es": "valor",
+              "fr": "valeur",
+              "it": "valore",
+              "no": "verdi",
+              "pl": "wartość",
+              "ru": "значение",
+              "ko": "값"
             },
             "example": "22.5"
           },
@@ -524,7 +961,15 @@
               "en": "value (numeric)",
               "nl": "waarde (numeriek)",
               "de": "wert (nummeriek)",
-              "sv": "värde (numeriskt)"
+              "sv": "värde (numeriskt)",
+              "da": "værdi (numerisk)",
+              "es": "valor (numérico)",
+              "fr": "valeur (numérique)",
+              "it": "valore (numerico)",
+              "no": "verdi (numerisk)",
+              "pl": "wartość (numeryczna)",
+              "ru": "значение (числовое)",
+              "ko": "값 (숫자)"
             },
             "example": 22.5
           },
@@ -535,13 +980,29 @@
               "en": "sensor",
               "nl": "sensor",
               "de": "Sensor",
-              "sv": "sensor"
+              "sv": "sensor",
+              "da": "sensor",
+              "es": "sensor",
+              "fr": "capteur",
+              "it": "sensore",
+              "no": "sensor",
+              "pl": "czujnik",
+              "ru": "датчик",
+              "ko": "센서"
             },
             "example": {
               "en": "Moisture",
               "nl": "Vochtigheid",
               "de": "Feuchtigkeit",
-              "sv": "Fuktighet"
+              "sv": "Fuktighet",
+              "da": "Fugtighed",
+              "es": "Humedad",
+              "fr": "Humidité",
+              "it": "Umidità",
+              "no": "Fuktighet",
+              "pl": "Wilgotność",
+              "ru": "Влажность",
+              "ko": "습도"
             }
           },
           {
@@ -551,7 +1012,15 @@
               "en": "device",
               "nl": "apparaat",
               "de": "Gerät",
-              "sv": "enhet"
+              "sv": "enhet",
+              "da": "enhed",
+              "es": "dispositivo",
+              "fr": "appareil",
+              "it": "dispositivo",
+              "no": "enhet",
+              "pl": "urządzenie",
+              "ru": "устройство",
+              "ko": "장치"
             },
             "example": {
               "en": "Flowercare 1",
@@ -567,7 +1036,15 @@
           "en": "Sensor value is outside the configured threshold",
           "nl": "Sensor waarde is buiten de gestelde drempel",
           "de": "Der Sensorwert liegt außerhab der konfigurierten Grenzwerte",
-          "sv": "Sensorns värde är utanför det inställda tröskelvärdet"
+          "sv": "Sensorns värde är utanför det inställda tröskelvärdet",
+          "da": "Sensorværdien er uden for den konfigurerede tærskelværdi",
+          "es": "El valor del sensor está fuera del umbral configurado",
+          "fr": "La valeur du capteur est en dehors du seuil configuré",
+          "it": "Il valore del sensore è al di fuori della soglia configurata",
+          "no": "Sensorverdien er utenfor den konfigurerte terskelen",
+          "pl": "Wartość czujnika jest poza skonfigurowanym progiem",
+          "ru": "Значение датчика выходит за пределы настроенного порога",
+          "ko": "센서 값이 구성된 임계값을 벗어났습니다"
         },
         "tokens": [
           {
@@ -577,13 +1054,29 @@
               "en": "report",
               "nl": "rapport",
               "de": "Bericht",
-              "sv": "rapportera"
+              "sv": "rapportera",
+              "da": "rapport",
+              "es": "informe",
+              "fr": "rapport",
+              "it": "rapporto",
+              "no": "rapport",
+              "pl": "raport",
+              "ru": "отчет",
+              "ko": "보고서"
             },
             "example": {
               "en": "The moisture (22%) is too low. This can be at least 30%.",
               "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
               "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen.",
-              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%."
+              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%.",
+              "da": "Fugtigheden (22%) er for lav. Den kan være mindst 30%.",
+              "es": "La humedad (22%) es demasiado baja. Puede ser al menos 30%.",
+              "fr": "L'humidité (22%) est trop basse. Elle peut être au moins 30%.",
+              "it": "L'umidità (22%) è troppo bassa. Può essere almeno del 30%.",
+              "no": "Fuktigheten (22%) er for lav. Den kan være minst 30%.",
+              "pl": "Wilgotność (22%) jest zbyt niska. Powinna wynosić co najmniej 30%.",
+              "ru": "Влажность (22%) слишком низкая. Она может быть не менее 30%.",
+              "ko": "습도(22%)가 너무 낮습니다. 최소 30%일 수 있습니다."
             }
           },
           {
@@ -593,7 +1086,15 @@
               "en": "value",
               "nl": "waarde",
               "de": "Wert",
-              "sv": "Värde"
+              "sv": "Värde",
+              "da": "værdi",
+              "es": "valor",
+              "fr": "valeur",
+              "it": "valore",
+              "no": "verdi",
+              "pl": "wartość",
+              "ru": "значение",
+              "ko": "값"
             },
             "example": "22.5"
           },
@@ -604,7 +1105,15 @@
               "en": "value (numeric)",
               "nl": "waarde (numeriek)",
               "de": "wert (nummeriek)",
-              "sv": "värde (numeriskt)"
+              "sv": "värde (numeriskt)",
+              "da": "værdi (numerisk)",
+              "es": "valor (numérico)",
+              "fr": "valeur (numérique)",
+              "it": "valore (numerico)",
+              "no": "verdi (numerisk)",
+              "pl": "wartość (numeryczna)",
+              "ru": "значение (числовое)",
+              "ko": "값(숫자)"
             },
             "example": 22.5
           },
@@ -615,13 +1124,29 @@
               "en": "sensor",
               "nl": "sensor",
               "de": "Sensor",
-              "sv": "Sensor"
+              "sv": "Sensor",
+              "da": "sensor",
+              "es": "sensor",
+              "fr": "capteur",
+              "it": "sensore",
+              "no": "sensor",
+              "pl": "czujnik",
+              "ru": "датчик",
+              "ko": "센서"
             },
             "example": {
               "en": "Moisture",
               "nl": "Vochtigheid",
               "de": "Feuchtigkeit",
-              "sv": "Fuktighet"
+              "sv": "Fuktighet",
+              "da": "Fugtighed",
+              "es": "Humedad",
+              "fr": "Humidité",
+              "it": "Umidità",
+              "no": "Fuktighet",
+              "pl": "Wilgotność",
+              "ru": "Влажность",
+              "ko": "습도"
             }
           },
           {
@@ -631,13 +1156,29 @@
               "en": "device",
               "nl": "apparaat",
               "de": "Gerät",
-              "sv": "Enhet"
+              "sv": "Enhet",
+              "da": "enhed",
+              "es": "dispositivo",
+              "fr": "appareil",
+              "it": "dispositivo",
+              "no": "enhet",
+              "pl": "urządzenie",
+              "ru": "устройство",
+              "ko": "장치"
             },
             "example": {
               "en": "Flowercare 1",
               "nl": "Flowercare 1",
               "de": "Flowercare 1",
-              "sv": "Flowercare 1"
+              "sv": "Flowercare 1",
+              "da": "Flowercare 1",
+              "es": "Flowercare 1",
+              "fr": "Flowercare 1",
+              "it": "Flowercare 1",
+              "no": "Flowercare 1",
+              "pl": "Flowercare 1",
+              "ru": "Flowercare 1",
+              "ko": "Flowercare 1"
             }
           }
         ]
@@ -648,7 +1189,15 @@
           "en": "Sensor value is above the configured threshold",
           "nl": "Sensor waarde is boven de gestelde drempel",
           "de": "Der Sensorwert liegt über dem konfigurierten Grenzwert",
-          "sv": "Sensorns värde är över det inställda tröskelvärdet"
+          "sv": "Sensorns värde är över det inställda tröskelvärdet",
+          "da": "Sensorværdien er over den konfigurerede grænse",
+          "es": "El valor del sensor está por encima del umbral configurado",
+          "fr": "La valeur du capteur est au-dessus du seuil configuré",
+          "it": "Il valore del sensore è al di sopra della soglia configurata",
+          "no": "Sensorverdien er over den konfigurerte grensen",
+          "pl": "Wartość czujnika jest powyżej skonfigurowanego progu",
+          "ru": "Значение датчика выше настроенного порога",
+          "ko": "센서 값이 설정된 임계값을 초과했습니다"
         },
         "tokens": [
           {
@@ -658,13 +1207,29 @@
               "en": "report",
               "nl": "rapport",
               "de": "Bericht",
-              "sv": "rapportera"
+              "sv": "rapportera",
+              "da": "rapport",
+              "es": "informe",
+              "fr": "rapport",
+              "it": "rapporto",
+              "no": "rapport",
+              "pl": "raport",
+              "ru": "отчет",
+              "ko": "보고서"
             },
             "example": {
               "en": "The moisture (22%) is too low. This can be at least 30%.",
               "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
               "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen.",
-              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%."
+              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%.",
+              "da": "Fugtigheden (22%) er for lav. Den bør være mindst 30%.",
+              "es": "La humedad (22%) es demasiado baja. Debería ser al menos del 30%.",
+              "fr": "L'humidité (22%) est trop basse. Elle devrait être d'au moins 30 %.",
+              "it": "L'umidità (22%) è troppo bassa. Dovrebbe essere almeno del 30%.",
+              "no": "Fuktigheten (22%) er for lav. Den bør være minst 30%.",
+              "pl": "Wilgotność (22%) jest zbyt niska. Powinna wynosić co najmniej 30%.",
+              "ru": "Влажность (22%) слишком низкая. Должна быть не менее 30%.",
+              "ko": "습도 (22%)가 너무 낮습니다. 최소 30%이어야 합니다."
             }
           },
           {
@@ -674,7 +1239,15 @@
               "en": "value",
               "nl": "waarde",
               "de": "Wert",
-              "sv": "Värde"
+              "sv": "Värde",
+              "da": "værdi",
+              "es": "valor",
+              "fr": "valeur",
+              "it": "valore",
+              "no": "verdi",
+              "pl": "wartość",
+              "ru": "значение",
+              "ko": "값"
             },
             "example": "22.5"
           },
@@ -685,7 +1258,15 @@
               "en": "value (numeric)",
               "nl": "waarde (numeriek)",
               "de": "wert (nummeriek)",
-              "sv": "värde (numeriskt)"
+              "sv": "värde (numeriskt)",
+              "da": "værdi (numerisk)",
+              "es": "valor (numérico)",
+              "fr": "valeur (numérique)",
+              "it": "valore (numerico)",
+              "no": "verdi (numerisk)",
+              "pl": "wartość (numeryczna)",
+              "ru": "значение (числовое)",
+              "ko": "값 (숫자)"
             },
             "example": 22.5
           },
@@ -696,13 +1277,29 @@
               "en": "sensor",
               "nl": "sensor",
               "de": "Sensor",
-              "sv": "Sensor"
+              "sv": "Sensor",
+              "da": "sensor",
+              "es": "sensor",
+              "fr": "capteur",
+              "it": "sensore",
+              "no": "sensor",
+              "pl": "czujnik",
+              "ru": "датчик",
+              "ko": "센서"
             },
             "example": {
               "en": "Moisture",
               "nl": "Vochtigheid",
               "de": "Feuchtigkeit",
-              "sv": "Fuktighet"
+              "sv": "Fuktighet",
+              "da": "Fugtighed",
+              "es": "Humedad",
+              "fr": "Humidité",
+              "it": "Umidità",
+              "no": "Fuktighet",
+              "pl": "Wilgotność",
+              "ru": "Влажность",
+              "ko": "습기"
             }
           },
           {
@@ -712,13 +1309,29 @@
               "en": "device",
               "nl": "apparaat",
               "de": "Gerät",
-              "sv": "Enhet"
+              "sv": "Enhet",
+              "da": "enhed",
+              "es": "dispositivo",
+              "fr": "appareil",
+              "it": "dispositivo",
+              "no": "enhet",
+              "pl": "urządzenie",
+              "ru": "устройство",
+              "ko": "장치"
             },
             "example": {
               "en": "Flowercare 1",
               "nl": "Flowercare 1",
               "de": "Flowercare 1",
-              "sv": "Flowercare 1"
+              "sv": "Flowercare 1",
+              "da": "Flowercare 1",
+              "es": "Flowercare 1",
+              "fr": "Flowercare 1",
+              "it": "Flowercare 1",
+              "no": "Flowercare 1",
+              "pl": "Flowercare 1",
+              "ru": "Flowercare 1",
+              "ko": "Flowercare 1"
             }
           }
         ]
@@ -729,7 +1342,15 @@
           "en": "Sensor value is below the configured threshold",
           "nl": "Sensor waarde is beneden de gestelde drempel",
           "de": "Der Sensorwert liegt unter dem konfigurierten Grenzwert",
-          "sv": "Sensorns värde är över det inställda tröskelvärdet"
+          "sv": "Sensorns värde är över det inställda tröskelvärdet",
+          "da": "Sensorværdien er under den konfigurerede tærskel",
+          "es": "El valor del sensor está por debajo del umbral configurado",
+          "fr": "La valeur du capteur est en dessous du seuil configuré",
+          "it": "Il valore del sensore è al di sotto della soglia configurata",
+          "no": "Sensorverdien er under den konfigurerte terskelen",
+          "pl": "Wartość czujnika jest poniżej skonfigurowanego progu",
+          "ru": "Значение датчика ниже настроенного порога",
+          "ko": "센서 값이 설정된 임계값보다 낮습니다"
         },
         "tokens": [
           {
@@ -739,13 +1360,29 @@
               "en": "report",
               "nl": "rapport",
               "de": "Bericht",
-              "sv": "rapportera"
+              "sv": "rapportera",
+              "da": "rapport",
+              "es": "informe",
+              "fr": "rapport",
+              "it": "rapporto",
+              "no": "rapport",
+              "pl": "raport",
+              "ru": "отчет",
+              "ko": "보고서"
             },
             "example": {
               "en": "The moisture (22%) is too low. This can be at least 30%.",
               "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
               "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen.",
-              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%."
+              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%.",
+              "da": "Fugtigheden (22%) er for lav. Den skal være mindst 30%.",
+              "es": "La humedad (22%) es demasiado baja. Debe ser al menos 30%.",
+              "fr": "L'humidité (22 %) est trop basse. Elle doit être d'au moins 30 %.",
+              "it": "L'umidità (22%) è troppo bassa. Deve essere almeno del 30%.",
+              "no": "Fuktigheten (22%) er for lav. Den bør være minst 30%.",
+              "pl": "Wilgotność (22%) jest zbyt niska. Powinna wynosić co najmniej 30%.",
+              "ru": "Влажность (22%) слишком низкая. Она должна быть не менее 30%.",
+              "ko": "습도(22%)가 너무 낮습니다. 최소 30%이어야 합니다."
             }
           },
           {
@@ -755,7 +1392,15 @@
               "en": "value",
               "nl": "waarde",
               "de": "Wert",
-              "sv": "Värde"
+              "sv": "Värde",
+              "da": "værdi",
+              "es": "valor",
+              "fr": "valeur",
+              "it": "valore",
+              "no": "verdi",
+              "pl": "wartość",
+              "ru": "значение",
+              "ko": "값"
             },
             "example": "22.5"
           },
@@ -766,7 +1411,15 @@
               "en": "value (numeric)",
               "nl": "waarde (numeriek)",
               "de": "wert (nummeriek)",
-              "sv": "värde (numeriskt)"
+              "sv": "värde (numeriskt)",
+              "da": "værdi (numerisk)",
+              "es": "valor (numérico)",
+              "fr": "valeur (numérique)",
+              "it": "valore (numerico)",
+              "no": "verdi (numerisk)",
+              "pl": "wartość (numeryczna)",
+              "ru": "значение (числовое)",
+              "ko": "값 (숫자)"
             },
             "example": 22.5
           },
@@ -777,13 +1430,29 @@
               "en": "sensor",
               "nl": "sensor",
               "de": "Sensor",
-              "sv": "Sensor"
+              "sv": "Sensor",
+              "da": "sensor",
+              "es": "sensor",
+              "fr": "capteur",
+              "it": "sensore",
+              "no": "sensor",
+              "pl": "czujnik",
+              "ru": "датчик",
+              "ko": "센서"
             },
             "example": {
               "en": "Moisture",
               "nl": "Vochtigheid",
               "de": "Feuchtigkeit",
-              "sv": "Fuktighet"
+              "sv": "Fuktighet",
+              "da": "Fugtighed",
+              "es": "Humedad",
+              "fr": "Humidité",
+              "it": "Umidità",
+              "no": "Fuktighet",
+              "pl": "Wilgotność",
+              "ru": "Влажность",
+              "ko": "습기"
             }
           },
           {
@@ -793,13 +1462,29 @@
               "en": "device",
               "nl": "apparaat",
               "de": "Gerät",
-              "sv": "enhet"
+              "sv": "enhet",
+              "da": "enhed",
+              "es": "dispositivo",
+              "fr": "appareil",
+              "it": "dispositivo",
+              "no": "enhet",
+              "pl": "urządzenie",
+              "ru": "устройство",
+              "ko": "기기"
             },
             "example": {
               "en": "Flowercare 1",
               "nl": "Flowercare 1",
               "de": "Flowercare 1",
-              "sv": "Flowercare 1"
+              "sv": "Flowercare 1",
+              "da": "Flowercare 1",
+              "es": "Flowercare 1",
+              "fr": "Flowercare 1",
+              "it": "Flowercare 1",
+              "no": "Flowercare 1",
+              "pl": "Flowercare 1",
+              "ru": "Flowercare 1",
+              "ko": "Flowercare 1"
             }
           }
         ]
@@ -810,7 +1495,15 @@
           "en": "The sensor gives a timeout",
           "nl": "Een sensor geeft een timeout",
           "de": "Der Sensor gibt eine Zeitüberschreitung aus",
-          "sv": "Sensorn ger en timeout"
+          "sv": "Sensorn ger en timeout",
+          "da": "Sensøren giver en timeout",
+          "es": "El sensor da un tiempo de espera",
+          "fr": "Le capteur donne un temps mort",
+          "it": "Il sensore dà un timeout",
+          "no": "Sensoren gir en timeout",
+          "pl": "Czujnik daje upływ czasu",
+          "ru": "Датчик выдает тайм-аут",
+          "ko": "센서가 타임아웃을 제공합니다."
         },
         "tokens": [
           {
@@ -820,7 +1513,15 @@
               "en": "device",
               "nl": "apparaat",
               "de": "Gerät",
-              "sv": "Enhet"
+              "sv": "Enhet",
+              "da": "enhed",
+              "es": "dispositivo",
+              "fr": "appareil",
+              "it": "dispositivo",
+              "no": "enhet",
+              "pl": "urządzenie",
+              "ru": "устройство",
+              "ko": "장치"
             },
             "example": {
               "en": "Flowercare 1",
@@ -836,7 +1537,15 @@
               "en": "reason",
               "nl": "oorzaak",
               "de": "Grund",
-              "sv": "Orsak"
+              "sv": "Orsak",
+              "da": "årsag",
+              "es": "razón",
+              "fr": "raison",
+              "it": "motivo",
+              "no": "årsak",
+              "pl": "powód",
+              "ru": "причина",
+              "ko": "이유"
             },
             "example": {
               "en": "Not in range",
@@ -853,7 +1562,15 @@
           "en": "A sensor value is updated",
           "nl": "Een sensor waarde is geupdate",
           "de": "Ein Sensorwert wird aktualisiert",
-          "sv": "En sensors värde har uppdaterats"
+          "sv": "En sensors värde har uppdaterats",
+          "da": "En sensorværdi er opdateret",
+          "es": "Un valor de sensor está actualizado",
+          "fr": "Une valeur de capteur est mise à jour",
+          "it": "Un valore del sensore è aggiornato",
+          "no": "En sensorverdi er oppdatert",
+          "pl": "Wartość czujnika została zaktualizowana",
+          "ru": "Значение датчика обновлено",
+          "ko": "센서 값이 업데이트되었습니다"
         },
         "tokens": [
           {
@@ -863,13 +1580,29 @@
               "en": "report",
               "nl": "rapport",
               "de": "Bericht",
-              "sv": "rapportera"
+              "sv": "rapportera",
+              "da": "rapport",
+              "es": "informe",
+              "fr": "rapport",
+              "it": "rapporto",
+              "no": "rapport",
+              "pl": "raport",
+              "ru": "отчет",
+              "ko": "보고서"
             },
             "example": {
               "en": "The moisture (22%) is too low. This can be at least 30%.",
               "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
               "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen.",
-              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%."
+              "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%.",
+              "da": "Fugtigheden (22%) er for lav. Det skal være mindst 30%.",
+              "es": "La humedad (22%) es demasiado baja. Esta puede ser al menos 30%.",
+              "fr": "L'humidité (22%) est trop basse. Elle peut être au moins de 30%.",
+              "it": "L'umidità (22%) è troppo bassa. Deve essere almeno del 30%.",
+              "no": "Fuktigheten (22%) er for lav. Den bør være minst 30%.",
+              "pl": "Wilgotność (22%) jest zbyt niska. Powinna wynosić co najmniej 30%.",
+              "ru": "Влажность (22%) слишком низкая. Она должна быть не менее 30%.",
+              "ko": "습도 (22%)가 너무 낮습니다. 최소 30%여야 합니다."
             }
           },
           {
@@ -879,7 +1612,15 @@
               "en": "value",
               "nl": "waarde",
               "de": "Wert",
-              "sv": "Värde"
+              "sv": "Värde",
+              "da": "værdi",
+              "es": "valor",
+              "fr": "valeur",
+              "it": "valore",
+              "no": "verdi",
+              "pl": "wartość",
+              "ru": "значение",
+              "ko": "값"
             },
             "example": "22.5"
           },
@@ -890,7 +1631,15 @@
               "en": "value (numeric)",
               "nl": "waarde (numeriek)",
               "de": "wert (nummeriek)",
-              "sv": "värde (numeriskt)"
+              "sv": "värde (numeriskt)",
+              "da": "værdi (numerisk)",
+              "es": "valor (numérico)",
+              "fr": "valeur (numérique)",
+              "it": "valore (numerico)",
+              "no": "verdi (numerisk)",
+              "pl": "wartość (numeryczna)",
+              "ru": "значение (числовое)",
+              "ko": "숫자 값"
             },
             "example": 22.5
           },
@@ -901,13 +1650,29 @@
               "en": "sensor",
               "nl": "sensor",
               "de": "Sensor",
-              "sv": "sensor"
+              "sv": "sensor",
+              "da": "sensor",
+              "es": "sensor",
+              "fr": "capteur",
+              "it": "sensore",
+              "no": "sensor",
+              "pl": "czujnik",
+              "ru": "датчик",
+              "ko": "센서"
             },
             "example": {
               "en": "Moisture",
               "nl": "Vochtigheid",
               "de": "Feuchtigkeit",
-              "sv": "Fuktighet"
+              "sv": "Fuktighet",
+              "da": "Fugtighed",
+              "es": "Humedad",
+              "fr": "Humidité",
+              "it": "Umidità",
+              "no": "Fuktighet",
+              "pl": "Wilgotność",
+              "ru": "Влажность",
+              "ko": "습도"
             }
           },
           {
@@ -917,13 +1682,29 @@
               "en": "device",
               "nl": "apparaat",
               "de": "Gerät",
-              "sv": "enhet"
+              "sv": "enhet",
+              "da": "enhed",
+              "es": "dispositivo",
+              "fr": "appareil",
+              "it": "dispositivo",
+              "no": "enhet",
+              "pl": "urządzenie",
+              "ru": "устройство",
+              "ko": "장치"
             },
             "example": {
               "en": "Flowercare 1",
               "nl": "Flowercare 1",
               "de": "Flowercare 1",
-              "sv": "Flowercare 1"
+              "sv": "Flowercare 1",
+              "da": "Flowercare 1",
+              "es": "Flowercare 1",
+              "fr": "Flowercare 1",
+              "it": "Flowercare 1",
+              "no": "Flowercare 1",
+              "pl": "Flowercare 1",
+              "ru": "Flowercare 1",
+              "ko": "Flowercare 1"
             }
           }
         ]
@@ -936,19 +1717,43 @@
           "en": "The plant !{{has not|has}} correct amount of nutritions.",
           "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid voeding.",
           "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Menge an Dünger.",
-          "sv": "Plantan !{{har inte|har}} tillräckligt med näring."
+          "sv": "Plantan !{{har inte|har}} tillräckligt med näring.",
+          "da": "Planten !{{har ikke|har}} korrekt mængde næringsstoffer.",
+          "es": "La planta !{{no tiene|tiene}} la cantidad correcta de nutrientes.",
+          "fr": "La plante !{{n'a pas|a}} la quantité correcte de nutriments.",
+          "it": "La pianta !{{non ha|ha}} la quantità corretta di nutrienti.",
+          "no": "Planten !{{har ikke|har}} korrekt mengde næringsstoffer.",
+          "pl": "Roślina !{{nie ma|ma}} odpowiednią ilość składników odżywczych.",
+          "ru": "Растение !{{не имеет|имеет}} правильное количество питательных веществ.",
+          "ko": "식물이 !{{적절하지 않습니다|적절합니다}} 영양소 양."
         },
         "titleFormatted": {
           "en": "The plant [[device]] !{{has not|has}} correct amount of nutritions.",
           "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste hoeveelheid voeding.",
           "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Menge an Dünger.",
-          "sv": "Plantan [[device]] !{{har inte|har}} tillräckligt med näring."
+          "sv": "Plantan [[device]] !{{har inte|har}} tillräckligt med näring.",
+          "da": "Planten [[device]] !{{har ikke|har}} korrekt mængde næringsstoffer.",
+          "es": "La planta [[device]] !{{no tiene|tiene}} la cantidad correcta de nutrientes.",
+          "fr": "La plante [[device]] !{{n'a pas|a}} la quantité correcte de nutriments.",
+          "it": "La pianta [[device]] !{{non ha|ha}} la quantità corretta di nutrienti.",
+          "no": "Planten [[device]] !{{har ikke|har}} korrekt mengde næringsstoffer.",
+          "pl": "Roślina [[device]] !{{nie ma|ma}} odpowiednią ilość składników odżywczych.",
+          "ru": "Растение [[device]] !{{не имеет|имеет}} правильное количество питательных веществ.",
+          "ko": "식물이 [[device]] !{{적절하지 않습니다|적절합니다}} 영양소 양."
         },
         "hint": {
           "en": "Use this card to determine if the plant has a correct amount of nutritions.",
           "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid voeding heeft.",
           "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze genug Düngemittel hat.",
-          "sv": "Använd detta kort för att kontrollera om plantan har tillräckligt med näring."
+          "sv": "Använd detta kort för att kontrollera om plantan har tillräckligt med näring.",
+          "da": "Brug dette kort til at afgøre, om planten har den korrekte mængde næringsstoffer.",
+          "es": "Usa esta tarjeta para determinar si la planta tiene la cantidad correcta de nutrientes.",
+          "fr": "Utilisez cette carte pour déterminer si la plante a la quantité correcte de nutriments.",
+          "it": "Usa questa carta per determinare se la pianta ha la giusta quantità di nutrienti.",
+          "no": "Bruk dette kortet for å finne ut om planten har korrekt mengde næringsstoffer.",
+          "pl": "Użyj tej karty, aby sprawdzić, czy roślina ma odpowiednią ilość składników odżywczych.",
+          "ru": "Используйте эту карту, чтобы определить, имеет ли растение нужное количество питательных веществ.",
+          "ko": "이 카드를 사용하여 식물이 올바른 양의 영양소를 가지고 있는지 판단하세요."
         },
         "args": [
           {
@@ -966,19 +1771,43 @@
           "en": "The plant !{{has not|has}} correct amount of moisture.",
           "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid vocht.",
           "de": "Die Pflanze !{{hat nicht|hat}} korrekte Menge an Wasser.",
-          "sv": "Plantan !{{har inte|har}} tillräckligt med vatten."
+          "sv": "Plantan !{{har inte|har}} tillräckligt med vatten.",
+          "da": "Planten !{{har ikke|har}} korrekt mængde fugt.",
+          "es": "La planta !{{no tiene|tiene}} la cantidad correcta de humedad.",
+          "fr": "La plante !{{n'a pas|a}} la quantité correcte d'humidité.",
+          "it": "La pianta !{{non ha|ha}} la giusta quantità di umidità.",
+          "no": "Planten !{{har ikke|har}} riktig mengde fuktighet.",
+          "pl": "Roślina !{{nie ma|ma}} odpowiednią ilość wilgoci.",
+          "ru": "Растение !{{не имеет|имеет}} правильное количество влаги.",
+          "ko": "식물에 !{{부족한|충분한}} 수분이 있습니다."
         },
         "titleFormatted": {
           "en": "The plant [[device]] !{{has not|has}} correct amount of moisture.",
           "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste hoeveelheid vocht.",
           "de": "Die Pflanze [[device]] !{{hat nicht|hat}} korrekte Menge an Wasser.",
-          "sv": "Plantan [[device]] !{{har inte|har}} tillräckligt med vatten."
+          "sv": "Plantan [[device]] !{{har inte|har}} tillräckligt med vatten.",
+          "da": "Planten [[device]] !{{har ikke|har}} korrekt mængde fugt.",
+          "es": "La planta [[device]] !{{no tiene|tiene}} la cantidad correcta de humedad.",
+          "fr": "La plante [[device]] !{{n'a pas|a}} la quantité correcte d'humidité.",
+          "it": "La pianta [[device]] !{{non ha|ha}} la giusta quantità di umidità.",
+          "no": "Planten [[device]] !{{har ikke|har}} riktig mengde fuktighet.",
+          "pl": "Roślina [[device]] !{{nie ma|ma}} odpowiednią ilość wilgoci.",
+          "ru": "Растение [[device]] !{{не имеет|имеет}} правильное количество влаги.",
+          "ko": "식물에 [[device]] !{{부족한|충분한}} 수분이 있습니다."
         },
         "hint": {
           "en": "Use this card to determine if the plant has a correct amount of moisture.",
           "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid vocht heeft.",
           "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze genug Wasser hat.",
-          "sv": "Använd detta kort för att säkerställa att plantan har tillräckligt med vatten."
+          "sv": "Använd detta kort för att säkerställa att plantan har tillräckligt med vatten.",
+          "da": "Brug dette kort til at afgøre, om planten har den korrekte mængde fugt.",
+          "es": "Utiliza esta tarjeta para determinar si la planta tiene la cantidad correcta de humedad.",
+          "fr": "Utilisez cette carte pour déterminer si la plante a la quantité correcte d'humidité.",
+          "it": "Usa questa scheda per determinare se la pianta ha la giusta quantità di umidità.",
+          "no": "Bruk dette kortet for å finne ut om planten har riktig mengde fuktighet.",
+          "pl": "Użyj tej karty, aby sprawdzić, czy roślina ma odpowiednią ilość wilgoci.",
+          "ru": "Используйте эту карту, чтобы определить, достаточно ли влаги у растения.",
+          "ko": "이 카드를 사용하여 식물이 충분한 수분을 가지고 있는지 확인하십시오."
         },
         "args": [
           {
@@ -996,19 +1825,43 @@
           "en": "The plant !{{has not|has}} correct amount of sunlight.",
           "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid zonlicht.",
           "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Menge an Licht.",
-          "sv": "Plantan !{{har inte|har}} tillräcklig luminans."
+          "sv": "Plantan !{{har inte|har}} tillräcklig luminans.",
+          "da": "Planten !{{har ikke|har}} den rigtige mængde sollys.",
+          "es": "La planta !{{no tiene|tiene}} la cantidad correcta de luz solar.",
+          "fr": "La plante !{{n'a pas|a}} la bonne quantité de lumière du soleil.",
+          "it": "La pianta !{{non ha|ha}} la giusta quantità di luce solare.",
+          "no": "Planten !{{har ikke|har}} riktig mengde sollys.",
+          "pl": "Roślina !{{nie ma|ma}} odpowiednią ilość światła słonecznego.",
+          "ru": "Растение !{{не получает|получает}} правильное количество солнечного света.",
+          "ko": "식물이 !{{적절하지 않은|적절한}} 양의 햇빛을 받고 있습니다."
         },
         "titleFormatted": {
           "en": "The plant [[device]] !{{has not|has}} correct amount of sunlight.",
           "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste hoeveelheid zonlicht.",
           "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Menge an Licht.",
-          "sv": "Plantan [[device]] !{{har inte|har}} tillräcklig luminans."
+          "sv": "Plantan [[device]] !{{har inte|har}} tillräcklig luminans.",
+          "da": "Planten [[device]] !{{har ikke|har}} den rigtige mængde sollys.",
+          "es": "La planta [[device]] !{{no tiene|tiene}} la cantidad correcta de luz solar.",
+          "fr": "La plante [[device]] !{{n'a pas|a}} la bonne quantité de lumière du soleil.",
+          "it": "La pianta [[device]] !{{non ha|ha}} la giusta quantità di luce solare.",
+          "no": "Planten [[device]] !{{har ikke|har}} riktig mengde sollys.",
+          "pl": "Roślina [[device]] !{{nie ma|ma}} odpowiednią ilość światła słonecznego.",
+          "ru": "Растение [[device]] !{{не получает|получает}} правильное количество солнечного света.",
+          "ko": "식물이 [[device]] !{{적절하지 않은|적절한}} 양의 햇빛을 받고 있습니다."
         },
         "hint": {
           "en": "Use this card to determine if the plant has a correct amount of sunlight.",
           "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid zonlicht heeft.",
           "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze die richtige Menge Sonnenlicht hat.",
-          "sv": "Använd detta kort för att säkerställa att plantan har tillräcklig luminans."
+          "sv": "Använd detta kort för att säkerställa att plantan har tillräcklig luminans.",
+          "da": "Brug dette kort til at afgøre, om planten får den rigtige mængde sollys.",
+          "es": "Usa esta tarjeta para determinar si la planta recibe la cantidad correcta de luz solar.",
+          "fr": "Utilisez cette carte pour déterminer si la plante reçoit la bonne quantité de lumière du soleil.",
+          "it": "Usa questa scheda per determinare se la pianta riceve la giusta quantità di luce solare.",
+          "no": "Bruk dette kortet for å avgjøre om planten får riktig mengde sollys.",
+          "pl": "Użyj tej karty, aby sprawdzić, czy roślina ma odpowiednią ilość światła słonecznego.",
+          "ru": "Используйте эту карту, чтобы определить, получает ли растение правильное количество солнечного света.",
+          "ko": "이 카드를 사용하여 식물이 적절한 양의 햇빛을 받고 있는지 확인하세요."
         },
         "args": [
           {
@@ -1025,19 +1878,43 @@
           "en": "The plant !{{has not|has}} correct amount of moisture.",
           "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid vocht.",
           "de": "Die Pflanze !{{hat nicht|hat}} korrekte Menge an Wasser.",
-          "sv": "Plantan !{{har inte|har}} tillräckligt med vatten."
+          "sv": "Plantan !{{har inte|har}} tillräckligt med vatten.",
+          "da": "Planten !{{har ikke|har}} korrekt mængde fugt.",
+          "es": "La planta !{{no tiene|tiene}} la cantidad correcta de humedad.",
+          "fr": "La plante !{{n'a pas|a}} la bonne quantité d'humidité.",
+          "it": "La pianta !{{non ha|ha}} la quantità corretta di umidità.",
+          "no": "Planten !{{har ikke|har}} riktig mengde fuktighet.",
+          "pl": "Roślina !{{nie ma|ma}} odpowiednią ilość wilgoci.",
+          "ru": "Растение !{{не имеет|имеет}} правильное количество влаги.",
+          "ko": "식물은 !{{적절하지 않|적절한}} 수분량을 가지고 있습니다."
         },
         "titleFormatted": {
           "en": "The plant [[device]] !{{has not|has}} correct amount of moisture.",
           "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste hoeveelheid vocht.",
           "de": "Die Pflanze [[device]] !{{hat nicht|hat}} korrekte Menge an Wasser.",
-          "sv": "Plantan [[device]] !{{har inte|har}} tillräckligt med vatten."
+          "sv": "Plantan [[device]] !{{har inte|har}} tillräckligt med vatten.",
+          "da": "Planten [[device]] !{{har ikke|har}} korrekt mængde fugt.",
+          "es": "La planta [[device]] !{{no tiene|tiene}} la cantidad correcta de humedad.",
+          "fr": "La plante [[device]] !{{n'a pas|a}} la bonne quantité d'humidité.",
+          "it": "La pianta [[device]] !{{non ha|ha}} la quantità corretta di umidità.",
+          "no": "Planten [[device]] !{{har ikke|har}} riktig mengde fuktighet.",
+          "pl": "Roślina [[device]] !{{nie ma|ma}} odpowiednią ilość wilgoci.",
+          "ru": "Растение [[device]] !{{не имеет|имеет}} правильное количество влаги.",
+          "ko": "식물은 [[device]] !{{적절하지 않|적절한}} 수분량을 가지고 있습니다."
         },
         "hint": {
           "en": "Use this card to determine if the plant has a correct amount of moisture.",
           "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid vocht heeft.",
           "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze genug Wasser hat.",
-          "sv": "Använd detta kort för att säkerställa att plantan tillräckligt med vatten."
+          "sv": "Använd detta kort för att säkerställa att plantan tillräckligt med vatten.",
+          "da": "Brug dette kort til at afgøre, om planten har korrekt mængde fugt.",
+          "es": "Utiliza esta tarjeta para determinar si la planta tiene la cantidad correcta de humedad.",
+          "fr": "Utilisez cette carte pour déterminer si la plante a la bonne quantité d'humidité.",
+          "it": "Usa questa carta per determinare se la pianta ha la quantità corretta di umidità.",
+          "no": "Bruk dette kortet for å bestemme om planten har riktig mengde fuktighet.",
+          "pl": "Użyj tej karty, aby sprawdzić, czy roślina ma odpowiednią ilość wilgoci.",
+          "ru": "Используйте эту карту, чтобы определить, имеет ли растение правильное количество влаги.",
+          "ko": "이 카드를 사용하여 식물이 적절한 수분량을 가지고 있는지 확인하세요."
         },
         "args": [
           {
@@ -1054,19 +1931,43 @@
           "en": "The plant !{{has not|has}} correct amount of nutritions.",
           "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid voeding.",
           "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Menge an Dünger.",
-          "sv": "Plantan !{{har inte|har}} tillräcklig näring."
+          "sv": "Plantan !{{har inte|har}} tillräcklig näring.",
+          "da": "Planten !{{har ikke|har}} den korrekte mængde næring.",
+          "es": "La planta !{{no tiene|tiene}} la cantidad correcta de nutrientes.",
+          "fr": "La plante !{{n'a pas|a}} la bonne quantité de nutriments.",
+          "it": "La pianta !{{non ha|ha}} la quantità corretta di nutrienti.",
+          "no": "Planten !{{har ikke|har}} riktig mengde næring.",
+          "pl": "Roślina !{{nie ma|ma}} odpowiednią ilość składników odżywczych.",
+          "ru": "Растение !{{не имеет|имеет}} правильное количество питательных веществ.",
+          "ko": "식물은 !{{영양분이 충분하지 않습니다|충분합니다}}."
         },
         "titleFormatted": {
           "en": "The plant [[device]] !{{has not|has}} correct amount of nutritions.",
           "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste hoeveelheid voeding.",
           "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Menge an Dünger.",
-          "sv": "Plantan [[device]] !{{har inte|har}} tillräcklig näring."
+          "sv": "Plantan [[device]] !{{har inte|har}} tillräcklig näring.",
+          "da": "Planten [[device]] !{{har ikke|har}} den korrekte mængde næring.",
+          "es": "La planta [[device]] !{{no tiene|tiene}} la cantidad correcta de nutrientes.",
+          "fr": "La plante [[device]] !{{n'a pas|a}} la bonne quantité de nutriments.",
+          "it": "La pianta [[device]] !{{non ha|ha}} la quantità corretta di nutrienti.",
+          "no": "Planten [[device]] !{{har ikke|har}} riktig mengde næring.",
+          "pl": "Roślina [[device]] !{{nie ma|ma}} odpowiednią ilość składników odżywczych.",
+          "ru": "Растение [[device]] !{{не имеет|имеет}} правильное количество питательных веществ.",
+          "ko": "식물은 [[device]] !{{영양분이 충분하지 않습니다|충분합니다}}."
         },
         "hint": {
           "en": "Use this card to determine if the plant has a correct amount of nutritions.",
           "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid voeding heeft.",
           "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze genug Düngemittel hat.",
-          "sv": "Använd detta kort för att säkerställa att plantan har tillräckligt med näring."
+          "sv": "Använd detta kort för att säkerställa att plantan har tillräckligt med näring.",
+          "da": "Brug dette kort til at afgøre, om planten har den korrekte mængde næring.",
+          "es": "Utiliza esta tarjeta para determinar si la planta tiene la cantidad correcta de nutrientes.",
+          "fr": "Utilisez cette carte pour déterminer si la plante a la bonne quantité de nutriments.",
+          "it": "Usa questa carta per determinare se la pianta ha la quantità corretta di nutrienti.",
+          "no": "Bruk dette kortet for å se om planten har riktig mengde næring.",
+          "pl": "Użyj tej karty, aby sprawdzić, czy roślina ma odpowiednią ilość składników odżywczych.",
+          "ru": "Используйте эту карту, чтобы определить, достаточно ли у растения питательных веществ.",
+          "ko": "이 카드를 사용하여 식물에 충분한 영양분이 있는지 확인하세요."
         },
         "args": [
           {
@@ -1083,19 +1984,43 @@
           "en": "De plant !{{has not|has}} a correct temperature.",
           "nl": "De plant !{{heeft niet|heeft}} de juiste temperatuur.",
           "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Temperatur.",
-          "sv": "Plantan !{{har inte|har}} rätt temperatur."
+          "sv": "Plantan !{{har inte|har}} rätt temperatur.",
+          "da": "Planten !{{har ikke|har}} en korrekt temperatur.",
+          "es": "La planta !{{no tiene|tiene}} una temperatura correcta.",
+          "fr": "La plante !{{n'a pas|a}} une température correcte.",
+          "it": "La pianta !{{non ha|ha}} una temperatura corretta.",
+          "no": "Planten !{{har ikke|har}} riktig temperatur.",
+          "pl": "Roślina !{{nie ma|ma}} właściwą temperaturę.",
+          "ru": "Растение !{{не имеет|имеет}} правильную температуру.",
+          "ko": "식물이 !{{올바르지 않은|올바른}} 온도를 가지고 있습니다."
         },
         "titleFormatted": {
           "en": "De plant [[device]] !{{has not|has}} a correct temperature.",
           "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste temperatuur.",
           "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Temperatur.",
-          "sv": "Plantan [[device]] !{{har inte|har}} rätt temperatur."
+          "sv": "Plantan [[device]] !{{har inte|har}} rätt temperatur.",
+          "da": "Planten [[device]] !{{har ikke|har}} en korrekt temperatur.",
+          "es": "La planta [[device]] !{{no tiene|tiene}} una temperatura correcta.",
+          "fr": "La plante [[device]] !{{n'a pas|a}} une température correcte.",
+          "it": "La pianta [[device]] !{{non ha|ha}} una temperatura corretta.",
+          "no": "Planten [[device]] !{{har ikke|har}} riktig temperatur.",
+          "pl": "Roślina [[device]] !{{nie ma|ma}} właściwą temperaturę.",
+          "ru": "Растение [[device]] !{{не имеет|имеет}} правильную температуру.",
+          "ko": "식물이 [[device]] !{{올바르지 않은|올바른}} 온도를 가지고 있습니다."
         },
         "hint": {
           "en": "Use this card to determine if the plant has a correct temperature.",
           "nl": "Gebruik deze kaart om te bepalen of de plant de juiste temperatuur heeft.",
           "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze eine korrekte Temperatur hat.",
-          "sv": "Använd detta kort för att säkerställa att plantan har rätt temperatur."
+          "sv": "Använd detta kort för att säkerställa att plantan har rätt temperatur.",
+          "da": "Brug dette kort til at bestemme, om planten har en korrekt temperatur.",
+          "es": "Utilice esta tarjeta para determinar si la planta tiene una temperatura correcta.",
+          "fr": "Utilisez cette carte pour déterminer si la plante a une température correcte.",
+          "it": "Usa questa scheda per determinare se la pianta ha una temperatura corretta.",
+          "no": "Bruk dette kortet for å bestemme om planten har riktig temperatur.",
+          "pl": "Użyj tej karty, aby sprawdzić, czy roślina ma prawidłową temperaturę.",
+          "ru": "Используйте эту карточку, чтобы определить, имеет ли растение правильную температуру.",
+          "ko": "식물이 올바른 온도를 가지고 있는지 확인하려면 이 카드를 사용하십시오."
         },
         "args": [
           {
@@ -1114,7 +2039,15 @@
           "en": "Synchronise all sensor values",
           "nl": "Synchroniseer alle sensor waarden",
           "de": "Synchronisiere alle Sensorwerte",
-          "sv": "Synkronisera alla sensorers värden"
+          "sv": "Synkronisera alla sensorers värden",
+          "da": "Synkroniser alle sensorværdier",
+          "es": "Sincronizar todos los valores de los sensores",
+          "fr": "Synchroniser toutes les valeurs des capteurs",
+          "it": "Sincronizza tutti i valori dei sensori",
+          "no": "Synkroniser alle sensorverdier",
+          "pl": "Zsynchronizuj wszystkie wartości czujników",
+          "ru": "Синхронизировать все значения датчиков",
+          "ko": "모든 센서 값을 동기화"
         }
       },
       {
@@ -1123,13 +2056,29 @@
           "en": "Synchronize sensor values of device",
           "nl": "Synchroniseer sensorwaarden van apparaat",
           "de": "Sensorwerte vom Gerät synchronisieren",
-          "sv": "Synkronisera sensorns värde för enheten"
+          "sv": "Synkronisera sensorns värde för enheten",
+          "da": "Synkroniser sensorværdier for enhed",
+          "es": "Sincronizar valores del sensor del dispositivo",
+          "fr": "Synchroniser les valeurs des capteurs de l'appareil",
+          "it": "Sincronizza i valori dei sensori del dispositivo",
+          "no": "Synkroniser sensorverdier for enhet",
+          "pl": "Synchronizuj wartości czujników urządzenia",
+          "ru": "Синхронизировать значения датчиков устройства",
+          "ko": "장치의 센서 값을 동기화"
         },
         "titleFormatted": {
           "en": "Synchronize sensor values of device [[sensor]]",
           "nl": "Synchroniseer sensorwaarden van apparaat [[sensor]]",
           "de": "Sensorwerte vom Gerät [[sensor]] synchronisieren",
-          "sv": "Synkronisera sensorvärden från enhet [[sensor]]"
+          "sv": "Synkronisera sensorvärden från enhet [[sensor]]",
+          "da": "Synkroniser sensorværdier for enhed [[sensor]]",
+          "es": "Sincronizar valores del sensor del dispositivo [[sensor]]",
+          "fr": "Synchroniser les valeurs des capteurs de l'appareil [[sensor]]",
+          "it": "Sincronizza i valori dei sensori del dispositivo [[sensor]]",
+          "no": "Synkroniser sensorverdier for enhet [[sensor]]",
+          "pl": "Synchronizuj wartości czujników urządzenia [[sensor]]",
+          "ru": "Синхронизировать значения датчиков устройства [[sensor]]",
+          "ko": "장치 [[sensor]]의 센서 값을 동기화"
         },
         "args": [
           {
@@ -1145,7 +2094,15 @@
               "en": "Select a device",
               "nl": "Selecteer een apparaat",
               "de": "Gerät auswählen",
-              "sv": "Välj en enhet"
+              "sv": "Välj en enhet",
+              "da": "Vælg en enhed",
+              "es": "Seleccione un dispositivo",
+              "fr": "Sélectionnez un appareil",
+              "it": "Seleziona un dispositivo",
+              "no": "Velg en enhet",
+              "pl": "Wybierz urządzenie",
+              "ru": "Выберите устройство",
+              "ko": "장치를 선택하세요"
             }
           }
         ]
@@ -1809,7 +2766,15 @@
         "en": "Xiaomi mi flora pot",
         "nl": "Xiaomi mi flora pot",
         "de": "Xiaomi Mi Flora Blumentopf",
-        "sv": "Xiaomi Mi Flora kruka"
+        "sv": "Xiaomi Mi Flora kruka",
+        "da": "Xiaomi mi flora pot",
+        "es": "Xiaomi mi flora maceta",
+        "fr": "Pot Xiaomi mi flora",
+        "it": "Vaso Xiaomi mi flora",
+        "no": "Xiaomi mi flora pot",
+        "pl": "Xiaomi mi flora doniczka",
+        "ru": "Горшок Xiaomi mi flora",
+        "ko": "샤오미 미 플로라 화분"
       },
       "platforms": [
         "local",
@@ -1854,7 +2819,15 @@
             "en": "Device info",
             "nl": "Apparaat informatie",
             "de": "Geräteinfo",
-            "sv": "Enhetsinformation"
+            "sv": "Enhetsinformation",
+            "da": "Enhedsoplysninger",
+            "es": "Información del dispositivo",
+            "fr": "Informations sur l'appareil",
+            "it": "Informazioni sul dispositivo",
+            "no": "Enhetsinfo",
+            "pl": "Informacje o urządzeniu",
+            "ru": "Информация об устройстве",
+            "ko": "장치 정보"
           },
           "children": [
             {
@@ -1864,7 +2837,15 @@
                 "en": "Firmware version",
                 "nl": "Firmware versie",
                 "de": "Firmware-Version",
-                "sv": "Version på mjukvara"
+                "sv": "Version på mjukvara",
+                "da": "Firmware version",
+                "es": "Versión de firmware",
+                "fr": "Version du firmware",
+                "it": "Versione del firmware",
+                "no": "Firmware-versjon",
+                "pl": "Wersja oprogramowania",
+                "ru": "Версия прошивки",
+                "ko": "펌웨어 버전"
               },
               "value": ""
             },
@@ -1875,7 +2856,15 @@
                 "en": "Last updated",
                 "nl": "Laatste update",
                 "de": "Letzte Aktualisierung",
-                "sv": "Senast uppdaterad"
+                "sv": "Senast uppdaterad",
+                "da": "Sidst opdateret",
+                "es": "Última actualización",
+                "fr": "Dernière mise à jour",
+                "it": "Ultimo aggiornamento",
+                "no": "Sist oppdatert",
+                "pl": "Ostatnia aktualizacja",
+                "ru": "Последнее обновление",
+                "ko": "마지막 업데이트"
               },
               "value": ""
             },
@@ -1886,7 +2875,15 @@
                 "en": "Device uuid address",
                 "nl": "Apparaat uuid adres",
                 "de": "Geräte uuid Adresse",
-                "sv": "Enhetens uuid-adress"
+                "sv": "Enhetens uuid-adress",
+                "da": "Enhedens uuid-adresse",
+                "es": "Dirección uuid del dispositivo",
+                "fr": "Adresse uuid de l'appareil",
+                "it": "Indirizzo uuid del dispositivo",
+                "no": "Enhetens uuid-adresse",
+                "pl": "Adres uuid urządzenia",
+                "ru": "Адрес uuid устройства",
+                "ko": "장치 uuid 주소"
               },
               "value": ""
             }
@@ -1898,7 +2895,15 @@
             "en": "Temperature (°C)",
             "nl": "Temperatuur (°C)",
             "de": "Temperatur (°C)",
-            "sv": "Temperatur (°C)"
+            "sv": "Temperatur (°C)",
+            "da": "Temperatur (°C)",
+            "es": "Temperatura (°C)",
+            "fr": "Température (°C)",
+            "it": "Temperatura (°C)",
+            "no": "Temperatur (°C)",
+            "pl": "Temperatura (°C)",
+            "ru": "Температура (°C)",
+            "ko": "온도 (°C)"
           },
           "children": [
             {
@@ -1911,7 +2916,15 @@
                 "en": "min",
                 "nl": "min",
                 "de": "min",
-                "sv": "min"
+                "sv": "min",
+                "da": "min",
+                "es": "min",
+                "fr": "min",
+                "it": "min",
+                "no": "min",
+                "pl": "min",
+                "ru": "min",
+                "ko": "min"
               }
             },
             {
@@ -1924,7 +2937,15 @@
                 "en": "max",
                 "nl": "max",
                 "de": "max",
-                "sv": "max"
+                "sv": "max",
+                "da": "max",
+                "es": "max",
+                "fr": "max",
+                "it": "max",
+                "no": "max",
+                "pl": "max",
+                "ru": "max",
+                "ko": "max"
               }
             }
           ]
@@ -1935,7 +2956,15 @@
             "en": "Nutrition (µS/cm)",
             "nl": "Voeding (µS/cm)",
             "de": "Dünger (µS/cm)",
-            "sv": "Näring (µS/cm)"
+            "sv": "Näring (µS/cm)",
+            "da": "Ernæring (µS/cm)",
+            "es": "Nutrición (µS/cm)",
+            "fr": "Nutrition (µS/cm)",
+            "it": "Nutrizione (µS/cm)",
+            "no": "Næringsstoffer (µS/cm)",
+            "pl": "Odżywianie (µS/cm)",
+            "ru": "Питание (µS/cm)",
+            "ko": "영양 (µS/cm)"
           },
           "children": [
             {
@@ -1948,7 +2977,15 @@
                 "en": "min",
                 "nl": "min",
                 "de": "min",
-                "sv": "min"
+                "sv": "min",
+                "da": "min",
+                "es": "min",
+                "fr": "min",
+                "it": "min",
+                "no": "min",
+                "pl": "min",
+                "ru": "min",
+                "ko": "min"
               }
             },
             {
@@ -1961,7 +2998,15 @@
                 "en": "max",
                 "nl": "max",
                 "de": "max",
-                "sv": "max"
+                "sv": "max",
+                "da": "max",
+                "es": "max",
+                "fr": "max",
+                "it": "max",
+                "no": "max",
+                "pl": "max",
+                "ru": "max",
+                "ko": "max"
               }
             }
           ]
@@ -1972,7 +3017,15 @@
             "en": "Moisture (%)",
             "nl": "Vochtigheid (%)",
             "de": "Feuchtigkeit (%)",
-            "sv": "Fuktighet (%)"
+            "sv": "Fuktighet (%)",
+            "da": "Fugtighed (%)",
+            "es": "Humedad (%)",
+            "fr": "Humidité (%)",
+            "it": "Umidità (%)",
+            "no": "Fuktighet (%)",
+            "pl": "Wilgotność (%)",
+            "ru": "Влажность (%)",
+            "ko": "수분 (%)"
           },
           "children": [
             {
@@ -1985,7 +3038,15 @@
                 "en": "min",
                 "nl": "min",
                 "de": "min",
-                "sv": "min"
+                "sv": "min",
+                "da": "min",
+                "es": "min",
+                "fr": "min",
+                "it": "min",
+                "no": "min",
+                "pl": "min",
+                "ru": "min",
+                "ko": "min"
               }
             },
             {
@@ -1998,7 +3059,15 @@
                 "en": "max",
                 "nl": "max",
                 "de": "max",
-                "sv": "max"
+                "sv": "max",
+                "da": "max",
+                "es": "max",
+                "fr": "max",
+                "it": "max",
+                "no": "max",
+                "pl": "max",
+                "ru": "max",
+                "ko": "max"
               }
             }
           ]
@@ -2035,7 +3104,15 @@
         "en": "Alarm luminance",
         "nl": "Alarm lichtsterkte",
         "de": "Alarm Helligkeit",
-        "sv": "Larm ljusstyrka"
+        "sv": "Larm ljusstyrka",
+        "da": "Alarm lysstyrke",
+        "es": "Luminosidad de alarma",
+        "fr": "Luminosité d'alarme",
+        "it": "Luminosità dell'allarme",
+        "no": "Alarm lysstyrke",
+        "pl": "Jasność alarmu",
+        "ru": "Яркость сигнала",
+        "ko": "알람 밝기"
       },
       "uiComponent": null,
       "getable": true,
@@ -2047,7 +3124,15 @@
         "en": "Alarm moisture",
         "nl": "Alarm vochtigheid",
         "de": "Alarm Feuchtigkeit",
-        "sv": "Larm fuktighet"
+        "sv": "Larm fuktighet",
+        "da": "Alarm fugtighed",
+        "es": "Alarma humedad",
+        "fr": "Alarme humidité",
+        "it": "Allarme umidità",
+        "no": "Alarm fuktighet",
+        "pl": "Alarm wilgotności",
+        "ru": "Сигнализация влажности",
+        "ko": "습도 경보"
       },
       "uiComponent": null,
       "getable": true,
@@ -2059,7 +3144,15 @@
         "en": "Alarm nutrition",
         "nl": "Alarm voeding",
         "de": "Alarm Ernährung",
-        "sv": "Larm näring"
+        "sv": "Larm näring",
+        "da": "Alarm ernæring",
+        "es": "Nutrición de alarma",
+        "fr": "Nutrition d'alarme",
+        "it": "Nutrizione di allarme",
+        "no": "Alarm ernæring",
+        "pl": "Odżywianie alarmowe",
+        "ru": "Питание тревоги",
+        "ko": "알람 영양"
       },
       "uiComponent": null,
       "getable": true,
@@ -2071,7 +3164,15 @@
         "en": "Alarm temperature",
         "nl": "Alarm temperatuur",
         "de": "Alarm temperatur",
-        "sv": "Larm temperatur"
+        "sv": "Larm temperatur",
+        "da": "Alarmtemperatur",
+        "es": "Temperatura de alarma",
+        "fr": "Température d'alarme",
+        "it": "Temperatura di allarme",
+        "no": "Alarmtemperatur",
+        "pl": "Temperatura alarmowa",
+        "ru": "Температура сигнализации",
+        "ko": "알람 온도"
       },
       "uiComponent": null,
       "getable": true,
@@ -2083,7 +3184,15 @@
         "en": "Nutrition",
         "nl": "Voeding",
         "de": "Dünger",
-        "sv": "Näring"
+        "sv": "Näring",
+        "da": "Ernæring",
+        "es": "Nutrición",
+        "fr": "Nutrition",
+        "it": "Nutrizione",
+        "no": "Ernæring",
+        "pl": "Odżywianie",
+        "ru": "Питание",
+        "ko": "영양"
       },
       "icon": "/assets/nutritions.svg",
       "getable": true,
@@ -2100,7 +3209,15 @@
         "en": "Moisture",
         "nl": "Vochtigheid",
         "de": "Feuchtigkeit",
-        "sv": "Fuktighet"
+        "sv": "Fuktighet",
+        "da": "Fugtighed",
+        "es": "Humedad",
+        "fr": "Humidité",
+        "it": "Umidità",
+        "no": "Fuktighet",
+        "pl": "Wilgotność",
+        "ru": "Влажность",
+        "ko": "습기"
       },
       "icon": "/assets/moisture.svg",
       "getable": true,
@@ -2118,7 +3235,15 @@
         "en": "Moisture",
         "nl": "Vochtigheid",
         "de": "Feuchtigkeit",
-        "sv": "Fuktighet"
+        "sv": "Fuktighet",
+        "da": "Fugtighed",
+        "es": "Humedad",
+        "fr": "Humidité",
+        "it": "Umidità",
+        "no": "Fuktighet",
+        "pl": "Wilgotność",
+        "ru": "Влажность",
+        "ko": "습도"
       },
       "icon": "/assets/moisture.svg",
       "getable": true,
@@ -2136,7 +3261,15 @@
         "en": "Nutrition",
         "nl": "Voeding",
         "de": "Dünger",
-        "sv": "Näring"
+        "sv": "Näring",
+        "da": "Ernæring",
+        "es": "Nutrición",
+        "fr": "Nutrition",
+        "it": "Nutrizione",
+        "no": "Ernæring",
+        "pl": "Odżywianie",
+        "ru": "Питание",
+        "ko": "영양"
       },
       "icon": "/assets/nutritions.svg",
       "getable": true,

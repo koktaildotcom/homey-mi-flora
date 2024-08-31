@@ -4,7 +4,15 @@
     "en": "Alarm nutrition",
     "nl": "Alarm voeding",
     "de": "Alarm Ernährung",
-    "sv": "Larm näring"
+    "sv": "Larm näring",
+    "da": "Alarm ernæring",
+    "es": "Nutrición de alarma",
+    "fr": "Nutrition d'alarme",
+    "it": "Nutrizione di allarme",
+    "no": "Alarm ernæring",
+    "pl": "Odżywianie alarmowe",
+    "ru": "Питание тревоги",
+    "ko": "알람 영양"
   },
   "uiComponent": null,
   "getable": true,

@@ -4,7 +4,15 @@
     "en": "Alarm temperature",
     "nl": "Alarm temperatuur",
     "de": "Alarm temperatur",
-    "sv": "Larm temperatur"
+    "sv": "Larm temperatur",
+    "da": "Alarmtemperatur",
+    "es": "Temperatura de alarma",
+    "fr": "Température d'alarme",
+    "it": "Temperatura di allarme",
+    "no": "Alarmtemperatur",
+    "pl": "Temperatura alarmowa",
+    "ru": "Температура сигнализации",
+    "ko": "알람 온도"
   },
   "uiComponent": null,
   "getable": true,

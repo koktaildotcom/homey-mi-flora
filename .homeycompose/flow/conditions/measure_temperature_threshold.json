@@ -4,19 +4,43 @@
     "en": "De plant !{{has not|has}} a correct temperature.",
     "nl": "De plant !{{heeft niet|heeft}} de juiste temperatuur.",
     "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Temperatur.",
-    "sv": "Plantan !{{har inte|har}} rätt temperatur."
+    "sv": "Plantan !{{har inte|har}} rätt temperatur.",
+    "da": "Planten !{{har ikke|har}} en korrekt temperatur.",
+    "es": "La planta !{{no tiene|tiene}} una temperatura correcta.",
+    "fr": "La plante !{{n'a pas|a}} une température correcte.",
+    "it": "La pianta !{{non ha|ha}} una temperatura corretta.",
+    "no": "Planten !{{har ikke|har}} riktig temperatur.",
+    "pl": "Roślina !{{nie ma|ma}} właściwą temperaturę.",
+    "ru": "Растение !{{не имеет|имеет}} правильную температуру.",
+    "ko": "식물이 !{{올바르지 않은|올바른}} 온도를 가지고 있습니다."
   },
   "titleFormatted": {
     "en": "De plant [[device]] !{{has not|has}} a correct temperature.",
     "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste temperatuur.",
     "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Temperatur.",
-    "sv": "Plantan [[device]] !{{har inte|har}} rätt temperatur."
+    "sv": "Plantan [[device]] !{{har inte|har}} rätt temperatur.",
+    "da": "Planten [[device]] !{{har ikke|har}} en korrekt temperatur.",
+    "es": "La planta [[device]] !{{no tiene|tiene}} una temperatura correcta.",
+    "fr": "La plante [[device]] !{{n'a pas|a}} une température correcte.",
+    "it": "La pianta [[device]] !{{non ha|ha}} una temperatura corretta.",
+    "no": "Planten [[device]] !{{har ikke|har}} riktig temperatur.",
+    "pl": "Roślina [[device]] !{{nie ma|ma}} właściwą temperaturę.",
+    "ru": "Растение [[device]] !{{не имеет|имеет}} правильную температуру.",
+    "ko": "식물이 [[device]] !{{올바르지 않은|올바른}} 온도를 가지고 있습니다."
   },
   "hint": {
     "en": "Use this card to determine if the plant has a correct temperature.",
     "nl": "Gebruik deze kaart om te bepalen of de plant de juiste temperatuur heeft.",
     "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze eine korrekte Temperatur hat.",
-    "sv": "Använd detta kort för att säkerställa att plantan har rätt temperatur."
+    "sv": "Använd detta kort för att säkerställa att plantan har rätt temperatur.",
+    "da": "Brug dette kort til at bestemme, om planten har en korrekt temperatur.",
+    "es": "Utilice esta tarjeta para determinar si la planta tiene una temperatura correcta.",
+    "fr": "Utilisez cette carte pour déterminer si la plante a une température correcte.",
+    "it": "Usa questa scheda per determinare se la pianta ha una temperatura corretta.",
+    "no": "Bruk dette kortet for å bestemme om planten har riktig temperatur.",
+    "pl": "Użyj tej karty, aby sprawdzić, czy roślina ma prawidłową temperaturę.",
+    "ru": "Используйте эту карточку, чтобы определить, имеет ли растение правильную температуру.",
+    "ko": "식물이 올바른 온도를 가지고 있는지 확인하려면 이 카드를 사용하십시오."
   },
   "args": [
     {

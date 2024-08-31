@@ -4,7 +4,15 @@
     "en": "Alarm luminance",
     "nl": "Alarm lichtsterkte",
     "de": "Alarm Helligkeit",
-    "sv": "Larm ljusstyrka"
+    "sv": "Larm ljusstyrka",
+    "da": "Alarm lysstyrke",
+    "es": "Luminosidad de alarma",
+    "fr": "Luminosité d'alarme",
+    "it": "Luminosità dell'allarme",
+    "no": "Alarm lysstyrke",
+    "pl": "Jasność alarmu",
+    "ru": "Яркость сигнала",
+    "ko": "알람 밝기"
   },
   "uiComponent": null,
   "getable": true,

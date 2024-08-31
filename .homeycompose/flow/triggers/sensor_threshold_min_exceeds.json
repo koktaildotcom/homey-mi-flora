@@ -4,7 +4,15 @@
     "en": "Sensor value is below the configured threshold",
     "nl": "Sensor waarde is beneden de gestelde drempel",
     "de": "Der Sensorwert liegt unter dem konfigurierten Grenzwert",
-    "sv": "Sensorns värde är över det inställda tröskelvärdet"
+    "sv": "Sensorns värde är över det inställda tröskelvärdet",
+    "da": "Sensorværdien er under den konfigurerede tærskel",
+    "es": "El valor del sensor está por debajo del umbral configurado",
+    "fr": "La valeur du capteur est en dessous du seuil configuré",
+    "it": "Il valore del sensore è al di sotto della soglia configurata",
+    "no": "Sensorverdien er under den konfigurerte terskelen",
+    "pl": "Wartość czujnika jest poniżej skonfigurowanego progu",
+    "ru": "Значение датчика ниже настроенного порога",
+    "ko": "센서 값이 설정된 임계값보다 낮습니다"
   },
   "tokens": [
     {
@@ -14,13 +22,29 @@
         "en": "report",
         "nl": "rapport",
         "de": "Bericht",
-        "sv": "rapportera"
+        "sv": "rapportera",
+        "da": "rapport",
+        "es": "informe",
+        "fr": "rapport",
+        "it": "rapporto",
+        "no": "rapport",
+        "pl": "raport",
+        "ru": "отчет",
+        "ko": "보고서"
       },
       "example": {
         "en": "The moisture (22%) is too low. This can be at least 30%.",
         "nl": "De vochtigheid (22%) is te laag. Deze mag minimaal 30% zijn.",
         "de": "Die Feuchtigkeit (22%) ist zu niedrig. Diese darf mindestens 30% betragen.",
-        "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%."
+        "sv": "Fuktigheten (22%) är för låg. Den bör vara minst 30%.",
+        "da": "Fugtigheden (22%) er for lav. Den skal være mindst 30%.",
+        "es": "La humedad (22%) es demasiado baja. Debe ser al menos 30%.",
+        "fr": "L'humidité (22 %) est trop basse. Elle doit être d'au moins 30 %.",
+        "it": "L'umidità (22%) è troppo bassa. Deve essere almeno del 30%.",
+        "no": "Fuktigheten (22%) er for lav. Den bør være minst 30%.",
+        "pl": "Wilgotność (22%) jest zbyt niska. Powinna wynosić co najmniej 30%.",
+        "ru": "Влажность (22%) слишком низкая. Она должна быть не менее 30%.",
+        "ko": "습도(22%)가 너무 낮습니다. 최소 30%이어야 합니다."
       }
     },
     {
@@ -30,7 +54,15 @@
         "en": "value",
         "nl": "waarde",
         "de": "Wert",
-        "sv": "Värde"
+        "sv": "Värde",
+        "da": "værdi",
+        "es": "valor",
+        "fr": "valeur",
+        "it": "valore",
+        "no": "verdi",
+        "pl": "wartość",
+        "ru": "значение",
+        "ko": "값"
       },
       "example": "22.5"
     },
@@ -41,7 +73,15 @@
         "en": "value (numeric)",
         "nl": "waarde (numeriek)",
         "de": "wert (nummeriek)",
-        "sv": "värde (numeriskt)"
+        "sv": "värde (numeriskt)",
+        "da": "værdi (numerisk)",
+        "es": "valor (numérico)",
+        "fr": "valeur (numérique)",
+        "it": "valore (numerico)",
+        "no": "verdi (numerisk)",
+        "pl": "wartość (numeryczna)",
+        "ru": "значение (числовое)",
+        "ko": "값 (숫자)"
       },
       "example": 22.5
     },
@@ -52,13 +92,29 @@
         "en": "sensor",
         "nl": "sensor",
         "de": "Sensor",
-        "sv": "Sensor"
+        "sv": "Sensor",
+        "da": "sensor",
+        "es": "sensor",
+        "fr": "capteur",
+        "it": "sensore",
+        "no": "sensor",
+        "pl": "czujnik",
+        "ru": "датчик",
+        "ko": "센서"
       },
       "example": {
         "en": "Moisture",
         "nl": "Vochtigheid",
         "de": "Feuchtigkeit",
-        "sv": "Fuktighet"
+        "sv": "Fuktighet",
+        "da": "Fugtighed",
+        "es": "Humedad",
+        "fr": "Humidité",
+        "it": "Umidità",
+        "no": "Fuktighet",
+        "pl": "Wilgotność",
+        "ru": "Влажность",
+        "ko": "습기"
       }
     },
     {
@@ -68,13 +124,29 @@
         "en": "device",
         "nl": "apparaat",
         "de": "Gerät",
-        "sv": "enhet"
+        "sv": "enhet",
+        "da": "enhed",
+        "es": "dispositivo",
+        "fr": "appareil",
+        "it": "dispositivo",
+        "no": "enhet",
+        "pl": "urządzenie",
+        "ru": "устройство",
+        "ko": "기기"
       },
       "example": {
         "en": "Flowercare 1",
         "nl": "Flowercare 1",
         "de": "Flowercare 1",
-        "sv": "Flowercare 1"
+        "sv": "Flowercare 1",
+        "da": "Flowercare 1",
+        "es": "Flowercare 1",
+        "fr": "Flowercare 1",
+        "it": "Flowercare 1",
+        "no": "Flowercare 1",
+        "pl": "Flowercare 1",
+        "ru": "Flowercare 1",
+        "ko": "Flowercare 1"
       }
     }
   ]

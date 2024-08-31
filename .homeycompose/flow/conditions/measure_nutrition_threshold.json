@@ -4,19 +4,43 @@
     "en": "The plant !{{has not|has}} correct amount of nutritions.",
     "nl": "De plant !{{heeft niet|heeft}} de juiste hoeveelheid voeding.",
     "de": "Die Pflanze !{{hat nicht|hat}} die korrekte Menge an Dünger.",
-    "sv": "Plantan !{{har inte|har}} tillräcklig näring."
+    "sv": "Plantan !{{har inte|har}} tillräcklig näring.",
+    "da": "Planten !{{har ikke|har}} den korrekte mængde næring.",
+    "es": "La planta !{{no tiene|tiene}} la cantidad correcta de nutrientes.",
+    "fr": "La plante !{{n'a pas|a}} la bonne quantité de nutriments.",
+    "it": "La pianta !{{non ha|ha}} la quantità corretta di nutrienti.",
+    "no": "Planten !{{har ikke|har}} riktig mengde næring.",
+    "pl": "Roślina !{{nie ma|ma}} odpowiednią ilość składników odżywczych.",
+    "ru": "Растение !{{не имеет|имеет}} правильное количество питательных веществ.",
+    "ko": "식물은 !{{영양분이 충분하지 않습니다|충분합니다}}."
   },
   "titleFormatted": {
     "en": "The plant [[device]] !{{has not|has}} correct amount of nutritions.",
     "nl": "De plant [[device]] !{{heeft niet|heeft}} de juiste hoeveelheid voeding.",
     "de": "Die Pflanze [[device]] !{{hat nicht|hat}} die korrekte Menge an Dünger.",
-    "sv": "Plantan [[device]] !{{har inte|har}} tillräcklig näring."
+    "sv": "Plantan [[device]] !{{har inte|har}} tillräcklig näring.",
+    "da": "Planten [[device]] !{{har ikke|har}} den korrekte mængde næring.",
+    "es": "La planta [[device]] !{{no tiene|tiene}} la cantidad correcta de nutrientes.",
+    "fr": "La plante [[device]] !{{n'a pas|a}} la bonne quantité de nutriments.",
+    "it": "La pianta [[device]] !{{non ha|ha}} la quantità corretta di nutrienti.",
+    "no": "Planten [[device]] !{{har ikke|har}} riktig mengde næring.",
+    "pl": "Roślina [[device]] !{{nie ma|ma}} odpowiednią ilość składników odżywczych.",
+    "ru": "Растение [[device]] !{{не имеет|имеет}} правильное количество питательных веществ.",
+    "ko": "식물은 [[device]] !{{영양분이 충분하지 않습니다|충분합니다}}."
   },
   "hint": {
     "en": "Use this card to determine if the plant has a correct amount of nutritions.",
     "nl": "Gebruik deze kaart om te bepalen of de plant de juiste hoeveelheid voeding heeft.",
     "de": "Verwenden Sie diese Karte, um festzustellen, ob die Pflanze genug Düngemittel hat.",
-    "sv": "Använd detta kort för att säkerställa att plantan har tillräckligt med näring."
+    "sv": "Använd detta kort för att säkerställa att plantan har tillräckligt med näring.",
+    "da": "Brug dette kort til at afgøre, om planten har den korrekte mængde næring.",
+    "es": "Utiliza esta tarjeta para determinar si la planta tiene la cantidad correcta de nutrientes.",
+    "fr": "Utilisez cette carte pour déterminer si la plante a la bonne quantité de nutriments.",
+    "it": "Usa questa carta per determinare se la pianta ha la quantità corretta di nutrienti.",
+    "no": "Bruk dette kortet for å se om planten har riktig mengde næring.",
+    "pl": "Użyj tej karty, aby sprawdzić, czy roślina ma odpowiednią ilość składników odżywczych.",
+    "ru": "Используйте эту карту, чтобы определить, достаточно ли у растения питательных веществ.",
+    "ko": "이 카드를 사용하여 식물에 충분한 영양분이 있는지 확인하세요."
   },
   "args": [
     {
