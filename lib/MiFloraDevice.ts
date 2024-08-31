@@ -231,9 +231,12 @@ export default class MiFloraDevice extends Homey.Device {
    */
   _checkThresholdTrigger(capability: string, value: string | number) {
     const capabilityAlias = capability as CombinedCapabilities;
-    console.log(this.getApp()?.thresholdMapping[capabilityAlias] ?? `No mapping found for ${capabilityAlias}`);
     const minValue = this.getSetting(this.getApp().thresholdMapping[capabilityAlias].min);
     const maxValue = this.getSetting(this.getApp().thresholdMapping[capabilityAlias].max);
+
+    if (!value || !minValue || !maxValue) {
+      return;
+    }
 
     if (value < minValue) {
       if (this.hasCapability(capability.replace('measure_', 'alarm_'))) {
