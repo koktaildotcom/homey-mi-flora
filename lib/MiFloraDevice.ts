@@ -151,8 +151,9 @@ export default class MiFloraDevice extends Homey.Device {
 
     await this._checkThresholdTrigger(capability, value);
 
+    this.setCapabilityValue(capability, value).catch(console.error);
+
     if (currentValue !== value) {
-      this.setCapabilityValue(capability, value).catch(console.error);
 
       this.getApp().deviceSensorUpdated?.trigger(this as Device, {
         sensor: this.homey.__(`capability.${ capability }.name`),
