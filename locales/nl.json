@@ -55,14 +55,14 @@
       }
     },
     "measure_nutrition": {
-      "name": "voedingwaarde",
+      "name": "voedingswaarde",
       "suffix": " µS/cm",
-      "changed": "De voedingwaarde is verandert naar: __value__ µS/cm.",
-      "device_changed": "De voedingwaarde van `__plant__` is verandert naar: __value__ µS/cm.",
-      "device_updated": "De voedingwaarde van `__plant__` is geupdate naar: __value__ µS/cm.",
+      "changed": "De voedingswaarde is verandert naar: __value__ µS/cm.",
+      "device_changed": "De voedingswaarde van `__plant__` is verandert naar: __value__ µS/cm.",
+      "device_updated": "De voedingswaarde van `__plant__` is geupdate naar: __value__ µS/cm.",
       "threshold": {
-        "min": "De voedingwaarde (__value__ µS/cm) van `__plant__` is te laag. Deze moet minimaal __min__ µS/cm zijn.",
-        "max": "De voedingwaarde (__value__ µS/cm) van `__plant__` is te hoog. Deze moet maximaal __max__ µS/cm zijn."
+        "min": "De voedingswaarde (__value__ µS/cm) van `__plant__` is te laag. Deze moet minimaal __min__ µS/cm zijn.",
+        "max": "De voedingswaarde (__value__ µS/cm) van `__plant__` is te hoog. Deze moet maximaal __max__ µS/cm zijn."
       }
     },
     "measure_moisture": {
