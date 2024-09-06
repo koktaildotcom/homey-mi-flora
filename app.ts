@@ -21,6 +21,7 @@ export default class HomeyMiFloraApp extends App {
   private _capabilityOptions: string[] = [];
   private _conditionsMapping: Record<string, string> = {};
   private _syncTimeout: number | undefined;
+  private _syncCounterTimeout: number | undefined;
   private _retryMap: Map<string, number> = new Map();
 
   public thresholdMapping: ThresholdTranslationMapping = {
@@ -455,11 +456,12 @@ export default class HomeyMiFloraApp extends App {
     let updateInterval = this.homey.settings.get('updateInterval');
 
     if (!updateInterval) {
-      updateInterval = 15;
+      updateInterval = 60;
       this.homey.settings.set('updateInterval', updateInterval);
     }
 
     const interval = 1000 * 60 * updateInterval;
+    const nextUpdateAt = new Date().getTime() + interval;
 
     // @todo remove
     // test fast iteration timeout
@@ -467,7 +469,18 @@ export default class HomeyMiFloraApp extends App {
 
     if (this._syncTimeout) {
       this.homey.clearTimeout(this._syncTimeout);
+      this.homey.clearInterval(this._syncCounterTimeout);
     }
+
+    this._syncCounterTimeout = this.homey.setInterval(() => {
+      const now = new Date().getTime();
+      const timeRemaining = nextUpdateAt - now;
+
+      const minutes = Math.floor(timeRemaining / 1000 / 60);
+      const seconds = Math.floor((timeRemaining / 1000) % 60);
+
+      console.log(`Synchronizing in: ${minutes} minute(s) and ${seconds} second(s)`);
+    }, 1000 * 60) as unknown as number;
 
     this._syncTimeout = this.homey.setTimeout(this._synchroniseSensorDataTimeout.bind(this), interval) as unknown as number;
 

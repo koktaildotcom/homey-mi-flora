@@ -267,6 +267,8 @@ You can configure the timeout between polls in the app's settings.
 * bump version
 ### v4.1.2 - 15-05-2024
 * add alarm capabilities
-* 
+### v4.2.0 - 06-10-2024
+* add support for cloud (Homey bridge)
+
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/homey-mi-flora

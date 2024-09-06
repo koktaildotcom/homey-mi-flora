@@ -55,5 +55,8 @@
   },
   "4.1.3": {
     "en": "Improve check for disable alarms"
+  },
+  "4.2.0": {
+    "en": "Added support for cloud devices (Homey Bridge)"
   }
 }
