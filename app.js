@@ -36,10 +36,20 @@ module.exports = class HomeyMiFlora extends Homey.App {
     this.deviceSensorOutsideThreshold = this.homey.flow.getDeviceTriggerCard('device_sensor_outside_threshold');
     this.updateDeviceAction = this.homey.flow.getActionCard('update_device');
     this.update = this.homey.flow.getActionCard('update');
+    this.updateMQTT = this.homey.flow.getActionCard('update_mqtt');
 
     this.update.registerRunListener(async () => {
       try {
         return Promise.resolve(await this._synchroniseSensorData());
+      } catch (error) {
+        return Promise.reject(error);
+      }
+    });
+
+    this.MQTTTopicToMac = {};
+    this.updateMQTT.registerRunListener(async args => {
+      try {
+        return Promise.resolve(await this._updateMQTT(args.topic, args.payload));
       } catch (error) {
         return Promise.reject(error);
       }
@@ -251,6 +261,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
         firmware_version: firmwareVersion,
         last_updated: new Date().toISOString(),
         uuid: device.getData().uuid,
+        mac: device.getData().mac,
       });
 
       console.log({
@@ -258,6 +269,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
         last_updated: new Date().toISOString(),
         uuid: device.getData().uuid,
         battery: batteryValue,
+        mac: device.getData().mac,
       });
 
       console.log('call disconnectPeripheral');
@@ -381,7 +393,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
       throw new Error('Synchronisation already in progress, wait for it to be complete.');
     }
 
-    let { devices } = this;
+    let {devices} = this;
 
     const debugging = false;
     if (debugging) {
@@ -407,6 +419,55 @@ module.exports = class HomeyMiFlora extends Homey.App {
         this.syncInProgress = false;
         throw new Error(error);
       });
+  }
+
+  /**
+   * @private
+   *
+   * update devices from MQTT message
+   */
+  async _updateMQTT(topic, payload) {
+    topic = topic.trim();
+    const data = JSON.parse(payload);
+    if (topic === 'miflora/$announce') {
+      console.log('MQTT announce message:', data);
+      Object.values(data).forEach(entry => {
+        const topic = entry.topic.trim();
+        const mac = entry.mac;
+        console.log('Registering MQTT device mac:', mac, 'topic:', topic);
+        this.MQTTTopicToMac[topic] = mac;
+      });
+    } else {
+      console.log('MQTT device message topic:', topic, 'message:', data);
+      const mac = this.MQTTTopicToMac[topic];
+      if (mac) {
+        console.log('Trying to update device mac:', mac, 'data:', data);
+        const device = this.devices.find(device => device.getData().mac === mac);
+        if (device) {
+          console.log('Updating device from MQTT', device.getName(), data);
+          if (data.hasOwnProperty('temperature')) {
+            device.updateCapabilityValue('measure_temperature', data.temperature);
+            console.log('Updating temperature:', data.temperature);
+          }
+          if (data.hasOwnProperty('light')) {
+            device.updateCapabilityValue('measure_luminance', data.light);
+            console.log('Updating light:', data.light);
+          }
+          if (data.hasOwnProperty('moisture')) {
+            device.updateCapabilityValue('measure_moisture', data.moisture);
+            console.log('Updating moisture:', data.moisture);
+          }
+          if (data.hasOwnProperty('conductivity')) {
+            device.updateCapabilityValue('measure_nutrition', data.conductivity);
+            console.log('Updating conductivity:', data.conductivity);
+          }
+          if (data.hasOwnProperty('battery')) {
+            device.updateCapabilityValue('measure_battery', data.battery);
+            console.log('Updating battery:', data.battery);
+          }
+        }
+      }
+    }
   }
 
   /**
@@ -448,7 +509,7 @@ module.exports = class HomeyMiFlora extends Homey.App {
     if (this.syncInProgress) {
       throw new Error(this.homey.__('pair.error.ble-unavailable'));
     }
-    const { version } = this.homey.manifest;
+    const {version} = this.homey.manifest;
     const devices = [];
     let index = driver.getDevices() ? driver.getDevices().length : 0;
     const currentUuids = [];
@@ -471,11 +532,16 @@ module.exports = class HomeyMiFlora extends Homey.App {
                 id: advertisement.id,
                 uuid: advertisement.uuid,
                 address: advertisement.uuid,
+                mac: advertisement.address,
                 name: advertisement.name,
                 type: advertisement.type,
                 version: `v${version}`,
               },
-              settings: { uuid: advertisement.uuid, ...driver.getDefaultSettings() },
+              settings: {
+                uuid: advertisement.uuid,
+                mac: advertisement.address,
+                ...driver.getDefaultSettings()
+              },
               capabilities: driver.getSupportedCapabilities(),
             });
           }

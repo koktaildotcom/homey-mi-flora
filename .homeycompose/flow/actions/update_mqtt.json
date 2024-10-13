@@ -1,0 +1,37 @@
+{
+  "id": "update_mqtt",
+  "title": {
+    "en": "Synchronise all sensor values from MQTT message",
+    "nl": "Synchroniseer alle sensor waarden van MQTT bericht",
+    "de": "Synchronisiere alle Sensorwerte aus MQTT-Nachricht",
+    "sv": "Synkronisera alla sensorers värden från MQTT-meddelande"
+  },
+  "titleFormatted": {
+    "en": "Synchronise all sensor values from MQTT message [[payload]] of topic [[topic]]",
+    "nl": "Synchroniseer alle sensor waarden van MQTT bericht [[payload]] van onderwerp [[topic]]",
+    "de": "Synchronisiere alle Sensorwerte aus MQTT-Nachricht [[payload]] des Themas [[topic]]",
+    "sv": "Synkronisera alla sensorers värden från MQTT-meddelande [[payload]] av ämne [[topic]]"
+  },
+  "args": [
+    {
+      "name": "topic",
+      "type": "text",
+      "title": {
+        "en": "MQTT topic",
+        "nl": "MQTT onderwerp",
+        "de": "MQTT-Thema",
+        "sv": "MQTT-ämne"
+      }
+    },
+    {
+      "name": "payload",
+      "type": "text",
+      "title": {
+        "en": "MQTT payload",
+        "nl": "MQTT payload",
+        "de": "MQTT-Nutzlast",
+        "sv": "MQTT-payload"
+      }
+    }
+  ]
+}

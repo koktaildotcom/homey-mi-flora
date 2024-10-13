@@ -86,6 +86,17 @@
                         "sv": "Enhetens uuid-adress"
                     },
                     "value": ""
+                },
+                {
+                    "id": "mac",
+                    "type": "label",
+                    "label": {
+                        "en": "Device MAC address",
+                        "nl": "Apparaat MAC adres",
+                        "de": "Geräte MAC Adresse",
+                        "sv": "Enhetens MAC-adress"
+                    },
+                    "value": ""
                 }
             ]
         },
