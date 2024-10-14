@@ -46,7 +46,6 @@ module.exports = class HomeyMiFlora extends Homey.App {
       }
     });
 
-    this.MQTTTopicToMac = {};
     this.updateMQTT.registerRunListener(async args => {
       try {
         return Promise.resolve(await this._updateMQTT(args.topic, args.payload));
@@ -434,37 +433,37 @@ module.exports = class HomeyMiFlora extends Homey.App {
       Object.values(data).forEach(entry => {
         const topic = entry.topic.trim();
         const mac = entry.mac;
-        console.log('Registering MQTT device mac:', mac, 'topic:', topic);
-        this.MQTTTopicToMac[topic] = mac;
+        console.log('Matching mac:', mac, 'topic:', topic);
+        const device = this.devices.find(device => device.getData().mac === mac);
+        if (device) {
+          console.log('Found device name:', device.getName());
+          device.setStoreValue('mqtt_topic', topic);
+        }
       });
     } else {
       console.log('MQTT device message topic:', topic, 'message:', data);
-      const mac = this.MQTTTopicToMac[topic];
-      if (mac) {
-        console.log('Trying to update device mac:', mac, 'data:', data);
-        const device = this.devices.find(device => device.getData().mac === mac);
-        if (device) {
-          console.log('Updating device from MQTT', device.getName(), data);
-          if (data.hasOwnProperty('temperature')) {
-            device.updateCapabilityValue('measure_temperature', data.temperature);
-            console.log('Updating temperature:', data.temperature);
-          }
-          if (data.hasOwnProperty('light')) {
-            device.updateCapabilityValue('measure_luminance', data.light);
-            console.log('Updating light:', data.light);
-          }
-          if (data.hasOwnProperty('moisture')) {
-            device.updateCapabilityValue('measure_moisture', data.moisture);
-            console.log('Updating moisture:', data.moisture);
-          }
-          if (data.hasOwnProperty('conductivity')) {
-            device.updateCapabilityValue('measure_nutrition', data.conductivity);
-            console.log('Updating conductivity:', data.conductivity);
-          }
-          if (data.hasOwnProperty('battery')) {
-            device.updateCapabilityValue('measure_battery', data.battery);
-            console.log('Updating battery:', data.battery);
-          }
+      const device = this.devices.find(device => device.getStoreValue('mqtt_topic') === topic);
+      if (device) {
+        console.log('Found device:', device.getName());
+        if (data.hasOwnProperty('temperature')) {
+          device.updateCapabilityValue('measure_temperature', data.temperature);
+          console.log('Updating temperature:', data.temperature);
+        }
+        if (data.hasOwnProperty('light')) {
+          device.updateCapabilityValue('measure_luminance', data.light);
+          console.log('Updating light:', data.light);
+        }
+        if (data.hasOwnProperty('moisture')) {
+          device.updateCapabilityValue('measure_moisture', data.moisture);
+          console.log('Updating moisture:', data.moisture);
+        }
+        if (data.hasOwnProperty('conductivity')) {
+          device.updateCapabilityValue('measure_nutrition', data.conductivity);
+          console.log('Updating conductivity:', data.conductivity);
+        }
+        if (data.hasOwnProperty('battery')) {
+          device.updateCapabilityValue('measure_battery', data.battery);
+          console.log('Updating battery:', data.battery);
         }
       }
     }
