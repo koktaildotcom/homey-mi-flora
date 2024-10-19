@@ -376,9 +376,14 @@ export default class MiFloraDevice extends Homey.Device {
   /**
    * Update the device on add
    */
-  onAdded() {
+  async onAdded() {
     this.getApp().registerDevice(this);
-    this.getApp().updateDevice(this);
+
+    try {
+      await this.getApp().updateDevice(this);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   /**

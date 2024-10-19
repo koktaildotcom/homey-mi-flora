@@ -1,7 +1,7 @@
 {
   "id": "com.mi.flora",
   "version": "4.2.0",
-  "compatibility": ">=5.0.0",
+  "compatibility": ">=12.1.2",
   "brandColor": "#02988c",
   "sdk": 3,
   "name": "Xiaomi Mi Flora",

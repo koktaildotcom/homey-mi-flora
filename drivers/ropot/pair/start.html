@@ -4,12 +4,6 @@
         Homey.setTitle( __('pair.title') );
     </script>
     <style>
-        .next.button {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            display: block;
-        }
         .view-content{
             overflow: hidden !important;
         }
@@ -17,17 +11,35 @@
 </head>
 <body>
 
-    <h1 data-i18n="pair.info.title"></h1>
-    <ul>
-        <li data-i18n="pair.info.row1"></li>
-        <li data-i18n="pair.info.row2"></li>
-    </ul>
+<header class="homey-header">
+    <h1 class="homey-title" data-i18n="pair.info.title">
+        <!-- This will be filled with the translated string with key 'settings.title'. -->
+    </h1>
 
-    <h1 data-i18n="pair.faq.title"></h1>
-    <h3 data-i18n="pair.faq.question1"></h3>
-    <p data-i18n="pair.faq.answer1"></p>
+    <p class="homey-subtitle" data-i18n="pair.info.row1">
+        <!-- This will be filled with the translated string with key 'settings.subtitle'. -->
+    </p>
 
-    <button class="next button" onclick="Homey.showView('list_my_devices')" data-i18n="pair.configure"></button>
+    <p class="homey-subtitle" data-i18n="pair.info.row2">
+        <!-- This will be filled with the translated string with key 'settings.subtitle'. -->
+    </p>
+</header>
+
+<header class="homey-header">
+    <h1 class="homey-title" data-i18n="pair.faq.title">
+        <!-- This will be filled with the translated string with key 'settings.title'. -->
+    </h1>
+
+    <p class="homey-subtitle" data-i18n="pair.faq.question1">
+        <!-- This will be filled with the translated string with key 'settings.subtitle'. -->
+    </p>
+
+    <p class="homey-subtitle" data-i18n="pair.faq.answer1">
+        <!-- This will be filled with the translated string with key 'settings.subtitle'. -->
+    </p>
+</header>
+
+<button class="homey-button-primary-full"  onclick="Homey.showView('list_my_devices')" data-i18n="pair.configure"></button>
 
 </body>
 </html>

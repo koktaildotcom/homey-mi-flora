@@ -174,6 +174,13 @@ export default class HomeyMiFloraApp extends App {
   }
 
   /**
+   * @return device MiFloraDevice
+   */
+  getDevices() {
+    return this._devices;
+  }
+
+  /**
    * @param device MiFloraDevice
    */
   registerDevice(device: MiFloraDevice) {
