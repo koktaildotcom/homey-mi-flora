@@ -1,0 +1,201 @@
+<html lang="en">
+<head>
+    <title>Plant sensors</title>
+    <style>
+        .device-container {
+            margin-top: var(--homey-su-4);
+        }
+
+        .device-header {
+            --homey-font-size: var(--homey-font-size-small);
+        }
+
+        .device-value {
+            --homey-font-size: var(--homey-font-size-small);
+            --homey-font-weight: var(--homey-font-weight-medium);
+        }
+
+        .device-capability-container {
+            margin-top: var(--homey-su-4);
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .device-capability {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            height: 70px;
+            width: 70px;
+
+            border-radius: var(--homey-border-radius-default);
+            background-color: var(--homey-color-mono-100);
+        }
+
+        .device-value {
+            display: flex;
+            flex-direction: row;
+            gap: 2px
+        }
+
+        .device-value-value {
+            font-size: var(--homey-font-size-small);
+            line-height: var(--homey-line-height-small);
+            font-weight: var(--homey-font-size-bold);
+        }
+
+        .device-value-unit {
+            font-size: 10px;
+            line-height: var(--homey-line-height-small);
+            font-weight: var(--homey-font-weight-regular);
+        }
+
+        .homey-custom-icon-alert {
+            border-radius: 100px;
+            background-color: var(--homey-color-orange-500);
+
+            width: 20px;
+            height: 20px;
+
+            position: absolute;
+            top: 4px;
+            right: 4px;
+        }
+
+        .homey-custom-icon-alert-sign {
+            color: var(--homey-color-white);
+        }
+
+        .homey-custom-icon-luminance {
+            --homey-icon-color: var(--homey-icon-color-dark);
+            --homey-icon-size: 30;
+
+            -webkit-mask-image: url('assets/luminance.svg');
+            mask-image: url('assets/luminance.svg');
+        }
+
+        .homey-custom-icon-moisture {
+            --homey-icon-color: var(--homey-icon-color-dark);
+            --homey-icon-size: 30;
+
+            -webkit-mask-image: url('assets/moisture.svg');
+            mask-image: url('assets/moisture.svg');
+        }
+
+        .homey-custom-icon-nutrition {
+            --homey-icon-color: var(--homey-icon-color-dark);
+            --homey-icon-size: 30;
+
+            -webkit-mask-image: url('assets/nutritions.svg');
+            mask-image: url('assets/nutritions.svg');
+        }
+
+        .homey-custom-icon-temperature {
+            --homey-icon-color: var(--homey-icon-color-dark);
+            --homey-icon-size: 30;
+
+            -webkit-mask-image: url('assets/temperature.svg');
+            mask-image: url('assets/temperature.svg');
+        }
+    </style>
+</head>
+
+<body class="homey-widget">
+<div>
+    <div id="devices">
+    </div>
+</div>
+
+<script type="text/javascript">
+    function onHomeyReady(Homey) {
+        Homey.ready({ height: 188 });
+        setInterval(() => {
+            Homey.api('GET', '/devices', {})
+                .then((devices) => {
+                    for (const device of devices) {
+
+                        const deviceContainer = document.createElement('div');
+                        deviceContainer.className = 'device-container';
+
+                        const capabilities = ['measure_moisture', 'measure_luminance', 'measure_nutrition', 'measure_temperature'];
+
+                        const deviceHeader = document.createElement('div');
+                        deviceHeader.className = 'device-header';
+
+                        const deviceTitle = document.createElement('p');
+                        deviceHeader.className = 'device-name';
+                        deviceTitle.innerHTML = device.name;
+                        deviceHeader.appendChild(deviceTitle);
+
+                        deviceContainer.appendChild(deviceHeader);
+
+                        // const deviceLastUpdated = document.createElement('p');
+                        // deviceLastUpdated.className = 'homey-text-small';
+                        // deviceLastUpdated.innerHTML = new Date(device.settings.last_updated).toLocaleString();
+                        // deviceContainer.appendChild(deviceLastUpdated);
+
+                        const deviceCapabilityContainer = document.createElement('div');
+                        deviceCapabilityContainer.className = 'device-capability-container';
+
+                        for (const capability of capabilities) {
+                            const capabilityObject = Object.values(device.capabilitiesObj)
+                                .find(capabilitiesObj => capabilitiesObj.id === capability);
+
+                            if (!capabilityObject) {
+                                continue;
+                            }
+
+                            const alarmCapabilityObject = Object.values(device.capabilitiesObj)
+                                .find(capabilitiesObj => capabilitiesObj.id === capability.replace('measure_', 'alarm_'));
+
+                            const deviceElementIcon = document.createElement('div');
+                            deviceElementIcon.className = 'homey-custom-icon-' + capabilityObject.id.replace('measure_', '');
+
+                            const deviceValue = document.createElement('p');
+                            deviceValue.className = 'device-value-value';
+                            deviceValue.innerHTML = capabilityObject.value;
+
+                            const deviceUnit = document.createElement('p');
+                            deviceUnit.className = 'device-value-unit';
+                            deviceUnit.innerHTML = capabilityObject.units;
+
+                            const deviceValueContainer = document.createElement('div');
+                            deviceValueContainer.className = 'device-value';
+                            deviceValueContainer.appendChild(deviceValue);
+                            deviceValueContainer.appendChild(deviceUnit);
+
+                            const capabilityDiv = document.createElement('div');
+                            capabilityDiv.className = 'device-capability';
+                            capabilityDiv.appendChild(deviceElementIcon);
+                            capabilityDiv.appendChild(deviceValueContainer);
+
+                            if (alarmCapabilityObject.value) {
+                                const deviceAlarm = document.createElement('div');
+                                deviceAlarm.className = 'homey-custom-icon-alert';
+                                capabilityDiv.appendChild(deviceAlarm);
+
+                                const deviceAlarmSign = document.createElement('p');
+                                deviceAlarmSign.className = 'homey-custom-icon-alert-sign';
+                                deviceAlarmSign.innerHTML = '!';
+                                capabilityDiv.appendChild(deviceAlarmSign);
+                            }
+
+                            deviceCapabilityContainer.appendChild(capabilityDiv);
+                        }
+
+                        deviceContainer.appendChild(deviceCapabilityContainer);
+
+                        document.getElementById('devices')
+                            .appendChild(deviceContainer);
+                    }
+                })
+                .catch(console.error);
+        }, 10000);
+    }
+</script>
+</body>
+</html>

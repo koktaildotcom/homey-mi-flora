@@ -1,0 +1,13 @@
+{
+  "name": {
+    "en": "Plant sensors"
+  },
+  "height": 188,
+  "settings": [],
+  "api": {
+    "devices": {
+      "method": "GET",
+      "path": "/devices"
+    }
+  }
+}
