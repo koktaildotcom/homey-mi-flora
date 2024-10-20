@@ -3100,7 +3100,7 @@
   "widgets": {
     "mi-flora-plant-status-widget": {
       "name": {
-        "en": "Plant sensors"
+        "en": "Plant sensors status"
       },
       "height": 188,
       "settings": [],

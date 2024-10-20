@@ -105,7 +105,7 @@
 
         .device-value-unit {
             font-size: 10px;
-            line-height: var(--homey-line-height-small);
+            line-height: 19px;
             font-weight: var(--homey-font-weight-regular);
             color: var(--homey-color-mono-600);
         }
@@ -234,7 +234,7 @@
 
                                 const deviceLastUpdated = document.createElement('p');
                                 deviceLastUpdated.className = 'homey-text-small-light';
-                                deviceLastUpdated.innerHTML = ago;
+                                deviceLastUpdated.innerHTML = device.settings.last_updated ? ago : Homey.__('never_updated');
                                 deviceLastUpdatedContainer.appendChild(deviceLastUpdated);
 
                                 deviceHeader.appendChild(deviceLastUpdatedContainer);
@@ -261,7 +261,7 @@
 
                             const deviceValue = document.createElement('p');
                             deviceValue.className = 'device-value-value';
-                            deviceValue.innerHTML = capabilityObject.value;
+                            deviceValue.innerHTML = capabilityObject.value ? capabilityObject.value : '0';
 
                             const deviceUnit = document.createElement('p');
                             deviceUnit.className = 'device-value-unit';
