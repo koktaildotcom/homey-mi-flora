@@ -58,5 +58,8 @@
   },
   "4.2.0": {
     "en": "Added support for cloud devices (Homey Bridge)"
+  },
+  "4.3.0": {
+    "en": "Add sensor widget"
   }
 }
