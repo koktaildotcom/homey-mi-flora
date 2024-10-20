@@ -3098,7 +3098,7 @@
     }
   ],
   "widgets": {
-    "plant-status-widget": {
+    "mi-flora-plant-status-widget": {
       "name": {
         "en": "Plant sensors"
       },
@@ -3117,7 +3117,7 @@
           }
         }
       },
-      "id": "plant-status-widget"
+      "id": "mi-flora-plant-status-widget"
     }
   },
   "capabilities": {
