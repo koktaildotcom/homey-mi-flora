@@ -61,5 +61,8 @@
   },
   "4.3.0": {
     "en": "Add sensor widget"
+  },
+  "4.3.1": {
+    "en": "Removed unused import"
   }
 }
