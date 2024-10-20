@@ -27,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/koktaildotcom/homey-mi-flora/issues"
   },
-  "homepage": "https://github.com/koktaildotcom/homey-mi-flora#readme"
+  "homepage": "https://github.com/koktaildotcom/homey-mi-flora#readme",
+  "dependencies": {
+    "moment": "^2.30.1"
+  }
 }

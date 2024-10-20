@@ -8,6 +8,9 @@ import {
   CapabilityValuesMap, FirmwareValuesMap,
   ThresholdTranslationMapping
 } from './types/MeasureCapabilityMap';
+import dayjs from 'dayjs';
+import moment from 'moment/moment';
+import { locale } from 'moment';
 
 const DATA_SERVICE_UUID = '0000120400001000800000805f9b34fb';
 const DATA_CHARACTERISTIC_UUID = '00001a0100001000800000805f9b34fb';
@@ -178,6 +181,11 @@ export default class HomeyMiFloraApp extends App {
    */
   getDevices() {
     return this._devices;
+  }
+
+  getDeviceLastUpdate(date: string): string {
+    moment.locale(this.homey.i18n.getLanguage());
+    return moment(date).fromNow();
   }
 
   /**

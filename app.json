@@ -3108,6 +3108,13 @@
         "devices": {
           "method": "GET",
           "path": "/devices"
+        },
+        "deviceLastUpdate": {
+          "method": "GET",
+          "path": "/devices/last-updated",
+          "query": {
+            "date": "{id}"
+          }
         }
       },
       "id": "plant-status-widget"

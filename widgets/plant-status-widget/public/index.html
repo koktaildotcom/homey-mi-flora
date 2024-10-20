@@ -2,8 +2,58 @@
 <head>
     <title>Plant sensors</title>
     <style>
+        #devices {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .main-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .devices-container {
+            flex: 6;
+            overflow: hidden;
+        }
+
         .device-container {
-            margin-top: var(--homey-su-4);
+        }
+
+        .device-container-inactive {
+            display: none;
+        }
+
+        .device-container-active {
+            display: block;
+        }
+
+        .paging-container {
+            flex: 1;
+            width: 100%;
+            text-align: center;
+            margin-top: var(--homey-su-3);
+        }
+
+        .paging-dot {
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            border-radius: 100px;
+            overflow: hidden;
+            margin: 5px 3px 0 3px;
+        }
+
+        .paging-dot-inactive {
+            background-color: var(--homey-color-mono-200);
+        }
+
+        .paging-dot-active {
+            background-color: var(--homey-color-mono-700);
         }
 
         .device-header {
@@ -11,15 +61,18 @@
         }
 
         .device-value {
-            --homey-font-size: var(--homey-font-size-small);
+            --homey-font-size: var(--homey-font-size-default);
             --homey-font-weight: var(--homey-font-weight-medium);
         }
 
         .device-capability-container {
-            margin-top: var(--homey-su-4);
+            margin-top: var(--homey-su-3);
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+        }
+
+        .device-last-updated {
         }
 
         .device-capability {
@@ -29,11 +82,13 @@
             align-items: center;
             justify-content: center;
 
-            height: 70px;
-            width: 70px;
+            height: 75px;
+            width: 75px;
+
+            gap: 5px;
 
             border-radius: var(--homey-border-radius-default);
-            background-color: var(--homey-color-mono-100);
+            background-color: var(--homey-color-mono-200);
         }
 
         .device-value {
@@ -52,26 +107,34 @@
             font-size: 10px;
             line-height: var(--homey-line-height-small);
             font-weight: var(--homey-font-weight-regular);
+            color: var(--homey-color-mono-600);
         }
 
-        .homey-custom-icon-alert {
+        .alert {
             border-radius: 100px;
             background-color: var(--homey-color-orange-500);
 
             width: 20px;
             height: 20px;
 
+            text-align: center;
+
             position: absolute;
-            top: 4px;
-            right: 4px;
+            top: 7px;
+            right: 7px;
         }
 
-        .homey-custom-icon-alert-sign {
+        .alert-sign {
+            font-size: var(--homey-font-size-small);
             color: var(--homey-color-white);
+            font-weight: var(--homey-font-weight-bold);
+            line-height: 20px;
+            width: 20px;
+            height: 20px;
         }
 
         .homey-custom-icon-luminance {
-            --homey-icon-color: var(--homey-icon-color-dark);
+            --homey-icon-color: var(--homey-color-mono-700);
             --homey-icon-size: 30;
 
             -webkit-mask-image: url('assets/luminance.svg');
@@ -79,7 +142,7 @@
         }
 
         .homey-custom-icon-moisture {
-            --homey-icon-color: var(--homey-icon-color-dark);
+            --homey-icon-color: var(--homey-color-mono-700);
             --homey-icon-size: 30;
 
             -webkit-mask-image: url('assets/moisture.svg');
@@ -87,7 +150,7 @@
         }
 
         .homey-custom-icon-nutrition {
-            --homey-icon-color: var(--homey-icon-color-dark);
+            --homey-icon-color: var(--homey-color-mono-700);
             --homey-icon-size: 30;
 
             -webkit-mask-image: url('assets/nutritions.svg');
@@ -95,30 +158,63 @@
         }
 
         .homey-custom-icon-temperature {
-            --homey-icon-color: var(--homey-icon-color-dark);
+            --homey-icon-color: var(--homey-color-mono-700);
             --homey-icon-size: 30;
 
             -webkit-mask-image: url('assets/temperature.svg');
             mask-image: url('assets/temperature.svg');
         }
     </style>
-</head>
 
-<body class="homey-widget">
-<div>
-    <div id="devices">
-    </div>
-</div>
 
-<script type="text/javascript">
-    function onHomeyReady(Homey) {
-        Homey.ready({ height: 188 });
-        setInterval(() => {
+    <script type="text/javascript">
+        const setActive = (device) => {
+            document.querySelectorAll('.device-container')
+                .forEach((element) => {
+                    element.classList.add('device-container-inactive');
+                    element.classList.remove('device-container-active');
+                    if (element.id === device.id) {
+                        element.classList.add('device-container-active');
+                    }
+                });
+            document.querySelectorAll('.paging-dot')
+                .forEach((element) => {
+                    element.classList.add('paging-dot-inactive');
+                    element.classList.remove('paging-dot-active');
+                    if (element.id === device.id) {
+                        element.classList.add('paging-dot-active');
+                    }
+                });
+        };
+        const renderWidget = () => {
             Homey.api('GET', '/devices', {})
                 .then((devices) => {
+                    if (devices.length === 0) {
+                        return;
+                    }
+                    const pagingContainer = document.createElement('div');
+                    pagingContainer.className = 'paging-container';
                     for (const device of devices) {
+                        const pagingDot = document.createElement('a');
+                        pagingDot.className = 'paging-dot';
+                        pagingDot.id = device.id;
+                        pagingDot.href = '#';
+                        pagingDot.addEventListener('click', (event) => {
+                            event.preventDefault();
+                            setActive(device);
+                        });
+                        pagingContainer.appendChild(pagingDot);
+                    }
 
+                    const mainContainer = document.createElement('div');
+                    mainContainer.className = 'main-container';
+
+                    const devicesContainer = document.createElement('div');
+                    devicesContainer.className = 'devices-container';
+
+                    for (const device of devices) {
                         const deviceContainer = document.createElement('div');
+                        deviceContainer.id = device.id;
                         deviceContainer.className = 'device-container';
 
                         const capabilities = ['measure_moisture', 'measure_luminance', 'measure_nutrition', 'measure_temperature'];
@@ -131,12 +227,20 @@
                         deviceTitle.innerHTML = device.name;
                         deviceHeader.appendChild(deviceTitle);
 
-                        deviceContainer.appendChild(deviceHeader);
+                        Homey.api('GET', `/devices/last-updated?date=${device.settings.last_updated}`)
+                            .then((ago) => {
+                                const deviceLastUpdatedContainer = document.createElement('div');
+                                deviceLastUpdatedContainer.className = 'device-last-updated';
 
-                        // const deviceLastUpdated = document.createElement('p');
-                        // deviceLastUpdated.className = 'homey-text-small';
-                        // deviceLastUpdated.innerHTML = new Date(device.settings.last_updated).toLocaleString();
-                        // deviceContainer.appendChild(deviceLastUpdated);
+                                const deviceLastUpdated = document.createElement('p');
+                                deviceLastUpdated.className = 'homey-text-small-light';
+                                deviceLastUpdated.innerHTML = ago;
+                                deviceLastUpdatedContainer.appendChild(deviceLastUpdated);
+
+                                deviceHeader.appendChild(deviceLastUpdatedContainer);
+                            });
+
+                        deviceContainer.appendChild(deviceHeader);
 
                         const deviceCapabilityContainer = document.createElement('div');
                         deviceCapabilityContainer.className = 'device-capability-container';
@@ -175,13 +279,14 @@
 
                             if (alarmCapabilityObject.value) {
                                 const deviceAlarm = document.createElement('div');
-                                deviceAlarm.className = 'homey-custom-icon-alert';
-                                capabilityDiv.appendChild(deviceAlarm);
+                                deviceAlarm.className = 'alert';
 
                                 const deviceAlarmSign = document.createElement('p');
-                                deviceAlarmSign.className = 'homey-custom-icon-alert-sign';
+                                deviceAlarmSign.className = 'alert-sign';
                                 deviceAlarmSign.innerHTML = '!';
-                                capabilityDiv.appendChild(deviceAlarmSign);
+                                deviceAlarm.appendChild(deviceAlarmSign);
+
+                                capabilityDiv.appendChild(deviceAlarm);
                             }
 
                             deviceCapabilityContainer.appendChild(capabilityDiv);
@@ -189,13 +294,29 @@
 
                         deviceContainer.appendChild(deviceCapabilityContainer);
 
-                        document.getElementById('devices')
-                            .appendChild(deviceContainer);
+                        devicesContainer.appendChild(deviceContainer);
                     }
+
+                    mainContainer.appendChild(devicesContainer);
+                    mainContainer.appendChild(pagingContainer);
+
+                    document.getElementById('devices')
+                        .appendChild(mainContainer);
+
+                    setActive(devices[0]);
                 })
                 .catch(console.error);
-        }, 10000);
-    }
-</script>
+        };
+
+        function onHomeyReady(Homey) {
+            Homey.ready({ height: 188 });
+            renderWidget();
+            setInterval(() => renderWidget(), 10000);
+        }
+    </script>
+</head>
+
+<body class="homey-widget">
+<div id="devices"></div>
 </body>
 </html>
