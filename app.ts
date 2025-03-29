@@ -229,7 +229,7 @@ export default class HomeyMiFloraApp extends App {
         console.log('try to disconnect peripheral');
         if (peripheral.isConnected) {
           console.log('disconnect peripheral');
-          return await peripheral.disconnect();
+          await peripheral.disconnect();
         }
       };
 
@@ -239,7 +239,7 @@ export default class HomeyMiFloraApp extends App {
       const dataService = services.find(service => service.uuid === DATA_SERVICE_UUID);
       if (!dataService) {
         await disconnectPeripheral();
-        return new Error('Missing dataService service');
+        throw new Error('Missing dataService service');
       }
       const characteristics = await dataService.discoverCharacteristics();
 
@@ -250,7 +250,7 @@ export default class HomeyMiFloraApp extends App {
       );
       if (!realtime) {
         await disconnectPeripheral();
-        return new Error('Missing realtime service');
+        throw new Error('Missing realtime service');
       }
       await realtime.write(Buffer.from([0xA0, 0x1F]));
 
@@ -261,7 +261,7 @@ export default class HomeyMiFloraApp extends App {
       );
       if (!data) {
         await disconnectPeripheral();
-        return new Error('Missing data service');
+        throw new Error('Missing data service');
       }
       console.log('DATA_CHARACTERISTIC_UUID::read');
       const sensorData = await data.read();
@@ -293,7 +293,7 @@ export default class HomeyMiFloraApp extends App {
       );
       if (!firmware) {
         await disconnectPeripheral();
-        return new Error('Missing firmware service');
+        throw new Error('Missing firmware service');
       }
       console.log('FIRMWARE_CHARACTERISTIC_UUID::read');
       const firmwareData = await firmware.read();
@@ -356,6 +356,7 @@ export default class HomeyMiFloraApp extends App {
         device.retry = 0;
         return await this.updateDevice(device);
       } catch (error) {
+        console.log('update devices error');
         console.log(error);
       }
     }, Promise.resolve());
@@ -473,12 +474,9 @@ export default class HomeyMiFloraApp extends App {
       this.homey.settings.set('updateInterval', updateInterval);
     }
 
-    const interval = 1000 * 60 * updateInterval;
+    const debugging = false;
+    const interval = 1000 * (debugging ? 2 : 60 * updateInterval);
     const nextUpdateAt = new Date().getTime() + interval;
-
-    // @todo remove
-    // test fast iteration timeout
-    // const interval = 1000 * 5;
 
     if (this._syncTimeout) {
       this.homey.clearTimeout(this._syncTimeout);
@@ -492,7 +490,7 @@ export default class HomeyMiFloraApp extends App {
       const minutes = Math.floor(timeRemaining / 1000 / 60);
       const seconds = Math.floor((timeRemaining / 1000) % 60);
 
-      console.log(`Synchronizing in: ${minutes} minute(s) and ${seconds} second(s)`);
+      console.log(`Synchronizing in: ${ minutes } minute(s) and ${ seconds } second(s)`);
     }, 1000 * 60) as unknown as number;
 
     this._syncTimeout = this.homey.setTimeout(this._synchroniseSensorDataTimeout.bind(this), interval) as unknown as number;
