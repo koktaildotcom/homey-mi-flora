@@ -1,80 +1,136 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
     <script type="text/javascript" src="/homey.js" data-origin="settings"></script>
-    <style>
-        #notice {
-            color: green;
-        }
-        .note {
-            margin: 0 0 1em 0;
-            display: inline-block;
-        }
-        .setting-row{
-            width: 100%;
-        }
-        #updateInterval{
-            width:55px;
-            padding: 5px 10px;
-        }
-    </style>
 </head>
 <body>
+<header class="homey-header">
+    <h1 class="homey-title" data-i18n="settings.title"></h1>
+    <p class="homey-subtitle" data-i18n="settings.subtitle"></p>
+</header>
 
-<h1 data-i18n="settings.title"></h1>
+<div id="message" class="homey-message" style="display: none;"></div>
 
-<fieldset>
-    <legend>
-        <p data-i18n="settings.update"></p>
-    </legend>
+<fieldset class="homey-form-fieldset">
+    <legend class="homey-form-legend" data-i18n="settings.update"></legend>
 
-    <table class="setting-row">
-        <tbody>
-        <tr>
-            <td colspan="2">
-                <i data-i18n="settings.interval.info" class="note"></i>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="updateInterval">
-                    <p data-i18n="settings.interval.label"></p>
-                </label>
-            </td>
-            <td>
-                <input id="updateInterval" class="left" type="number" step=1 min=5 max=60/>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="homey-form-group">
+        <fieldset class="homey-form-checkbox-set">
+            <legend class="homey-form-checkbox-set-title">
+                <span data-i18n="settings.use-advertised-service-data.label"></span>
+            </legend>
+            <label class="homey-form-checkbox">
+                <input class="homey-form-checkbox-input" type="checkbox" name="useAdvertisedServiceData"/>
+                <span class="homey-form-checkbox-checkmark"></span>
+                <small class="homey-form-help" data-i18n="settings.use-advertised-service-data.info"></small>
+            </label>
+        </fieldset>
+    </div>
+
+    <div class="homey-form-group">
+        <label class="homey-form-label" for="updateInterval">
+            <span data-i18n="settings.interval.label"></span>
+        </label>
+        <input
+                id="updateInterval"
+                name="updateInterval"
+                type="number"
+                step="1"
+                min="5"
+                max="60"
+                class="homey-form-input"
+        />
+        <small class="homey-form-help" data-i18n="settings.interval.info"></small>
+    </div>
 </fieldset>
 
-<div class="field row">
-    <button id="save" class="right"><p data-i18n="settings.save.label"></p></button>
-</div>
+<button
+        id="save"
+        class="homey-button-primary-full"
+        data-i18n="settings.save.label"
+></button>
 
 <script type="text/javascript">
+    function showMessage(text, type = 'info') {
+        const message = document.getElementById('message');
+        message.textContent = text;
+        message.className = `homey-message homey-message-${type}`;
+        message.style.display = 'block';
+    }
 
-    function onHomeyReady(Homey) {
+    function setLoadingState(button, isLoading) {
+        if (isLoading) {
+            button.disabled = true;
+            button.classList.add('is-loading');
+        } else {
+            button.disabled = false;
+            button.classList.remove('is-loading');
+        }
+    }
 
+    async function onHomeyReady(Homey) {
         Homey.ready();
 
-        let updateIntervalElement = document.getElementById('updateInterval');
-        Homey.get('updateInterval', function (err, updateInterval) {
-            if (err) return Homey.alert(err);
-            updateIntervalElement.value = updateInterval;
-        });
+        const updateIntervalEl = document.getElementsByName('updateInterval')[0];
+        const useAdvertisedServiceDataEl = document.getElementsByName('useAdvertisedServiceData')[0];
+        const saveButton = document.getElementById('save');
 
-        let saveElement = document.getElementById('save');
-        saveElement.addEventListener('click', function (e) {
-            Homey.set('updateInterval', updateIntervalElement.value, function (err) {
-                if (err) return Homey.alert(err);
-            });
+        try {
+            const updateInterval = await getSetting(Homey, 'updateInterval');
+            if (updateInterval !== undefined) updateIntervalEl.value = updateInterval;
 
-            Homey.alert(__("settings.success"));
+            const advertisedService = await getSetting(Homey, 'advertisedService');
+            if (advertisedService !== undefined) {
+                useAdvertisedServiceDataEl.checked = advertisedService === true;
+            }
+        } catch (err) {
+            showMessage(err.message || err.toString(), 'error');
+        }
+
+        saveButton?.addEventListener('click', async () => {
+            const value = parseInt(updateIntervalEl.value, 10);
+            if (isNaN(value) || value < 5 || value > 60) {
+                return showMessage('Value must be between 5 and 60.', 'error');
+            }
+
+            setLoadingState(saveButton, true);
+
+            try {
+                await setSetting(Homey, 'updateInterval', value);
+                await setSetting(Homey, 'advertisedService', useAdvertisedServiceDataEl.checked);
+                showMessage(Homey.__('settings.success'), 'success');
+            } catch (err) {
+                showMessage(err.message || err.toString(), 'error');
+            } finally {
+                setLoadingState(saveButton, false);
+            }
         });
     }
-</script>
 
+    function getSetting(Homey, key) {
+        return new Promise((resolve, reject) => {
+            Homey.get(key, (err, value) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(value);
+                }
+            });
+        });
+    }
+
+    function setSetting(Homey, key, value) {
+        return new Promise((resolve, reject) => {
+            Homey.set(key, value, (err) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve();
+                }
+            });
+        });
+    }
+
+</script>
 </body>
 </html>

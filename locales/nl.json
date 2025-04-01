@@ -20,6 +20,10 @@
   "settings": {
     "title": "Instellingen Xiaomi Mi Flora",
     "update": "Update instellingen",
+    "use-advertised-service-data": {
+      "label": "Gebruik de geadverteerde servicegegevens voor sensorwaarden (experimenteel)",
+      "info": "Gebruik BLE-advertenties om sensorgegevens te lezen zonder verbinding te maken met de sensor. Let op: uw sensoren moeten worden bijgewerkt naar de nieuwste firmwareversie."
+    },
     "interval": {
       "label": "De interval tussen updates in minuten",
       "info": "Het aantal minuten wat gepauzeerd wordt voordat de sensoren opnieuw worden uitgelezen. De minimale update interval is 5 minuten. de default interval is 15 minuten."

@@ -1,325 +1,525 @@
 {
-    "id": "flora-max",
-    "name": {
-        "en": "Xiaomi mi flora care max",
-        "nl": "Xiaomi mi flora care max",
-        "de": "Xiaomi mi flora care max",
-        "sv": "Xiaomi mi flora care max"
+  "id": "flora-max",
+  "name": {
+    "en": "Xiaomi mi flora care max",
+    "nl": "Xiaomi mi flora care max",
+    "de": "Xiaomi mi flora care max",
+    "sv": "Xiaomi mi flora care max",
+    "da": "Xiaomi mi flora care max",
+    "es": "Xiaomi mi flora care max",
+    "fr": "Xiaomi mi flora care max",
+    "it": "Xiaomi mi flora care max",
+    "no": "Xiaomi mi flora care max",
+    "pl": "Xiaomi mi flora care max",
+    "ru": "Xiaomi mi flora care max",
+    "ko": "Xiaomi mi flora care max"
+  },
+  "platforms": [
+    "local",
+    "cloud"
+  ],
+  "connectivity": [
+    "ble"
+  ],
+  "images": {
+    "small": "drivers/flora-max/assets/images/small.png",
+    "large": "drivers/flora-max/assets/images/large.png"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "measure_temperature",
+    "measure_luminance",
+    "measure_nutrition",
+    "measure_moisture",
+    "measure_battery",
+    "alarm_temperature",
+    "alarm_luminance",
+    "alarm_nutrition",
+    "alarm_moisture"
+  ],
+  "pair": [
+    {
+      "id": "start"
     },
-    "platforms": [
-        "local",
-        "cloud"
-    ],
-    "connectivity": [
-        "ble"
-    ],
-    "images": {
-        "small": "drivers/flora-max/assets/images/small.png",
-        "large": "drivers/flora-max/assets/images/large.png"
+    {
+      "id": "list_my_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_my_devices"
+      }
     },
-    "class": "sensor",
-    "capabilities": [
-        "measure_temperature",
-        "measure_luminance",
-        "measure_nutrition",
-        "measure_moisture",
-        "measure_battery",
-        "alarm_temperature",
-        "alarm_luminance",
-        "alarm_nutrition",
-        "alarm_moisture"
-    ],
-    "pair": [
-        {
-            "id": "start"
-        },
-        {
-            "id": "list_my_devices",
-            "template": "list_devices",
-            "navigation": {
-                "next": "add_my_devices"
-            }
-        },
-        {
-            "id": "add_my_devices",
-            "template": "add_devices"
-        }
-    ],
-    "settings": [
-        {
-            "type": "group",
-            "label": {
-                "en": "Device info",
-                "nl": "Apparaat informatie",
-                "de": "Geräteinfo",
-                "sv": "Enhetsinformation"
-            },
-            "children": [
-                {
-                    "id": "firmware_version",
-                    "type": "label",
-                    "label": {
-                        "en": "Firmware version",
-                        "nl": "Firmware versie",
-                        "de": "Firmware-Version",
-                        "sv": "Version på mjukvara"
-                    },
-                    "value": ""
-                },
-                {
-                    "id": "last_updated",
-                    "type": "label",
-                    "label": {
-                        "en": "Last updated",
-                        "nl": "Laatste update",
-                        "de": "Letzte Aktualisierung",
-                        "sv": "Senast uppdaterad"
-                    },
-                    "value": ""
-                },
-                {
-                    "id": "uuid",
-                    "type": "label",
-                    "label": {
-                        "en": "Device uuid address",
-                        "nl": "Apparaat uuid adres",
-                        "de": "Geräte uuid Adresse",
-                        "sv": "Enhetens uuid-adress"
-                    },
-                    "value": ""
-                }
-            ]
-        },
-        {
-            "type": "group",
-            "label": {
-                "en": "Temperature (°C)",
-                "nl": "Temperatuur (°C)",
-                "de": "Temperatur (°C)",
-                "sv": "Temperatur (°C)"
-            },
-            "children": [
-                {
-                    "id": "measure_temperature_min",
-                    "type": "number",
-                    "value": 0,
-                    "min": 0,
-                    "max": 40,
-                    "label": {
-                        "en": "min",
-                        "nl": "min",
-                        "de": "min",
-                        "sv": "min"
-                    },
-                    "hint": {
-                        "en": "The minimal threshold value for temperature.",
-                        "nl": "De minimale grenswaarde voor temperatuur.",
-                        "de": "Der minimale Grenzwert für die Temperatur.",
-                        "sv": "Minsta värde för temperatur."
-                    }
-                },
-                {
-                    "id": "measure_temperature_max",
-                    "type": "number",
-                    "value": 0,
-                    "min": 0,
-                    "max": 40,
-                    "label": {
-                        "en": "max",
-                        "nl": "max",
-                        "de": "max",
-                        "sv": "max"
-                    },
-                    "hint": {
-                        "en": "The maximum threshold value for temperature.",
-                        "nl": "De maximale grenswaarde voor temperatuur.",
-                        "de": "Der maximale Grenzwert für die Temperatur.",
-                        "sv": "Högsta värde för temperatur."
-                    }
-                }
-            ]
-        },
-        {
-            "type": "group",
-            "label": {
-                "en": "Luminance (lx)",
-                "nl": "Lichtintensiteit (lx)",
-                "de": "Helligkeit (lx)",
-                "sv": "Luminans (lx)"
-            },
-            "children": [
-                {
-                    "id": "measure_luminance_min",
-                    "type": "number",
-                    "value": 0,
-                    "min": 0,
-                    "max": 50000,
-                    "label": {
-                        "en": "min",
-                        "nl": "min",
-                        "de": "min",
-                        "sv": "min"
-                    },
-                    "hint": {
-                        "en": "The minimal threshold value for luminance.",
-                        "nl": "De minimale grenswaarde voor lichtintensiteit.",
-                        "de": "Der minimale Grenzwert für die Helligkeit.",
-                        "sv": "Minsta värdet för luminans."
-                    }
-                },
-                {
-                    "id": "measure_luminance_max",
-                    "type": "number",
-                    "value": 0,
-                    "min": 0,
-                    "max": 50000,
-                    "label": {
-                        "en": "max",
-                        "nl": "max",
-                        "de": "max",
-                        "sv": "max"
-                    },
-                    "hint": {
-                        "en": "The maximum threshold value for luminance.",
-                        "nl": "De maximale grenswaarde voor lichtintensiteit.",
-                        "de": "Der maximale Grenzwert für die Helligkeit.",
-                        "sv": "Högsta värde för luminans."
-                    }
-                }
-            ]
-        },
-        {
-            "type": "group",
-            "label": {
-                "en": "Nutrition (µS/cm)",
-                "nl": "Voeding (µS/cm)",
-                "de": "Dünger (µS/cm)",
-                "sv": "Näring (µS/cm)"
-            },
-            "children": [
-                {
-                    "id": "measure_nutrition_min",
-                    "type": "number",
-                    "value": 0,
-                    "min": 0,
-                    "max": 10000,
-                    "label": {
-                        "en": "min",
-                        "nl": "min",
-                        "de": "min",
-                        "sv": "min"
-                    },
-                    "hint": {
-                        "en": "The minimal threshold value for nutrition.",
-                        "nl": "De minimale grenswaarde voor voeding.",
-                        "de": "Der minimale Grenzwert für den Dünger.",
-                        "sv": "Minsta värde för näring."
-                    }
-                },
-                {
-                    "id": "measure_nutrition_max",
-                    "type": "number",
-                    "value": 0,
-                    "min": 0,
-                    "max": 10000,
-                    "label": {
-                        "en": "max",
-                        "nl": "max",
-                        "de": "max",
-                        "sv": "max"
-                    },
-                    "hint": {
-                        "en": "The maximum threshold value for nutrition.",
-                        "nl": "De maximale grenswaarde voor voeding.",
-                        "de": "Der maximale Grenzwert für den Dünger.",
-                        "sv": "Högsta värde för näring."
-                    }
-                }
-            ]
-        },
-        {
-            "type": "group",
-            "label": {
-                "en": "Moisture (%)",
-                "nl": "Vochtigheid (%)",
-                "de": "Feuchtigkeit (%)",
-                "sv": "Fuktighet (%)"
-            },
-            "children": [
-                {
-                    "id": "measure_moisture_min",
-                    "type": "number",
-                    "value": 0,
-                    "min": 0,
-                    "max": 100,
-                    "label": {
-                        "en": "min",
-                        "nl": "min",
-                        "de": "min",
-                        "sv": "min"
-                    },
-                    "hint": {
-                        "en": "The minimal threshold value for moisture.",
-                        "nl": "De minimale grenswaarde voor vochtigheid.",
-                        "de": "Der minimale Grenzwert für die Feuchtigkeit.",
-                        "sv": "Minsta värde för fuktighet."
-                    }
-                },
-                {
-                    "id": "measure_moisture_max",
-                    "type": "number",
-                    "value": 0,
-                    "min": 0,
-                    "max": 100,
-                    "label": {
-                        "en": "max",
-                        "nl": "max",
-                        "de": "max",
-                        "sv": "max"
-                    },
-                    "hint": {
-                        "en": "The maximum threshold value for moisture.",
-                        "nl": "De maximale grenswaarde voor vochtigheid.",
-                        "de": "Der maximale Grenzwert für die Feuchtigkeit.",
-                        "sv": "Högsta värde för fuktighet."
-                    }
-                }
-            ]
-        }
-    ],
-    "mobile": {
-        "components": [
-            {
-                "id": "icon"
-            },
-            {
-                "id": "battery",
-                "capabilities": [
-                    "measure_battery"
-                ]
-            },
-            {
-                "id": "sensor",
-                "capabilities": [
-                    "measure_temperature",
-                    "measure_luminance",
-                    "measure_nutrition",
-                    "measure_moisture"
-                ],
-                "options": {
-                    "icons": {
-                        "measure_temperature": "/assets/temperature.svg",
-                        "measure_luminance": "/assets/luminance.svg",
-                        "measure_nutrition": "/assets/nutritions.svg",
-                        "measure_moisture": "/assets/moisture.svg"
-                    }
-                }
-            }
-        ]
-    },
-    "energy": {
-        "batteries": [
-            "CR2032"
-        ]
+    {
+      "id": "add_my_devices",
+      "template": "add_devices"
     }
+  ],
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "Device info",
+        "nl": "Apparaat informatie",
+        "de": "Geräteinfo",
+        "sv": "Enhetsinformation",
+        "da": "Enhedsinfo",
+        "es": "Información del dispositivo",
+        "fr": "Infos appareil",
+        "it": "Informazioni sul dispositivo",
+        "no": "Enhetsinformasjon",
+        "pl": "Informacje o urządzeniu",
+        "ru": "Информация об устройстве",
+        "ko": "디바이스 정보"
+      },
+      "children": [
+        {
+          "id": "firmware_version",
+          "type": "label",
+          "label": {
+            "en": "Firmware version",
+            "nl": "Firmware versie",
+            "de": "Firmware-Version",
+            "sv": "Version på mjukvara",
+            "da": "Firmware version",
+            "es": "Versión de firmware",
+            "fr": "Version du firmware",
+            "it": "Versione firmware",
+            "no": "Firmware-versjon",
+            "pl": "Wersja oprogramowania",
+            "ru": "Версия прошивки",
+            "ko": "펌웨어 버전"
+          },
+          "value": ""
+        },
+        {
+          "id": "last_updated",
+          "type": "label",
+          "label": {
+            "en": "Last updated",
+            "nl": "Laatste update",
+            "de": "Letzte Aktualisierung",
+            "sv": "Senast uppdaterad",
+            "da": "Sidst opdateret",
+            "es": "Última actualización",
+            "fr": "Dernière mise à jour",
+            "it": "Ultimo aggiornamento",
+            "no": "Sist oppdatert",
+            "pl": "Ostatnia aktualizacja",
+            "ru": "Последнее обновление",
+            "ko": "마지막 업데이트"
+          },
+          "value": ""
+        },
+        {
+          "id": "uuid",
+          "type": "label",
+          "label": {
+            "en": "Device uuid address",
+            "nl": "Apparaat uuid adres",
+            "de": "Geräte uuid Adresse",
+            "sv": "Enhetens uuid-adress",
+            "da": "Enhedens uuid-adresse",
+            "es": "Dirección uuid del dispositivo",
+            "fr": "Adresse uuid de l'appareil",
+            "it": "Indirizzo uuid del dispositivo",
+            "no": "Enhetens uuid-adresse",
+            "pl": "Adres UUID urządzenia",
+            "ru": "Адрес uuid устройства",
+            "ko": "디바이스 UUID 주소"
+          },
+          "value": ""
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "label": {
+        "en": "Temperature (°C)",
+        "nl": "Temperatuur (°C)",
+        "de": "Temperatur (°C)",
+        "sv": "Temperatur (°C)",
+        "da": "Temperatur (°C)",
+        "es": "Temperatura (°C)",
+        "fr": "Température (°C)",
+        "it": "Temperatura (°C)",
+        "no": "Temperatur (°C)",
+        "pl": "Temperatura (°C)",
+        "ru": "Температура (°C)",
+        "ko": "온도 (°C)"
+      },
+      "children": [
+        {
+          "id": "measure_temperature_min",
+          "type": "number",
+          "value": 0,
+          "min": 0,
+          "max": 40,
+          "label": {
+            "en": "min",
+            "nl": "min",
+            "de": "min",
+            "sv": "min",
+            "da": "min",
+            "es": "min",
+            "fr": "min",
+            "it": "min",
+            "no": "min",
+            "pl": "min",
+            "ru": "мин",
+            "ko": "최소"
+          },
+          "hint": {
+            "en": "The minimal threshold value for temperature.",
+            "nl": "De minimale grenswaarde voor temperatuur.",
+            "de": "Der minimale Grenzwert für die Temperatur.",
+            "sv": "Minsta värde för temperatur.",
+            "da": "Den minimale tærskelværdi for temperatur.",
+            "es": "El valor umbral mínimo para la temperatura.",
+            "fr": "La valeur seuil minimale pour la température.",
+            "it": "Il valore della soglia minima per la temperatura.",
+            "no": "Den minimale terskelverdien for temperatur.",
+            "pl": "Minimalna wartość progowa dla temperatury.",
+            "ru": "Минимальное пороговое значение для температуры.",
+            "ko": "온도의 최소 임계값입니다."
+          }
+        },
+        {
+          "id": "measure_temperature_max",
+          "type": "number",
+          "value": 0,
+          "min": 0,
+          "max": 40,
+          "label": {
+            "en": "max",
+            "nl": "max",
+            "de": "max",
+            "sv": "max",
+            "da": "max",
+            "es": "max",
+            "fr": "max",
+            "it": "max",
+            "no": "max",
+            "pl": "max",
+            "ru": "макс",
+            "ko": "최대"
+          },
+          "hint": {
+            "en": "The maximum threshold value for temperature.",
+            "nl": "De maximale grenswaarde voor temperatuur.",
+            "de": "Der maximale Grenzwert für die Temperatur.",
+            "sv": "Högsta värde för temperatur.",
+            "da": "Den maksimale tærskelværdi for temperatur.",
+            "es": "El valor umbral máximo para la temperatura.",
+            "fr": "La valeur seuil maximale pour la température.",
+            "it": "Il valore della soglia massima per la temperatura.",
+            "no": "Den maksimale terskelverdien for temperatur.",
+            "pl": "Maksymalna wartość progowa dla temperatury.",
+            "ru": "Максимальное пороговое значение для температуры.",
+            "ko": "온도의 최대 임계값입니다."
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "label": {
+        "en": "Luminance (lx)",
+        "nl": "Lichtintensiteit (lx)",
+        "de": "Helligkeit (lx)",
+        "sv": "Luminans (lx)",
+        "da": "Lysstyrke (lx)",
+        "es": "Iluminancia (lx)",
+        "fr": "Luminance (lx)",
+        "it": "Luminanza (lx)",
+        "no": "Lysstyrke (lx)",
+        "pl": "Jasność (lx)",
+        "ru": "Освещенность (lx)",
+        "ko": "조도 (lx)"
+      },
+      "children": [
+        {
+          "id": "measure_luminance_min",
+          "type": "number",
+          "value": 0,
+          "min": 0,
+          "max": 50000,
+          "label": {
+            "en": "min",
+            "nl": "min",
+            "de": "min",
+            "sv": "min",
+            "da": "min",
+            "es": "min",
+            "fr": "min",
+            "it": "min",
+            "no": "min",
+            "pl": "min",
+            "ru": "мин",
+            "ko": "최소"
+          },
+          "hint": {
+            "en": "The minimal threshold value for luminance.",
+            "nl": "De minimale grenswaarde voor lichtintensiteit.",
+            "de": "Der minimale Grenzwert für die Helligkeit.",
+            "sv": "Minsta värdet för luminans.",
+            "da": "Den minimale tærskelværdi for lysstyrke.",
+            "es": "El valor umbral mínimo para la iluminancia.",
+            "fr": "La valeur seuil minimale pour la luminance.",
+            "it": "Il valore della soglia minima per la luminanza.",
+            "no": "Den minimale terskelverdien for lysstyrke.",
+            "pl": "Minimalna wartość progowa dla jasności.",
+            "ru": "Минимальное пороговое значение для освещенности.",
+            "ko": "조도의 최소 임계값입니다."
+          }
+        },
+        {
+          "id": "measure_luminance_max",
+          "type": "number",
+          "value": 0,
+          "min": 0,
+          "max": 50000,
+          "label": {
+            "en": "max",
+            "nl": "max",
+            "de": "max",
+            "sv": "max",
+            "da": "max",
+            "es": "max",
+            "fr": "max",
+            "it": "max",
+            "no": "max",
+            "pl": "max",
+            "ru": "макс",
+            "ko": "최대"
+          },
+          "hint": {
+            "en": "The maximum threshold value for luminance.",
+            "nl": "De maximale grenswaarde voor lichtintensiteit.",
+            "de": "Der maximale Grenzwert für die Helligkeit.",
+            "sv": "Högsta värde för luminans.",
+            "da": "Den maksimale tærskelværdi for lysstyrke.",
+            "es": "El valor umbral máximo para la iluminancia.",
+            "fr": "La valeur seuil maximale pour la luminance.",
+            "it": "Il valore della soglia massima per la luminanza.",
+            "no": "Den maksimale terskelverdien for lysstyrke.",
+            "pl": "Maksymalna wartość progowa dla jasności.",
+            "ru": "Максимальное пороговое значение для освещенности.",
+            "ko": "조도의 최대 임계값입니다."
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "label": {
+        "en": "Nutrition (µS/cm)",
+        "nl": "Voeding (µS/cm)",
+        "de": "Dünger (µS/cm)",
+        "sv": "Näring (µS/cm)",
+        "da": "Næring (µS/cm)",
+        "es": "Nutrientes (µS/cm)",
+        "fr": "Nutriments (µS/cm)",
+        "it": "Nutrizione (µS/cm)",
+        "no": "Næring (µS/cm)",
+        "pl": "Odżywianie (µS/cm)",
+        "ru": "Питательные вещества (µS/cm)",
+        "ko": "영양 (µS/cm)"
+      },
+      "children": [
+        {
+          "id": "measure_nutrition_min",
+          "type": "number",
+          "value": 0,
+          "min": 0,
+          "max": 10000,
+          "label": {
+            "en": "min",
+            "nl": "min",
+            "de": "min",
+            "sv": "min",
+            "da": "min",
+            "es": "min",
+            "fr": "min",
+            "it": "min",
+            "no": "min",
+            "pl": "min",
+            "ru": "мин",
+            "ko": "최소"
+          },
+          "hint": {
+            "en": "The minimal threshold value for nutrition.",
+            "nl": "De minimale grenswaarde voor voeding.",
+            "de": "Der minimale Grenzwert für den Dünger.",
+            "sv": "Minsta värde för näring.",
+            "da": "Den minimale tærskelværdi for næring.",
+            "es": "El valor umbral mínimo para nutrientes.",
+            "fr": "La valeur seuil minimale pour les nutriments.",
+            "it": "Il valore della soglia minima per la nutrizione.",
+            "no": "Den minimale terskelverdien for næring.",
+            "pl": "Minimalna wartość progowa dla odżywiania.",
+            "ru": "Минимальное пороговое значение для питательных веществ.",
+            "ko": "영양의 최소 임계값입니다."
+          }
+        },
+        {
+          "id": "measure_nutrition_max",
+          "type": "number",
+          "value": 0,
+          "min": 0,
+          "max": 10000,
+          "label": {
+            "en": "max",
+            "nl": "max",
+            "de": "max",
+            "sv": "max",
+            "da": "max",
+            "es": "max",
+            "fr": "max",
+            "it": "max",
+            "no": "max",
+            "pl": "max",
+            "ru": "макс",
+            "ko": "최대"
+          },
+          "hint": {
+            "en": "The maximum threshold value for nutrition.",
+            "nl": "De maximale grenswaarde voor voeding.",
+            "de": "Der maximale Grenzwert für den Dünger.",
+            "sv": "Högsta värde för näring.",
+            "da": "Den maksimale tærskelværdi for næring.",
+            "es": "El valor umbral máximo para nutrientes.",
+            "fr": "La valeur seuil maximale pour les nutriments.",
+            "it": "Il valore della soglia massima per la nutrizione.",
+            "no": "Den maksimale terskelverdien for næring.",
+            "pl": "Maksymalna wartość progowa dla odżywiania.",
+            "ru": "Максимальное пороговое значение для питательных веществ.",
+            "ko": "영양의 최대 임계값입니다."
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "label": {
+        "en": "Moisture (%)",
+        "nl": "Vochtigheid (%)",
+        "de": "Feuchtigkeit (%)",
+        "sv": "Fuktighet (%)",
+        "da": "Fugtighed (%)",
+        "es": "Humedad (%)",
+        "fr": "Humidité (%)",
+        "it": "Umidità (%)",
+        "no": "Fuktighet (%)",
+        "pl": "Wilgotność (%)",
+        "ru": "Влажность (%)",
+        "ko": "수분 (%)"
+      },
+      "children": [
+        {
+          "id": "measure_moisture_min",
+          "type": "number",
+          "value": 0,
+          "min": 0,
+          "max": 100,
+          "label": {
+            "en": "min",
+            "nl": "min",
+            "de": "min",
+            "sv": "min",
+            "da": "min",
+            "es": "min",
+            "fr": "min",
+            "it": "min",
+            "no": "min",
+            "pl": "min",
+            "ru": "мин",
+            "ko": "최소"
+          },
+          "hint": {
+            "en": "The minimal threshold value for moisture.",
+            "nl": "De minimale grenswaarde voor vochtigheid.",
+            "de": "Der minimale Grenzwert für die Feuchtigkeit.",
+            "sv": "Minsta värde för fuktighet.",
+            "da": "Den minimale tærskelværdi for fugtighed.",
+            "es": "El valor umbral mínimo para la humedad.",
+            "fr": "La valeur seuil minimale pour l'humidité.",
+            "it": "Il valore della soglia minima per l'umidità.",
+            "no": "Den minimale terskelverdien for fuktighet.",
+            "pl": "Minimalna wartość progowa dla wilgotności.",
+            "ru": "Минимальное пороговое значение для влажности.",
+            "ko": "수분의 최소 임계값입니다."
+          }
+        },
+        {
+          "id": "measure_moisture_max",
+          "type": "number",
+          "value": 0,
+          "min": 0,
+          "max": 100,
+          "label": {
+            "en": "max",
+            "nl": "max",
+            "de": "max",
+            "sv": "max",
+            "da": "max",
+            "es": "max",
+            "fr": "max",
+            "it": "max",
+            "no": "max",
+            "pl": "max",
+            "ru": "макс",
+            "ko": "최대"
+          },
+          "hint": {
+            "en": "The maximum threshold value for moisture.",
+            "nl": "De maximale grenswaarde voor vochtigheid.",
+            "de": "Der maximale Grenzwert für die Feuchtigkeit.",
+            "sv": "Högsta värde för fuktighet.",
+            "da": "Den maksimale tærskelværdi for fugtighed.",
+            "es": "El valor umbral máximo para la humedad.",
+            "fr": "La valeur seuil maximale pour l'humidité.",
+            "it": "Il valore della soglia massima per l'umidità.",
+            "no": "Den maksimale terskelverdien for fuktighet.",
+            "pl": "Maksymalna wartość progowa dla wilgotności.",
+            "ru": "Максимальное пороговое значение для влажности.",
+            "ko": "수분의 최대 임계값입니다."
+          }
+        }
+      ]
+    }
+  ],
+  "mobile": {
+    "components": [
+      {
+        "id": "icon"
+      },
+      {
+        "id": "battery",
+        "capabilities": [
+          "measure_battery"
+        ]
+      },
+      {
+        "id": "sensor",
+        "capabilities": [
+          "measure_temperature",
+          "measure_luminance",
+          "measure_nutrition",
+          "measure_moisture"
+        ],
+        "options": {
+          "icons": {
+            "measure_temperature": "/assets/temperature.svg",
+            "measure_luminance": "/assets/luminance.svg",
+            "measure_nutrition": "/assets/nutritions.svg",
+            "measure_moisture": "/assets/moisture.svg"
+          }
+        }
+      }
+    ]
+  },
+  "energy": {
+    "batteries": [
+      "CR2032"
+    ]
+  }
 }

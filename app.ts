@@ -14,6 +14,7 @@ const DATA_SERVICE_UUID = '0000120400001000800000805f9b34fb';
 const DATA_CHARACTERISTIC_UUID = '00001a0100001000800000805f9b34fb';
 const FIRMWARE_CHARACTERISTIC_UUID = '00001a0200001000800000805f9b34fb';
 const REALTIME_CHARACTERISTIC_UUID = '00001a0000001000800000805f9b34fb';
+const ADVERTISING_SERVICE_UUID = '0000fe95-0000-1000-8000-00805f9b34fb';
 
 const MAX_RETRIES = 3;
 
@@ -171,7 +172,95 @@ export default class HomeyMiFloraApp extends App {
     }
 
     this.syncInProgress = false;
-    this._setNewTimeout();
+    await this._setNewTimeout();
+  }
+
+  async _updateCapabilitiesWithAdvertisedService() {
+    if (!this.homey.settings.get('advertisedService')) {
+      return;
+    }
+
+    type CapabilityMap = {
+      [key in CombinedCapabilities]: number | undefined;
+    }
+
+    const advertisements = await this.homey.ble.discover();
+
+    for (const adv of advertisements) {
+      if (!Array.isArray(adv.serviceData)) continue;
+
+      const fe95 = adv.serviceData.find(
+        e => e.uuid?.toLowerCase() === ADVERTISING_SERVICE_UUID
+      );
+
+      if (!fe95 || !Buffer.isBuffer(fe95.data)) continue;
+
+      const data = fe95.data;
+      const macBuffer = data.slice(5, 11);
+      const mac = Array.from(macBuffer)
+        .reverse()
+        .map(b => b.toString(16).padStart(2, '0'))
+        .join(':');
+
+      const id = Array.from(macBuffer)
+        .reverse()
+        .map(b => b.toString(16).padStart(2, '0'))
+        .join('');
+
+      let index = 12;
+      while (index + 3 <= data.length) {
+        const type = data.readUInt16LE(index);
+        const length = data[index + 2];
+        if (index + 3 + length > data.length) break;
+        const valueBuf = data.slice(index + 3, index + 3 + length);
+
+        let sensorValues: CapabilityMap = {
+          [DeviceCapabilities.Temperature]: undefined,
+          [DeviceCapabilities.Luminance]: undefined,
+          [DeviceCapabilities.Nutrition]: undefined,
+          [DeviceCapabilities.Moisture]: undefined,
+          [FirmwareCapabilities.Battery]: undefined,
+        };
+
+        switch (type) {
+          case 0x1004:
+            if (length === 2) sensorValues[DeviceCapabilities.Nutrition] = valueBuf.readUInt16LE(0);
+            break;
+
+          case 0x1007:
+            if (length === 3) sensorValues[DeviceCapabilities.Luminance] = valueBuf.readUInt16LE(0);
+            break;
+
+          case 0x1008:
+            if (length === 1) sensorValues[DeviceCapabilities.Moisture] = valueBuf[0];
+            break;
+
+          case 0x1009:
+            if (length === 2) {
+              sensorValues[DeviceCapabilities.Nutrition] = valueBuf.readUInt16LE(0);
+            }
+            break;
+
+          case 0x1006:
+            if (length === 1) sensorValues[FirmwareCapabilities.Battery] = valueBuf[0];
+            break;
+        }
+
+        const device: MiFloraDevice | undefined = this._devices.find(current => current.id === id);
+
+        if (device) {
+          await this.asyncForEach(device.getCapabilities(), async characteristic => {
+            const characteristicAlias = characteristic as DeviceCapabilities;
+            if (sensorValues.hasOwnProperty(characteristic) && sensorValues[characteristicAlias] !== undefined) {
+              console.log(`update ${ characteristic } to ${ sensorValues[characteristicAlias] } for ${ device.getName() }`);
+              await device.updateCapabilityValue(characteristic, sensorValues[characteristicAlias]);
+            }
+          });
+        }
+
+        index += 3 + length;
+      }
+    }
   }
 
   /**
@@ -411,16 +500,9 @@ export default class HomeyMiFloraApp extends App {
    *
    * start the synchronisation
    */
-  _synchroniseSensorDataTimeout() {
-    this._synchroniseSensorData()
-      .then(result => {
-        this._setNewTimeout();
-        console.log(result);
-      })
-      .catch(error => {
-        this._setNewTimeout();
-        console.error(error);
-      });
+  async _synchroniseSensorDataTimeout() {
+    await this._synchroniseSensorData();
+    await this._setNewTimeout();
   }
 
   /**
@@ -466,7 +548,7 @@ export default class HomeyMiFloraApp extends App {
    *
    * set a new timeout for synchronisation
    */
-  _setNewTimeout() {
+  async _setNewTimeout() {
     let updateInterval = this.homey.settings.get('updateInterval');
 
     if (!updateInterval) {
@@ -493,6 +575,7 @@ export default class HomeyMiFloraApp extends App {
       console.log(`Synchronizing in: ${ minutes } minute(s) and ${ seconds } second(s)`);
     }, 1000 * 60) as unknown as number;
 
+    this.homey.setInterval(this._updateCapabilitiesWithAdvertisedService.bind(this), 1000 * 5);
     this._syncTimeout = this.homey.setTimeout(this._synchroniseSensorDataTimeout.bind(this), interval) as unknown as number;
 
     this.syncInProgress = false;

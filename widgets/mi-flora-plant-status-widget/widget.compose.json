@@ -1,6 +1,17 @@
 {
   "name": {
-    "en": "Plant sensors status"
+    "en": "Plant sensors status",
+    "nl": "Status van plantsensoren",
+    "da": "Status for plantesensorer",
+    "de": "Pflanzensensorstatus",
+    "es": "Estado de los sensores de plantas",
+    "fr": "Statut des capteurs de plantes",
+    "it": "Stato dei sensori delle piante",
+    "no": "Status for plantesensorer",
+    "sv": "Status för växtsensorer",
+    "pl": "Status czujników roślin",
+    "ru": "Состояние датчиков растений",
+    "ko": "식물 센서 상태"
   },
   "height": 188,
   "settings": [],

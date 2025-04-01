@@ -1,0 +1,95 @@
+{
+  "never_updated": "Nigdy nie zaktualizowany",
+  "pair": {
+    "title": "Szukam urządzeń",
+    "info": {
+      "title": "Pamiętaj:",
+      "row1": "Aby uzyskać optymalną siłę sygnału, trzymaj czujnik w bliskiej odległości od Homey.",
+      "row2": "Zawsze pobieraj oryginalną aplikację `Xiaomi Mi Flora` i dodawaj urządzenia do aplikacji. To automatycznie aktualizuje oprogramowanie czujnika do najnowszej wersji."
+    },
+    "faq": {
+      "title": "Często zadawane pytania:",
+      "question1": "Dlaczego Homey nie może znaleźć czujnika?",
+      "answer1": "Sprawdź, czy czujnik nie jest połączony z innym urządzeniem Bluetooth. Na przykład aplikacja `Xiaomi Mi Flora`"
+    },
+    "configure": "Szukaj urządzeń",
+    "error": {
+      "ble-unavailable": "Ble nie jest dostępny: synchronizacja urządzeń jest obecnie w toku."
+    }
+  },
+  "settings": {
+    "title": "Ustawienia Xiaomi Mi Flora",
+    "update": "Zaktualizuj ustawienia",
+    "use-advertised-service-data": {
+      "label": "Użyj reklamowanych danych serwisowych dla wartości czujników (eksperymentalne)",
+      "info": "Użyj reklam BLE do odczytu danych czujników bez łączenia się z czujnikiem. Pamiętaj, że Twoje czujniki muszą być zaktualizowane do najnowszej wersji oprogramowania."
+    },
+    "interval": {
+      "label": "Interwał między aktualizacjami w minutach",
+      "info": "Opóźnienie między odczytami wartości czujników w minutach. Minimalny interwał to 5 minut. Domyślny interwał to 15 minut."
+    },
+    "save": {
+      "label": "Zapisz"
+    },
+    "success": "Ustawienia zostały zapisane",
+    "error": {
+      "threshold": "Minimalny i maksymalny próg dla `__capability__` jest nieprawidłowy."
+    }
+  },
+  "capability": {
+    "measure_temperature": {
+      "name": "temperatura",
+      "suffix": " °C",
+      "changed": "Temperatura zmieniła się na: __value__°C.",
+      "device_changed": "Temperatura `__plant__` zmieniła się na: __value__°C.",
+      "device_updated": "Temperatura `__plant__` została zaktualizowana do: __value__°C.",
+      "threshold": {
+        "min": "Temperatura (__value__°C) `__plant__` jest za niska. Powinna wynosić co najmniej __min__°C.",
+        "max": "Temperatura (__value__°C) `__plant__` jest za wysoka. Powinna wynosić maksymalnie __max__°C."
+      }
+    },
+    "measure_luminance": {
+      "name": "światło słoneczne",
+      "suffix": " lx",
+      "changed": "Światło słoneczne zmieniło się na: __value__ lx.",
+      "device_changed": "Światło słoneczne `__plant__` zmieniło się na: __value__ lx.",
+      "device_updated": "Światło słoneczne `__plant__` zostało zaktualizowane do: __value__ lx.",
+      "threshold": {
+        "min": "Światło słoneczne (__value__ lx) `__plant__` jest za słabe. Powinno wynosić co najmniej __min__ lx.",
+        "max": "Światło słoneczne (__value__ lx) `__plant__` jest za mocne. Powinno wynosić maksymalnie __max__ lx."
+      }
+    },
+    "measure_nutrition": {
+      "name": "odżywianie",
+      "suffix": " µS/cm",
+      "changed": "Odżywianie zmieniło się na: __value__ µS/cm.",
+      "device_changed": "Odżywianie `__plant__` zmieniło się na: __value__ µS/cm.",
+      "device_updated": "Odżywianie `__plant__` zostało zaktualizowane do: __value__ µS/cm.",
+      "threshold": {
+        "min": "Odżywianie (__value__ µS/cm) `__plant__` jest za niskie. Powinno wynosić co najmniej __min__ µS/cm.",
+        "max": "Odżywianie (__value__ µS/cm) `__plant__` jest za wysokie. Powinno wynosić maksymalnie __max__ µS/cm."
+      }
+    },
+    "measure_moisture": {
+      "name": "wilgotność",
+      "suffix": " %",
+      "changed": "Wilgotność zmieniła się na: __value__%.",
+      "device_changed": "Wilgotność `__plant__` zmieniła się na: __value__%.",
+      "device_updated": "Wilgotność `__plant__` została zaktualizowana do: __value__%.",
+      "threshold": {
+        "min": "Wilgotność (__value__%) `__plant__` jest za niska. Powinna wynosić co najmniej __min__%.",
+        "max": "Wilgotność (__value__%) `__plant__` jest za wysoka. Powinna wynosić maksymalnie __max__%."
+      }
+    },
+    "measure_battery": {
+      "name": "bateria",
+      "changed": "Bateria zmieniła się na: __value__%.",
+      "device_changed": "Bateria `__plant__` zmieniła się na: __value__%.",
+      "device_updated": "Bateria `__plant__` została zaktualizowana do: __value__%.",
+      "threshold": {
+        "min": "Bateria (__value__%) `__plant__` jest za niska. Powinna wynosić co najmniej __min__%.",
+        "max": "Bateria (__value__%) `__plant__` jest za wysoka. Powinna wynosić maksymalnie __max__%."
+      }
+    }
+  }
+}

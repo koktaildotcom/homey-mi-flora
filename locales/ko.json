@@ -1,0 +1,95 @@
+{
+  "never_updated": "업데이트되지 않음",
+  "pair": {
+    "title": "기기 검색 중",
+    "info": {
+      "title": "기억하세요:",
+      "row1": "최적의 신호 강도를 위해 센서를 Homey 근처에 두세요.",
+      "row2": "항상 원본 `Xiaomi Mi Flora` 앱을 다운로드하고 기기를 앱에 추가하세요. 이렇게 하면 센서의 펌웨어가 최신 버전으로 자동 업데이트됩니다."
+    },
+    "faq": {
+      "title": "자주 묻는 질문:",
+      "question1": "왜 Homey가 센서를 찾지 못하나요?",
+      "answer1": "센서가 다른 블루투스 기기에 연결되어 있지 않은지 확인하세요. 예를 들어 `Xiaomi Mi Flora` 앱"
+    },
+    "configure": "기기 검색",
+    "error": {
+      "ble-unavailable": "Ble를 사용할 수 없음: 현재 기기 동기화가 진행 중입니다."
+    }
+  },
+  "settings": {
+    "title": "Xiaomi Mi Flora 설정",
+    "update": "설정 업데이트",
+    "use-advertised-service-data": {
+      "label": "센서 값을 위한 광고된 서비스 데이터 사용 (실험적)",
+      "info": "센서와 연결하지 않고 BLE 광고를 통해 센서 데이터를 읽습니다. 센서를 최신 펌웨어 버전으로 업데이트해야 한다는 점을 참고하세요."
+    },
+    "interval": {
+      "label": "업데이트 간격 (분 단위)",
+      "info": "센서 값을 읽는 간격 (분 단위). 최소 간격은 5분입니다. 기본 간격은 15분입니다."
+    },
+    "save": {
+      "label": "저장"
+    },
+    "success": "설정이 저장되었습니다",
+    "error": {
+      "threshold": "`__capability__`의 최소 및 최대 임계값이 유효하지 않습니다."
+    }
+  },
+  "capability": {
+    "measure_temperature": {
+      "name": "온도",
+      "suffix": " °C",
+      "changed": "온도가 변경되었습니다: __value__°C.",
+      "device_changed": "`__plant__`의 온도가 변경되었습니다: __value__°C.",
+      "device_updated": "`__plant__`의 온도가 업데이트되었습니다: __value__°C.",
+      "threshold": {
+        "min": "`__plant__`의 온도 (__value__°C)가 너무 낮습니다. 최소 __min__°C이어야 합니다.",
+        "max": "`__plant__`의 온도 (__value__°C)가 너무 높습니다. 최대 __max__°C이어야 합니다."
+      }
+    },
+    "measure_luminance": {
+      "name": "일조량",
+      "suffix": " lx",
+      "changed": "일조량이 변경되었습니다: __value__ lx.",
+      "device_changed": "`__plant__`의 일조량이 변경되었습니다: __value__ lx.",
+      "device_updated": "`__plant__`의 일조량이 업데이트되었습니다: __value__ lx.",
+      "threshold": {
+        "min": "`__plant__`의 일조량 (__value__ lx)이 너무 낮습니다. 최소 __min__ lx이어야 합니다.",
+        "max": "`__plant__`의 일조량 (__value__ lx)이 너무 높습니다. 최대 __max__ lx이어야 합니다."
+      }
+    },
+    "measure_nutrition": {
+      "name": "영양",
+      "suffix": " µS/cm",
+      "changed": "영양이 변경되었습니다: __value__ µS/cm.",
+      "device_changed": "`__plant__`의 영양이 변경되었습니다: __value__ µS/cm.",
+      "device_updated": "`__plant__`의 영양이 업데이트되었습니다: __value__ µS/cm.",
+      "threshold": {
+        "min": "`__plant__`의 영양 (__value__ µS/cm)이 너무 낮습니다. 최소 __min__ µS/cm이어야 합니다.",
+        "max": "`__plant__`의 영양 (__value__ µS/cm)이 너무 높습니다. 최대 __max__ µS/cm이어야 합니다."
+      }
+    },
+    "measure_moisture": {
+      "name": "수분",
+      "suffix": " %",
+      "changed": "수분이 변경되었습니다: __value__%.",
+      "device_changed": "`__plant__`의 수분이 변경되었습니다: __value__%.",
+      "device_updated": "`__plant__`의 수분이 업데이트되었습니다: __value__%.",
+      "threshold": {
+        "min": "`__plant__`의 수분 (__value__%)이 너무 낮습니다. 최소 __min__%이어야 합니다.",
+        "max": "`__plant__`의 수분 (__value__%)이 너무 높습니다. 최대 __max__%이어야 합니다."
+      }
+    },
+    "measure_battery": {
+      "name": "배터리",
+      "changed": "배터리가 변경되었습니다: __value__%.",
+      "device_changed": "`__plant__`의 배터리가 변경되었습니다: __value__%.",
+      "device_updated": "`__plant__`의 배터리가 업데이트되었습니다: __value__%.",
+      "threshold": {
+        "min": "`__plant__`의 배터리 (__value__%)가 너무 낮습니다. 최소 __min__%이어야 합니다.",
+        "max": "`__plant__`의 배터리 (__value__%)가 너무 높습니다. 최대 __max__%이어야 합니다."
+      }
+    }
+  }
+}

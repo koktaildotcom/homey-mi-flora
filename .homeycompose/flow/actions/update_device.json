@@ -36,7 +36,15 @@
         "en": "sensor",
         "nl": "sensor",
         "de": "sensor",
-        "sv": "sensor"
+        "sv": "sensor",
+        "da": "sensor",
+        "es": "sensor",
+        "fr": "capteur",
+        "it": "sensore",
+        "no": "sensor",
+        "pl": "czujnik",
+        "ru": "датчик",
+        "ko": "센서"
       },
       "placeholder": {
         "en": "Select a device",

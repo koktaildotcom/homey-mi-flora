@@ -1,0 +1,95 @@
+{
+  "never_updated": "Aldrig opdateret",
+  "pair": {
+    "title": "Søger efter enheder",
+    "info": {
+      "title": "Husk på:",
+      "row1": "For optimal signalstyrke skal sensoren holdes tæt på Homey.",
+      "row2": "Husk altid at downloade den originale `Xiaomi Mi Flora` app og tilføje enhederne til appen. Dette opdaterer automatisk sensorens firmware til den nyeste version."
+    },
+    "faq": {
+      "title": "Ofte stillede spørgsmål:",
+      "question1": "Hvorfor kan sensoren ikke findes af Homey?",
+      "answer1": "Kontroller om sensoren ikke er forbundet til en anden bluetooth-enhed. For eksempel `Xiaomi Mi Flora` appen."
+    },
+    "configure": "Søg efter enheder",
+    "error": {
+      "ble-unavailable": "Ble er ikke tilgængelig: en synkronisering af enheder er i gang."
+    }
+  },
+  "settings": {
+    "title": "Indstillinger for Xiaomi Mi Flora",
+    "update": "Opdater indstillinger",
+    "use-advertised-service-data": {
+      "label": "Brug annoncerede servicedata til sensorværdier (eksperimentelt)",
+      "info": "Brug BLE-annonceringer til at læse sensorværdier uden at forbinde til sensoren. Bemærk, at dine sensorer skal opdateres til den nyeste firmwareversion."
+    },
+    "interval": {
+      "label": "Intervallet mellem opdateringer i minutter",
+      "info": "Forsinkelsen mellem aflæsninger af sensorværdier i minutter. Det minimale interval er 5 minutter. Standardintervallet er 15 minutter."
+    },
+    "save": {
+      "label": "Gem"
+    },
+    "success": "Indstillingerne er blevet gemt",
+    "error": {
+      "threshold": "Minimum og maksimum tærsklen for `__capability__` er ikke gyldig."
+    }
+  },
+  "capability": {
+    "measure_temperature": {
+      "name": "temperatur",
+      "suffix": " °C",
+      "changed": "Temperaturen ændret til: __value__°C.",
+      "device_changed": "Temperaturen for `__plant__` er ændret til: __value__°C.",
+      "device_updated": "Temperaturen for `__plant__` er opdateret til: __value__°C.",
+      "threshold": {
+        "min": "Temperaturen (__value__°C) for `__plant__` er for lav. Den skal være mindst __min__°C.",
+        "max": "Temperaturen (__value__°C) for `__plant__` er for høj. Den skal maksimalt være __max__°C."
+      }
+    },
+    "measure_luminance": {
+      "name": "sollys",
+      "suffix": " lx",
+      "changed": "Sollyset ændret til: __value__ lx.",
+      "device_changed": "Sollyset for `__plant__` er ændret til: __value__ lx.",
+      "device_updated": "Sollyset for `__plant__` er opdateret til: __value__ lx.",
+      "threshold": {
+        "min": "Sollyset (__value__ lx) for `__plant__` er for lavt. Det skal være mindst __min__ lx.",
+        "max": "Sollyset (__value__ lx) for `__plant__` er for højt. Det skal maksimalt være __max__ lx."
+      }
+    },
+    "measure_nutrition": {
+      "name": "næring",
+      "suffix": " µS/cm",
+      "changed": "Næringsindholdet ændret til: __value__ µS/cm.",
+      "device_changed": "Næringsindholdet for `__plant__` er ændret til: __value__ µS/cm.",
+      "device_updated": "Næringsindholdet for `__plant__` er opdateret til: __value__ µS/cm.",
+      "threshold": {
+        "min": "Næringsindholdet (__value__ µS/cm) for `__plant__` er for lavt. Det skal være mindst __min__ µS/cm.",
+        "max": "Næringsindholdet (__value__ µS/cm) for `__plant__` er for højt. Det skal maksimalt være __max__ µS/cm."
+      }
+    },
+    "measure_moisture": {
+      "name": "fugtighed",
+      "suffix": " %",
+      "changed": "Fugtigheden ændret til: __value__%.",
+      "device_changed": "Fugtigheden for `__plant__` er ændret til: __value__%.",
+      "device_updated": "Fugtigheden for `__plant__` er opdateret til: __value__%.",
+      "threshold": {
+        "min": "Fugtigheden (__value__%) for `__plant__` er for lav. Den skal være mindst __min__%.",
+        "max": "Fugtigheden (__value__%) for `__plant__` er for høj. Den skal maksimalt være __max__%."
+      }
+    },
+    "measure_battery": {
+      "name": "batteri",
+      "changed": "Batteristatus ændret til: __value__%.",
+      "device_changed": "Batteristatus for `__plant__` er ændret til: __value__%.",
+      "device_updated": "Batteristatus for `__plant__` er opdateret til: __value__%.",
+      "threshold": {
+        "min": "Batteristatus (__value__%) for `__plant__` er for lav. Den skal være mindst __min__%.",
+        "max": "Batteristatus (__value__%) for `__plant__` er for høj. Den skal maksimalt være __max__%."
+      }
+    }
+  }
+}

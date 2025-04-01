@@ -20,6 +20,10 @@
   "settings": {
     "title": "Settings Xiaomi Mi Flora",
     "update": "Update settings",
+    "use-advertised-service-data": {
+      "label": "Use advertised service data for sensor values (experimental)",
+      "info": "Use BLE advertisements to read sensor data without connecting with the sensor. Note that your sensors needs to be updated to the latest firmware version."
+    },
     "interval": {
       "label": "De interval between updates in minutes",
       "info": "The delay between reading sensor values in minutes. The minimal interval is 5 minutes. The default interval is 15 minutes."
