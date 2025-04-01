@@ -67,5 +67,8 @@
   },
   "4.3.2": {
     "en": "Improve contrast"
+  },
+  "4.4.0": {
+    "en": "Add app settings option to update sensor values based on advertised service data"
   }
 }
