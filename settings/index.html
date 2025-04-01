@@ -2,6 +2,43 @@
 <html>
 <head>
     <script type="text/javascript" src="/homey.js" data-origin="settings"></script>
+    <style>
+        /* General message styling */
+        .homey-message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 3px;
+            font-weight: bold;
+            display: none; /* default hidden state */
+        }
+
+        /* Success message styling */
+        .homey-message-success {
+            color: #155724;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+        }
+
+        /* Error message styling */
+        .homey-message-error {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Info message styling */
+        .homey-message-info {
+            color: #0c5460;
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+        }
+
+        /* Optional: loading state for button */
+        .is-loading {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    </style>
 </head>
 <body>
 <header class="homey-header">
@@ -9,7 +46,7 @@
     <p class="homey-subtitle" data-i18n="settings.subtitle"></p>
 </header>
 
-<div id="message" class="homey-message" style="display: none;"></div>
+<div id="message" class="homey-message"></div>
 
 <fieldset class="homey-form-fieldset">
     <legend class="homey-form-legend" data-i18n="settings.update"></legend>
@@ -56,6 +93,11 @@
         message.textContent = text;
         message.className = `homey-message homey-message-${type}`;
         message.style.display = 'block';
+
+        // Auto-hide message after 5 seconds
+        setTimeout(() => {
+            message.style.display = 'none';
+        }, 5000);
     }
 
     function setLoadingState(button, isLoading) {
@@ -130,7 +172,6 @@
             });
         });
     }
-
 </script>
 </body>
 </html>
