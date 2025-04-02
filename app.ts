@@ -184,82 +184,81 @@ export default class HomeyMiFloraApp extends App {
       [key in CombinedCapabilities]: number | undefined;
     }
 
-    const advertisements = await this.homey.ble.discover();
+    try {
+      const advertisements = await this.homey.ble.discover();
+      for (const adv of advertisements) {
+        if (!Array.isArray(adv.serviceData)) continue;
 
-    for (const adv of advertisements) {
-      if (!Array.isArray(adv.serviceData)) continue;
+        const fe95 = adv.serviceData.find(
+          e => e.uuid?.toLowerCase() === ADVERTISING_SERVICE_UUID
+        );
 
-      const fe95 = adv.serviceData.find(
-        e => e.uuid?.toLowerCase() === ADVERTISING_SERVICE_UUID
-      );
+        if (!fe95 || !Buffer.isBuffer(fe95.data)) continue;
 
-      if (!fe95 || !Buffer.isBuffer(fe95.data)) continue;
+        const data = fe95.data;
+        const macBuffer = data.slice(5, 11);
 
-      const data = fe95.data;
-      const macBuffer = data.slice(5, 11);
-      const mac = Array.from(macBuffer)
-        .reverse()
-        .map(b => b.toString(16).padStart(2, '0'))
-        .join(':');
+        const id = Array.from(macBuffer)
+          .reverse()
+          .map(b => b.toString(16).padStart(2, '0'))
+          .join('');
 
-      const id = Array.from(macBuffer)
-        .reverse()
-        .map(b => b.toString(16).padStart(2, '0'))
-        .join('');
+        let index = 12;
+        while (index + 3 <= data.length) {
+          const type = data.readUInt16LE(index);
+          const length = data[index + 2];
+          if (index + 3 + length > data.length) break;
+          const valueBuf = data.slice(index + 3, index + 3 + length);
 
-      let index = 12;
-      while (index + 3 <= data.length) {
-        const type = data.readUInt16LE(index);
-        const length = data[index + 2];
-        if (index + 3 + length > data.length) break;
-        const valueBuf = data.slice(index + 3, index + 3 + length);
+          let sensorValues: CapabilityMap = {
+            [DeviceCapabilities.Temperature]: undefined,
+            [DeviceCapabilities.Luminance]: undefined,
+            [DeviceCapabilities.Nutrition]: undefined,
+            [DeviceCapabilities.Moisture]: undefined,
+            [FirmwareCapabilities.Battery]: undefined,
+          };
 
-        let sensorValues: CapabilityMap = {
-          [DeviceCapabilities.Temperature]: undefined,
-          [DeviceCapabilities.Luminance]: undefined,
-          [DeviceCapabilities.Nutrition]: undefined,
-          [DeviceCapabilities.Moisture]: undefined,
-          [FirmwareCapabilities.Battery]: undefined,
-        };
+          switch (type) {
+            case 0x1004:
+              if (length === 2) sensorValues[DeviceCapabilities.Temperature] = valueBuf.readUInt16LE(0) / 10;
+              break;
 
-        switch (type) {
-          case 0x1004:
-            if (length === 2) sensorValues[DeviceCapabilities.Nutrition] = valueBuf.readUInt16LE(0);
-            break;
+            case 0x1007:
+              if (length === 3) sensorValues[DeviceCapabilities.Luminance] = valueBuf.readUInt16LE(0);
+              break;
 
-          case 0x1007:
-            if (length === 3) sensorValues[DeviceCapabilities.Luminance] = valueBuf.readUInt16LE(0);
-            break;
+            case 0x1008:
+              if (length === 1) sensorValues[DeviceCapabilities.Moisture] = valueBuf[0];
+              break;
 
-          case 0x1008:
-            if (length === 1) sensorValues[DeviceCapabilities.Moisture] = valueBuf[0];
-            break;
+            case 0x1009:
+              if (length === 2) {
+                sensorValues[DeviceCapabilities.Nutrition] = valueBuf.readUInt16LE(0);
+              }
+              break;
 
-          case 0x1009:
-            if (length === 2) {
-              sensorValues[DeviceCapabilities.Nutrition] = valueBuf.readUInt16LE(0);
-            }
-            break;
+            case 0x1006:
+              if (length === 1) sensorValues[FirmwareCapabilities.Battery] = valueBuf[0];
+              break;
+          }
 
-          case 0x1006:
-            if (length === 1) sensorValues[FirmwareCapabilities.Battery] = valueBuf[0];
-            break;
+          const device: MiFloraDevice | undefined = this._devices.find(current => current.id === id);
+
+          if (device) {
+            await this.asyncForEach(device.getCapabilities(), async characteristic => {
+              const characteristicAlias = characteristic as DeviceCapabilities;
+              if (sensorValues.hasOwnProperty(characteristic) && sensorValues[characteristicAlias] !== undefined) {
+                console.log(`update ${ characteristic } to ${ sensorValues[characteristicAlias] } for ${ device.getName() }`);
+                //await device.updateCapabilityValue(characteristic, sensorValues[characteristicAlias]);
+              }
+            });
+          }
+
+          index += 3 + length;
         }
-
-        const device: MiFloraDevice | undefined = this._devices.find(current => current.id === id);
-
-        if (device) {
-          await this.asyncForEach(device.getCapabilities(), async characteristic => {
-            const characteristicAlias = characteristic as DeviceCapabilities;
-            if (sensorValues.hasOwnProperty(characteristic) && sensorValues[characteristicAlias] !== undefined) {
-              console.log(`update ${ characteristic } to ${ sensorValues[characteristicAlias] } for ${ device.getName() }`);
-              await device.updateCapabilityValue(characteristic, sensorValues[characteristicAlias]);
-            }
-          });
-        }
-
-        index += 3 + length;
       }
+    } catch (e) {
+      console.log(e);
     }
   }
 
