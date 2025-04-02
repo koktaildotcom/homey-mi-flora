@@ -70,5 +70,8 @@
   },
   "4.4.0": {
     "en": "Add app settings option to update sensor values based on advertised service data"
+  },
+  "4.4.1": {
+    "en": "Also add temperature from the service data"
   }
 }
