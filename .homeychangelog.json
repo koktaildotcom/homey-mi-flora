@@ -76,5 +76,8 @@
   },
   "4.4.2": {
     "en": "Fixed app crash when devices are not ready yet"
+  },
+  "4.4.3": {
+    "en": "Handle errors gracefully"
   }
 }

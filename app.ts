@@ -524,18 +524,20 @@ export default class HomeyMiFloraApp extends App {
     const updateDevicesTime = new Date();
 
     if (this.getDevices().length === 0) {
-      throw new Error('No _devices found to update.');
+      this.syncInProgress = false;
+      console.log('No devices found to update.');
+      return;
     }
 
     this.syncInProgress = true;
     return this.updateDevices(this.getDevices())
       .then(() => {
         this.syncInProgress = false;
-        return `All devices are synced complete in: ${ (new Date().getTime() - updateDevicesTime.getTime()) / 1000 } seconds`;
+        console.log(`All devices are synced complete in: ${ (new Date().getTime() - updateDevicesTime.getTime()) / 1000 } seconds`);
       })
       .catch(error => {
         this.syncInProgress = false;
-        throw new Error(error);
+        console.log(error);
       });
   }
 
