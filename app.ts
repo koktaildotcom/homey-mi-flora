@@ -25,6 +25,7 @@ export default class HomeyMiFloraApp extends App {
   private _syncTimeout: number | undefined;
   private _syncCounterTimeout: number | undefined;
   private _retryMap: Map<string, number> = new Map();
+  private _enableDebugging = false;
 
   public thresholdMapping: ThresholdTranslationMapping = {
     [DeviceCapabilities.Temperature]: {
@@ -248,8 +249,10 @@ export default class HomeyMiFloraApp extends App {
             await this.asyncForEach(device.getCapabilities(), async characteristic => {
               const characteristicAlias = characteristic as DeviceCapabilities;
               if (sensorValues.hasOwnProperty(characteristic) && sensorValues[characteristicAlias] !== undefined) {
-                console.log(`update ${ characteristic } to ${ sensorValues[characteristicAlias] } for ${ device.getName() }`);
-                //await device.updateCapabilityValue(characteristic, sensorValues[characteristicAlias]);
+                if (this._enableDebugging) {
+                  console.log(`update ${ characteristic } to ${ sensorValues[characteristicAlias] } for ${ device.getName() }`);
+                }
+                await device.updateCapabilityValue(characteristic, sensorValues[characteristicAlias]);
               }
             });
           }
@@ -266,6 +269,10 @@ export default class HomeyMiFloraApp extends App {
    * @return device MiFloraDevice
    */
   getDevices() {
+    if (this._enableDebugging) {
+      return [this._devices[0], this._devices[1]];
+    }
+
     return this._devices;
   }
 
@@ -514,24 +521,14 @@ export default class HomeyMiFloraApp extends App {
       throw new Error('Synchronisation already in progress, wait for it to be complete.');
     }
 
-    let { _devices } = this;
-
-    const debugging = false;
-    if (debugging) {
-      if (this._devices.length !== 0) {
-        _devices = [];
-        _devices.push(this._devices[0], this._devices[1]);
-      }
-    }
-
     const updateDevicesTime = new Date();
 
-    if (_devices.length === 0) {
+    if (this.getDevices().length === 0) {
       throw new Error('No _devices found to update.');
     }
 
     this.syncInProgress = true;
-    return this.updateDevices(_devices)
+    return this.updateDevices(this.getDevices())
       .then(() => {
         this.syncInProgress = false;
         return `All devices are synced complete in: ${ (new Date().getTime() - updateDevicesTime.getTime()) / 1000 } seconds`;
@@ -555,8 +552,7 @@ export default class HomeyMiFloraApp extends App {
       this.homey.settings.set('updateInterval', updateInterval);
     }
 
-    const debugging = false;
-    const interval = 1000 * (debugging ? 2 : 60 * updateInterval);
+    const interval = 1000 * (this._enableDebugging ? 2 : 60 * updateInterval);
     const nextUpdateAt = new Date().getTime() + interval;
 
     if (this._syncTimeout) {
