@@ -73,5 +73,8 @@
   },
   "4.4.1": {
     "en": "Also add temperature from the service data"
+  },
+  "4.4.2": {
+    "en": "Fixed app crash when devices are not ready yet"
   }
 }
