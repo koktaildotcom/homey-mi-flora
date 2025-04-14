@@ -79,5 +79,8 @@
   },
   "4.4.3": {
     "en": "Handle errors gracefully"
+  },
+  "4.4.4": {
+    "en": "Changed debug interval of 5 sec to 5 min"
   }
 }
