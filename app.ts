@@ -572,7 +572,7 @@ export default class HomeyMiFloraApp extends App {
       console.log(`Synchronizing in: ${ minutes } minute(s) and ${ seconds } second(s)`);
     }, 1000 * 60) as unknown as number;
 
-    this.homey.setInterval(this._updateCapabilitiesWithAdvertisedService.bind(this), 1000 * 5);
+    this.homey.setInterval(this._updateCapabilitiesWithAdvertisedService.bind(this), 5 * 60 * 1000);
     this._syncTimeout = this.homey.setTimeout(this._synchroniseSensorDataTimeout.bind(this), interval) as unknown as number;
 
     this.syncInProgress = false;
