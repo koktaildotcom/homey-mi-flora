@@ -30,6 +30,10 @@
 		"success": "Inställningarna har sparats",
 		"error": {
 			"threshold": "Minsta och högsta värdet för `__capability__` är inte giltigt."
+		},
+		"use-advertised-service-data": {
+			"label": "Använd annonserad tjänstedata för sensorvärden (experimentell)",
+			"info": "Använd BLE-annonseringar för att läsa sensordata utan att ansluta till sensorn. Observera att dina sensorer måste vara uppdaterade till den senaste firmwareversionen."
 		}
 	},
 	"capability": {
@@ -81,11 +85,11 @@
 			"name": "batteri",
 			"changed": "Batteriet har ändrats till: __value__%.",
 			"device_changed": "Batteriet för `__plant__` har ändrats till: __value__%.",
-			"device_updated": "Batteriet för `__plant__` har uppdaterats till: __value__%."
-		},
-		"threshold": {
-			"min": "Batteriet (__value__%) för `__plant__` är för låg. Den bör vara minst __min__%.",
-			"max": "Batteriet (__value__%) för `__plant__` är för hög. Den bör vara som mest __max__%."
+			"device_updated": "Batteriet för `__plant__` har uppdaterats till: __value__%.",
+			"threshold": {
+				"min": "Batteriet (__value__%) för `__plant__` är för låg. Den bör vara minst __min__%.",
+				"max": "Batteriet (__value__%) för `__plant__` är för hög. Den bör vara som mest __max__%."
+			}
 		}
 	}
 }

@@ -30,6 +30,10 @@
     "success": "Die Einstellungen wurden gespeichert",
     "error": {
       "threshold": "Der minimale und maximale Grenzwert für `__capability__` sind ungültig."
+    },
+    "use-advertised-service-data": {
+      "label": "Advertisement-Daten für Sensorwerte verwenden (experimentell)",
+      "info": "BLE-Advertisements verwenden, um Sensordaten zu lesen, ohne eine Verbindung mit dem Sensor herzustellen. Beachte, dass deine Sensoren auf die neueste Firmware-Version aktualisiert sein müssen."
     }
   },
   "capability": {

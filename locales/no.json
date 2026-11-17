@@ -30,6 +30,10 @@
     "success": "Innstillingene har blitt lagret",
     "error": {
       "threshold": "Minste og maksimale terskel for `__capability__` er ikke gyldig."
+    },
+    "use-advertised-service-data": {
+      "label": "Bruk annonsert tjenestedata for sensorverdier (eksperimentell)",
+      "info": "Bruk BLE-annonseringer for å lese sensordata uten å koble til sensoren. Merk at sensorene dine må være oppdatert til siste fastvareversjon."
     }
   },
   "capability": {
