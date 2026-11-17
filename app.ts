@@ -24,6 +24,8 @@ export default class HomeyMiFloraApp extends App {
   private _conditionsMapping: Record<string, string> = {};
   private _syncTimeout: number | undefined;
   private _syncCounterTimeout: number | undefined;
+  private _advertisedServiceInterval: number | undefined;
+  private _uninitialized = false;
   private _retryMap: Map<string, number> = new Map();
   private _enableDebugging = false;
 
@@ -174,6 +176,13 @@ export default class HomeyMiFloraApp extends App {
 
     this.syncInProgress = false;
     await this._setNewTimeout();
+  }
+
+  async onUninit(): Promise<void> {
+    this._uninitialized = true;
+    this.homey.clearTimeout(this._syncTimeout);
+    this.homey.clearInterval(this._syncCounterTimeout);
+    this.homey.clearInterval(this._advertisedServiceInterval);
   }
 
   async _updateCapabilitiesWithAdvertisedService() {
@@ -507,7 +516,14 @@ export default class HomeyMiFloraApp extends App {
    * start the synchronisation
    */
   async _synchroniseSensorDataTimeout() {
-    await this._synchroniseSensorData();
+    try {
+      await this._synchroniseSensorData();
+    } catch (error) {
+      console.log(error);
+    }
+    if (this._uninitialized) {
+      return;
+    }
     await this._setNewTimeout();
   }
 
@@ -572,10 +588,8 @@ export default class HomeyMiFloraApp extends App {
       console.log(`Synchronizing in: ${ minutes } minute(s) and ${ seconds } second(s)`);
     }, 1000 * 60) as unknown as number;
 
-    this.homey.setInterval(this._updateCapabilitiesWithAdvertisedService.bind(this), 5 * 60 * 1000);
+    this._advertisedServiceInterval ??= this.homey.setInterval(this._updateCapabilitiesWithAdvertisedService.bind(this), 5 * 60 * 1000) as unknown as number;
     this._syncTimeout = this.homey.setTimeout(this._synchroniseSensorDataTimeout.bind(this), interval) as unknown as number;
-
-    this.syncInProgress = false;
   }
 
   async discoverDevices(driver: MiFloraDriver): Promise<DeviceInfo[]> {
