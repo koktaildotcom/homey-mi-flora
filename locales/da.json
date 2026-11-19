@@ -34,6 +34,17 @@
     "success": "Indstillingerne er blevet gemt",
     "error": {
       "threshold": "Minimum og maksimum tærsklen for `__capability__` er ikke gyldig."
+    },
+    "debug": {
+      "legend": "Diagnostik",
+      "subtitle": "Slå dette til, når du fejlfinder et problem med dine enheder.",
+      "label": "Aktivér fejlfindingslogning",
+      "description": "Registrerer ekstra logfiler og deler dem med os. Adgangskoder og tokens medtages aldrig.",
+      "error": "Det blev ikke gemt. Prøv igen.",
+      "openSupport": {
+        "button": "Åbn en supportsag",
+        "hint": "Åbner vores supportside med dine logfiler allerede tilknyttet."
+      }
     }
   },
   "capability": {

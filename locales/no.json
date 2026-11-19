@@ -34,6 +34,17 @@
     "use-advertised-service-data": {
       "label": "Bruk annonsert tjenestedata for sensorverdier (eksperimentell)",
       "info": "Bruk BLE-annonseringer for å lese sensordata uten å koble til sensoren. Merk at sensorene dine må være oppdatert til siste fastvareversjon."
+    },
+    "debug": {
+      "legend": "Diagnostikk",
+      "subtitle": "Slå på dette når du feilsøker et problem med enhetene dine.",
+      "label": "Aktiver feilsøkingslogging",
+      "description": "Registrerer ekstra logger og deler dem med oss. Passord og tokens inkluderes aldri.",
+      "error": "Det ble ikke lagret. Prøv igjen.",
+      "openSupport": {
+        "button": "Åpne en supportsak",
+        "hint": "Åpner supportsiden vår med loggene dine allerede koblet."
+      }
     }
   },
   "capability": {

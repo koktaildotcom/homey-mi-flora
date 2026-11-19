@@ -34,6 +34,17 @@
     "success": "Les paramètres ont été enregistrés",
     "error": {
       "threshold": "Le seuil min et max pour `__capability__` n'est pas valide."
+    },
+    "debug": {
+      "legend": "Diagnostics",
+      "subtitle": "Activez ceci lorsque vous résolvez un problème avec vos appareils.",
+      "label": "Activer la journalisation de débogage",
+      "description": "Enregistre des journaux supplémentaires et les partage avec nous. Les mots de passe et jetons ne sont jamais inclus.",
+      "error": "L'enregistrement a échoué. Veuillez réessayer.",
+      "openSupport": {
+        "button": "Ouvrir un ticket d'assistance",
+        "hint": "Ouvre notre page d'assistance avec vos journaux déjà liés."
+      }
     }
   },
   "capability": {

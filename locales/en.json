@@ -34,6 +34,17 @@
     "success": "The settings has been saved",
     "error": {
       "threshold": "The min and max threshold for `__capability__` is not a valid."
+    },
+    "debug": {
+      "legend": "Diagnostics",
+      "subtitle": "Turn this on when you're troubleshooting a problem with your devices.",
+      "label": "Enable debug logging",
+      "description": "Records extra logs and shares them with us. Passwords and tokens are never included.",
+      "error": "That didn't save. Please try again.",
+      "openSupport": {
+        "button": "Open support ticket",
+        "hint": "Opens our support page with your logs already linked."
+      }
     }
   },
   "capability": {

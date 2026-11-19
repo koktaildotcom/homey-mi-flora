@@ -34,6 +34,17 @@
     "use-advertised-service-data": {
       "label": "Advertisement-Daten für Sensorwerte verwenden (experimentell)",
       "info": "BLE-Advertisements verwenden, um Sensordaten zu lesen, ohne eine Verbindung mit dem Sensor herzustellen. Beachte, dass deine Sensoren auf die neueste Firmware-Version aktualisiert sein müssen."
+    },
+    "debug": {
+      "legend": "Diagnose",
+      "subtitle": "Aktiviere dies, wenn du ein Problem mit deinen Geräten behebst.",
+      "label": "Debug-Protokollierung aktivieren",
+      "description": "Zeichnet zusätzliche Protokolle auf und teilt sie mit uns. Passwörter und Tokens werden nie übertragen.",
+      "error": "Das wurde nicht gespeichert. Bitte versuche es erneut.",
+      "openSupport": {
+        "button": "Support-Ticket öffnen",
+        "hint": "Öffnet unsere Support-Seite mit bereits verknüpften Protokollen."
+      }
     }
   },
   "capability": {

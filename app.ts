@@ -1,4 +1,5 @@
-import { App, FlowCardAction, FlowCardTrigger, FlowCardTriggerDevice } from 'homey';
+import Homey, { App, FlowCardAction, FlowCardTrigger, FlowCardTriggerDevice } from 'homey';
+import { HomeyLogger } from '@koktail/homey-logger';
 import MiFloraDevice from './lib/MiFloraDevice';
 import MiFloraDriver from './lib/MiFloraDriver';
 import { DeviceInfo } from './types/DeviceInfo';
@@ -70,7 +71,18 @@ export default class HomeyMiFloraApp extends App {
    * init the app
    */
   async onInit(): Promise<void> {
+    const homeyId = await this.homey.cloud.getHomeyId();
+    HomeyLogger.init({
+      homeyId,
+      apiKey: Homey.env.HOMEY_LOGGING_KEY ?? '',
+      settings: this.homey.settings,
+    });
+
     console.log('Successfully init HomeyMiFlora version: %s', this.homey.manifest.version);
+    HomeyLogger.log('platform', this.homey.platform);
+    HomeyLogger.log('homey version', this.homey.version);
+    HomeyLogger.log('platform version', this.homey.platformVersion);
+    HomeyLogger.log('timezone', this.homey.clock.getTimezone());
     this._devices = [];
     this.deviceSensorUpdated = this.homey.flow.getDeviceTriggerCard('device_sensor_updated');
     this.globalSensorUpdated = this.homey.flow.getTriggerCard('sensor_updated');
@@ -183,6 +195,7 @@ export default class HomeyMiFloraApp extends App {
     this.homey.clearTimeout(this._syncTimeout);
     this.homey.clearInterval(this._syncCounterTimeout);
     this.homey.clearInterval(this._advertisedServiceInterval);
+    await HomeyLogger.destroy();
   }
 
   async _updateCapabilitiesWithAdvertisedService() {

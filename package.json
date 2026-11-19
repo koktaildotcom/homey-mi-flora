@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/koktaildotcom/homey-mi-flora#readme",
   "dependencies": {
+    "@koktail/homey-logger": "^3.1.1",
     "moment": "^2.30.1"
   }
 }
