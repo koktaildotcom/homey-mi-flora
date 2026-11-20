@@ -34,6 +34,17 @@
     "success": "De instellingen zijn opgeslagen",
     "error": {
       "threshold": "De min and max grens voor `__capability__` is niet geldig."
+    },
+    "debug": {
+      "legend": "Diagnostiek",
+      "subtitle": "Zet dit aan als je een probleem met je apparaten aan het oplossen bent.",
+      "label": "Debug-logging inschakelen",
+      "description": "Legt extra logs vast en deelt ze met ons. Wachtwoorden en tokens worden nooit meegestuurd.",
+      "error": "Dat is niet opgeslagen. Probeer het opnieuw.",
+      "openSupport": {
+        "button": "Supportticket openen",
+        "hint": "Opent onze supportpagina met je logs al gekoppeld."
+      }
     }
   },
   "capability": {

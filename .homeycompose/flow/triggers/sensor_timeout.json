@@ -36,7 +36,14 @@
         "en": "Flowercare 1",
         "nl": "Flowercare 1",
         "de": "Flowercare 1",
-        "sv": "Flowercare 1"
+        "sv": "Flowercare 1",
+        "da": "Flowercare 1",
+        "es": "Flowercare 1",
+        "fr": "Flowercare 1",
+        "ko": "Flowercare 1",
+        "no": "Flowercare 1",
+        "pl": "Flowercare 1",
+        "ru": "Flowercare 1"
       }
     },
     {
@@ -60,7 +67,14 @@
         "en": "Not in range",
         "nl": "Niet binnen bereik",
         "de": "Nicht in Reichweite",
-        "sv": "Inte inom räckhåll"
+        "sv": "Inte inom räckhåll",
+        "da": "Ikke inden for rækkevidde",
+        "es": "Fuera de alcance",
+        "fr": "Hors de portée",
+        "ko": "범위를 벗어남",
+        "no": "Ikke innen rekkevidde",
+        "pl": "Poza zasięgiem",
+        "ru": "Вне зоны действия"
       }
     }
   ]

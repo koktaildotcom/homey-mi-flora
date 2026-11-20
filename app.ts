@@ -1,4 +1,5 @@
-import { App, FlowCardAction, FlowCardTrigger, FlowCardTriggerDevice } from 'homey';
+import Homey, { App, FlowCardAction, FlowCardTrigger, FlowCardTriggerDevice } from 'homey';
+import { HomeyLogger } from '@koktail/homey-logger';
 import MiFloraDevice from './lib/MiFloraDevice';
 import MiFloraDriver from './lib/MiFloraDriver';
 import { DeviceInfo } from './types/DeviceInfo';
@@ -17,14 +18,19 @@ const REALTIME_CHARACTERISTIC_UUID = '00001a0000001000800000805f9b34fb';
 const ADVERTISING_SERVICE_UUID = '0000fe95-0000-1000-8000-00805f9b34fb';
 
 const MAX_RETRIES = 3;
+const BLE_OPERATION_TIMEOUT = 2 * 60 * 1000;
 
 export default class HomeyMiFloraApp extends App {
   private _devices: MiFloraDevice[] = [];
   private _capabilityOptions: string[] = [];
   private _conditionsMapping: Record<string, string> = {};
-  private _syncTimeout: number | undefined;
-  private _syncCounterTimeout: number | undefined;
+  private _syncTimeout: NodeJS.Timeout | undefined;
+  private _syncCounterTimeout: NodeJS.Timeout | undefined;
+  private _advertisedServiceInterval: NodeJS.Timeout | undefined;
+  private _uninitialized = false;
   private _retryMap: Map<string, number> = new Map();
+  private _bleQueue: Promise<unknown> = Promise.resolve();
+  private _bleOperations = 0;
   private _enableDebugging = false;
 
   public thresholdMapping: ThresholdTranslationMapping = {
@@ -68,7 +74,18 @@ export default class HomeyMiFloraApp extends App {
    * init the app
    */
   async onInit(): Promise<void> {
+    const homeyId = await this.homey.cloud.getHomeyId();
+    HomeyLogger.init({
+      homeyId,
+      apiKey: Homey.env.HOMEY_LOGGING_KEY ?? '',
+      settings: this.homey.settings,
+    });
+
     console.log('Successfully init HomeyMiFlora version: %s', this.homey.manifest.version);
+    HomeyLogger.log('platform', this.homey.platform);
+    HomeyLogger.log('homey version', this.homey.version);
+    HomeyLogger.log('platform version', this.homey.platformVersion);
+    HomeyLogger.log('timezone', this.homey.clock.getTimezone());
     this._devices = [];
     this.deviceSensorUpdated = this.homey.flow.getDeviceTriggerCard('device_sensor_updated');
     this.globalSensorUpdated = this.homey.flow.getTriggerCard('sensor_updated');
@@ -176,8 +193,32 @@ export default class HomeyMiFloraApp extends App {
     await this._setNewTimeout();
   }
 
-  async _updateCapabilitiesWithAdvertisedService() {
+  async onUninit(): Promise<void> {
+    this._uninitialized = true;
+    this.homey.clearTimeout(this._syncTimeout);
+    this.homey.clearInterval(this._syncCounterTimeout);
+    this.homey.clearInterval(this._advertisedServiceInterval);
+    await HomeyLogger.destroy();
+  }
+
+  /**
+   * The advertised service scan runs when the user enabled it and no other BLE operation runs or
+   * waits: a scan that overlaps a find or connect makes the radio miss the sensor, so a busy radio
+   * skips the scan and the next interval tries again.
+   */
+  _advertisedServiceScanAllowed(): boolean {
     if (!this.homey.settings.get('advertisedService')) {
+      return false;
+    }
+    if (this._bleOperations > 0) {
+      console.log('Skip advertised service scan, BLE is busy');
+      return false;
+    }
+    return true;
+  }
+
+  async _updateCapabilitiesWithAdvertisedService() {
+    if (!this._advertisedServiceScanAllowed()) {
       return;
     }
 
@@ -186,7 +227,7 @@ export default class HomeyMiFloraApp extends App {
     }
 
     try {
-      const advertisements = await this.homey.ble.discover();
+      const advertisements = await this._runBleExclusive(() => this.homey.ble.discover());
       for (const adv of advertisements) {
         if (!Array.isArray(adv.serviceData)) continue;
 
@@ -266,6 +307,30 @@ export default class HomeyMiFloraApp extends App {
   }
 
   /**
+   * Runs one BLE operation at a time, in call order. An operation that does not settle within
+   * BLE_OPERATION_TIMEOUT is rejected for its caller and releases the radio for the next one; the
+   * Homey BLE call it made may still settle afterwards. Operations that reach the radio after
+   * onUninit are rejected without touching BLE.
+   */
+  async _runBleExclusive<T>(operation: () => Promise<T>): Promise<T> {
+    this._bleOperations++;
+    const run = this._bleQueue.then(() => {
+      if (this._uninitialized) {
+        throw new Error('App is uninitialized');
+      }
+      let timeout: NodeJS.Timeout | undefined;
+      const expired = new Promise<never>((_, reject) => {
+        timeout = this.homey.setTimeout(() => reject(new Error('BLE operation timed out')), BLE_OPERATION_TIMEOUT);
+      });
+      return Promise.race([operation(), expired]).finally(() => this.homey.clearTimeout(timeout));
+    }).finally(() => {
+      this._bleOperations--;
+    });
+    this._bleQueue = run.catch(() => undefined);
+    return run;
+  }
+
+  /**
    * @return device MiFloraDevice
    */
   getDevices() {
@@ -312,7 +377,7 @@ export default class HomeyMiFloraApp extends App {
       const updateDeviceTime = new Date();
 
       console.log('find');
-      const advertisement = await this.homey.ble.find(device.getAddress(), 10000);
+      const advertisement = await this.homey.ble.find(device.getAddress());
 
       console.log(`distance = ${ this.calculateDistance(advertisement.rssi) } meter`);
 
@@ -470,12 +535,15 @@ export default class HomeyMiFloraApp extends App {
       this._retryMap.set(device.id, 0);
     }
 
-    return await this.handleUpdateSequence(device)
+    return await this._runBleExclusive(() => this.handleUpdateSequence(device))
       .then(() => {
         this._retryMap.set(device.id, 0);
         return device;
       })
       .catch(async error => {
+        if (this._uninitialized) {
+          throw error;
+        }
         this._retryMap.set(device.id, (this._retryMap.get(device.id) ?? 0) + 1);
         console.log(`timeout, retry again ${ this._retryMap.get(device.id) }`);
         console.log(error);
@@ -507,7 +575,14 @@ export default class HomeyMiFloraApp extends App {
    * start the synchronisation
    */
   async _synchroniseSensorDataTimeout() {
-    await this._synchroniseSensorData();
+    try {
+      await this._synchroniseSensorData();
+    } catch (error) {
+      console.log(error);
+    }
+    if (this._uninitialized) {
+      return;
+    }
     await this._setNewTimeout();
   }
 
@@ -570,12 +645,10 @@ export default class HomeyMiFloraApp extends App {
       const seconds = Math.floor((timeRemaining / 1000) % 60);
 
       console.log(`Synchronizing in: ${ minutes } minute(s) and ${ seconds } second(s)`);
-    }, 1000 * 60) as unknown as number;
+    }, 1000 * 60);
 
-    this.homey.setInterval(this._updateCapabilitiesWithAdvertisedService.bind(this), 5 * 60 * 1000);
-    this._syncTimeout = this.homey.setTimeout(this._synchroniseSensorDataTimeout.bind(this), interval) as unknown as number;
-
-    this.syncInProgress = false;
+    this._advertisedServiceInterval ??= this.homey.setInterval(this._updateCapabilitiesWithAdvertisedService.bind(this), 5 * 60 * 1000);
+    this._syncTimeout = this.homey.setTimeout(this._synchroniseSensorDataTimeout.bind(this), interval);
   }
 
   async discoverDevices(driver: MiFloraDriver): Promise<DeviceInfo[]> {
@@ -590,7 +663,7 @@ export default class HomeyMiFloraApp extends App {
       const data = device.getData();
       currentUuids.push(data.uuid);
     });
-    return this.homey.ble.discover()
+    return this._runBleExclusive(() => this.homey.ble.discover())
       .then(advertisements => {
         advertisements = advertisements.filter(advertisement => {
           return (currentUuids.indexOf(advertisement.uuid) === -1);

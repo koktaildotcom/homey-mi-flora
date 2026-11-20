@@ -30,6 +30,21 @@
     "success": "La configuración se ha guardado",
     "error": {
       "threshold": "El umbral mínimo y máximo para `__capability__` no es válido."
+    },
+    "use-advertised-service-data": {
+      "label": "Usar los datos de advertising para los valores del sensor (experimental)",
+      "info": "Usa los anuncios BLE para leer los datos del sensor sin conectarse al sensor. Ten en cuenta que tus sensores deben estar actualizados a la última versión del firmware."
+    },
+    "debug": {
+      "legend": "Diagnóstico",
+      "subtitle": "Actívalo cuando estés resolviendo un problema con tus dispositivos.",
+      "label": "Activar el registro de depuración",
+      "description": "Registra registros adicionales y los comparte con nosotros. Las contraseñas y los tokens nunca se incluyen.",
+      "error": "No se ha guardado. Inténtalo de nuevo.",
+      "openSupport": {
+        "button": "Abrir un ticket de soporte",
+        "hint": "Abre nuestra página de soporte con tus registros ya vinculados."
+      }
     }
   },
   "capability": {

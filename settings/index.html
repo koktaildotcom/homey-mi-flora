@@ -87,6 +87,34 @@
         data-i18n="settings.save.label"
 ></button>
 
+<fieldset class="homey-form-fieldset">
+    <legend class="homey-form-legend" data-i18n="settings.debug.legend"></legend>
+    <p class="homey-form-help" data-i18n="settings.debug.subtitle"></p>
+
+    <div class="homey-form-group">
+        <fieldset class="homey-form-checkbox-set">
+            <legend class="homey-form-checkbox-set-title">
+                <span data-i18n="settings.debug.label"></span>
+            </legend>
+            <label class="homey-form-checkbox">
+                <input class="homey-form-checkbox-input" type="checkbox" id="debug_mode" name="debug_mode"/>
+                <span class="homey-form-checkbox-checkmark"></span>
+                <small class="homey-form-help" data-i18n="settings.debug.description"></small>
+            </label>
+        </fieldset>
+    </div>
+
+    <div class="homey-form-group" id="support" style="display: none;">
+        <button
+                type="button"
+                id="support-button"
+                class="homey-button-secondary-full"
+                data-i18n="settings.debug.openSupport.button"
+        ></button>
+        <small class="homey-form-help" data-i18n="settings.debug.openSupport.hint"></small>
+    </div>
+</fieldset>
+
 <script type="text/javascript">
     function showMessage(text, type = 'info') {
         const message = document.getElementById('message');
@@ -128,6 +156,52 @@
         } catch (err) {
             showMessage(err.message || err.toString(), 'error');
         }
+
+        const SUPPORT_PORTAL_URL = 'https://support.koktail.nl';
+        const APP_ID = 'com.mi.flora';
+        const debugModeEl = document.getElementById('debug_mode');
+        const supportEl = document.getElementById('support');
+        const supportButton = document.getElementById('support-button');
+
+        let supportKey = '';
+
+        // The support action links the user's logs, so it shows only while logging is on and the
+        // logger has written the support key.
+        function renderSupport() {
+            supportEl.style.display = debugModeEl.checked && supportKey !== '' ? 'block' : 'none';
+        }
+
+        try {
+            debugModeEl.checked = (await getSetting(Homey, 'debug_mode')) === true;
+            const value = await getSetting(Homey, 'debug_support_key');
+            if (typeof value === 'string') supportKey = value;
+        } catch (err) {
+            showMessage(err.message || err.toString(), 'error');
+        }
+        renderSupport();
+
+        // The debug checkbox saves on change, so logging starts without pressing save. It stays
+        // disabled while the write runs, and a failed write is rolled back to the stored state.
+        debugModeEl.addEventListener('change', async () => {
+            const next = debugModeEl.checked;
+            debugModeEl.disabled = true;
+            renderSupport();
+            try {
+                await setSetting(Homey, 'debug_mode', next);
+            } catch (err) {
+                debugModeEl.checked = !next;
+                renderSupport();
+                showMessage(Homey.__('settings.debug.error') || err.toString(), 'error');
+            } finally {
+                debugModeEl.disabled = false;
+            }
+        });
+
+        supportButton.addEventListener('click', () => {
+            Homey.openURL(
+                `${ SUPPORT_PORTAL_URL }/?app=${ encodeURIComponent(APP_ID) }&key=${ encodeURIComponent(supportKey) }`
+            );
+        });
 
         saveButton?.addEventListener('click', async () => {
             const value = parseInt(updateIntervalEl.value, 10);

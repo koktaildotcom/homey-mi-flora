@@ -34,6 +34,17 @@
     "success": "Ustawienia zostały zapisane",
     "error": {
       "threshold": "Minimalny i maksymalny próg dla `__capability__` jest nieprawidłowy."
+    },
+    "debug": {
+      "legend": "Diagnostyka",
+      "subtitle": "Włącz to podczas rozwiązywania problemu z urządzeniami.",
+      "label": "Włącz rejestrowanie debugowania",
+      "description": "Rejestruje dodatkowe logi i udostępnia je nam. Hasła i tokeny nigdy nie są dołączane.",
+      "error": "Nie udało się zapisać. Spróbuj ponownie.",
+      "openSupport": {
+        "button": "Otwórz zgłoszenie do pomocy technicznej",
+        "hint": "Otwiera naszą stronę pomocy z już dołączonymi logami."
+      }
     }
   },
   "capability": {
